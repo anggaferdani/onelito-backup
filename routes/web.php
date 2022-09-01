@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthenticationController;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,10 @@ Route::get('/', function () {
     return view('home',[
         "title" => "home"
     ]);
+});
+
+Route::group(['prefix' => 'authentications'], function () {
+    Route::post('/', [AuthenticationController::class, 'login'])->name('login.post');
 });
 
 Route::get('/auction', function () {
@@ -42,7 +47,7 @@ Route::get('/login', function () {
     return view('login',[
         "title" => "login"
     ]);
-});
+})->name('login');
 
 Route::get('/registrasi', function () {
     return view('registrasi',[
