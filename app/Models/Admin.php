@@ -8,14 +8,15 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
-class Member extends Authenticatable
+class Admin extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $guarded = [];
+    // column level
+    const LEVEL_1 = 1; //superadmin
 
-    protected $table = 'm_peserta';
-    protected $primaryKey = 'id_peserta';
+    protected $table = 'm_admin';
+    protected $primaryKey = 'id_admin';
 
     protected $hidden = [
         'password',

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use App\Models\Member;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,10 +16,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Member::factory()->create([
-            'email' => 'rifqi@gmail.com',
-            'password' => 'rifqi'
-        ]);
+        // Member::factory()->create([
+        //     'email' => 'rifqi@gmail.com',
+        //     'password' => 'rifqi'
+        // ]);
+
+        // Member::factory(50)->create();
+
+        // Admin::factory()->create([
+        //     'username' => 'admin',
+        //     'password' => 'admin2022'
+        // ]);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

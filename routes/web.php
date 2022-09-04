@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin;
 use App\Http\Controllers\AuthenticationController;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +30,24 @@ Route::get('/admin-login', function () {
 
 Route::group(['prefix' => 'authentications'], function () {
     Route::post('/', [AuthenticationController::class, 'login'])->name('login.post');
+
+    Route::group(['prefix' => 'admin'], function () {
+        Route::post('/', [AuthenticationController::class, 'adminLogin'])->name('admin.login.post');
+        Route::get('/logout', [AuthenticationController::class, 'adminLogout'])->name('admin.logout');
+    });
 });
+
+// ADMIN
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
+    Route::get('/dashboard', [Admin\DashboardController::class, 'index'])->name('admin.dashboard.index');
+
+    Route::group(['prefix' => 'admins'], function () {
+        Route::get('/', [Admin\AdminController::class, 'index'])->name('admin.admin.index');
+    });
+
+    Route::resource('members', Admin\MemberController::class);
+});
+
 
 Route::get('/auction', function () {
     return view('auction',[
