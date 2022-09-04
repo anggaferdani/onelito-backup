@@ -21,6 +21,12 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/admin-login', function () {
+    return view('admin.pages.auth-login',[
+        "title" => "home"
+    ]);
+});
+
 Route::group(['prefix' => 'authentications'], function () {
     Route::post('/', [AuthenticationController::class, 'login'])->name('login.post');
 });
