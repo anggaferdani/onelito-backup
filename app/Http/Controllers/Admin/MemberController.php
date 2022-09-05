@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Member;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 
 class MemberController extends Controller
@@ -64,5 +65,54 @@ class MemberController extends Controller
                 'message' => 'Data Not Found'
             ],404);
         }
+    }
+
+    public function update($id)
+    {
+        $member = Member::findOrFail($id);
+        $data = $this->request->all();
+        $validator = Validator::make($this->request->all(), [
+            'email' => 'required|email',
+            'nama'  => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        $data['update_by'] = Auth::guard('admin')->id();
+        $updateMember = $member->update($data);
+
+        if($updateMember){
+            return response()->json([
+                'success' => true,
+                'message' => [
+                    'title' => 'Berhasil',
+                    'content' => 'Mengubah data peserta',
+                    'type' => 'success'
+                ],
+            ],200);
+        }else{
+            return response()->json([
+                'success' => false,
+                'message' => [
+                    'title' => 'Gagal',
+                    'content' => 'Mengubah data peserta',
+                    'type' => 'error'
+                ],
+            ],400);
+        }
+    }
+
+    public function destroy($id)
+    {
+        $member = Member::findOrFail($id);
+        $member->status_aktif = 1;
+
+        $member->save();
+
+        return response()->json([
+            'success' => true,
+        ],200);
     }
 }

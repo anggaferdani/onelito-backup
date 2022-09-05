@@ -70,6 +70,7 @@
         </section>
         @include('admin.pages.member._create')
         @include('admin.pages.member._show')
+        @include('admin.pages.member._edit')
     </div>
 @endsection
 
@@ -83,8 +84,15 @@
     <script src="{{ asset('library/jquery-ui-dist/jquery-ui.min.js') }}"></script>
 
     <!-- Page Specific JS File -->
-    <script src="{{ asset('js/page/admin-admin.js') }}"></script>
+    <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
 
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
     <script>
         $(document).ready(function() {
             $('#table-1').DataTable({
@@ -128,7 +136,6 @@
         $(document).on('click','button#btn-show',function() {
             let id = $(this).data('id');
             let dataUrl = $(this).data('url');
-            console.log(dataUrl);
             $.ajax({
                 type: 'GET',
                 url : `members/${id}`,
@@ -152,7 +159,120 @@
             })
         })
 
+        $(document).on('click','button#btn-edit',function() {
+            let id = $(this).data('id');
+            let dataUrl = $(this).data('url');
+            $.ajax({
+                type: 'GET',
+                url : `members/${id}`,
+                dataType: "json",
+                success: function(res) {
+                    document.getElementById('formEdit').action = `members/${id}`;
+                    $('#modalEdit').modal('show');
+                    $('#edit_nama').val(res.nama)
+                    $('#edit_email').val(res.email)
+                    $('#edit_no_hp').val(res.no_hp)
+                    $('#edit_alamat').val(res.alamat)
+                    $('#edit_provinsi').val(res.provinsi)
+                    $('#edit_kota').val(res.kota)
+                    $('#edit_kecamatan').val(res.kecamatan)
+                    $('#edit_kelurahan').val(res.kelurahan)
+                    $('#edit_kode_pos').val(res.kode_pos)
+                },
+                error:function(error) {
+                    console.log(error)
+                }
 
+            })
+        })
+
+        $('#formEdit').submit(function(e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+
+            var dataForm = {
+                nama: formData.get('edit_nama'),
+                email: formData.get('edit_email'),
+                no_hp: formData.get('edit_no_hp'),
+                alamat: formData.get('edit_alamat'),
+                provinsi: formData.get('edit_provinsi'),
+                kota: formData.get('edit_kota'),
+                kecamatan: formData.get('edit_kecamatan'),
+                kelurahan: formData.get('edit_kelurahan'),
+                kode_pos: formData.get('edit_kode_pos')
+            }
+
+            $.ajax({
+                type: 'PATCH',
+                data : dataForm,
+                dataType: 'json',
+                url: $(this).attr('action'),
+                beforeSend:function(){
+                    $('#btn-update').addClass("btn-progress");
+                    $(document).find('span.error-text').text('');
+                },
+                complete: function(){
+                    $('#btn-update').removeClass("btn-progress");
+                },
+                success: function(res){
+                    if(res.success == true){
+
+                        location.reload();
+                        $('#modalEdit').modal('hide');
+
+                        $('#formDataEdit').trigger('reset');
+                        $('#example').DataTable().ajax.reload();
+
+                        swal(res.message.title, res.message.content, res.message.type);
+                    }
+                },
+                error(err){
+                    $.each(err.responseJSON,function(prefix,val) {
+                        $('.'+prefix+'_error_edit').text(val[0]);
+                    })
+                }
+            })
+        })
+
+        $(document).on('click','button#btn-delete',function() {
+            let id = $(this).data('id');
+
+            swal({
+                title: 'Anda Yakin?',
+                text: 'Anda akan menghapus data peserta',
+                icon: 'warning',
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        type:'DELETE',
+                        dataType: 'JSON',
+                        url: `members/${id}`,
+                        data:{
+                            "_token": $('meta[name="csrf-token"]').attr('content'),
+                        },
+                        success:function(response){
+                            if(response.success){
+                                swal('Data peserta berhasil dihapus', {
+                                    icon: 'success',
+                                });
+
+                                location.reload();
+                            }
+                        },
+                        error:function(err){
+                            swal({
+                                icon: 'error',
+                                title: 'Terjadi kesalahan',
+                                text: err.responseJSON.message+'.',
+                            })
+                        }
+                    });
+                }
+            });
+        });
     </script>
 
 
