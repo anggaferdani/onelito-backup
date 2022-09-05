@@ -47,7 +47,7 @@
             </li>
             <li class="nav-item {{ $type_menu === 'manage-fish' ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ url('admin/manage/admins') }}"><i class="fas fa-fish"></i> <span>Fish</span></a>
+                    href="{{ url('admin/fishes') }}"><i class="fas fa-fish"></i> <span>Fish</span></a>
             </li>
     </aside>
 </div>

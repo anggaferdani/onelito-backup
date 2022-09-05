@@ -46,6 +46,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     });
 
     Route::resource('members', Admin\MemberController::class);
+
+    Route::resource('fishes', Admin\KoiStockController::class);
 });
 
 
