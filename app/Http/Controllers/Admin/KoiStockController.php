@@ -104,10 +104,10 @@ class KoiStockController extends Controller
 
     public function destroy($id)
     {
-        $member = KoiStock::findOrFail($id);
-        $member->status_aktif = 1;
+        $koi = KoiStock::findOrFail($id);
+        $koi->status_aktif = 1;
 
-        $member->save();
+        $koi->save();
 
         return response()->json([
             'success' => true,

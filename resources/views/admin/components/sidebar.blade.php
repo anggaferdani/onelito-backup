@@ -19,19 +19,15 @@
             </li>
             <li class="nav-item {{ $type_menu === 'manage-auction-product' ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ url('admin/manage/admins') }}"><i class="fas fa-boxes-stacked"></i> <span>Barang Lelang</span></a>
+                    href="{{ url('admin/auction-products') }}"><i class="fas fa-boxes-stacked"></i> <span>Barang Lelang</span></a>
             </li>
             <li class="nav-item {{ $type_menu === 'manage-product-store' ? 'active' : '' }}">
                 <a class="nav-link"
                     href="{{ url('admin/manage/admins') }}"><i class="fas fa-warehouse"></i> <span>Barang Store</span></a>
             </li>
-            <li class="nav-item {{ $type_menu === 'manage-event-aucion' ? 'active' : '' }}">
+            <li class="nav-item {{ $type_menu === 'manage-events' ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ url('admin/manage/admins') }}"><i class="fas fa-calendar-days"></i> <span>Event Auction</span></a>
-            </li>
-            <li class="nav-item {{ $type_menu === 'manage-regular-auction' ? 'active' : '' }}">
-                <a class="nav-link"
-                    href="{{ url('admin/regular-events') }}"><i class="fas fa-calendar"></i> <span>Regular Auction</span></a>
+                    href="{{ url('admin/events') }}"><i class="fas fa-calendar-days"></i> <span>Auction</span></a>
             </li>
             <li class="nav-item {{ $type_menu === 'manage-member' ? 'active' : '' }}">
                 <a class="nav-link"

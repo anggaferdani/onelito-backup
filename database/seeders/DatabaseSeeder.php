@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
+use App\Models\EventFish;
 use App\Models\KoiStock;
 use App\Models\Member;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -22,7 +23,7 @@ class DatabaseSeeder extends Seeder
         //     'password' => 'rifqi'
         // ]);
 
-        // KoiStock::factory(150)->create();
+        EventFish::factory(30)->create();
 
         // Admin::factory()->create([
         //     'username' => 'admin',
