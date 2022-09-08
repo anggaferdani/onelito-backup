@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Barang Lelang')
+@section('title', 'Auction')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -15,16 +15,21 @@
         href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}">
     <link rel="stylesheet"
         href="{{ asset('library/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
+
+    <link rel="stylesheet"
+        href="{{ asset('library/bootstrap-daterangepicker/daterangepicker.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('library/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}">
 @endpush
 
 @section('main')
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Management Barang Lelang</h1>
+                <h1>Management Auction</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item">Management Barang Lelang</div>
+                    <div class="breadcrumb-item">Management Auction</div>
                 </div>
             </div>
 
@@ -36,7 +41,7 @@
                             <button class="btn btn-primary mb-3"
                             data-toggle="modal"
                             data-target="#modalCreate"
-                            ><i class="fa fa-plus"></i> Tambah Barang Lelang</button>
+                            ><i class="fa fa-plus"></i> Tambah Auction</button>
 
                                 <div class="table-responsive">
                                     <table class="table-striped table"
@@ -46,15 +51,13 @@
                                                 <th class="text-center">
                                                     #
                                                 </th>
-                                                <th>No. Ikan</th>
-                                                <th>Variety</th>
-                                                <th>Breeder</th>
-                                                <th>Bloodline</th>
-                                                <th>Jenis Kelamin</th>
-                                                <th>DOB</th>
-                                                <th>Size</th>
-                                                <th>Extra Time</th>
-                                                <th>Foto</th>
+                                                <th>Kategori Event</th>
+                                                <th>Deskripsi</th>
+                                                <th>Rules</th>
+                                                <th>Tgl. Mulai</th>
+                                                <th>Tgl. Akhir</th>
+                                                <th>Banner</th>
+                                                <th>Total Hadiah</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -69,9 +72,9 @@
                 </div>
             </div>
         </section>
-        @include('admin.pages.auction-product._create')
-        @include('admin.pages.auction-product._show')
-        @include('admin.pages.auction-product._edit')
+        @include('admin.pages.auction._create')
+        @include('admin.pages.auction._show')
+        @include('admin.pages.auction._edit')
     </div>
 @endsection
 
@@ -81,11 +84,13 @@
     <script src="assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script> --}}
     <script src="{{ asset('library/datatables/media/js/jquery.dataTables.min.js') }}"></script>
     <!-- <script src="{{ asset('library/datatables.net-bs4/css/dataTables.bootstrap4.min.js') }}"></script> -->
-    {{-- <script src="{{ asset() }}"></script> --}}
     <script src="{{ asset('library/jquery-ui-dist/jquery-ui.min.js') }}"></script>
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
+
+    <script src="{{ asset('library/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('library/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
 
     <script type="text/javascript">
         $.ajaxSetup({
@@ -113,23 +118,21 @@
                     return: true
                 },
                 ajax : {
-                url : '{{ url("admin/auction-products") }}',
+                url : '{{ url("admin/auctions") }}',
                 data : function(d) {
                     // d.jenis_task = $('#filter_jenis_task').val()
                 }
                 },
                 columns : [
                     { data : 'DT_RowIndex' , orderable : false,searchable :false},
-                    { data : 'no_ikan' },
-                    { data : 'variety'},
-                    { data : 'breeder'},
-                    { data : 'bloodline'},
-                    { data : 'sex'},
-                    { data : 'dob'},
-                    { data : 'size'},
-                    { data : 'extra_time'},
-                    { data : 'photo', name: 'photo.path_foto'},
-                    { data : 'action' , orderable : false,searchable :false},
+                    { data : 'kategori_event'},
+                    { data : 'deskripsi_event'},
+                    { data : 'rules_event'},
+                    { data : 'tgl_mulai'},
+                    { data : 'tgl_akhir'},
+                    { data : 'banner'},
+                    { data : 'total_hadiah'},
+                    { data : 'action' , orderable : false,searchable :false}
                 ]
             });
         });
@@ -139,7 +142,7 @@
             let dataUrl = $(this).data('url');
             $.ajax({
                 type: 'GET',
-                url : `auction-products/${id}`,
+                url : `auctions/${id}`,
                 dataType: "json",
                 success: function(res) {
                     $('#modalShow').modal('show');
@@ -171,10 +174,10 @@
             let dataUrl = $(this).data('url');
             $.ajax({
                 type: 'GET',
-                url : `auction-products/${id}`,
+                url : `auctions/${id}`,
                 dataType: "json",
                 success: function(res) {
-                    document.getElementById('formEdit').action = `auction-products/${id}`;
+                    document.getElementById('formEdit').action = `auctions/${id}`;
                     $('#modalEdit').modal('show');
                     $('#edit_no_ikan').val(res.no_ikan)
                     $('#edit_variety').val(res.variety)
@@ -286,7 +289,7 @@
 
             swal({
                 title: 'Anda Yakin?',
-                text: 'Anda akan menghapus data barang lelang',
+                text: 'Anda akan menghapus data Auction',
                 icon: 'warning',
                 buttons: true,
                 dangerMode: true,
@@ -296,13 +299,13 @@
                     $.ajax({
                         type:'DELETE',
                         dataType: 'JSON',
-                        url: `auction-products/${id}`,
+                        url: `auctions/${id}`,
                         data:{
                             "_token": $('meta[name="csrf-token"]').attr('content'),
                         },
                         success:function(response){
                             if(response.success){
-                                swal('Data barang lelang berhasil dihapus', {
+                                swal('Data Auction berhasil dihapus', {
                                     icon: 'success',
                                 });
 

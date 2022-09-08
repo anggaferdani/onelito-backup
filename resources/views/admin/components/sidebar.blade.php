@@ -25,9 +25,9 @@
                 <a class="nav-link"
                     href="{{ url('admin/manage/admins') }}"><i class="fas fa-warehouse"></i> <span>Barang Store</span></a>
             </li>
-            <li class="nav-item {{ $type_menu === 'manage-events' ? 'active' : '' }}">
+            <li class="nav-item {{ $type_menu === 'manage-auction' ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ url('admin/events') }}"><i class="fas fa-calendar-days"></i> <span>Auction</span></a>
+                    href="{{ url('admin/auctions') }}"><i class="fas fa-calendar-days"></i> <span>Auction</span></a>
             </li>
             <li class="nav-item {{ $type_menu === 'manage-member' ? 'active' : '' }}">
                 <a class="nav-link"

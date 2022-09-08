@@ -50,6 +50,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::resource('fishes', Admin\KoiStockController::class);
 
     Route::resource('auction-products', Admin\EventFishController::class);
+
+    Route::resource('auctions', Admin\EventController::class);
 });
 
 
