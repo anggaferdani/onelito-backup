@@ -2,63 +2,46 @@
     <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Detail Fish</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Detail Auction</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body" id="modalShowBody">
-        <div class="form-group">
-                <label for="show_no_ikan">No. Ikan</label>
-                <input readonly type="text" id="show_no_ikan" class="form-control" name="show_no_ikan" placeholder="" required>
+            <div class="form-group">
+                <label for="show_kategori_event">Kategori Event</label>
+                <input readonly type="text" id="show_kategori_event" class="form-control" name="show_kategori_event" placeholder="" required>
             </div>
             <div class="form-group">
-                <label for="show_variety">Variety</label>
-                <input readonly type="text" id="show_variety" class="form-control" name="show_variety" placeholder="" required>
+                <label for="show_deskripsi_event">Deskripsi</label>
+                <input readonly  type="text" id="show_deskripsi_event" class="form-control" name="show_deskripsi_event" placeholder="" required>
             </div>
             <div class="form-group">
-                <label for="show_breeder">Breeder</label>
-                <input readonly type="text" id="show_breeder" class="form-control" name="show_breeder" placeholder="" required>
+                <label for="show_rules_event">Rules</label>
+                <textarea readonly id="show_rules_event" name="show_rules_event" class="form-control" placeholder="" required></textarea>
+                <!-- <input  type="text" id="show_rules_events" class="form-control" name="show_rules_events" placeholder="" required> -->
             </div>
             <div class="form-group">
-                <label for="show_bloodline">Bloodline</label>
-                <input readonly type="text" id="show_bloodline" class="form-control" name="show_bloodline" placeholder="">
+                <label for="show_tgl_mulai">Tgl. Mulai</label>
+                <input readonly  type="text" id="show_tgl_mulai" class="form-control" name="show_tgl_mulai" placeholder="" required>
             </div>
             <div class="form-group">
-                <label for="show_sex">Jenis Kelamin</label>
-                <input readonly type="text" id="show_sex" class="form-control" name="show_sex" placeholder="">
+                <label for="show_tgl_akhir">Tgl. Akhir</label>
+                <input readonly  type="text" id="show_tgl_akhir" class="form-control" name="show_tgl_akhir" placeholder="">
             </div>
             <div class="form-group">
-                <label for="show_dob">DOB</label>
-                <input readonly type="text" id="show_dob" class="form-control" name="show_dob" placeholder="">
+                <label for="show_banner">Banner</label>
+                <input readonly  type="text" id="show_banner" class="form-control" name="show_banner" placeholder="">
             </div>
             <div class="form-group">
-                <label for="show_size">Size</label>
-                <input readonly type="text" id="show_size" class="form-control" name="show_size" placeholder="">
+                <label for="show_total_hadiah">Total Hadiah</label>
+                <input readonly  type="number" id="show_total_hadiah" class="form-control" name="show_total_hadiah" placeholder="">
             </div>
             <div class="form-group">
-                <label for="show_ob">OB</label>
-                <input readonly type="text" id="show_ob" class="form-control" name="show_ob" placeholder="">
-            </div>
-            <div class="form-group">
-                <label for="show_kb">KB</label>
-                <input readonly type="text" id="show_kb" class="form-control" name="show_kb" placeholder="">
-            </div>
-            <div class="form-group">
-                <label for="show_link_video">Link Video</label>
-                <input readonly type="text" id="show_link_video" class="form-control" name="show_link_video" placeholder="">
-            </div>
-            <div class="form-group">
-                <label for="show_extra_time">Extra Time</label>
-                <input readonly type="text" id="show_extra_time" class="form-control" name="show_extra_time" placeholder="">
-            </div>
-            <div class="form-group">
-                <label for="foto">Foto Ikan</label>
+                <label>Barang Lelang</label>
                 <br>
-                <img id="show_foto" src="" style="
-                    width: 400px;
-                    height: 400px;
-                    object-fit: cover;">
+                <div class="row gutters-sm" id="show_auction_products">
+                </div>
             </div>
         </div>
         <div class="modal-footer">

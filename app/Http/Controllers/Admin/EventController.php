@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Event;
+use App\Models\EventFish;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 
 class EventController extends Controller
@@ -22,8 +25,13 @@ class EventController extends Controller
             ->make(true);
         }
 
+        $auctionProducts = EventFish::where('status_aktif', 0)->get();
+        $auctionProductsNoEvent = $auctionProducts->whereNull('id_event');
+
         return view('admin.pages.auction.index')->with([
-            'type_menu' => 'manage-auction'
+            'type_menu' => 'manage-auction',
+            'auctionProducts' => $auctionProducts,
+            'auctionProductsNoEvent' => $auctionProductsNoEvent
         ]);
     }
 
@@ -35,7 +43,14 @@ class EventController extends Controller
         $data['update_by'] = Auth::guard('admin')->id();
         $data['status_aktif'] = 0;
 
+        $auctionProductIds = $data['auction_products'];
+        unset($data['auction_products']);
+
         $createAuction = Event::create($data);
+
+        EventFish::whereIn('id_ikan', $auctionProductIds)->update([
+            'id_event' => $createAuction->id_event
+        ]);
 
         if($createAuction){
             return redirect()->back()->with([
@@ -53,10 +68,10 @@ class EventController extends Controller
 
     public function show($id)
     {
-        $fish = EventFish::with('photo')->findOrFail($id);
+        $auction = Event::with('auctionProducts.photo')->findOrFail($id);
 
-        if($fish){
-            return response()->json($fish);
+        if($auction){
+            return response()->json($auction);
         }else{
             return response()->json([
                 'success' => false,
@@ -67,9 +82,10 @@ class EventController extends Controller
 
     public function update($id)
     {
-        $fish = EventFish::With('photo')->findOrFail($id);
+        $auction = Event::With('auctionProducts')->findOrFail($id);
         $data = $this->request->all();
         $validator = Validator::make($this->request->all(), [
+
         ]);
 
         if ($validator->fails()) {
@@ -77,41 +93,30 @@ class EventController extends Controller
         }
 
         $data['update_by'] = Auth::guard('admin')->id();
-
-        $image = null;
-        if($this->request->hasFile('path_foto')){
-            $image = $this->request->file('path_foto')->store(
-                'foto_ikan','public'
-            );
-        }
+        $existsProductIds = $auction->auctionProducts->pluck('id_ikan')->toArray();
+        $auctionProductIds = $data['edit_auction_products'];
+        $removeProductIds = array_diff($existsProductIds, $auctionProductIds);
+        unset($data['edit_auction_products']);
 
         try {
-            DB::transaction(function () use ($data, $image, $fish){
-                unset($data['path_foto']);
-                $fish->update($data);
+            DB::transaction(function () use ($data, $auction, $auctionProductIds, $removeProductIds){
+                $auction->update($data);
 
-                if ($image !== null) {
-                    $fotoIkan['id_ikan'] = $fish->id_ikan;
-                    $fotoIkan['path_foto'] = $image;
-                    $fotoIkan['create_by'] = Auth::guard('admin')->id();
-                    $fotoIkan['update_by'] = Auth::guard('admin')->id();
-                    $fotoIkan['status_aktif'] = 0;
+                EventFish::whereIn('id_ikan', $auctionProductIds)->update([
+                    'id_event' => $auction->id_event
+                ]);
 
-                    if ($fish->photo !== null) {
-                        $fishFoto = $fish->photo;
-                        $fishFoto->path_foto = $image;
-                        $fishFoto->save();
-                    } else {
-                        FishPhoto::create($fotoIkan);
-                    }
-                }
+                //removed item
+                EventFish::whereIn('id_ikan', $removeProductIds)->update([
+                    'id_event' => null
+                ]);
             });
 
             return response()->json([
                 'success' => true,
                 'message' => [
                     'title' => 'Berhasil',
-                    'content' => 'Mengubah data barang lelang',
+                    'content' => 'Mengubah data auction',
                     'type' => 'success'
                 ],
             ],200);

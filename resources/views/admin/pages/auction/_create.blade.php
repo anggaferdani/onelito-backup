@@ -42,6 +42,17 @@
                 <label for="total_hadiah">Total Hadiah</label>
                 <input  type="number" id="total_hadiah" class="form-control" name="total_hadiah" placeholder="">
             </div>
+            <div class="form-group">
+            <label for="auction_products">Barang Lelang</label>
+                <select id="auction_products" name="auction_products[]" class="form-control select2"
+                    multiple="">
+                    @forelse($auctionProductsNoEvent as $product)
+                        <option value="{{ $product->id_ikan }}">No Ikan: {{ $product->no_ikan }} | variety: {{ $product->variety }}</option>
+                    @empty
+
+                    @endforelse
+                </select>
+            </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn" data-dismiss="modal">Tutup</button>

@@ -20,6 +20,9 @@
         href="{{ asset('library/bootstrap-daterangepicker/daterangepicker.css') }}">
     <link rel="stylesheet"
         href="{{ asset('library/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}">
+
+    <link rel="stylesheet"
+        href="{{ asset('library/select2/dist/css/select2.min.css') }}">
 @endpush
 
 @section('main')
@@ -91,6 +94,7 @@
 
     <script src="{{ asset('library/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('library/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
+    <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
 
     <script type="text/javascript">
         $.ajaxSetup({
@@ -146,24 +150,43 @@
                 dataType: "json",
                 success: function(res) {
                     $('#modalShow').modal('show');
-                    $('#show_no_ikan').val(res.no_ikan)
-                    $('#show_variety').val(res.variety)
-                    $('#show_breeder').val(res.breeder)
-                    $('#show_bloodline').val(res.bloodline)
-                    $('#show_sex').val(res.sex)
-                    $('#show_dob').val(res.dob)
-                    $('#show_size').val(res.size)
-                    $('#show_ob').val(res.ob)
-                    $('#show_kb').val(res.kb)
-                    $('#show_link_video').val(res.link_video)
-                    $('#show_extra_time').val(res.extra_time)
+                    $('#show_kategori_event').val(res.kategori_event)
+                    $('#show_rules_event').val(res.rules_event)
+                    $('#show_deskripsi_event').val(res.deskripsi_event)
+                    $('#show_tgl_mulai').val(res.tgl_mulai)
+                    $('#show_tgl_akhir').val(res.tgl_akhir)
+                    $('#show_banner').val(res.banner)
+                    $('#show_total_hadiah').val(res.total_hadiah)
 
-                    if (res.photo.path_foto) {
-                        $('#show_foto').attr('src', `/storage/${res.photo.path_foto}`)
+                    var dt_auction_products = ``;
+                    if (res.auction_products) {
+
+                        $.each(res.auction_products,function(prefix,val) {
+                            var photo = '/img/news/img01.jpg';
+
+                            if (val.photo) {
+                                photo = `/storage/${val.photo.path_foto}`
+                            }
+
+                            dt_auction_products += `<div class="col-6 col-sm-4">
+                                                <label class="mb-4">
+                                                    <img width="225" height="161" src="${photo}"
+                                                        alt="}"
+                                                        class="imagecheck-image">
+                                                </label>
+                                                <br>
+                                                <label>No Ikan: ${val.no_ikan}</label>
+                                                <br>
+                                                <label>Variety: ${val.variety}</label>
+                                                <br>
+                                                <label>Bloodline: ${val.bloodline}</label>
+                                            </div>`;
+                        })
                     }
+
+                    $('#show_auction_products').html(dt_auction_products);
                 },
                 error:function(error) {
-                    console.log(error)
                 }
 
             })
@@ -179,24 +202,20 @@
                 success: function(res) {
                     document.getElementById('formEdit').action = `auctions/${id}`;
                     $('#modalEdit').modal('show');
-                    $('#edit_no_ikan').val(res.no_ikan)
-                    $('#edit_variety').val(res.variety)
-                    $('#edit_breeder').val(res.breeder)
-                    $('#edit_bloodline').val(res.bloodline)
-                    $('#edit_sex').html(`
-                        <option value="Jantan" ${((res.sex === 'Jantan') ? 'selected' : '')}>Jantan</option>
-                        <option value="Betina" ${((res.sex === 'Betina') ? 'selected' : '')}>Betina</option>
+                    $('#edit_kategori_event').val(res.kategori_event)
+                    $('#edit_kategori_event').html(`
+                        <option value="Regular" ${((res.sex === 'Regular') ? 'selected' : '')}>Regular</option>
+                        <option value="Special" ${((res.sex === 'Special') ? 'selected' : '')}>Special</option>
                     `)
-                    $('#edit_dob').val(res.dob)
-                    $('#edit_size').val(res.size)
-                    $('#edit_ob').val(res.ob)
-                    $('#edit_kb').val(res.kb)
-                    $('#edit_link_video').val(res.link_video)
-                    $('#edit_extra_time').val(res.extra_time)
+                    $('#edit_rules_event').val(res.rules_event)
+                    $('#edit_deskripsi_event').val(res.deskripsi_event)
+                    $('#edit_tgl_mulai').val(res.tgl_mulai)
+                    $('#edit_tgl_akhir').val(res.tgl_akhir)
+                    $('#edit_banner').val(res.banner)
+                    $('#edit_total_hadiah').val(res.total_hadiah)
 
-                    if (res.photo.path_foto) {
-                        $('#edit_foto2').attr('src', `/storage/${res.photo.path_foto}`)
-                    }
+                    $('#edit_auction_products').val(['3', '4']);
+                    $('#edit_auction_products').trigger('change');
                 },
                 error:function(error) {
                     console.log(error)
@@ -208,48 +227,23 @@
         $('#formEdit').submit(function(e) {
             e.preventDefault();
             let formData = new FormData(this);
-            // var dataForm = {
-            //     no_ikan: formData.get('edit_no_ikan'),
-            //     variety: formData.get('edit_variety'),
-            //     breeder: formData.get('edit_breeder'),
-            //     bloodline: formData.get('edit_bloodline'),
-            //     sex: formData.get('edit_sex'),
-            //     dob: formData.get('edit_dob'),
-            //     size: formData.get('edit_size'),
-            //     ob: formData.get('edit_ob'),
-            //     kb: formData.get('edit_kb'),
-            //     link_video: formData.get('edit_link_video'),
-            //     path_foto: formData.get('edit_foto'),
-            //     extra_time: formData.get('edit_extra_time'),
-            // }
 
-            formData.append('no_ikan', formData.get('edit_no_ikan'));
-            formData.append('variety', formData.get('edit_variety'));
-            formData.append('breeder', formData.get('edit_breeder'));
-            formData.append('bloodline', formData.get('edit_bloodline'));
-            formData.append('sex', formData.get('edit_sex'));
-            formData.append('dob', formData.get('edit_dob'));
-            formData.append('size', formData.get('edit_size'));
-            formData.append('ob', formData.get('edit_ob'));
-            formData.append('kb', formData.get('edit_kb'));
-            formData.append('link_video', formData.get('edit_link_video'));
-            formData.append('path_foto', formData.get('edit_foto'));
-            formData.append('extra_time', formData.get('edit_extra_time'));
+            formData.append('kategori_event', formData.get('edit_kategori_event'));
+            formData.append('deskripsi_event', formData.get('edit_deskripsi_event'));
+            formData.append('rules_event', formData.get('edit_rules_event'));
+            formData.append('tgl_mulai', formData.get('edit_tgl_mulai'));
+            formData.append('tgl_akhir', formData.get('edit_tgl_akhir'));
+            formData.append('banner', formData.get('edit_banner'));
+            formData.append('total_hadiah', formData.get('edit_total_hadiah'));
             formData.append('_method', 'PATCH');
 
-            formData.delete('edit_no_ikan');
-            formData.delete('edit_variety');
-            formData.delete('edit_breeder');
-            formData.delete('edit_bloodline');
-            formData.delete('edit_sex');
-            formData.delete('edit_dob');
-            formData.delete('edit_size');
-            formData.delete('edit_ob');
-            formData.delete('edit_kb');
-            formData.delete('edit_link_video');
-            formData.delete('edit_foto');
-            formData.delete('edit_extra_time');
-
+            formData.delete('edit_kategori_event');
+            formData.delete('edit_deskripsi_event');
+            formData.delete('edit_rules_event');
+            formData.delete('edit_tgl_mulai');
+            formData.delete('edit_tgl_akhir');
+            formData.delete('edit_total_hadiah');
+            formData.delete('edit_banner');
 
             $.ajax({
                 type: 'POST',

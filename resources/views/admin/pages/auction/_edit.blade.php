@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ubah Data Fish</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Ubah Data Auction</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -12,60 +12,47 @@
             @csrf
             @method('PATCH')
             <div class="form-group">
-                <label for="edit_no_ikan">No. Ikan</label>
-                <input  type="text" id="edit_no_ikan" class="form-control" name="edit_no_ikan" placeholder="" required>
+                <label for="edit_kategori_event">Kategori Event</label>
+                <select id="edit_kategori_event" name="edit_kategori_event" class="form-control">
+                    <option value="Regular">Regular</option>
+                    <option value="Special">Special</option>
+                </select>
             </div>
             <div class="form-group">
-                <label for="edit_variety">Variety</label>
-                <input  type="text" id="edit_variety" class="form-control" name="edit_variety" placeholder="" required>
+                <label for="edit_deskripsi_event">Deskripsi</label>
+                <input  type="text" id="edit_deskripsi_event" class="form-control" name="edit_deskripsi_event" placeholder="" required>
             </div>
             <div class="form-group">
-                <label for="edit_breeder">Breeder</label>
-                <input  type="text" id="edit_breeder" class="form-control" name="edit_breeder" placeholder="" required>
+                <label for="edit_rules_event">Rules</label>
+                <textarea id="edit_rules_event" name="edit_rules_event" class="form-control" placeholder="" required></textarea>
+                <!-- <input  type="text" id="rules_events" class="form-control" name="rules_events" placeholder="" required> -->
             </div>
             <div class="form-group">
-                <label for="edit_bloodline">Bloodline</label>
-                <input  type="text" id="edit_bloodline" class="form-control" name="edit_bloodline" placeholder="">
+                <label for="edit_tgl_mulai">Tgl. Mulai</label>
+                <input  type="text" id="edit_tgl_mulai" class="form-control datepicker" name="edit_tgl_mulai" placeholder="" required>
             </div>
             <div class="form-group">
-                <label for="edit_sex">Jenis Kelamin</label>
-                <select id="edit_sex" name="edit_sex" class="form-control">
-                    <option value="Jantan">Jantan</option>
-                    <option value="Betina">Betina</option>
-                </select >
+                <label for="edit_tgl_akhir">Tgl. Akhir</label>
+                <input  type="text" id="edit_tgl_akhir" class="form-control datepicker" name="edit_tgl_akhir" placeholder="">
             </div>
             <div class="form-group">
-                <label for="edit_dob">DOB</label>
-                <input  type="text" id="edit_dob" class="form-control" name="edit_dob" placeholder="">
+                <label for="edit_banner">Banner</label>
+                <input  type="text" id="edit_banner" class="form-control" name="edit_banner" placeholder="">
             </div>
             <div class="form-group">
-                <label for="edit_size">Size</label>
-                <input  type="text" id="edit_size" class="form-control" name="edit_size" placeholder="">
+                <label for="edit_total_hadiah">Total Hadiah</label>
+                <input  type="number" id="edit_total_hadiah" class="form-control" name="edit_total_hadiah" placeholder="">
             </div>
             <div class="form-group">
-                <label for="edit_ob">OB</label>
-                <input  type="text" id="edit_ob" name="edit_ob" class="form-control" placeholder="">
-            </div>
-            <div class="form-group">
-                <label for="edit_kb">KB</label>
-                <input  type="text" id="edit_kb" name="edit_kb" class="form-control" placeholder="">
-            </div>
-            <div class="form-group">
-                <label for="edit_link_video">Link Video</label>
-                <input  type="text" id="edit_link_video" name="edit_link_video" class="form-control" placeholder="">
-            </div>
-            <div class="form-group">
-                <label for="edit_extra_time">Extra Time</label>
-                <input  type="number" id="edit_extra_time" name="edit_extra_time" class="form-control" placeholder="">
-            </div>
-            <div class="form-group">
-                <label for="edit_foto">Foto Ikan</label>
-                <input type="file" name="edit_foto" id="edit_foto" class="form-control">
-                <br>
-                <img id="edit_foto2" src="" style="
-                    width: 400px;
-                    height: 400px;
-                    object-fit: cover;">
+            <label for="edit_auction_products">Barang Lelang</label>
+                <select id="edit_auction_products" name="edit_auction_products[]" class="form-control select2"
+                    multiple="">
+                    @forelse($auctionProducts as $product)
+                        <option class="{{ $product->id_ikan }}" value="{{ $product->id_ikan }}">No Ikan: {{ $product->no_ikan }} | variety: {{ $product->variety }}</option>
+                    @empty
+
+                    @endforelse
+                </select>
             </div>
         </div>
         <div class="modal-footer">
