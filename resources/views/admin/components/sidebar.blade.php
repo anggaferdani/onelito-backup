@@ -45,5 +45,9 @@
                 <a class="nav-link"
                     href="{{ url('admin/fishes') }}"><i class="fas fa-fish"></i> <span>Fish</span></a>
             </li>
+            <li class="nav-item {{ $type_menu === 'manage-champion-fish' ? 'active' : '' }}">
+                <a class="nav-link"
+                    href="{{ url('admin/champion-fishes') }}"><i class="fas fa-fish"></i> <span>Champion Koi</span></a>
+            </li>
     </aside>
 </div>

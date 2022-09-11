@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Barang Lelang')
+@section('title', 'Champion Koi')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -21,10 +21,10 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Management Barang Lelang</h1>
+                <h1>Management Champion Koi</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item">Management Barang Lelang</div>
+                    <div class="breadcrumb-item">Management Champion Koi</div>
                 </div>
             </div>
 
@@ -36,7 +36,7 @@
                             <button class="btn btn-primary mb-3"
                             data-toggle="modal"
                             data-target="#modalCreate"
-                            ><i class="fa fa-plus"></i> Tambah Barang Lelang</button>
+                            ><i class="fa fa-plus"></i> Tambah Champion Koi</button>
 
                                 <div class="table-responsive">
                                     <table class="table-striped table"
@@ -46,14 +46,9 @@
                                                 <th class="text-center">
                                                     #
                                                 </th>
-                                                <th>No. Ikan</th>
-                                                <th>Variety</th>
-                                                <th>Breeder</th>
-                                                <th>Bloodline</th>
-                                                <th>Jenis Kelamin</th>
-                                                <th>DOB</th>
+                                                <th>Nama Champion</th>
+                                                <th>Tahun</th>
                                                 <th>Size</th>
-                                                <th>Extra Time</th>
                                                 <th>Foto</th>
                                                 <th>Action</th>
                                             </tr>
@@ -69,9 +64,9 @@
                 </div>
             </div>
         </section>
-        @include('admin.pages.auction-product._create')
-        @include('admin.pages.auction-product._show')
-        @include('admin.pages.auction-product._edit')
+        @include('admin.pages.champion-fish._create')
+        @include('admin.pages.champion-fish._show')
+        @include('admin.pages.champion-fish._edit')
     </div>
 @endsection
 
@@ -113,22 +108,17 @@
                     return: true
                 },
                 ajax : {
-                url : '{{ url("admin/auction-products") }}',
+                url : '{{ url("admin/champion-fishes") }}',
                 data : function(d) {
-                    // d.jenis_task = $('#filter_jenis_task').val()
+                    // filter here
                 }
                 },
                 columns : [
                     { data : 'DT_RowIndex' , orderable : false,searchable :false},
-                    { data : 'no_ikan' },
-                    { data : 'variety'},
-                    { data : 'breeder'},
-                    { data : 'bloodline'},
-                    { data : 'sex'},
-                    { data : 'dob'},
+                    { data : 'nama_champion' },
+                    { data : 'tahun'},
                     { data : 'size'},
-                    { data : 'extra_time'},
-                    { data : 'photo', name: 'photo.path_foto'},
+                    { data : 'foto_ikan', orderable : false,searchable :false},
                     { data : 'action' , orderable : false,searchable :false},
                 ]
             });
@@ -139,25 +129,18 @@
             let dataUrl = $(this).data('url');
             $.ajax({
                 type: 'GET',
-                url : `auction-products/${id}`,
+                url : `champion-fishes/${id}`,
                 dataType: "json",
                 success: function(res) {
                     $('#modalShow').modal('show');
-                    $('#show_no_ikan').val(res.no_ikan)
-                    $('#show_variety').val(res.variety)
-                    $('#show_breeder').val(res.breeder)
-                    $('#show_bloodline').val(res.bloodline)
-                    $('#show_sex').val(res.sex)
-                    $('#show_dob').val(res.dob)
+                    $('#show_nama_champion').val(res.nama_champion)
+                    $('#show_tahun').val(res.tahun)
                     $('#show_size').val(res.size)
-                    $('#show_ob').val(res.ob)
-                    $('#show_kb').val(res.kb)
-                    $('#show_link_video').val(res.link_video)
-                    $('#show_extra_time').val(res.extra_time)
 
                     $('#show_foto').attr('src', ``)
-                    if (res.photo.path_foto) {
-                        $('#show_foto').attr('src', `/storage/${res.photo.path_foto}`)
+
+                    if (res.foto_ikan) {
+                        $('#show_foto').attr('src', `/storage/${res.foto_ikan}`)
                     }
                 },
                 error:function(error) {
@@ -172,30 +155,19 @@
             let dataUrl = $(this).data('url');
             $.ajax({
                 type: 'GET',
-                url : `auction-products/${id}`,
+                url : `champion-fishes/${id}`,
                 dataType: "json",
                 success: function(res) {
-                    document.getElementById('formEdit').action = `auction-products/${id}`;
+                    document.getElementById('formEdit').action = `champion-fishes/${id}`;
                     $('#modalEdit').modal('show');
-                    $('#edit_no_ikan').val(res.no_ikan)
-                    $('#edit_variety').val(res.variety)
-                    $('#edit_breeder').val(res.breeder)
-                    $('#edit_bloodline').val(res.bloodline)
-                    $('#edit_sex').html(`
-                        <option value="Jantan" ${((res.sex === 'Jantan') ? 'selected' : '')}>Jantan</option>
-                        <option value="Betina" ${((res.sex === 'Betina') ? 'selected' : '')}>Betina</option>
-                    `)
-                    $('#edit_dob').val(res.dob)
+                    $('#edit_nama_champion').val(res.nama_champion)
+                    $('#edit_tahun').val(res.tahun)
                     $('#edit_size').val(res.size)
-                    $('#edit_ob').val(res.ob)
-                    $('#edit_kb').val(res.kb)
-                    $('#edit_link_video').val(res.link_video)
-                    $('#edit_extra_time').val(res.extra_time)
 
                     $('#edit_foto2').attr('src', ``)
 
-                    if (res.photo.path_foto) {
-                        $('#edit_foto2').attr('src', `/storage/${res.photo.path_foto}`)
+                    if (res.foto_ikan) {
+                        $('#edit_foto2').attr('src', `/storage/${res.foto_ikan}`)
                     }
                 },
                 error:function(error) {
@@ -209,32 +181,16 @@
             e.preventDefault();
             let formData = new FormData(this);
 
-            formData.append('no_ikan', formData.get('edit_no_ikan'));
-            formData.append('variety', formData.get('edit_variety'));
-            formData.append('breeder', formData.get('edit_breeder'));
-            formData.append('bloodline', formData.get('edit_bloodline'));
-            formData.append('sex', formData.get('edit_sex'));
-            formData.append('dob', formData.get('edit_dob'));
+            formData.append('nama_champion', formData.get('edit_nama_champion'));
+            formData.append('tahun', formData.get('edit_tahun'));
             formData.append('size', formData.get('edit_size'));
-            formData.append('ob', formData.get('edit_ob'));
-            formData.append('kb', formData.get('edit_kb'));
-            formData.append('link_video', formData.get('edit_link_video'));
             formData.append('path_foto', formData.get('edit_foto'));
-            formData.append('extra_time', formData.get('edit_extra_time'));
             formData.append('_method', 'PATCH');
 
-            formData.delete('edit_no_ikan');
-            formData.delete('edit_variety');
-            formData.delete('edit_breeder');
-            formData.delete('edit_bloodline');
-            formData.delete('edit_sex');
-            formData.delete('edit_dob');
+            formData.delete('edit_nama_champion');
+            formData.delete('edit_tahun');
             formData.delete('edit_size');
-            formData.delete('edit_ob');
-            formData.delete('edit_kb');
-            formData.delete('edit_link_video');
             formData.delete('edit_foto');
-            formData.delete('edit_extra_time');
 
 
             $.ajax({
@@ -275,7 +231,7 @@
 
             swal({
                 title: 'Anda Yakin?',
-                text: 'Anda akan menghapus data barang lelang',
+                text: 'Anda akan menghapus data Champion Koi',
                 icon: 'warning',
                 buttons: true,
                 dangerMode: true,
@@ -285,13 +241,13 @@
                     $.ajax({
                         type:'DELETE',
                         dataType: 'JSON',
-                        url: `auction-products/${id}`,
+                        url: `champion-fishes/${id}`,
                         data:{
                             "_token": $('meta[name="csrf-token"]').attr('content'),
                         },
                         success:function(response){
                             if(response.success){
-                                swal('Data barang lelang berhasil dihapus', {
+                                swal('Data Champion Koi berhasil dihapus', {
                                     icon: 'success',
                                 });
 

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
+use App\Models\ChampionFish;
 use App\Models\EventFish;
 use App\Models\KoiStock;
 use App\Models\Member;
@@ -38,7 +39,7 @@ class DatabaseSeeder extends Seeder
         //     'kategori_produk' => ProductCategory::IKAN,
         // ]);
 
-        Product::factory(60)->create();
+        ChampionFish::factory(15)->create();
 
         // Admin::factory()->create([
         //     'username' => 'admin',
