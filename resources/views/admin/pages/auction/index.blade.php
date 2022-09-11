@@ -105,6 +105,7 @@
     </script>
     <script>
         $(document).ready(function() {
+
             $('#table-1').DataTable({
                 // dom: 'Bfrtip',
                 lengthMenu: [

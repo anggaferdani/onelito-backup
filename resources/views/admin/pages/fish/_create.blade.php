@@ -35,7 +35,7 @@
             </div>
             <div class="form-group">
                 <label for="dob">DOB</label>
-                <input  type="text" id="dob" class="form-control" name="dob" placeholder="">
+                <input  type="text" id="dob" class="form-control datepicker" name="dob" placeholder="">
             </div>
             <div class="form-group">
                 <label for="size">Size</label>

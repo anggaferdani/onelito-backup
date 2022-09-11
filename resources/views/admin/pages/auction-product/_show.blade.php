@@ -37,11 +37,11 @@
                 <input readonly type="text" id="show_size" class="form-control" name="show_size" placeholder="">
             </div>
             <div class="form-group">
-                <label for="show_ob">OB</label>
+                <label for="show_ob">Open Bid</label>
                 <input readonly type="text" id="show_ob" class="form-control" name="show_ob" placeholder="">
             </div>
             <div class="form-group">
-                <label for="show_kb">KB</label>
+                <label for="show_kb">Kelipatan Bid</label>
                 <input readonly type="text" id="show_kb" class="form-control" name="show_kb" placeholder="">
             </div>
             <div class="form-group">

@@ -42,11 +42,11 @@
                 <input  type="text" id="size" class="form-control" name="size" placeholder="">
             </div>
             <div class="form-group">
-                <label for="ob">OB</label>
+                <label for="ob">Open Bid</label>
                 <input  type="text" id="ob" name="ob" class="form-control" placeholder="">
             </div>
             <div class="form-group">
-                <label for="kb">KB</label>
+                <label for="kb">Kelipatan Bid</label>
                 <input  type="text" id="kb" name="kb" class="form-control" placeholder="">
             </div>
             <div class="form-group">

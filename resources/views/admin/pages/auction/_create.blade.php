@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label for="tgl_akhir">Tgl. Akhir</label>
-                <input  type="text" id="tgl_akhir" class="form-control datepicker" name="tgl_akhir" placeholder="">
+                <input  type="text" id="tgl_akhir" class="form-control datepicker" name="tgl_akhir" placeholder="" min="document.getElementById('tgl_mulai').value">
             </div>
             <div class="form-group">
                 <label for="banner">Banner</label>
@@ -44,7 +44,7 @@
             </div>
             <div class="form-group">
             <label for="auction_products">Barang Lelang</label>
-                <select id="auction_products" name="auction_products[]" class="form-control select2"
+                <select required id="auction_products" name="auction_products[]" class="form-control select2"
                     multiple="">
                     @forelse($auctionProductsNoEvent as $product)
                         <option value="{{ $product->id_ikan }}">No Ikan: {{ $product->no_ikan }} | variety: {{ $product->variety }}</option>

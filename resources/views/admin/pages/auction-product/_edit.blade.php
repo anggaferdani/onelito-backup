@@ -43,11 +43,11 @@
                 <input  type="text" id="edit_size" class="form-control" name="edit_size" placeholder="">
             </div>
             <div class="form-group">
-                <label for="edit_ob">OB</label>
+                <label for="edit_ob">Open Bid</label>
                 <input  type="text" id="edit_ob" name="edit_ob" class="form-control" placeholder="">
             </div>
             <div class="form-group">
-                <label for="edit_kb">KB</label>
+                <label for="edit_kb">Kelipatan Bid</label>
                 <input  type="text" id="edit_kb" name="edit_kb" class="form-control" placeholder="">
             </div>
             <div class="form-group">

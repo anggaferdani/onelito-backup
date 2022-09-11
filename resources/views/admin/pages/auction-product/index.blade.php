@@ -15,6 +15,9 @@
         href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}">
     <link rel="stylesheet"
         href="{{ asset('library/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 @endpush
 
 @section('main')
@@ -87,6 +90,9 @@
     <!-- Page Specific JS File -->
     <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
 
+    <!-- bootsrap datepicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
@@ -96,6 +102,18 @@
     </script>
     <script>
         $(document).ready(function() {
+            $("#dob").datepicker( {
+                format: "mm-yyyy",
+                startView: "months",
+                minViewMode: "months"
+            });
+
+            $("#edit_dob").datepicker( {
+                format: "mm-yyyy",
+                startView: "months",
+                minViewMode: "months"
+            });
+
             $('#table-1').DataTable({
                 // dom: 'Bfrtip',
                 lengthMenu: [
