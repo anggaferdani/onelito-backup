@@ -14,7 +14,7 @@ class MemberController extends Controller
     {
         if ($this->request->ajax()) {
             $members = Member::query()
-                ->where('status_aktif', 0);
+                ->where('status_aktif', 1);
 
             return DataTables::of($members)
             ->addIndexColumn()
@@ -35,7 +35,7 @@ class MemberController extends Controller
         $data['create_by'] = Auth::guard('admin')->id();
 
         $data['update_by'] = Auth::guard('admin')->id();
-        $data['status_aktif'] = 0;
+        $data['status_aktif'] = 1;
 
         $createMember = Member::create($data);
 
@@ -107,7 +107,7 @@ class MemberController extends Controller
     public function destroy($id)
     {
         $member = Member::findOrFail($id);
-        $member->status_aktif = 1;
+        $member->status_aktif = 0;
 
         $member->save();
 

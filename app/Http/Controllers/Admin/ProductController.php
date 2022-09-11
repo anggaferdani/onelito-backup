@@ -3,26 +3,31 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\EventFish;
-use App\Models\FishPhoto;
-use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\ProductCategory;
+use App\Models\ProductPhoto;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 
-class EventFishController extends Controller
+class ProductController extends Controller
 {
     public function index()
     {
         if ($this->request->ajax()) {
-            $fishes = EventFish::query()
+            $products = Product::query()
+                ->select('m_produk.*')
+                ->with('category')
                 ->with('photo')
-                ->where('status_aktif', 1)
-                ->orderBy('created_at', 'desc');
+                ->where('m_produk.status_aktif', 1)
+                ->orderBy('m_produk.created_at', 'desc');
 
-            return DataTables::of($fishes)
+            return DataTables::of($products)
             ->addIndexColumn()
+            ->editColumn('category', function ($data) {
+                return $data->category->kategori_produk ?? '';
+            })
             ->editColumn('photo', function ($data) {
                 $path = $data->photo->path_foto ?? false;
 
@@ -37,13 +42,16 @@ class EventFishController extends Controller
                     object-fit: cover;">
                 ';
             })
-            ->addColumn('action','admin.pages.auction-product.dt-action')
+            ->addColumn('action','admin.pages.product.dt-action')
             ->rawColumns(['action', 'photo'])
             ->make(true);
         }
 
-        return view('admin.pages.auction-product.index')->with([
-            'type_menu' => 'manage-auction-product'
+        $categories = ProductCategory::where('status_aktif', 1)->get();
+
+        return view('admin.pages.product.index')->with([
+            'type_menu' => 'manage-product',
+            'categories' => $categories,
         ]);
     }
 
@@ -58,45 +66,45 @@ class EventFishController extends Controller
         $image = null;
         if($this->request->hasFile('path_foto')){
             $image = $this->request->file('path_foto')->store(
-                'foto_ikan','public'
+                'foto_produk','public'
             );
         }
 
-        $createFish = DB::transaction(function () use ($data, $image){
+        $createProduct = DB::transaction(function () use ($data, $image){
             unset($data['path_foto']);
-            $fish = EventFish::create($data);
+            $product = Product::create($data);
 
             if ($image !== null) {
-                $fotoIkan['id_ikan'] = $fish->id_ikan;
-                $fotoIkan['path_foto'] = $image;
-                $fotoIkan['create_by'] = Auth::guard('admin')->id();
-                $fotoIkan['update_by'] = Auth::guard('admin')->id();
-                $fotoIkan['status_aktif'] = 1;
+                $fotoProduk['id_produk'] = $product->id_produk;
+                $fotoProduk['path_foto'] = $image;
+                $fotoProduk['create_by'] = Auth::guard('admin')->id();
+                $fotoProduk['update_by'] = Auth::guard('admin')->id();
+                $fotoProduk['status_aktif'] = 1;
 
-                FishPhoto::create($fotoIkan);
+                ProductPhoto::create($fotoProduk);
             }
         });
 
-        if($createFish){
+        if($createProduct){
             return redirect()->back()->with([
                 'success' => true,
-                'message' => 'Sukses Menambahkan Barang Lelang',
+                'message' => 'Sukses Menambahkan Barang Produk',
 
             ],200);
         }else{
             return redirect()->back()->with([
                 'success' => false,
-                'message' => 'Gagal Menambahkan Barang Lelang'
+                'message' => 'Gagal Menambahkan Barang Produk'
             ],500);
         }
     }
 
     public function show($id)
     {
-        $fish = EventFish::with('photo')->findOrFail($id);
+        $product = Product::with(['photo', 'category'])->findOrFail($id);
 
-        if($fish){
-            return response()->json($fish);
+        if($product){
+            return response()->json($product);
         }else{
             return response()->json([
                 'success' => false,
@@ -107,7 +115,7 @@ class EventFishController extends Controller
 
     public function update($id)
     {
-        $fish = EventFish::With('photo')->findOrFail($id);
+        $product = Product::With('photo')->findOrFail($id);
         $data = $this->request->all();
         $validator = Validator::make($this->request->all(), [
         ]);
@@ -121,28 +129,28 @@ class EventFishController extends Controller
         $image = null;
         if($this->request->hasFile('path_foto')){
             $image = $this->request->file('path_foto')->store(
-                'foto_ikan','public'
+                'foto_produk','public'
             );
         }
 
         try {
-            DB::transaction(function () use ($data, $image, $fish){
+            DB::transaction(function () use ($data, $image, $product){
                 unset($data['path_foto']);
-                $fish->update($data);
+                $product->update($data);
 
                 if ($image !== null) {
-                    $fotoIkan['id_ikan'] = $fish->id_ikan;
-                    $fotoIkan['path_foto'] = $image;
-                    $fotoIkan['create_by'] = Auth::guard('admin')->id();
-                    $fotoIkan['update_by'] = Auth::guard('admin')->id();
-                    $fotoIkan['status_aktif'] = 1;
+                    $fotoProduk['id_produk'] = $product->id_produk;
+                    $fotoProduk['path_foto'] = $image;
+                    $fotoProduk['create_by'] = Auth::guard('admin')->id();
+                    $fotoProduk['update_by'] = Auth::guard('admin')->id();
+                    $fotoProduk['status_aktif'] = 1;
 
-                    if ($fish->photo !== null) {
-                        $fishFoto = $fish->photo;
-                        $fishFoto->path_foto = $image;
-                        $fishFoto->save();
+                    if ($product->photo !== null) {
+                        $productFoto = $product->photo;
+                        $productFoto->path_foto = $image;
+                        $productFoto->save();
                     } else {
-                        FishPhoto::create($fotoIkan);
+                        ProductPhoto::create($fotoProduk);
                     }
                 }
             });
@@ -151,7 +159,7 @@ class EventFishController extends Controller
                 'success' => true,
                 'message' => [
                     'title' => 'Berhasil',
-                    'content' => 'Mengubah data barang lelang',
+                    'content' => 'Mengubah data barang product',
                     'type' => 'success'
                 ],
             ],200);
@@ -167,10 +175,10 @@ class EventFishController extends Controller
 
     public function destroy($id)
     {
-        $eventFish = EventFish::findOrFail($id);
-        $eventFish->status_aktif = 0;
+        $product = Product::findOrFail($id);
+        $product->status_aktif = 0;
 
-        $eventFish->save();
+        $product->save();
 
         return response()->json([
             'success' => true,

@@ -14,7 +14,7 @@ class KoiStockController extends Controller
     {
         if ($this->request->ajax()) {
             $fishes = KoiStock::query()
-                ->where('status_aktif', 0)
+                ->where('status_aktif', 1)
                 ->orderBy('created_at', 'desc');
 
             return DataTables::of($fishes)
@@ -35,7 +35,7 @@ class KoiStockController extends Controller
 
         $data['create_by'] = Auth::guard('admin')->id();
         $data['update_by'] = Auth::guard('admin')->id();
-        $data['status_aktif'] = 0;
+        $data['status_aktif'] = 1;
 
         $createFish = KoiStock::create($data);
 
@@ -105,7 +105,7 @@ class KoiStockController extends Controller
     public function destroy($id)
     {
         $koi = KoiStock::findOrFail($id);
-        $koi->status_aktif = 1;
+        $koi->status_aktif = 0;
 
         $koi->save();
 

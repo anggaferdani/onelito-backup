@@ -12,7 +12,7 @@ class AdminController extends Controller
     {
         if ($this->request->ajax()) {
             $admins = Admin::query()
-                ->where('status_aktif', 0);
+                ->where('status_aktif', 1);
 
             return DataTables::of($admins)
             ->addIndexColumn()

@@ -16,6 +16,6 @@ class Event extends Model
 
     public function auctionProducts()
     {
-        return $this->hasMany(EventFish::class, 'id_event')->where('status_aktif', 0);
+        return $this->hasMany(EventFish::class, 'id_event')->where('status_aktif', 1);
     }
 }

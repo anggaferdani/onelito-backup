@@ -16,7 +16,7 @@ class EventController extends Controller
     {
         if ($this->request->ajax()) {
             $auctions = Event::query()
-                ->where('status_aktif', 0)
+                ->where('status_aktif', 1)
                 ->orderBy('created_at', 'desc');
 
             return DataTables::of($auctions)
@@ -25,7 +25,7 @@ class EventController extends Controller
             ->make(true);
         }
 
-        $auctionProducts = EventFish::where('status_aktif', 0)->get();
+        $auctionProducts = EventFish::where('status_aktif', 1)->get();
         $auctionProductsNoEvent = $auctionProducts->whereNull('id_event');
 
         return view('admin.pages.auction.index')->with([
@@ -41,7 +41,7 @@ class EventController extends Controller
 
         $data['create_by'] = Auth::guard('admin')->id();
         $data['update_by'] = Auth::guard('admin')->id();
-        $data['status_aktif'] = 0;
+        $data['status_aktif'] = 1;
 
         $auctionProductIds = $data['auction_products'];
         unset($data['auction_products']);
@@ -133,7 +133,7 @@ class EventController extends Controller
     public function destroy($id)
     {
         $auction = Event::findOrFail($id);
-        $auction->status_aktif = 1;
+        $auction->status_aktif = 0;
 
         $auction->save();
 

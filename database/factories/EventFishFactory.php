@@ -28,7 +28,7 @@ class EventFishFactory extends Factory
             'kb' => fake()->numberBetween(10, 100),
             'link_video' => fake()->url(),
             'extra_time' => fake()->numberBetween(10, 100),
-            'status_aktif' => 0,
+            'status_aktif' => 1,
             'create_by' => 0,
             'update_by' => 0,
         ];

@@ -25,7 +25,7 @@ class KoiStockFactory extends Factory
             'dob' => 'Pedigree',
             'size' => fake()->numberBetween(10, 100),
             'harga_ikan' => fake()->numerify('#####'),
-            'status_aktif' => 0,
+            'status_aktif' => 1,
             'create_by' => 0,
             'update_by' => 0,
         ];

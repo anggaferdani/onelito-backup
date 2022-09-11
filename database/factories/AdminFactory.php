@@ -25,7 +25,7 @@ class AdminFactory extends Factory
             'alamat' => fake()->address,
             'kota' => fake()->city,
             'level' => 1,
-            'status_aktif' => 0,
+            'status_aktif' => 1,
             'create_by' => 0,
             'update_by' => 0,
         ];

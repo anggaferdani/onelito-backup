@@ -6,6 +6,9 @@ use App\Models\Admin;
 use App\Models\EventFish;
 use App\Models\KoiStock;
 use App\Models\Member;
+use App\Models\Product;
+use App\Models\ProductCategory;
+use Database\Factories\ProductCategoryFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -23,7 +26,19 @@ class DatabaseSeeder extends Seeder
         //     'password' => 'rifqi'
         // ]);
 
-        EventFish::factory(30)->create();
+        // ProductCategory::factory()->create([
+        //     'kategori_produk' => ProductCategory::PERLENGKAPAN_IKAN,
+        // ]);
+
+        // ProductCategory::factory()->create([
+        //     'kategori_produk' => ProductCategory::MAKANAN_IKAN,
+        // ]);
+
+        // ProductCategory::factory()->create([
+        //     'kategori_produk' => ProductCategory::IKAN,
+        // ]);
+
+        Product::factory(60)->create();
 
         // Admin::factory()->create([
         //     'username' => 'admin',

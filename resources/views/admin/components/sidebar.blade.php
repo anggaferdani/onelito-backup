@@ -21,9 +21,9 @@
                 <a class="nav-link"
                     href="{{ url('admin/auction-products') }}"><i class="fas fa-boxes-stacked"></i> <span>Barang Lelang</span></a>
             </li>
-            <li class="nav-item {{ $type_menu === 'manage-product-store' ? 'active' : '' }}">
+            <li class="nav-item {{ $type_menu === 'manage-product' ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ url('admin/manage/admins') }}"><i class="fas fa-warehouse"></i> <span>Barang Store</span></a>
+                    href="{{ url('admin/products') }}"><i class="fas fa-warehouse"></i> <span>Barang Store</span></a>
             </li>
             <li class="nav-item {{ $type_menu === 'manage-auction' ? 'active' : '' }}">
                 <a class="nav-link"
