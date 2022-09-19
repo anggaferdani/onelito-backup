@@ -89,6 +89,8 @@
     <!-- <script src="{{ asset('library/datatables.net-bs4/css/dataTables.bootstrap4.min.js') }}"></script> -->
     <script src="{{ asset('library/jquery-ui-dist/jquery-ui.min.js') }}"></script>
 
+    <script src="https://demo.getstisla.com/assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://demo.getstisla.com/assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
     <!-- Page Specific JS File -->
     <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
 
@@ -156,8 +158,13 @@
                     $('#show_deskripsi_event').val(res.deskripsi_event)
                     $('#show_tgl_mulai').val(res.tgl_mulai)
                     $('#show_tgl_akhir').val(res.tgl_akhir)
-                    $('#show_banner').val(res.banner)
                     $('#show_total_hadiah').val(res.total_hadiah)
+
+                    $('#show_banner').attr('src', ``)
+
+                    if (res.banner) {
+                        $('#show_banner').attr('src', `/storage/${res.banner}`)
+                    }
 
                     var dt_auction_products = ``;
                     if (res.auction_products) {
@@ -212,7 +219,12 @@
                     $('#edit_deskripsi_event').val(res.deskripsi_event)
                     $('#edit_tgl_mulai').val(res.tgl_mulai)
                     $('#edit_tgl_akhir').val(res.tgl_akhir)
-                    $('#edit_banner').val(res.banner)
+                    $('#edit_banner2').attr('src', ``)
+
+                    if (res.banner) {
+                        $('#edit_banner2').attr('src', `/storage/${res.banner}`)
+                    }
+
                     $('#edit_total_hadiah').val(res.total_hadiah)
 
                     $('#edit_auction_products').val(['3', '4']);

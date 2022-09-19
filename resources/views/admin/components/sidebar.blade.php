@@ -33,13 +33,13 @@
                 <a class="nav-link"
                     href="{{ url('admin/members') }}"><i class="fas fa-users"></i> <span>Peserta</span></a>
             </li>
-            <li class="nav-item {{ $type_menu === 'manage-winner' ? 'active' : '' }}">
+            <li class="nav-item {{ $type_menu === 'manage-auction-winner' ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ url('admin/manage/admins') }}"><i class="fas fa-user"></i> <span>Pemenang</span></a>
+                    href="{{ url('admin/auction-winners') }}"><i class="fas fa-user"></i> <span>Pemenang</span></a>
             </li>
-            <li class="nav-item {{ $type_menu === 'manage-buy-store' ? 'active' : '' }}">
+            <li class="nav-item {{ $type_menu === 'manage-order' ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ url('admin/manage/admins') }}"><i class="fas fa-store"></i> <span>Pembelian Store</span></a>
+                    href="{{ url('admin/orders') }}"><i class="fas fa-store"></i> <span>Pembelian Store</span></a>
             </li>
             <li class="nav-item {{ $type_menu === 'manage-fish' ? 'active' : '' }}">
                 <a class="nav-link"

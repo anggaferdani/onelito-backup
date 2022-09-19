@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Champion Koi')
+@section('title', 'Pembelian Store')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -21,10 +21,10 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Management Champion Koi</h1>
+                <h1>Management Pembelian Store</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item">Management Champion Koi</div>
+                    <div class="breadcrumb-item">Management Pembelian Store</div>
                 </div>
             </div>
 
@@ -33,11 +33,6 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                            <button class="btn btn-primary mb-3"
-                            data-toggle="modal"
-                            data-target="#modalCreate"
-                            ><i class="fa fa-plus"></i> Tambah Champion Koi</button>
-
                                 <div class="table-responsive">
                                     <table class="table-striped table"
                                         id="table-1">
@@ -46,10 +41,11 @@
                                                 <th class="text-center">
                                                     #
                                                 </th>
-                                                <th>Nama Champion</th>
-                                                <th>Tahun</th>
-                                                <th>Size</th>
-                                                <th>Foto</th>
+                                                <th>No. Pembelian</th>
+                                                <th>Tanggal</th>
+                                                <th>Total</th>
+                                                <th>Pembayaran</th>
+                                                <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -64,9 +60,8 @@
                 </div>
             </div>
         </section>
-        @include('admin.pages.champion-fish._create')
-        @include('admin.pages.champion-fish._show')
-        @include('admin.pages.champion-fish._edit')
+        @include('admin.pages.order._show')
+        @include('admin.pages.order._edit')
     </div>
 @endsection
 
@@ -110,74 +105,75 @@
                     return: true
                 },
                 ajax : {
-                url : '{{ url("admin/champion-fishes") }}',
+                url : '{{ url("admin/orders") }}',
                 data : function(d) {
                     // filter here
                 }
                 },
                 columns : [
                     { data : 'DT_RowIndex' , orderable : false,searchable :false},
-                    { data : 'nama_champion' },
-                    { data : 'tahun'},
-                    { data : 'size'},
-                    { data : 'foto_ikan', orderable : false,searchable :false},
+                    { data : 'no_order' },
+                    { data : 'tanggal'},
+                    { data : 'total'},
+                    { data : 'pembayaran'},
+                    { data : 'status'},
                     { data : 'action' , orderable : false,searchable :false},
                 ]
             });
         });
 
-        $(document).on('click','button#btn-show',function() {
-            let id = $(this).data('id');
-            let dataUrl = $(this).data('url');
-            $.ajax({
-                type: 'GET',
-                url : `champion-fishes/${id}`,
-                dataType: "json",
-                success: function(res) {
-                    $('#modalShow').modal('show');
-                    $('#show_nama_champion').val(res.nama_champion)
-                    $('#show_tahun').val(res.tahun)
-                    $('#show_size').val(res.size)
+        // $(document).on('click','button#btn-show',function() {
+        //     let id = $(this).data('id');
+        //     let dataUrl = $(this).data('url');
+        //     $.ajax({
+        //         type: 'GET',
+        //         url : `orders/${id}`,
+        //         dataType: "json",
+        //         success: function(res) {
+        //             $('#modalShow').modal('show');
+        //             $('#show_nama_champion').val(res.nama_champion)
+        //             $('#show_tahun').val(res.tahun)
+        //             $('#show_size').val(res.size)
 
-                    $('#show_foto').attr('src', ``)
+        //             $('#show_foto').attr('src', ``)
 
-                    if (res.foto_ikan) {
-                        $('#show_foto').attr('src', `/storage/${res.foto_ikan}`)
-                    }
-                },
-                error:function(error) {
-                    console.log(error)
-                }
+        //             if (res.foto_ikan) {
+        //                 $('#show_foto').attr('src', `/storage/${res.foto_ikan}`)
+        //             }
+        //         },
+        //         error:function(error) {
+        //             console.log(error)
+        //         }
 
-            })
-        })
+        //     })
+        // })
 
-        $(document).on('click','button#btn-edit',function() {
-            let id = $(this).data('id');
-            let dataUrl = $(this).data('url');
-            $.ajax({
-                type: 'GET',
-                url : `champion-fishes/${id}`,
-                dataType: "json",
-                success: function(res) {
-                    document.getElementById('formEdit').action = `champion-fishes/${id}`;
-                    $('#modalEdit').modal('show');
-                    $('#edit_nama_champion').val(res.nama_champion)
-                    $('#edit_tahun').val(res.tahun)
-                    $('#edit_size').val(res.size)
+        // $(document).on('click','button#btn-edit',function() {
+        //     let id = $(this).data('id');
+        //     let dataUrl = $(this).data('url');
+        //     $.ajax({
+        //         type: 'GET',
+        //         url : `orders/${id}`,
+        //         dataType: "json",
+        //         success: function(res) {
+        //             document.getElementById('formEdit').action = `orders/${id}`;
+        //             $('#modalEdit').modal('show');
+        //             $('#edit_nama_champion').val(res.nama_champion)
+        //             $('#edit_tahun').val(res.tahun)
+        //             $('#edit_size').val(res.size)
 
-                    $('#edit_foto2').attr('src', ``)
+        //             $('#edit_foto2').attr('src', ``)
 
-                    if (res.foto_ikan) {
-                        $('#edit_foto2').attr('src', `/storage/${res.foto_ikan}`)
-                    }
-                },
-                error:function(error) {
-                    console.log(error)
-                }
+        //             if (res.foto_ikan) {
+        //                 $('#edit_foto2').attr('src', `/storage/${res.foto_ikan}`)
+        //             }
+        //         },
+        //         error:function(error) {
+        //             console.log(error)
+        //         }
 
-            })
-        })
+        //     })
+        // })
 
         $('#formEdit').submit(function(e) {
             e.preventDefault();
@@ -233,7 +229,7 @@
 
             swal({
                 title: 'Anda Yakin?',
-                text: 'Anda akan menghapus data Champion Koi',
+                text: 'Anda akan menghapus data Pembelian',
                 icon: 'warning',
                 buttons: true,
                 dangerMode: true,
@@ -243,13 +239,13 @@
                     $.ajax({
                         type:'DELETE',
                         dataType: 'JSON',
-                        url: `champion-fishes/${id}`,
+                        url: `orders/${id}`,
                         data:{
                             "_token": $('meta[name="csrf-token"]').attr('content'),
                         },
                         success:function(response){
                             if(response.success){
-                                swal('Data Champion Koi berhasil dihapus', {
+                                swal('Data Pembelian berhasil dihapus', {
                                     icon: 'success',
                                 });
 

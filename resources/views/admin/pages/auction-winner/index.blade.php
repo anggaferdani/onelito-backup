@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Champion Koi')
+@section('title', 'Pemenang Lelang')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -21,10 +21,10 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Management Champion Koi</h1>
+                <h1>Management Pemenang Lelang</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item">Management Champion Koi</div>
+                    <div class="breadcrumb-item">Management Pemenang Lelang</div>
                 </div>
             </div>
 
@@ -36,7 +36,7 @@
                             <button class="btn btn-primary mb-3"
                             data-toggle="modal"
                             data-target="#modalCreate"
-                            ><i class="fa fa-plus"></i> Tambah Champion Koi</button>
+                            ><i class="fa fa-plus"></i> Tambah Pemenang Lelang</button>
 
                                 <div class="table-responsive">
                                     <table class="table-striped table"
@@ -233,7 +233,7 @@
 
             swal({
                 title: 'Anda Yakin?',
-                text: 'Anda akan menghapus data Champion Koi',
+                text: 'Anda akan menghapus data Pemenang Lelang',
                 icon: 'warning',
                 buttons: true,
                 dangerMode: true,
@@ -249,7 +249,7 @@
                         },
                         success:function(response){
                             if(response.success){
-                                swal('Data Champion Koi berhasil dihapus', {
+                                swal('Data Pemenang Lelang berhasil dihapus', {
                                     icon: 'success',
                                 });
 

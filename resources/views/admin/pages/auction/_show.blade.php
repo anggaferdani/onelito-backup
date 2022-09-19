@@ -31,7 +31,11 @@
             </div>
             <div class="form-group">
                 <label for="show_banner">Banner</label>
-                <input readonly  type="text" id="show_banner" class="form-control" name="show_banner" placeholder="">
+                <br>
+                <img id="show_banner" src="" style="
+                    width: 400px;
+                    height: 400px;
+                    object-fit: cover;">
             </div>
             <div class="form-group">
                 <label for="show_total_hadiah">Total Hadiah</label>

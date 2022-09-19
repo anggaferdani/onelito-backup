@@ -36,7 +36,7 @@
             </div>
             <div class="form-group">
                 <label for="banner">Banner</label>
-                <input  type="text" id="banner" class="form-control" name="banner" placeholder="">
+                <input type="file" name="banner" id="banner" class="form-control">
             </div>
             <div class="form-group">
                 <label for="total_hadiah">Total Hadiah</label>

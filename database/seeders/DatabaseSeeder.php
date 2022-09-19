@@ -7,6 +7,7 @@ use App\Models\ChampionFish;
 use App\Models\EventFish;
 use App\Models\KoiStock;
 use App\Models\Member;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use Database\Factories\ProductCategoryFactory;
@@ -39,7 +40,7 @@ class DatabaseSeeder extends Seeder
         //     'kategori_produk' => ProductCategory::IKAN,
         // ]);
 
-        ChampionFish::factory(15)->create();
+        Order::factory(25)->create();
 
         // Admin::factory()->create([
         //     'username' => 'admin',

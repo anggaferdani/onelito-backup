@@ -37,7 +37,12 @@
             </div>
             <div class="form-group">
                 <label for="edit_banner">Banner</label>
-                <input  type="text" id="edit_banner" class="form-control" name="edit_banner" placeholder="">
+                <input type="file" name="edit_banner" id="edit_banner" class="form-control">
+                <br>
+                <img id="edit_banner2" src="" style="
+                    width: 400px;
+                    height: 400px;
+                    object-fit: cover;">
             </div>
             <div class="form-group">
                 <label for="edit_total_hadiah">Total Hadiah</label>

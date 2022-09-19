@@ -21,7 +21,22 @@ class EventController extends Controller
 
             return DataTables::of($auctions)
             ->addIndexColumn()
+            ->editColumn('banner', function ($data) {
+                $path = $data->banner ?? false;
+
+                if (!$path) {
+                    return '';
+                }
+
+                return '
+                    <img src="'.asset("storage/$path").'" style="
+                    width: 80px;
+                    height: 80px;
+                    object-fit: cover;">
+                ';
+            })
             ->addColumn('action','admin.pages.auction.dt-action')
+            ->rawColumns(['action', 'banner'])
             ->make(true);
         }
 
@@ -42,6 +57,15 @@ class EventController extends Controller
         $data['create_by'] = Auth::guard('admin')->id();
         $data['update_by'] = Auth::guard('admin')->id();
         $data['status_aktif'] = 1;
+
+        $image = null;
+        if($this->request->hasFile('banner')){
+            $image = $this->request->file('banner')->store(
+                'foto_auction','public'
+            );
+        }
+
+        $data['banner'] = $image;
 
         $auctionProductIds = $data['auction_products'];
         unset($data['auction_products']);
@@ -97,6 +121,15 @@ class EventController extends Controller
         $auctionProductIds = $data['edit_auction_products'];
         $removeProductIds = array_diff($existsProductIds, $auctionProductIds);
         unset($data['edit_auction_products']);
+
+        $image = $auction->banner;
+        if($this->request->hasFile('banner')){
+            $image = $this->request->file('banner')->store(
+                'foto_auction','public'
+            );
+        }
+
+        $data['banner'] = $image;
 
         try {
             DB::transaction(function () use ($data, $auction, $auctionProductIds, $removeProductIds){

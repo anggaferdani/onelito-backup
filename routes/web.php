@@ -56,6 +56,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::resource('products', Admin\ProductController::class);
 
     Route::resource('champion-fishes', Admin\ChampionFishController::class);
+
+    Route::resource('orders', Admin\OrderController::class);
+
+    Route::resource('auction-winners', Admin\AuctionWinnerController::class);
 });
 
 
