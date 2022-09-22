@@ -18,4 +18,10 @@ class Order extends Model
     {
         return $this->hasMany(OrderDetail::class, 'id_order');
     }
+
+    public function latestDetail()
+    {
+        return $this->hasOne(OrderDetail::class, 'id_order')->latestOfMany('id_order_detail')
+            ->select('t_order_detail.*');
+    }
 }

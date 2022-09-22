@@ -13,4 +13,14 @@ class OrderDetail extends Model
 
     protected $table = 't_order_detail';
     protected $primaryKey = 'id_order_detail';
+
+    public function member()
+    {
+        return $this->belongsTo(Member::class, 'id_peserta');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'id_produk');
+    }
 }

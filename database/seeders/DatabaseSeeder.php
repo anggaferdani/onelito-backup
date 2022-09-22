@@ -8,6 +8,7 @@ use App\Models\EventFish;
 use App\Models\KoiStock;
 use App\Models\Member;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use Database\Factories\ProductCategoryFactory;
@@ -40,7 +41,24 @@ class DatabaseSeeder extends Seeder
         //     'kategori_produk' => ProductCategory::IKAN,
         // ]);
 
-        Order::factory(25)->create();
+        $orders = Order::factory(25)->create();
+
+
+        foreach ($orders as $order) {
+            $random = fake()->numberBetween(2, 6);
+
+            for ($i=0; $i <= $random; $i++) {
+                OrderDetail::factory()->create([
+                    'id_order' => $order->id_order,
+                    'tanggal' => $order->tanggal
+                ]);
+            }
+
+            $details = $order->details;
+
+            $order->total = $details->sum('total');
+            $order->save();
+        }
 
         // Admin::factory()->create([
         //     'username' => 'admin',

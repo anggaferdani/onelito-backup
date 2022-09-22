@@ -13,29 +13,15 @@ class OrderController extends Controller
     public function index()
     {
         if ($this->request->ajax()) {
-            $fishes = Order::query()
-                ->with('details')
-                ->where('status_aktif', 1)
-                ->orderBy('created_at', 'desc');
+            $orders = Order::query()
+                ->select('t_order.*')
+                ->with(['details', 'latestDetail.member'])
+                ->where('t_order.status_aktif', 1)
+                ->orderBy('t_order.created_at', 'desc');
 
-            return DataTables::of($fishes)
+            return DataTables::of($orders)
             ->addIndexColumn()
-            ->editColumn('pembayaran', function ($data) {
-                $path = $data->pembayaran ?? false;
-
-                if (!$path) {
-                    return '';
-                }
-
-                return '
-                    <img src="'.asset("storage/$path").'" style="
-                    width: 80px;
-                    height: 80px;
-                    object-fit: cover;">
-                ';
-            })
             ->addColumn('action','admin.pages.order.dt-action')
-            ->rawColumns(['action', 'foto_ikan'])
             ->make(true);
         }
 
@@ -46,10 +32,10 @@ class OrderController extends Controller
 
     public function show($id)
     {
-        $fish = Order::findOrFail($id);
+        $order = Order::with(['details.product.category', 'latestDetail.member'])->findOrFail($id);
 
-        if($fish){
-            return response()->json($fish);
+        if($order){
+            return response()->json($order);
         }else{
             return response()->json([
                 'success' => false,
@@ -60,7 +46,7 @@ class OrderController extends Controller
 
     public function update($id)
     {
-        $fish = Order::findOrFail($id);
+        $order = Order::findOrFail($id);
         $data = $this->request->all();
         $validator = Validator::make($this->request->all(), [
         ]);
@@ -69,20 +55,9 @@ class OrderController extends Controller
             return response()->json($validator->errors(), 400);
         }
 
-        $data['update_by'] = Auth::guard('admin')->id();
-
-        $image = $fish->foto_ikan;
-        if($this->request->hasFile('path_foto')){
-            $image = $this->request->file('path_foto')->store(
-                'foto_order','public'
-            );
-        }
-
         try {
 
-            $data['foto_ikan'] = $image;
-            unset($data['path_foto']);
-            $fish->update($data);
+            $order->update($data);
 
             return response()->json([
                 'success' => true,
@@ -104,10 +79,14 @@ class OrderController extends Controller
 
     public function destroy($id)
     {
-        $fish = Order::findOrFail($id);
-        $fish->status_aktif = 0;
+        $order = Order::findOrFail($id);
+        $order->status_aktif = 0;
 
-        $fish->save();
+        $order->details()->update([
+            'status_aktif' => 0,
+        ]);
+
+        $order->save();
 
         return response()->json([
             'success' => true,

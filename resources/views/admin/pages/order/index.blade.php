@@ -42,10 +42,11 @@
                                                     #
                                                 </th>
                                                 <th>No. Pembelian</th>
+                                                <th>Pembeli</th>
                                                 <th>Tanggal</th>
                                                 <th>Total</th>
                                                 <th>Pembayaran</th>
-                                                <th>Status</th>
+                                                <th>Status Pengiriman</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -113,6 +114,7 @@
                 columns : [
                     { data : 'DT_RowIndex' , orderable : false,searchable :false},
                     { data : 'no_order' },
+                    { data : 'latest_detail.member.nama', name: 'latestDetail.member.nama' },
                     { data : 'tanggal'},
                     { data : 'total'},
                     { data : 'pembayaran'},
@@ -122,73 +124,89 @@
             });
         });
 
-        // $(document).on('click','button#btn-show',function() {
-        //     let id = $(this).data('id');
-        //     let dataUrl = $(this).data('url');
-        //     $.ajax({
-        //         type: 'GET',
-        //         url : `orders/${id}`,
-        //         dataType: "json",
-        //         success: function(res) {
-        //             $('#modalShow').modal('show');
-        //             $('#show_nama_champion').val(res.nama_champion)
-        //             $('#show_tahun').val(res.tahun)
-        //             $('#show_size').val(res.size)
+        $(document).on('click','button#btn-show',function() {
+            let id = $(this).data('id');
+            let dataUrl = $(this).data('url');
+            $.ajax({
+                type: 'GET',
+                url : `orders/${id}`,
+                dataType: "json",
+                success: function(res) {
+                    let sumTotal = 0;
+                    let detailTable = `
+                                <tbody>
+                                    <tr>
+                                        <th data-width="40">#</th>
+                                        <th class="">Ketegori</th>
+                                        <th>Merek</th>
+                                        <th class="">Nama</th>
+                                        <th class="">Harga</th>
+                                        <th class="">Jumlah</th>
+                                        <th class="">Total</th>
+                                    </tr>`;
+                    let no = 1;
+                    res.details.forEach(detail => {
+                        sumTotal += detail.total;
+                        detailTable += `<tr>
+                                        <th data-width="40">${no}</th>
+                                        <th class="">${detail.product.category.kategori_produk}</th>
+                                        <th>${detail.product.merek_produk}</th>
+                                        <th class="">${detail.product.nama_produk}</th>
+                                        <th class="">${detail.product.harga}</th>
+                                        <th class="">${detail.jumlah_produk}</th>
+                                        <th class="">Rp. ${detail.total}</th>
+                                    </tr>`
+                        no++;
+                    });
 
-        //             $('#show_foto').attr('src', ``)
+                    detailTable += `</tbody>`
 
-        //             if (res.foto_ikan) {
-        //                 $('#show_foto').attr('src', `/storage/${res.foto_ikan}`)
-        //             }
-        //         },
-        //         error:function(error) {
-        //             console.log(error)
-        //         }
+                    $('#modalShow').modal('show');
+                    $('.invoice-number').html(`Order #${res.no_order}`)
+                    $('#send_to').html(`
+                    ${res.latest_detail.member.nama}<br>
+                    ${res.latest_detail.member.alamat}<br>
+                    ${res.latest_detail.member.kota}, ${res.latest_detail.member.provinsi}
+                    `)
+                    $('#tanggal_order').html(res.tanggal)
+                    $('#table_detail').html(detailTable)
+                    $('#total').html(`Rp. ${sumTotal}`)
+                },
+                error:function(error) {
+                    console.log(error)
+                }
 
-        //     })
-        // })
+            })
+        })
 
-        // $(document).on('click','button#btn-edit',function() {
-        //     let id = $(this).data('id');
-        //     let dataUrl = $(this).data('url');
-        //     $.ajax({
-        //         type: 'GET',
-        //         url : `orders/${id}`,
-        //         dataType: "json",
-        //         success: function(res) {
-        //             document.getElementById('formEdit').action = `orders/${id}`;
-        //             $('#modalEdit').modal('show');
-        //             $('#edit_nama_champion').val(res.nama_champion)
-        //             $('#edit_tahun').val(res.tahun)
-        //             $('#edit_size').val(res.size)
+        $(document).on('click','button#btn-edit',function() {
+            let id = $(this).data('id');
+            let dataUrl = $(this).data('url');
+            $.ajax({
+                type: 'GET',
+                url : `orders/${id}`,
+                dataType: "json",
+                success: function(res) {
+                    document.getElementById('formEdit').action = `orders/${id}`;
+                    $('#modalEdit').modal('show');
+                    $('#edit_status').val(res.status)
+                    $('#edit_status').trigger('change');
+                },
+                error:function(error) {
+                    console.log(error)
+                }
 
-        //             $('#edit_foto2').attr('src', ``)
-
-        //             if (res.foto_ikan) {
-        //                 $('#edit_foto2').attr('src', `/storage/${res.foto_ikan}`)
-        //             }
-        //         },
-        //         error:function(error) {
-        //             console.log(error)
-        //         }
-
-        //     })
-        // })
+            })
+        })
 
         $('#formEdit').submit(function(e) {
             e.preventDefault();
             let formData = new FormData(this);
 
-            formData.append('nama_champion', formData.get('edit_nama_champion'));
-            formData.append('tahun', formData.get('edit_tahun'));
-            formData.append('size', formData.get('edit_size'));
-            formData.append('path_foto', formData.get('edit_foto'));
+            formData.append('status', formData.get('edit_status'));
             formData.append('_method', 'PATCH');
 
-            formData.delete('edit_nama_champion');
-            formData.delete('edit_tahun');
-            formData.delete('edit_size');
-            formData.delete('edit_foto');
+            formData.delete('edit_status');
 
 
             $.ajax({
