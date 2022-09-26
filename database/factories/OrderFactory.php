@@ -18,13 +18,14 @@ class OrderFactory extends Factory
     {
         return [
             'no_order' => fake()->numerify('########'),
-            'tanggal' => fake()->dateTimeBetween('-7 days'),
+            'tanggal' => fake()->dateTimeBetween('-30 days'),
             'total' => fake()->numerify('########'),
             'pembayaran' => null,
             'status' => fake()->randomElement(['Menunggu Dikirim', 'Dikirim', 'Selesai']),
             'status_aktif' => 1,
             'create_by' => 0,
             'update_by' => 0,
+            'created_at' => fake()->dateTimeBetween('-30 days'),
         ];
     }
 }

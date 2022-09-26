@@ -14,6 +14,10 @@ class Order extends Model
     protected $table = 't_order';
     protected $primaryKey = 'id_order';
 
+    public const SENT = 'Dikirim';
+    public const WAITING = 'Menunggu Dikirim';
+    public const DONE = 'Selesai';
+
     public function details()
     {
         return $this->hasMany(OrderDetail::class, 'id_order');

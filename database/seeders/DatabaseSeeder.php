@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
         //     'kategori_produk' => ProductCategory::IKAN,
         // ]);
 
-        $orders = Order::factory(25)->create();
+        $orders = Order::factory(2)->create();
 
 
         foreach ($orders as $order) {
@@ -50,7 +50,9 @@ class DatabaseSeeder extends Seeder
             for ($i=0; $i <= $random; $i++) {
                 OrderDetail::factory()->create([
                     'id_order' => $order->id_order,
-                    'tanggal' => $order->tanggal
+                    'tanggal' => $order->tanggal,
+                    'created_at' => $order->created_at,
+                    'updated_at' => $order->created_at,
                 ]);
             }
 

@@ -14,6 +14,10 @@ class Event extends Model
     protected $table = 'm_event';
     protected $primaryKey = 'id_event';
 
+    // kategori_event
+    public const SPECIAL = 'Special';
+    public const REGULAR = 'Regular';
+
     public function auctionProducts()
     {
         return $this->hasMany(EventFish::class, 'id_event')->where('status_aktif', 1);
