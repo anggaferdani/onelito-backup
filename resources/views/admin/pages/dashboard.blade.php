@@ -86,8 +86,25 @@
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="card">
-                        <div class="card-header">
-                            <h4>Jumlah Penjualan Produk Store</h4>
+                        <div class="card-header justify-content-between">
+                            <!-- <div class="row"> -->
+                                <h4>Jumlah Penjualan Produk Store</h4>
+                            <!-- </div> -->
+                            <!-- <div class="row">/ -->
+                                <div class="col-md-3">
+                                    <!-- <label for=""><b>Bulan</b></label> -->
+                                    <select name="my_chart_month" class="form-control select2" id="my_chart_month">
+                                        @foreach ($months as $key => $month)
+                                            @if ($key === $now->month)
+                                                <option selected value="{{ $key }}">{{ $month }}</option>
+
+                                            @else
+                                                <option value="{{ $key }}">{{ $month }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+                            <!-- </div> -->
                         </div>
                         <div class="card-body">
                             <canvas height="300" id="myChart"></canvas>
@@ -99,8 +116,22 @@
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header justify-content-between">
                             <h4>Nominal Penjualan Produk Store</h4>
+
+                            <div class="col-md-3">
+                                    <!-- <label for=""><b>Bulan</b></label> -->
+                                    <select name="my_chart_month2" class="form-control select2" id="my_chart_month2">
+                                        @foreach ($months as $key => $month)
+                                            @if ($key === $now->month)
+                                                <option selected value="{{ $key }}">{{ $month }}</option>
+
+                                            @else
+                                                <option value="{{ $key }}">{{ $month }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
                         </div>
                         <div class="card-body">
                             <canvas height="300" id="myChart2"></canvas>
@@ -125,9 +156,10 @@
     <!-- <script src="{{ asset('js/page/index.js') }}"></script> -->
 
     <script>
+
         // console.log(@json($thisMonthsProductSoldCharts['labels']))
         var ctx = document.getElementById("myChart").getContext('2d');
-        var myChart = new Chart(ctx, {
+        var productSoldChart = new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: @json($thisMonthsProductSoldCharts['labels']),
@@ -179,9 +211,9 @@
             }
         });
 
-        var ctx = document.getElementById("myChart2").getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
+        var ctx2 = document.getElementById("myChart2").getContext('2d');
+        var productSoldChartNominal = new Chart(ctx2, {
+            type: 'line',
             data: {
                 labels: @json($thisMonthsNominalProductSoldCharts['labels']),
                 datasets: [{
@@ -195,7 +227,7 @@
                 }]
             },
             options: {
-                responsive: true,
+                // responsive: true,
                 maintainAspectRatio: false,
                 legend: {
                 display: false
@@ -230,6 +262,52 @@
                     }
                 },
             }
+        });
+
+        $('#my_chart_month').change(function(e){
+            var select = $("#my_chart_month").val();
+            $.ajax({
+                url : '{{ url("admin/charts/sum-product-sold") }}?month='+select,
+                type : 'GET',
+                data : {
+                },
+
+                beforeSend : function() {
+                    productSoldChart.clicked = false;
+                },
+                success : function(res) {
+                    productSoldChart.data.datasets[0].data = res.data;
+                    productSoldChart.data.labels = res.labels
+                    productSoldChart.update();
+                    productSoldChart.clicked = true;
+                },
+                error : function(err) {
+                console.log(err);
+                }
+            })
+        });
+
+        $('#my_chart_month2').change(function(e){
+            var select = $("#my_chart_month2").val();
+            $.ajax({
+                url : '{{ url("admin/charts/sum-nominal-product-sold") }}?month='+select,
+                type : 'GET',
+                data : {
+                },
+
+                beforeSend : function() {
+                    productSoldChartNominal.clicked = false;
+                },
+                success : function(res) {
+                    productSoldChartNominal.data.datasets[0].data = res.data;
+                    productSoldChartNominal.data.labels = res.labels
+                    productSoldChartNominal.update();
+                    productSoldChartNominal.clicked = true;
+                },
+                error : function(err) {
+                console.log(err);
+                }
+            })
         });
 
     </script>

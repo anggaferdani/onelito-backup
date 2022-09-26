@@ -16,8 +16,15 @@ class DashboardController extends Controller
     public function index()
     {
         $now = CarbonImmutable::now();
+
         $startOfMoth = $now->startOfMonth();
         $endOfMonth = $now->endOfMonth();
+
+        $months = [];
+
+        foreach ($now->startOfYear()->range($now->endOfYear(), 1, 'month') as $month) {
+            $months[$month->month] = $month->monthName;
+        }
 
         $productSoldCharts = OrderDetail::whereBetween('created_at', [$startOfMoth, $endOfMonth])
                 ->selectRaw('sum(jumlah_produk) as total_produk, sum(total) as total, Date(created_at) as date')
@@ -65,7 +72,81 @@ class DashboardController extends Controller
             'countProduct' => $countProduct,
             'countProductSold' => $countProductSold ?? 0,
             'thisMonthsProductSoldCharts' => $thisMonthsProductSoldCharts,
-            'thisMonthsNominalProductSoldCharts' => $thisMonthsNominalProductSoldCharts
+            'thisMonthsNominalProductSoldCharts' => $thisMonthsNominalProductSoldCharts,
+            'now' => $now,
+            'months' => $months,
         ]);
+    }
+
+    public function productSoldChart()
+    {
+        $now = Carbon::now();
+        $setMonth = $this->request->input('month', $now->month);
+        $date = CarbonImmutable::createFromDate(Carbon::now()->month($setMonth));
+
+        $startOfMoth = $date->startOfMonth();
+        $endOfMonth = $date->endOfMonth();
+
+        $months = [];
+
+        foreach ($date->startOfYear()->range($date->endOfYear(), 1, 'month') as $month) {
+            $months[$month->month] = $month->monthName;
+        }
+
+        $productSoldCharts = OrderDetail::whereBetween('created_at', [$startOfMoth, $endOfMonth])
+                ->selectRaw('sum(jumlah_produk) as total_produk, Date(created_at) as date')
+                ->whereHas('order', fn($q) => $q->where('status', Order::SENT))
+                ->groupBy(DB::raw('Date(created_at)'))
+                ->orderBy('created_at', 'DESC')->get()
+                ->mapWithKeys(fn($i) => [$i['date'] => $i]);
+
+        $thisMonthsProductSoldCharts = [];
+        foreach ($startOfMoth->range($endOfMonth) as $date) {
+            $dateString = $date->toDateString();
+            $thisMonthsProductSoldCharts['labels'][] = $date->day;
+            if (!array_key_exists($dateString, $productSoldCharts->toArray())) {
+                $thisMonthsProductSoldCharts['data'][] = 0;
+                continue;
+            }
+            $thisMonthsProductSoldCharts['data'][] = (int) $productSoldCharts[$dateString]->total_produk;
+        }
+
+        return response()->json($thisMonthsProductSoldCharts);
+    }
+
+    public function productSoldNominalChart()
+    {
+        $now = Carbon::now();
+        $setMonth = $this->request->input('month', $now->month);
+        $date = CarbonImmutable::createFromDate(Carbon::now()->month($setMonth));
+
+        $startOfMoth = $date->startOfMonth();
+        $endOfMonth = $date->endOfMonth();
+
+        $months = [];
+
+        foreach ($date->startOfYear()->range($date->endOfYear(), 1, 'month') as $month) {
+            $months[$month->month] = $month->monthName;
+        }
+
+        $productSoldCharts = OrderDetail::whereBetween('created_at', [$startOfMoth, $endOfMonth])
+                ->selectRaw('sum(total) as total, Date(created_at) as date')
+                ->whereHas('order', fn($q) => $q->where('status', Order::SENT))
+                ->groupBy(DB::raw('Date(created_at)'))
+                ->orderBy('created_at', 'DESC')->get()
+                ->mapWithKeys(fn($i) => [$i['date'] => $i]);
+
+        $thisMonthsProductSoldCharts = [];
+        foreach ($startOfMoth->range($endOfMonth) as $date) {
+            $dateString = $date->toDateString();
+            $thisMonthsProductSoldCharts['labels'][] = $date->day;
+            if (!array_key_exists($dateString, $productSoldCharts->toArray())) {
+                $thisMonthsProductSoldCharts['data'][] = 0;
+                continue;
+            }
+            $thisMonthsProductSoldCharts['data'][] = (int) $productSoldCharts[$dateString]->total;
+        }
+
+        return response()->json($thisMonthsProductSoldCharts);
     }
 }
