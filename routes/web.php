@@ -42,6 +42,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('/dashboard', [Admin\DashboardController::class, 'index'])->name('admin.dashboard.index');
     Route::get('/charts/sum-product-sold', [Admin\DashboardController::class, 'productSoldChart']);
     Route::get('/charts/sum-nominal-product-sold', [Admin\DashboardController::class, 'productSoldNominalChart']);
+    Route::get('/charts/sum-auction-participant', [Admin\DashboardController::class, 'auctionParticipantChart']);
 
     Route::group(['prefix' => 'admins'], function () {
         Route::get('/', [Admin\AdminController::class, 'index'])->name('admin.admin.index');

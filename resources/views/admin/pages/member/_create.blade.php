@@ -19,6 +19,10 @@
                 <input  type="email" id="email" class="form-control" name="email" placeholder="" required>
             </div>
             <div class="form-group">
+                <label for="password">Password</label>
+                <input  type="password" id="password" class="form-control" name="password" placeholder="" required>
+            </div>
+            <div class="form-group">
                 <label for="no_hp">No. HP</label>
                 <input  type="text" id="no_hp" class="form-control" name="no_hp" placeholder="" required>
             </div>

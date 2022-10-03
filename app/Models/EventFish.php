@@ -18,4 +18,9 @@ class EventFish extends Model
     {
         return $this->hasOne(FishPhoto::class, 'id_ikan');
     }
+
+    public function event()
+    {
+        return $this->belongsTo(Event::class, 'id_event');
+    }
 }

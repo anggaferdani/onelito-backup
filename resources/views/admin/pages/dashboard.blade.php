@@ -140,6 +140,32 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <div class="card-header justify-content-between">
+                            <h4>Grafik Peserta Auction</h4>
+
+                            <div class="col-md-3">
+                                    <select name="my_chart_month3" class="form-control select2" id="my_chart_month3">
+                                        @foreach ($months as $key => $month)
+                                            @if ($key === $now->month)
+                                                <option selected value="{{ $key }}">{{ $month }}</option>
+
+                                            @else
+                                                <option value="{{ $key }}">{{ $month }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+                        </div>
+                        <div class="card-body">
+                            <canvas height="300" id="myChart3"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </section>
     </div>
 @endsection
@@ -264,6 +290,69 @@
             }
         });
 
+        var ctx3 = document.getElementById("myChart3").getContext('2d');
+        var auctionParticipantChart = new Chart(ctx3, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Regular',
+                    data: [],
+                    borderWidth: 2,
+                    backgroundColor: '#6777ef',
+                    borderColor: '#6777ef',
+                    borderWidth: 2.5,
+                    pointBackgroundColor: '#ffffff',
+                    pointRadius: 4
+                },{
+                    label: 'Special',
+                    data: [],
+                    borderWidth: 2,
+                    backgroundColor: '#fc5603',
+                    borderColor: '#fc5603',
+                    borderWidth: 2.5,
+                    pointBackgroundColor: '#fc5603',
+                    pointRadius: 4
+                }]
+            },
+            options: {
+                // responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                // display: false
+                },
+                scales: {
+                yAxes: [{
+                    gridLines: {
+                        drawBorder: false,
+                        color: '#f2f2f2',
+                    },
+                    ticks: {
+                        beginAtZero: true,
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        // Include a dollar sign in the ticks
+                        // callback: function(value, index, ticks) {
+                        //     return 'Tanggal' + value;
+                        // }
+                    },
+                    gridLines: {
+                    display: false
+                    }
+                }]
+                },
+                tooltips: {
+                    callbacks: {
+                        title: function(context) {
+                            return 'Tanggal ' + context[0].label;
+                        }
+                    }
+                },
+            }
+        });
+
         $('#my_chart_month').change(function(e){
             var select = $("#my_chart_month").val();
             $.ajax({
@@ -309,6 +398,58 @@
                 }
             })
         });
+
+        $('#my_chart_month3').change(function(e){
+            chartSumAuctionParticipant()
+            // var select = $("#my_chart_month3").val();
+            // $.ajax({
+            //     url : '{{ url("admin/charts/sum-auction-participant") }}?month='+select,
+            //     type : 'GET',
+            //     data : {
+            //     },
+
+            //     beforeSend : function() {
+            //         auctionParticipantChart.clicked = false;
+            //     },
+            //     success : function(res) {
+            //         auctionParticipantChart.data.datasets[0].data = res.regular.data;
+            //         auctionParticipantChart.data.datasets[1].data = res.special.data;
+            //         auctionParticipantChart.data.labels = res.regular.labels
+            //         auctionParticipantChart.update();
+            //         auctionParticipantChart.clicked = true;
+            //     },
+            //     error : function(err) {
+            //         console.log(err);
+            //     }
+            // })
+        });
+
+        async function chartSumAuctionParticipant()
+        {
+            var select = $("#my_chart_month3").val();
+            $.ajax({
+                url : '{{ url("admin/charts/sum-auction-participant") }}?month='+select,
+                type : 'GET',
+                data : {
+                },
+
+                beforeSend : function() {
+                    auctionParticipantChart.clicked = false;
+                },
+                success : function(res) {
+                    auctionParticipantChart.data.datasets[0].data = res.regular.data;
+                    auctionParticipantChart.data.datasets[1].data = res.special.data;
+                    auctionParticipantChart.data.labels = res.regular.labels
+                    auctionParticipantChart.update();
+                    auctionParticipantChart.clicked = true;
+                },
+                error : function(err) {
+                    console.log(err);
+                }
+            })
+        }
+
+        chartSumAuctionParticipant();
 
     </script>
 @endpush

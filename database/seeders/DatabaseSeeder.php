@@ -4,8 +4,10 @@ namespace Database\Seeders;
 
 use App\Models\Admin;
 use App\Models\ChampionFish;
+use App\Models\Event;
 use App\Models\EventFish;
 use App\Models\KoiStock;
+use App\Models\LogBid;
 use App\Models\Member;
 use App\Models\Order;
 use App\Models\OrderDetail;
@@ -37,30 +39,46 @@ class DatabaseSeeder extends Seeder
         //     'kategori_produk' => ProductCategory::MAKANAN_IKAN,
         // ]);
 
-        // ProductCategory::factory()->create([
-        //     'kategori_produk' => ProductCategory::IKAN,
-        // ]);
+        $events = Event::with('auctionProducts')
+            ->where('status_aktif', 1)->get();
 
-        $orders = Order::factory(2)->create();
+        foreach ($events as $event) {
+            $auctionProducts = $event->auctionProducts;
 
-
-        foreach ($orders as $order) {
-            $random = fake()->numberBetween(2, 6);
-
-            for ($i=0; $i <= $random; $i++) {
-                OrderDetail::factory()->create([
-                    'id_order' => $order->id_order,
-                    'tanggal' => $order->tanggal,
-                    'created_at' => $order->created_at,
-                    'updated_at' => $order->created_at,
-                ]);
+            if (count($auctionProducts) === 0) {
+                continue;
             }
 
-            $details = $order->details;
+            $number = fake()->numberBetween(1, 10);
 
-            $order->total = $details->sum('total');
-            $order->save();
+            LogBid::factory($number)->create([
+                'id_ikan_lelang' => $auctionProducts->random()->id_ikan,
+                'waktu_bid' => $event->tgl_mulai,
+            ]);
         }
+
+
+
+        // $orders = Order::factory(2)->create();
+
+
+        // foreach ($orders as $order) {
+        //     $random = fake()->numberBetween(2, 6);
+
+        //     for ($i=0; $i <= $random; $i++) {
+        //         OrderDetail::factory()->create([
+        //             'id_order' => $order->id_order,
+        //             'tanggal' => $order->tanggal,
+        //             'created_at' => $order->created_at,
+        //             'updated_at' => $order->created_at,
+        //         ]);
+        //     }
+
+        //     $details = $order->details;
+
+        //     $order->total = $details->sum('total');
+        //     $order->save();
+        // }
 
         // Admin::factory()->create([
         //     'username' => 'admin',
