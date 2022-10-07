@@ -20,8 +20,20 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/home', function () {
+    return view('homelog',[
+        "title" => "home"
+    ]);
+});
+
 Route::get('/auction', function () {
     return view('auction',[
+        "title" => "auction"
+    ]);
+});
+
+Route::get('/auctionlog', function () {
+    return view('auctionlog',[
         "title" => "auction"
     ]);
 });
@@ -60,8 +72,44 @@ Route::get('/bid', function () {
     ]);
 });
 
+Route::get('/bid2', function () {
+    return view('bid2',[
+        "title" => "auction"
+    ]);
+});
+
+Route::get('/bid3', function () {
+    return view('bid3',[
+        "title" => "auction"
+    ]);
+});
+
+Route::get('/bid4', function () {
+    return view('bid4',[
+        "title" => "auction"
+    ]);
+});
+
 Route::get('/detail', function () {
     return view('detail',[
+        "title" => "auction"
+    ]);
+});
+
+Route::get('/detail2', function () {
+    return view('detail2',[
+        "title" => "auction"
+    ]);
+});
+
+Route::get('/detail3', function () {
+    return view('detail3',[
+        "title" => "auction"
+    ]);
+});
+
+Route::get('/detail4', function () {
+    return view('detail4',[
         "title" => "auction"
     ]);
 });
@@ -69,5 +117,11 @@ Route::get('/detail', function () {
 Route::get('/event_auction', function () {
     return view('event_auction',[
         "title" => "auction"
+    ]);
+});
+
+Route::get('/detail_onelito_store', function () {
+    return view('detail_onelito_store',[
+        "title" => "onelito_store"
     ]);
 });

@@ -2,6 +2,12 @@
 
 @section('container')
 
+
+<div class="">
+    <img src="img/event.png" class="d-block" alt="..." style="width: 1916px;
+    height: 305px;" >
+</div>
+<br>
 <div class="container">
     <div>
         <h5>Event Auction</h5>

@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('layout.mainlog')
 
 @section('container')
 
@@ -44,13 +44,7 @@
                             <div class="col-md-6">
                                 <a href="/detail" class="btn btn-secondary w-100 d-flex justify-content-between" style="font-size: smaller">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                             </div>
-                            <div class="col-9">
-                                <a href="#" class="btn btn-light w-100 d-flex justify-content-between">VIDEO <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
-                            </div>
-                            <div class="col-3">
-                                <button class="border-0 m-1" style="background-color: transparent;font-size:larger"><i class="far fa-heart"></i></button>
-                            </div>
-                            
+                            <a href="#" class="btn btn-light w-100 d-flex justify-content-between">VIDEO <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                         </div>
                     </div>
                 </div>
@@ -80,12 +74,7 @@
                             <div class="col-md-6">
                                 <a href="/detail2" style="font-size: smaller" class="btn btn-secondary w-100 d-flex justify-content-between">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                             </div>
-                            <div class="col-9">
-                                <a href="#" class="btn btn-light w-100 d-flex justify-content-between">VIDEO <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
-                            </div>
-                            <div class="col-3">
-                                <button class="border-0 m-1" style="background-color: transparent;font-size:larger"><i class="far fa-heart"></i></button>
-                            </div>
+                            <a href="#" class="btn btn-light w-100 d-flex justify-content-between">VIDEO <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                         </div>
                     </div>
                 </div>
@@ -115,12 +104,7 @@
                             <div class="col-md-6">
                                 <a href="/detail3" style="font-size: smaller" class="btn btn-secondary w-100 d-flex justify-content-between">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                             </div>
-                            <div class="col-9">
-                                <a href="#" class="btn btn-light w-100 d-flex justify-content-between">VIDEO <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
-                            </div>
-                            <div class="col-3">
-                                <button class="border-0 m-1" style="background-color: transparent;font-size:larger"><i class="far fa-heart"></i></button>
-                            </div>
+                            <a href="#" class="btn btn-light w-100 d-flex justify-content-between">VIDEO <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                         </div>
                     </div>
                 </div>
@@ -150,12 +134,8 @@
                             <div class="col-md-6">
                                 <a href="/detail4" style="font-size: smaller" class="btn btn-secondary w-100 d-flex justify-content-between">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                             </div>
-                            <div class="col-9">
-                                <a href="#" class="btn btn-light w-100 d-flex justify-content-between">VIDEO <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
-                            </div>
-                            <div class="col-3">
-                                <button class="border-0 m-1" style="background-color: transparent;font-size:larger"><i class="far fa-heart"></i></button>
-                            </div>                        </div>
+                            <a href="#" class="btn btn-light w-100 d-flex justify-content-between">VIDEO <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                        </div>
                     </div>
                 </div>
             </div>

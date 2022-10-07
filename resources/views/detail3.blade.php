@@ -2,24 +2,22 @@
 
 @section('container')
 <div class="container w-75">
-    <a href="/auctionlog"><i class="fa-solid fa-arrow-left-long text-body" style="font-size: x-large"></i></a>
+    <a href="/auction"><i class="fa-solid fa-arrow-left-long text-body"></i></a>
 </div>
 
 <div class="container px-4">
     <div class="row gx-5">
         <div class="col-4">           
-            <div class="m-lg-auto" style="width: 18rem;">
+            <div class="card m-lg-auto" style="width: 18rem;">
                 <img src="img/koi_3.jpg" class="card-img-top" alt="...">
-                <br><br>
-                <a href="#" class="btn btn-danger w-100 d-flex justify-content-between" style="font-size:larger">VIDEO <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                <div class="card-body">
+                    <a href="#" class="btn btn-light w-100 d-flex justify-content-between">VIDEO <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                </div>
             </div>
         </div>
         <div class="col-8">
             <p style="font-size: larger">Auction Detail</p>
             <hr>
-            
-        <div class="row">
-            <div class="col">
             <h3><table>
                 <tr>
                     <td>Variety</td>
@@ -33,10 +31,6 @@
                     <td>Bloodline</td>
                     <td>: S Legend</td>
                 </tr>
-            </table></h3>
-            </div>
-            <div class="col">
-            <h3><table>
                 <tr>
                     <td>Sex</td>
                     <td>: Female</td>
@@ -50,16 +44,13 @@
                     <td>: 57 cm</td>
                 </tr>
             </table></h3>
-            </div>
-        </div>
-            
             <hr>
 
             <p class="m-0" style="font-size: larger">Note :</p>
             <p style="font-size: larger">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, voluptas! Porro suscipit obcaecati eius quia qui dolorem harum ipsam, illo laudantium officiis maiores commodi aliquid fugiat, laboriosam ipsa similique blanditiis.</p>
             <hr>
 
-            <p style="font-size:30px">Harga saat ini: <span class="alert-link text-danger">Rp 7.500.000</span></p>
+            <p style="font-size:30px">Current BID: <span class="alert-link text-danger">Rp 5.000.000</span></p>
             <hr>
 
             <p style="font-size:25px">Kelipatan BID: <span class="alert-link text-danger">Rp 100.000</span></p>
@@ -69,7 +60,7 @@
             <p class="alert-link text-danger" style="font-size: 30px">00 : 35 : 45</p>
             <br><br>
             <div class="col-3">
-                <a class="btn btn-danger mb-3" href="/bid" role="button">BID Now</a>
+                <a class="btn btn-danger mb-3" href="/bid3" role="button">BID Now</a>
             </div>
         </div>
     </div>

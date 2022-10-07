@@ -9,16 +9,19 @@ style="background-color: black;
       <nav class="justify-content-center navbar navbar-expand-lg navbar-dark">
         <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link {{ ($title === 'home') ? 'active text-danger' : '' }}"href="/">HOME</a>
+          <a class="nav-link {{ ($title === 'home') ? 'active text-danger' : '' }}"href="/home">HOME</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ ($title === 'auction') ? 'active text-danger' : '' }}"href="/auction">AUCTION</a>
+          <a class="nav-link {{ ($title === 'auction') ? 'active text-danger' : '' }}"href="/auctionlog">AUCTION</a>
         </li>
          <li class="nav-item">
           <a class="nav-link {{ ($title === 'onelito_store') ? 'active text-danger' : '' }}"href="/onelito_store">ONELITO STORE</a>
         </li>
          <li class="nav-item">
           <a class="nav-link {{ ($title === 'koi_stok') ? 'active text-danger' : '' }}"href="/koi_stok">KOI STOCK</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link {{ ($title === 'login') ? 'active text-danger' : '' }}"href="/profil"><i class="fa-solid fa-circle-user" style="font-size: x-large"></i></a>
         </li>
         </ul>
       </nav>
@@ -27,13 +30,16 @@ style="background-color: black;
       <nav class="navbar-expand-lg navbar-dark">
         <ul class="list-unstyled mr-auto">
           <li class="nav-item">
-          <a class="nav-link active text-danger" aria-current="page" href="#">SUBSCRIBE US</a>
+            <a class="nav-link active text-danger" aria-current="page" href="#">SUBSCRIBE US</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" href="#"><i class="fa-brands fa-facebook"></i> @onelitokoi</a>
+            <a class="nav-link active text-white" aria-current="page" href="https://www.instagram.com/onelitokoi.id/?hl=id"><i class="fa-brands fa-instagram"></i> @Onelitokoi.id</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" href="#"><i class="fa-brands fa-instagram"></i> @faisal_kangkayu</a>
+            <a class="nav-link active text-white" aria-current="page" href="#"><i class="fa-brands fa-facebook"></i> @Onelito koi</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="page" href="https://www.youtube.com/channel/UCbhkQaiMUPUVQWw5KBLT0Bw"><i class="fa-brands fa-youtube"></i> Onelito koi</a>
           </li>
         </ul>
     </div>

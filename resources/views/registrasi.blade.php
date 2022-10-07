@@ -23,8 +23,8 @@
     <center><img src="img/oneli.svg" alt="ONELITO" class="m-5"></center>
     <br><br>
 
-    <div class="row g-2">
-      <div class="col-6">
+    <div class="row g-4">
+      <div class="col-6 col-sm">
         <div class="relative">
             <input type="text" id="small_outlined" class="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
             <label for="small_outlined" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 left-1">Nama</label>
@@ -86,10 +86,10 @@
       </div>
       <br><br><br><br><br><br>
       <center>
-        <div class="d-grid gap-2 col-6 mx-auto">
-            <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" data-bs-toggle="modal" data-bs-target="#exampleModal"> REGISTER </button>
+        <div class="d-grid gap-2 col-4 mx-auto px-4">
+            <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" data-bs-toggle="modal" data-bs-target="#exampleModal"> REGISTER </button>
         </div>
-        <p>Don't have an account yet let's join <a class="text-danger" style="text-decoration: blink" href="/login">here</a></p>
+        <p>Already have an account? Come on in right away <a class="text-danger" style="text-decoration: blink" href="/login">here</a></p>
       </center>
 
 <!-- Modal -->
