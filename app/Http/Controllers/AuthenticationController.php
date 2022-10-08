@@ -39,4 +39,33 @@ class AuthenticationController extends Controller
             'postcode' => ['required'],
         ]);
     }
+
+    public function adminLogin()
+    {
+        $credentials = $this->request->validate([
+            'username' => ['required'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::guard('admin')->attempt($credentials)) {
+            $this->request->session()->regenerate();
+
+            return redirect()->intended('/admin/dashboard');
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
+    }
+
+    public function adminLogout()
+    {
+        Auth::guard('admin')->logout();
+
+        $this->request->session()->invalidate();
+
+        $this->request->session()->regenerateToken();
+
+        return redirect('/admin-login');
+    }
 }
