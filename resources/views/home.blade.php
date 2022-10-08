@@ -120,7 +120,7 @@
     <div class="col">
       <div class="p-3 border bg-light">
         <img src="img/bak_ukur.jpg" alt="bak_ukur" class="card-img-top" height="170">
-        <p>Mistar ukur koi / penggaris ukur koi /
+        <p>Mistar ukur koi /
         bak ukur</p>
         <p><b>Rp. 600.000</b></p>
         <div class="row">

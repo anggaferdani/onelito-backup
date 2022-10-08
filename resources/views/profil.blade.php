@@ -17,7 +17,7 @@
 </head>
 <body>
 
-<div class="container p-0 w-75">
+<div class="container p-0">
     <a href="/" class="text-dark" style="text-decoration: blink"><i class="fa-solid fa-arrow-left text dark"></i> back to main page</a>
     <br><br>
     <div class="row">
@@ -103,7 +103,7 @@
                     <div class="container overflow-hidden p-0">
                         <div class="card">
                             <div class="row">
-                                <div class="col-8 mx-3 my-4">
+                                <div class="col-lg-7 mx-3 my-4">
                                     <input class="form-check-input" style="font-size:large" type="checkbox" value="" id="Pilih Semua">
                                     <label class="form-check-label" for="Pilih Semua">
                                         Pilih Semua
@@ -182,7 +182,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="col-3 my-xxl-4 w-auto">
+                                <div class="col-form-label-lg col-form-label-lg w-auto">
                                     <div class="card" style="width: 17rem;">
                                         <div class="card-body ">
                                             <h5 class="card-title mb-3">Ringkasan belanja</h5>
@@ -227,7 +227,7 @@
                                         <p>Bio Tube Bacteria House
                                         Media Filter</p>
                                         <p><b>Rp. 1.300.000</b></p>
-                                        <button class="m-2 text-danger w-50" style="background-color: transparent;font-size:small;border-color:red"><i class="fa-solid fa-plus"></i> <span>Keranjang</span></button>
+                                        <button class="mb-3 text-danger " style="background-color: transparent;font-size:small;border-color:red"><i class="fa-solid fa-plus"></i> <span>Keranjang</span></button>
                                     </div>
                                 </div>
                                 <div class="col-3 border m-1">
@@ -235,7 +235,7 @@
                                     <p>Uniring rubber hose /
                                     selang aerasi</p>
                                     <p><b>Rp. 580.000</b></p>
-                                    <button class="m-2 text-danger w-50" style="background-color: transparent;font-size:small;border-color:red"><i class="fa-solid fa-plus"></i> <span>Keranjang</span></button>
+                                    <button class="mb-3 text-danger " style="background-color: transparent;font-size:small;border-color:red"><i class="fa-solid fa-plus"></i> <span>Keranjang</span></button>
                                 </div>
                             </div>
                         </div>
