@@ -20,8 +20,8 @@
 <div class="container p-0 w-75">
     <a href="/" class="text-dark" style="text-decoration: blink"><i class="fa-solid fa-arrow-left text dark"></i> back to main page</a>
     <br><br>
-    <div class="row gx-3">
-        <div class="col-3">
+    <div class="row">
+        <div class="col-md-3">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <div class="d-flex align-items-start">
@@ -58,7 +58,7 @@
                 <a class="btn btn-danger w-100 justify-content-between" href="/login" role="button" style="font-size: x-large">Log Out</a>
             </div>
         </div>
-        <div class="col-9">
+        <div class="col-md-9">
             <div class="tab-content" id="v-pills-tabContent">
 
                 <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
