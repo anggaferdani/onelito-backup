@@ -12,6 +12,8 @@ class Member extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $guarded = [];
+
     protected $table = 'm_peserta';
     protected $primaryKey = 'id_peserta';
 

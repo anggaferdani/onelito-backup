@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin;
 use App\Http\Controllers\AuthenticationController;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,51 @@ Route::get('/home', function () {
         "title" => "home"
     ]);
 });
+
+Route::get('/admin-login', function () {
+    return view('admin.pages.auth-login',[
+        "title" => "home"
+    ]);
+});
+
+
+Route::group(['prefix' => 'authentications'], function () {
+    Route::post('/', [AuthenticationController::class, 'login'])->name('login.post');
+
+    Route::group(['prefix' => 'admin'], function () {
+        Route::post('/', [AuthenticationController::class, 'adminLogin'])->name('admin.login.post');
+        Route::get('/logout', [AuthenticationController::class, 'adminLogout'])->name('admin.logout');
+    });
+});
+
+// ADMIN
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
+    Route::get('/dashboard', [Admin\DashboardController::class, 'index'])->name('admin.dashboard.index');
+    Route::get('/charts/sum-product-sold', [Admin\DashboardController::class, 'productSoldChart']);
+    Route::get('/charts/sum-nominal-product-sold', [Admin\DashboardController::class, 'productSoldNominalChart']);
+    Route::get('/charts/sum-auction-participant', [Admin\DashboardController::class, 'auctionParticipantChart']);
+
+    Route::group(['prefix' => 'admins'], function () {
+        Route::get('/', [Admin\AdminController::class, 'index'])->name('admin.admin.index');
+    });
+
+    Route::resource('members', Admin\MemberController::class);
+
+    Route::resource('fishes', Admin\KoiStockController::class);
+
+    Route::resource('auction-products', Admin\EventFishController::class);
+
+    Route::resource('auctions', Admin\EventController::class);
+
+    Route::resource('products', Admin\ProductController::class);
+
+    Route::resource('champion-fishes', Admin\ChampionFishController::class);
+
+    Route::resource('orders', Admin\OrderController::class);
+
+    Route::resource('auction-winners', Admin\AuctionWinnerController::class);
+});
+
 
 Route::get('/auction', function () {
     return view('auction',[

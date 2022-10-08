@@ -27,7 +27,7 @@ class MemberFactory extends Factory
             'kelurahan' => fake()->city,
             'kota' => fake()->city,
             'kode_pos' => fake()->postcode,
-            'status_aktif' => 0,
+            'status_aktif' => 1,
             'create_by' => 0,
             'update_by' => 0,
         ];
