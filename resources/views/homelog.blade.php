@@ -1,8 +1,8 @@
-@extends('layout.main')
+@extends('layout.mainlog')
 
 @section('container')
 <div class="container-fluit" style="background-color:red;" heigh="25vh">
-  <img src="img/Frame.png" class="d-block w-100" alt="Frame" >
+  <img src="img/Frame.png" class="d-block w-100" alt="..." >
 </div>
     
     <div class="container mt-5">
@@ -11,8 +11,8 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-6 col-lg-3">
-      <div class="card modal-header">
+    <div class="col col-sm-6 col-lg-3">
+      <div class="card modal-header" style="width: 18rem;">
         <img src="img/koi.jpg" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm</h5>
@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="col-sm-6 col-lg-3">
-      <div class="card modal-header">
+      <div class="card modal-header" style="width: 18rem;">
         <img src="img/koi.jpg" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm</h5>
@@ -32,7 +32,7 @@
       </div>
     </div>
     <div class="col-sm-6 col-lg-3">
-      <div class="card modal-header">
+      <div class="card modal-header" style="width: 18rem;">
         <img src="img/koi.jpg" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm</h5>
@@ -42,7 +42,7 @@
       </div>
     </div>
     <div class="col-sm-6 col-lg-3">
-      <div class="card modal-header">
+      <div class="card modal-header" style="width: 18rem;">
         <img src="img/koi.jpg" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm</h5>
@@ -162,6 +162,7 @@
   <h3>ONELITO <span style="color:red;">KOI</span></h3>
   <br>
 </div>
+
 <div class="container">
   <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua.</p>
@@ -199,51 +200,51 @@ cillum dolore eu fugiat nulla pariatur.</p>
   </div>
 </div>
 
-<div class="container-fluit m-5">
+ <div class="container-fluit m-5">
     <img src="img/gc.png" alt="gc" class="w-100">
-</div>
+ </div>
 
 <div class="container">
-  <div class="row ">
-    <div class="col-lg-3 col-sm-6">
-      <div class="card modal-header">
-        <img src="img/koi_2.jpg" class="card-img-top" alt="...">
-          <div class="m-2 me-auto">
-          <h5 class="card-title">32nd Champion</h5>
-          <p class="card-text ma" >Tahun : 2015</p>
-          <p >Size : 50 cm</p>
-          </div>
-        </div>
+  <div class="row row-cols-4">
+    <div class="col">
+      <div class="card modal-header" style="width: 18rem;">
+  <img src="img/koi_2.jpg" class="card-img-top" alt="...">
+  <div class="card-body me-auto">
+    <h5 class="card-title">32nd Champion</h5>
+    <p class="card-text ma" >Tahun : 2015</p>
+    <p >Size : 50 cm</p>
     </div>
-    <div class="col-lg-3 col-sm-6">
-      <div class="card modal-header">
-        <img src="img/koi_2.jpg" class="card-img-top" alt="...">
-          <div class="m-2 me-auto">
-          <h5 class="card-title">32nd Champion</h5>
-          <p class="card-text ma" >Tahun : 2015</p>
-          <p >Size : 50 cm</p>
-        </div>
-      </div>
+  </div>
     </div>
-    <div class="col-lg-3 col-sm-6">
-      <div class="card modal-header">
-        <img src="img/koi_2.jpg" class="card-img-top" alt="...">
-        <div class="m-2 me-auto">
-          <h5 class="card-title">32nd Champion</h5>
-          <p class="card-text ma" >Tahun : 2015</p>
-          <p >Size : 50 cm</p>
-        </div>
-      </div>
+    <div class="col">
+    <div class="card modal-header" style="width: 18rem;">
+  <img src="img/koi_2.jpg" class="card-img-top" alt="...">
+  <div class="card-body me-auto">
+    <h5 class="card-title">32nd Champion</h5>
+    <p class="card-text ma" >Tahun : 2015</p>
+    <p >Size : 50 cm</p>
+  </div>
+  </div>
     </div>
-    <div class="col-lg-3 col-sm-6">
-      <div class="card modal-header">
-        <img src="img/koi_2.jpg" class="card-img-top" alt="...">
-        <div class="m-2 me-auto">
-          <h5 class="card-title">32nd Champion</h5>
-          <p class="card-text ma" >Tahun : 2015</p>
-          <p >Size : 50 cm</p>
-        </div>
-      </div>
+    <div class="col">
+      <div class="card modal-header" style="width: 18rem;">
+  <img src="img/koi_2.jpg" class="card-img-top" alt="...">
+  <div class="card-body me-auto">
+    <h5 class="card-title">32nd Champion</h5>
+    <p class="card-text ma" >Tahun : 2015</p>
+    <p >Size : 50 cm</p>
+  </div>
+  </div>
+    </div>
+    <div class="col">
+      <div class="card modal-header" style="width: 18rem;">
+  <img src="img/koi_2.jpg" class="card-img-top" alt="...">
+  <div class="card-body me-auto">
+    <h5 class="card-title">32nd Champion</h5>
+    <p class="card-text ma" >Tahun : 2015</p>
+    <p >Size : 50 cm</p>
+  </div>
+  </div>
     </div>
   </div>
 </div>

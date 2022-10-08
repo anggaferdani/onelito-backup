@@ -30,13 +30,16 @@ style="background-color: black;
       <nav class="navbar-expand-lg navbar-dark">
         <ul class="list-unstyled mr-auto">
           <li class="nav-item">
-          <a class="nav-link active text-danger" aria-current="page" href="#">SUBSCRIBE US</a>
+            <a class="nav-link active text-danger" aria-current="page" href="#">SUBSCRIBE US</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" href="#"><i class="fa-brands fa-facebook"></i> @onelitokoi</a>
+            <a class="nav-link active text-white" aria-current="page" href="https://www.instagram.com/onelitokoi.id/?hl=id"><i class="fa-brands fa-instagram"></i> @Onelitokoi.id</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" href="#"><i class="fa-brands fa-instagram"></i> @faisal_kangkayu</a>
+            <a class="nav-link active text-white" aria-current="page" href="#"><i class="fa-brands fa-facebook"></i> @Onelito koi</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="page" href="https://www.youtube.com/channel/UCbhkQaiMUPUVQWw5KBLT0Bw"><i class="fa-brands fa-youtube"></i> Onelito koi</a>
           </li>
         </ul>
     </div>
