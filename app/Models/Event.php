@@ -15,7 +15,7 @@ class Event extends Model
     protected $primaryKey = 'id_event';
 
     // kategori_event
-    public const SPECIAL = 'Special';
+    public const EVENT = 'Event';
     public const REGULAR = 'Regular';
 
     public function auctionProducts()
