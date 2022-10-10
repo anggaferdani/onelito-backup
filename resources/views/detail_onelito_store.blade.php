@@ -1,7 +1,7 @@
 @extends('layout.main')
 
 @section('container')
-<div class="container w-75">
+<div class="container">
     <br>
     <a href="/onelito_store"><i class="fa-solid fa-arrow-left-long text-body"></i></a>
     <br><br>

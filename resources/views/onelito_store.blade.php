@@ -72,8 +72,8 @@
                 </div>
                 <div class="col">
                   <div class="p-0 border bg-light">
-                  <img src="img/Matala.jpg" alt="matala" class="card-img-top" height="170">
-                  <p>Matala Abu Media Filter
+                  <img src="img/matala.jpg" alt="matala" class="card-img-top" height="170">
+                  <p>matala Abu Media Filter
                     Mekanik</p>
                   <p><b>Rp. 974.000</b></p>
                     <div class="col" style="text-align: end">
@@ -127,8 +127,8 @@
                 </div>
                 <div class="col">
                   <div class="p-0 border bg-light">
-                  <img src="img/Matala.jpg" alt="matala" class="card-img-top" height="170">
-                    <p>Matala Abu Media Filter
+                  <img src="img/matala.jpg" alt="matala" class="card-img-top" height="170">
+                    <p>matala Abu Media Filter
                       Mekanik</p>
                     <p><b>Rp. 974.000</b></p>
                     <div class="col" style="text-align: end">
@@ -182,8 +182,8 @@
                 </div>
                 <div class="col">
                   <div class="p-0 border bg-light">
-                  <img src="img/Matala.jpg" alt="matala" class="card-img-top" height="170">
-                    <p>Matala Abu Media Filter
+                  <img src="img/matala.jpg" alt="matala" class="card-img-top" height="170">
+                    <p>matala Abu Media Filter
                       Mekanik</p>
                     <p><b>Rp. 974.000</b></p>
                     <div class="col" style="text-align: end">
@@ -237,8 +237,8 @@
                 </div>
                 <div class="col">
                   <div class="p-0 border bg-light">
-                  <img src="img/Matala.jpg" alt="matala" class="card-img-top" height="170">
-                    <p>Matala Abu Media Filter
+                  <img src="img/matala.jpg" alt="matala" class="card-img-top" height="170">
+                    <p>matala Abu Media Filter
                       Mekanik</p>
                     <p><b>Rp. 974.000</b></p>
                     <div class="col" style="text-align: end">
@@ -299,8 +299,8 @@
                 </div>
                 <div class="col">
                   <div class="p-0 border bg-light">
-                  <img src="img/Matala.jpg" alt="matala" class="card-img-top" height="170">
-                    <p>Matala Abu Media Filter
+                  <img src="img/matala.jpg" alt="matala" class="card-img-top" height="170">
+                    <p>matala Abu Media Filter
                       Mekanik</p>
                     <p><b>Rp. 974.000</b></p>
                     <div class="col" style="text-align: end">
@@ -361,8 +361,8 @@
                 </div>
                 <div class="col">
                   <div class="p-0 border bg-light">
-                  <img src="img/Matala.jpg" alt="matala" class="card-img-top" height="170">
-                    <p>Matala Abu Media Filter
+                  <img src="img/matala.jpg" alt="matala" class="card-img-top" height="170">
+                    <p>matala Abu Media Filter
                       Mekanik</p>
                     <p><b>Rp. 974.000</b></p>
                     <div class="col" style="text-align: end">

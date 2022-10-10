@@ -11,7 +11,7 @@
             <div class="card m-lg-auto" style="width: 18rem;">
                 <img src="img/koi_3.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <a href="#" class="btn btn-light w-100 d-flex justify-content-between">VIDEO <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                    <a href="#" class="btn btn-danger w-100 d-flex justify-content-between" style="font-size:larger">VIDEO <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@
             <p style="font-size: larger">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, voluptas! Porro suscipit obcaecati eius quia qui dolorem harum ipsam, illo laudantium officiis maiores commodi aliquid fugiat, laboriosam ipsa similique blanditiis.</p>
             <hr>
 
-            <p style="font-size:30px">Current BID: <span class="alert-link text-danger">Rp 4.000.000</span></p>
+            <p style="font-size:30px">Harga saat ini: <span class="alert-link text-danger">Rp 4.000.000</span></p>
             <hr>
 
             <p style="font-size:25px">Kelipatan BID: <span class="alert-link text-danger">Rp 50.000</span></p>
