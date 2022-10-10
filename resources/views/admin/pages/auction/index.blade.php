@@ -212,8 +212,8 @@
                     $('#modalEdit').modal('show');
                     $('#edit_kategori_event').val(res.kategori_event)
                     $('#edit_kategori_event').html(`
-                        <option value="Regular" ${((res.sex === 'Regular') ? 'selected' : '')}>Regular</option>
-                        <option value="Special" ${((res.sex === 'Special') ? 'selected' : '')}>Special</option>
+                        <option value="Regular" ${((res.kategori_event === 'Regular') ? 'selected' : '')}>Regular</option>
+                        <option value="Event" ${((res.kategori_event === 'Event') ? 'selected' : '')}>Event</option>
                     `)
                     $('#edit_rules_event').val(res.rules_event)
                     $('#edit_deskripsi_event').val(res.deskripsi_event)
@@ -226,8 +226,8 @@
                     }
 
                     $('#edit_total_hadiah').val(res.total_hadiah)
-
-                    $('#edit_auction_products').val(['3', '4']);
+                    var editProducts = res.auction_products.map(o => o['id_ikan']);
+                    $('#edit_auction_products').val(editProducts);
                     $('#edit_auction_products').trigger('change');
                 },
                 error:function(error) {

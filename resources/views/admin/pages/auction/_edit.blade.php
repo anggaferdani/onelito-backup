@@ -15,7 +15,7 @@
                 <label for="edit_kategori_event">Kategori Event</label>
                 <select id="edit_kategori_event" name="edit_kategori_event" class="form-control">
                     <option value="Regular">Regular</option>
-                    <option value="Special">Special</option>
+                    <option value="Event">Event</option>
                 </select>
             </div>
             <div class="form-group">

@@ -305,7 +305,7 @@
                     pointBackgroundColor: '#ffffff',
                     pointRadius: 4
                 },{
-                    label: 'Special',
+                    label: 'Event',
                     data: [],
                     borderWidth: 2,
                     backgroundColor: '#fc5603',

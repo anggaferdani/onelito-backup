@@ -50,7 +50,7 @@ class DashboardController extends Controller
             $thisMonthsNominalProductSoldCharts['data'][] = (int) $productSoldCharts[$dateString]->total;
         }
 
-        $countEventAuction = Event::where('kategori_event', Event::SPECIAL)
+        $countEventAuction = Event::where('kategori_event', Event::EVENT)
             ->where('status_aktif', 1)
             ->paginate()->total();
 
@@ -179,7 +179,7 @@ class DashboardController extends Controller
 
         $auctionParticipantsSpecial = LogBid::whereBetween('waktu_bid', [$startOfMoth, $endOfMonth])
             ->where('status_aktif', 1)
-            ->whereHas('eventFish', fn($q) => $q->whereHas('event', fn($q2) => $q2->where('kategori_event', Event::SPECIAL)))
+            ->whereHas('eventFish', fn($q) => $q->whereHas('event', fn($q2) => $q2->where('kategori_event', Event::EVENT)))
             ->selectRaw('count(distinct id_peserta) as total, Date(waktu_bid) as date')
             ->groupBy(DB::raw('Date(waktu_bid)'))
             ->orderBy('waktu_bid', 'DESC')->get()
