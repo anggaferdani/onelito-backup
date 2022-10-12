@@ -2,8 +2,26 @@
 
 @section('container')
 <div class="container px-4">
+    <style>
+
+      /* On screens that are 992px or less, set the background color to blue */
+      @media screen and (min-width: 601px) {
+        .nav-atas {
+          display: none
+        }
+      }
+
+      /* On screens that are 600px or less, set the background color to olive */
+      @media screen and (max-width: 600px) {
+        .nav-samping {
+          display: none;
+        }
+      }
+
+    </style>
     <div class="row gx-3">
-      <div class="col-3">
+      {{-- On screens that are 992px or less, set the display on --}}
+      <div class="col-3 nav-samping">
         <div class="">
           <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
             <div class="card-header">Etalase Toko</div>
@@ -18,7 +36,18 @@
           </div>
         </div>
       </div>
-      <div class="col-9">
+      {{-- On screens that are 600px or less, set the display none --}}
+      <div class="container nav-atas overflow-auto">
+        <div class="d-flex nav nav-pills" style="width: 120vw" id="v-pills-tab" role="tablist">
+          <button type="button" class="btn btn-outline-secondary rounded-pill mr-2">Filter</button>
+          <button type="button" class="btn btn-outline-secondary rounded-pill mr-2" id="v-pills-Semua-tab" data-bs-toggle="pill" data-bs-target="#v-pills-Semua" type="button" role="tab" aria-controls="v-pills-Semua" aria-selected="true">All Product</button>
+          <button type="button" class="btn btn-outline-secondary rounded-pill mr-2">Fish Food</button>
+          <button type="button" class="btn btn-outline-secondary rounded-pill mr-2">Equipment Fish</button>
+          <button type="button" class="btn btn-outline-secondary rounded-pill mr-2" id="v-pills-ikan-tab" data-bs-toggle="pill" data-bs-target="#v-pills-ikan" type="button" role="tab" aria-controls="v-pills-ikan" aria-selected="false">Fish</button>
+        </div>
+      </div>
+
+      <div class="col-lg-9">
         <div class="">
           <div class="tab-content" id="v-pills-tabContent">
             <div class="tab-pane fade show active" id="v-pills-Semua" role="tabpanel" aria-labelledby="v-pills-Semua-tab">

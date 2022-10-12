@@ -2,10 +2,10 @@
 style="background-color: black;
  height = 31hv">
   <div class="row">
-    <div class="col-md-3 my-auto text-center">
-      <img src="img/onelito_wa.jpeg" alt="ONELITO" class width="30%" >
+    <div class="col-4 col-lg-3 my-4 text-center">
+      <img src="img/onelito_wa.jpeg" alt="ONELITO" class="w-75">
     </div>
-    <div class="col-md-6">
+    <col-3 col-lg-6>
       <nav class="justify-content-center navbar navbar-expand-lg navbar-dark">
         <ul class="navbar-nav mr-auto">
         <li class="nav-item">
@@ -26,7 +26,7 @@ style="background-color: black;
         </ul>
       </nav>
     </div>
-    <div class="col-md-3">
+    <div class="col-5 col-lg-3 p-0">
       <nav class="navbar-expand-lg navbar-dark">
         <ul class="list-unstyled mr-auto">
           <li class="nav-item">

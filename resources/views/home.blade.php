@@ -5,13 +5,13 @@
   <img src="img/Frame.png" class="d-block w-100" alt="Frame" >
 </div>
     
-    <div class="container mt-5">
+    <div class="container mt-3 mt-lg mt-lg-5">
     <h5><b>Next event</b></h5>
     </div>
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-6 col-lg-3">
+    <div class="col-6 col-lg-3">
       <div class="card modal-header">
         <img src="img/koi.jpg" class="card-img-top" alt="...">
         <div class="card-body">
@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-6 col-lg-3">
+    <div class="col-6 col-lg-3">
       <div class="card modal-header">
         <img src="img/koi.jpg" class="card-img-top" alt="...">
         <div class="card-body">
@@ -31,7 +31,7 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-6 col-lg-3">
+    <div class="col-6 col-lg-3">
       <div class="card modal-header">
         <img src="img/koi.jpg" class="card-img-top" alt="...">
         <div class="card-body">
@@ -41,7 +41,7 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-6 col-lg-3">
+    <div class="col-6 col-lg-3">
       <div class="card modal-header">
         <img src="img/koi.jpg" class="card-img-top" alt="...">
         <div class="card-body">
@@ -58,99 +58,229 @@
   <h5><b>Hot Product</b></h5>
 </div>
 
-<div class="container">
-  <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-    <div class="col">
-      <div class="p-3 border bg-light">
-        <a href="/detail_onelito_store"><img src="img/bio_media.png" alt="bio media" class="card-img-top" height="170"></a>
+<style>
+
+  /* On screens that are 992px or less, set the background color to blue */
+  @media screen and (min-width: 601px) {
+    .nav-atas {
+      display: none
+    }
+  }
+
+  /* On screens that are 600px or less, set the background color to olive */
+  @media screen and (max-width: 600px) {
+    .nav-samping {
+      display: none;
+    }
+  }
+
+</style>
+
+<div class="container nav-atas">
+  <div class="d-flex">
+    <div class="">
+      <div class="p-3 border bg-light" style="width: 200px;/* height: 200px; */">
+        <a href="/detail_onelito_store">
+          <img src="img/bio_media.png" alt="bio media" class="card-img-top" style=" height: 166;width: 166;">
+        </a>
         <p>Bio Tube Bacteria House
         Media Filter</p>
         <p><b>Rp. 1.300.000</b></p>
         <div class="row">
-          <div class="col-md-6 d-grid p-0">
+          <div class="col-6 p-0">
             <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order Now</button>
           </div>
-          <div class="col-md-3 m-auto">
+          <div class="col-2 m-auto">
             <button class="border-4 rounded" style="background-color: red;border-color:red"><i class="fa-solid fa-cart-shopping" style="color: white"></i></button>
           </div>
-          <div class="col-md-3 m-auto">
+          <div class="col-2 m-auto">
             <button class="border-0" style="background-color: transparent"><i class="far fa-heart" style="font-size: x-large"></i></button>
           </div>
         </div>
       </div>
     </div>
-    <div class="col">
-      <div class="p-3 border bg-light">
-        <img src="img/uniring.jpeg" alt="uniring" class="card-img-top" height="170">
+    <div class="">
+      <div class="p-3 border bg-light" style="width: 200px">
+        <a href="#">
+        <img src="img/uniring.jpeg" alt="uniring" class="card-img-top" style=" height: 166;width: 166;">
+        </a>
         <p>Uniring rubber hose /
         selang aerasi</p>
         <p><b>Rp. 580.000</b></p>
         <div class="row">
-          <div class="col-md-6 d-grid p-0">
+          <div class="col-6 p-0">
             <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order Now</button>
           </div>
-          <div class="col-md-3 m-auto">
+          <div class="col-2 m-auto">
             <button class="border-4 rounded" style="background-color: red;border-color:red"><i class="fa-solid fa-cart-shopping" style="color: white"></i></button>
           </div>
-          <div class="col-md-3 m-auto">
+          <div class="col-2 m-auto">
             <button class="border-0" style="background-color: transparent"><i class="far fa-heart" style="font-size: x-large"></i></button>
           </div>
         </div>
       </div>
     </div>
-    <div class="col">
-      <div class="p-3 border bg-light">
-      <img src="img/selang.jpg" alt="selang" class="card-img-top" height="170">
+    <div class="">
+      <div class="p-3 border bg-light" style="width: 200px">
+        <a href="#">
+        <img src="img/selang.jpg" alt="selang" class="card-img-top" style="width: 166px;height: 166px;">
+        </a>
         <p>Bio Tube Bacteria House
           Media Filter</p>
         <p><b>Rp. 90.000</b></p>
         <div class="row">
-          <div class="col-md-6 d-grid p-0">
+          <div class="col-6 p-0">
             <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order Now</button>
           </div>
-          <div class="col-md-3 m-auto">
+          <div class="col-2 m-auto">
             <button class="border-4 rounded" style="background-color: red;border-color:red"><i class="fa-solid fa-cart-shopping" style="color: white"></i></button>
           </div>
-          <div class="col-md-3 m-auto">
+          <div class="col-2 m-auto">
             <button class="border-0" style="background-color: transparent"><i class="far fa-heart" style="font-size: x-large"></i></button>
           </div>
         </div>
       </div>
     </div>
-    <div class="col">
-      <div class="p-3 border bg-light">
-        <img src="img/bak_ukur.jpg" alt="bak_ukur" class="card-img-top" height="170">
+    <div class="">
+      <div class="p-3 border bg-light" style="width: 200px">
+        <a href="#">
+        <img src="img/bak_ukur.jpg" alt="bak_ukur" class="card-img-top" style=" height: 166;width: 166;">
+        </a>
         <p>Mistar ukur koi /
         bak ukur</p>
         <p><b>Rp. 600.000</b></p>
         <div class="row">
-          <div class="col-md-6 d-grid p-0">
+          <div class="col-6 p-0">
             <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order Now</button>
           </div>
-          <div class="col-md-3 m-auto">
+          <div class="col-2 m-auto">
             <button class="border-4 rounded" style="background-color: red;border-color:red"><i class="fa-solid fa-cart-shopping" style="color: white"></i></button>
           </div>
-          <div class="col-md-3 m-auto">
+          <div class="col-2 m-auto">
             <button class="border-0" style="background-color: transparent"><i class="far fa-heart" style="font-size: x-large"></i></button>
           </div>
         </div>
       </div>
     </div>
-    <div class="col">
-      <div class="p-3 border bg-light">
-      <img src="img/Matala.jpg" alt="matala" class="card-img-top" height="170">
+    <div class="">
+      <div class="p-3 border bg-light" style="width: 200px">
+        <a href="#">
+        <img src="img/Matala.jpg" alt="matala" class="card-img-top" style=" height: 166;width: 166;">
+       </a>
         <p>Matala Abu Media Filter
           Mekanik</p>
         <p><b>Rp. 974.000</b></p>
         <div class="row">
-          <div class="col-md-6 d-grid p-0">
+          <div class="col-6 p-0">
             <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order Now</button>
           </div>
-          <div class="col-md-3 m-auto">
+          <div class="col-2 m-auto">
             <button class="border-4 rounded" style="background-color: red;border-color:red"><i class="fa-solid fa-cart-shopping" style="color: white"></i></button>
           </div>
-          <div class="col-md-3 m-auto">
+          <div class="col-2 m-auto">
             <button class="border-0" style="background-color: transparent"><i class="far fa-heart" style="font-size: x-large"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="class nav-samping">
+  <div class="container">
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+      <div class="col">
+        <div class="p-3 border bg-light">
+          <a href="/detail_onelito_store"><img src="img/bio_media.png" alt="bio media" class="card-img-top" height="170"></a>
+          <p>Bio Tube Bacteria House
+          Media Filter</p>
+          <p><b>Rp. 1.300.000</b></p>
+          <div class="row">
+            <div class="col-md-6 d-grid p-0">
+              <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order Now</button>
+            </div>
+            <div class="col-md-3 m-auto">
+              <button class="border-4 rounded" style="background-color: red;border-color:red"><i class="fa-solid fa-cart-shopping" style="color: white"></i></button>
+            </div>
+            <div class="col-md-3 m-auto">
+              <button class="border-0" style="background-color: transparent"><i class="far fa-heart" style="font-size: x-large"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="p-3 border bg-light">
+          <img src="img/uniring.jpeg" alt="uniring" class="card-img-top" height="170">
+          <p>Uniring rubber hose /
+          selang aerasi</p>
+          <p><b>Rp. 580.000</b></p>
+          <div class="row">
+            <div class="col-md-6 d-grid p-0">
+              <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order Now</button>
+            </div>
+            <div class="col-md-3 m-auto">
+              <button class="border-4 rounded" style="background-color: red;border-color:red"><i class="fa-solid fa-cart-shopping" style="color: white"></i></button>
+            </div>
+            <div class="col-md-3 m-auto">
+              <button class="border-0" style="background-color: transparent"><i class="far fa-heart" style="font-size: x-large"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="p-3 border bg-light">
+        <img src="img/selang.jpg" alt="selang" class="card-img-top" height="170">
+          <p>Bio Tube Bacteria House
+            Media Filter</p>
+          <p><b>Rp. 90.000</b></p>
+          <div class="row">
+            <div class="col-md-6 d-grid p-0">
+              <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order Now</button>
+            </div>
+            <div class="col-md-3 m-auto">
+              <button class="border-4 rounded" style="background-color: red;border-color:red"><i class="fa-solid fa-cart-shopping" style="color: white"></i></button>
+            </div>
+            <div class="col-md-3 m-auto">
+              <button class="border-0" style="background-color: transparent"><i class="far fa-heart" style="font-size: x-large"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="p-3 border bg-light">
+          <img src="img/bak_ukur.jpg" alt="bak_ukur" class="card-img-top" height="170">
+          <p>Mistar ukur koi /
+          bak ukur</p>
+          <p><b>Rp. 600.000</b></p>
+          <div class="row">
+            <div class="col-md-6 d-grid p-0">
+              <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order Now</button>
+            </div>
+            <div class="col-md-3 m-auto">
+              <button class="border-4 rounded" style="background-color: red;border-color:red"><i class="fa-solid fa-cart-shopping" style="color: white"></i></button>
+            </div>
+            <div class="col-md-3 m-auto">
+              <button class="border-0" style="background-color: transparent"><i class="far fa-heart" style="font-size: x-large"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="p-3 border bg-light">
+        <img src="img/Matala.jpg" alt="matala" class="card-img-top" height="170">
+          <p>Matala Abu Media Filter
+            Mekanik</p>
+          <p><b>Rp. 974.000</b></p>
+          <div class="row">
+            <div class="col-md-6 d-grid p-0">
+              <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order Now</button>
+            </div>
+            <div class="col-md-3 m-auto">
+              <button class="border-4 rounded" style="background-color: red;border-color:red"><i class="fa-solid fa-cart-shopping" style="color: white"></i></button>
+            </div>
+            <div class="col-md-3 m-auto">
+              <button class="border-0" style="background-color: transparent"><i class="far fa-heart" style="font-size: x-large"></i></button>
+            </div>
           </div>
         </div>
       </div>
@@ -179,22 +309,28 @@ cillum dolore eu fugiat nulla pariatur.</p>
 </div>
 
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <p class="style text-center"><i class="fa-solid fa-envelope" style="color: red"></i></p>
-      <p class="style text-center"><b>Email</b></p>
-      <p class="style text-center">onelito@gmail.com</p>
+  <div class="justify-content-around row">
+    <div class="card col-md-3 col-sm-12 mt-3">
+      <div class="card-body">
+        <p class="style text-center"><i class="fa-solid fa-envelope" style="color: red"></i></p>
+        <p class="style text-center"><b>Email</b></p>
+        <p class="style text-center">onelito@gmail.com</p>
+      </div>
     </div>
-    <div class="col">
-      <p class="style text-center"><i class="fas fa-map-marker-alt" style="color: red"></i></i></p>
-      <p class="style text-center"><b>Address</b></p>
-      <p class="style text-center">Jl. Tandon Ciater D No. 50, BSD, Ciater, Serpong Sub-District, South Tangerang City Banten 15310</p>
+    <div class="card col-md-3 col-sm-12 mt-3">
+      <div class="card-body">
+        <p class="style text-center"><i class="fas fa-map-marker-alt" style="color: red"></i></p>
+        <p class="style text-center"><b>Address</b></p>
+        <p class="style text-center">Jl. Tandon Ciater D No. 50, BSD, Ciater, Serpong Sub-District, South Tangerang City Banten 15310</p>
+      </div>
     </div>
-    <div class="col">
-      <p class="style text-center"><i class="fas fa-phone" style="color: red"></i></i></i></p>
-      <p class="style text-center"><b>Contact Us</b></p>
-      <p class="style text-center">0811-972-857</p>
-      <p class="style text-center">0811-972-857</p>
+    <div class="card col-md-3 col-sm-12 mt-3">
+      <div class="card-body">
+        <p class="style text-center"><i class="fas fa-phone" style="color: red"></i></p>
+        <p class="style text-center"><b>Contact Us</b></p>
+        <p class="style text-center">0811-972-857</p>
+        <p class="style text-center">0811-972-857</p>
+      </div>
     </div>
   </div>
 </div>
@@ -205,7 +341,7 @@ cillum dolore eu fugiat nulla pariatur.</p>
 
 <div class="container">
   <div class="row ">
-    <div class="col-lg-3 col-sm-6">
+    <div class="col-lg-3 col-6">
       <div class="card modal-header">
         <img src="img/koi_2.jpg" class="card-img-top" alt="...">
           <div class="m-2 me-auto">
@@ -215,7 +351,7 @@ cillum dolore eu fugiat nulla pariatur.</p>
           </div>
         </div>
     </div>
-    <div class="col-lg-3 col-sm-6">
+    <div class="col-lg-3 col-6">
       <div class="card modal-header">
         <img src="img/koi_2.jpg" class="card-img-top" alt="...">
           <div class="m-2 me-auto">
@@ -225,7 +361,7 @@ cillum dolore eu fugiat nulla pariatur.</p>
         </div>
       </div>
     </div>
-    <div class="col-lg-3 col-sm-6">
+    <div class="col-lg-3 col-6">
       <div class="card modal-header">
         <img src="img/koi_2.jpg" class="card-img-top" alt="...">
         <div class="m-2 me-auto">
@@ -235,7 +371,7 @@ cillum dolore eu fugiat nulla pariatur.</p>
         </div>
       </div>
     </div>
-    <div class="col-lg-3 col-sm-6">
+    <div class="col-lg-3 col-6">
       <div class="card modal-header">
         <img src="img/koi_2.jpg" class="card-img-top" alt="...">
         <div class="m-2 me-auto">
