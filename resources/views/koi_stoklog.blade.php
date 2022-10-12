@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('layout.mainlog')
 
 @section('container')
     <div class="container-fluit">
@@ -15,7 +15,7 @@
                                     <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 10px">Question <span><i class="fa-brands fa-whatsapp"></i></span></a>
                                 </div>
                                 <div class="col-6 col-lg-6 px-1">
-                                    <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-0 px-lg-2" style="font-size: 10px">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                    <a href="#" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-0 px-lg-2" style="font-size: 10px">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                                 </div>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                                     <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 10px">Question <span><i class="fa-brands fa-whatsapp"></i></span></a>
                                 </div>
                                 <div class="col-6 col-lg-6 px-1">
-                                    <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-0 px-lg-2" style="font-size: 10px">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                    <a href="#" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-0 px-lg-2" style="font-size: 10px">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                                     <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 10px">Question <span><i class="fa-brands fa-whatsapp"></i></span></a>
                                 </div>
                                 <div class="col-6 col-lg-6 px-1">
-                                    <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-0 px-lg-2" style="font-size: 10px">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                    <a href="#" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-0 px-lg-2" style="font-size: 10px">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +66,7 @@
                                     <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 10px">Question <span><i class="fa-brands fa-whatsapp"></i></span></a>
                                 </div>
                                 <div class="col-6 col-lg-6 px-1">
-                                    <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-0 px-lg-2" style="font-size: 10px">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                    <a href="#" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-0 px-lg-2" style="font-size: 10px">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                                     <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 10px">Question <span><i class="fa-brands fa-whatsapp"></i></span></a>
                                 </div>
                                 <div class="col-6 col-lg-6 px-1">
-                                    <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-0 px-lg-2" style="font-size: 10px">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                    <a href="#" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-0 px-lg-2" style="font-size: 10px">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                                 </div>
                             </div>
                         </div>
@@ -102,7 +102,7 @@
                                     <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 10px">Question <span><i class="fa-brands fa-whatsapp"></i></span></a>
                                 </div>
                                 <div class="col-6 col-lg-6 px-1">
-                                    <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-0 px-lg-2" style="font-size: 10px">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                    <a href="#" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-0 px-lg-2" style="font-size: 10px">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                                 </div>
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                                     <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 10px">Question <span><i class="fa-brands fa-whatsapp"></i></span></a>
                                 </div>
                                 <div class="col-6 col-lg-6 px-1">
-                                    <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-0 px-lg-2" style="font-size: 10px">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                    <a href="#" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-0 px-lg-2" style="font-size: 10px">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                                 </div>
                             </div>
                         </div>
@@ -136,7 +136,7 @@
                                     <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 10px">Question <span><i class="fa-brands fa-whatsapp"></i></span></a>
                                 </div>
                                 <div class="col-6 col-lg-6 px-1">
-                                    <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-0 px-lg-2" style="font-size: 10px">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                    <a href="#" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-0 px-lg-2" style="font-size: 10px">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                                 </div>
                             </div>
                         </div>

@@ -80,7 +80,7 @@
   <div class="d-flex">
     <div class="">
       <div class="p-3 border bg-light" style="width: 200px;/* height: 200px; */">
-        <a href="/detail_onelito_store">
+        <a href="/login">
           <img src="img/bio_media.png" alt="bio media" class="card-img-top" style=" height: 166;width: 166;">
         </a>
         <p>Bio Tube Bacteria House
@@ -101,7 +101,7 @@
     </div>
     <div class="">
       <div class="p-3 border bg-light" style="width: 200px">
-        <a href="#">
+        <a href="/login">
         <img src="img/uniring.jpeg" alt="uniring" class="card-img-top" style=" height: 166;width: 166;">
         </a>
         <p>Uniring rubber hose /
@@ -122,7 +122,7 @@
     </div>
     <div class="">
       <div class="p-3 border bg-light" style="width: 200px">
-        <a href="#">
+        <a href="/login">
         <img src="img/selang.jpg" alt="selang" class="card-img-top" style="width: 166px;height: 166px;">
         </a>
         <p>Bio Tube Bacteria House
@@ -143,7 +143,7 @@
     </div>
     <div class="">
       <div class="p-3 border bg-light" style="width: 200px">
-        <a href="#">
+        <a href="/login">
         <img src="img/bak_ukur.jpg" alt="bak_ukur" class="card-img-top" style=" height: 166;width: 166;">
         </a>
         <p>Mistar ukur koi /
@@ -164,7 +164,7 @@
     </div>
     <div class="">
       <div class="p-3 border bg-light" style="width: 200px">
-        <a href="#">
+        <a href="/login">
         <img src="img/Matala.jpg" alt="matala" class="card-img-top" style=" height: 166;width: 166;">
         </a>
         <p>Matala Abu Media Filter

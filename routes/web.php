@@ -22,7 +22,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/home', function () {
+Route::get('/homelog', function () {
     return view('homelog',[
         "title" => "home"
     ]);
@@ -91,8 +91,20 @@ Route::get('/onelito_store', function () {
     ]);
 });
 
+Route::get('/onelito_storelog', function () {
+    return view('onelito_storelog',[
+        "title" => "onelito_store"
+    ]);
+});
+
 Route::get('/koi_stok', function () {
     return view('koi_stok',[
+        "title" => "koi_stok"
+    ]);
+});
+
+Route::get('/koi_stoklog', function () {
+    return view('koi_stoklog',[
         "title" => "koi_stok"
     ]);
 });

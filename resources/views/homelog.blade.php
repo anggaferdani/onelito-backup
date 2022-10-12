@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('layout.mainlog')
 
 @section('container')
 <div class="container-fluit" style="background-color:red;" heigh="25vh">

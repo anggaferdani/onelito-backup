@@ -39,13 +39,13 @@
                         </div>
                         <div class="row">
                             <div class="col-6 col-md-6 p-0 px-sm-2">
-                                <a href="/bid" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 60%">BID NOW <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                <a href="/login" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 60%">BID NOW <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                             </div>
-                            <div class="col-6 col-md-6 px-sm-2 pe-0">
-                                <a href="/detail" class="btn btn-secondary w-100 d-flex justify-content-between px-1 p-1" style="font-size: 60%">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                            <div class="col-6 col-md-6 px-sm-2">
+                                <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between px-1 p-1" style="font-size: 60%">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                             </div>
                             <div class="col-9 p-0">
-                                <a href="#" class="btn btn-light w-100 d-flex justify-content-between">VIDEO <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                <a href="/login" class="btn btn-light w-100 d-flex justify-content-between">VIDEO <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                             </div>
                             <div class="col-3 p-0 px-sm-4">
                                 <button class="border-0 m-1" style="background-color: transparent;font-size:larger"><i class="far fa-heart"></i></button>
@@ -74,13 +74,13 @@
                         </div>
                         <div class="row">
                             <div class="col-6 col-md-6 p-0 px-sm-2">
-                                <a href="/bid" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 60%">BID NOW <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                <a href="/login" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 60%">BID NOW <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                             </div>
-                            <div class="col-6 col-md-6 px-sm-2 pe-0">
-                                <a href="/detail" class="btn btn-secondary w-100 d-flex justify-content-between px-1 p-1" style="font-size: 60%">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                            <div class="col-6 col-md-6 px-sm-2">
+                                <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between px-1 p-1" style="font-size: 60%">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                             </div>
                             <div class="col-9 p-0">
-                                <a href="#" class="btn btn-light w-100 d-flex justify-content-between">VIDEO <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                <a href="/login" class="btn btn-light w-100 d-flex justify-content-between">VIDEO <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                             </div>
                             <div class="col-3 p-0 px-sm-4">
                                 <button class="border-0 m-1" style="background-color: transparent;font-size:larger"><i class="far fa-heart"></i></button>
@@ -110,13 +110,13 @@
                         </div>
                         <div class="row">
                             <div class="col-6 col-md-6 p-0 px-sm-2">
-                                <a href="/bid" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 60%">BID NOW <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                <a href="/login" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 60%">BID NOW <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                             </div>
-                            <div class="col-6 col-md-6 px-sm-2 pe-0">
-                                <a href="/detail" class="btn btn-secondary w-100 d-flex justify-content-between px-1 p-1" style="font-size: 60%">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                            <div class="col-6 col-md-6 px-sm-2">
+                                <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between px-1 p-1" style="font-size: 60%">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                             </div>
                             <div class="col-9 p-0">
-                                <a href="#" class="btn btn-light w-100 d-flex justify-content-between">VIDEO <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                <a href="/login" class="btn btn-light w-100 d-flex justify-content-between">VIDEO <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                             </div>
                             <div class="col-3 p-0 px-sm-4">
                                 <button class="border-0 m-1" style="background-color: transparent;font-size:larger"><i class="far fa-heart"></i></button>
@@ -146,13 +146,13 @@
                         </div>
                         <div class="row">
                             <div class="col-6 col-md-6 p-0 px-sm-2">
-                                <a href="/bid" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 60%">BID NOW <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                <a href="/login" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 60%">BID NOW <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                             </div>
-                            <div class="col-6 col-md-6 px-sm-2 pe-0">
-                                <a href="/detail" class="btn btn-secondary w-100 d-flex justify-content-between px-1 p-1" style="font-size: 60%">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                            <div class="col-6 col-md-6 px-sm-2">
+                                <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between px-1 p-1" style="font-size: 60%">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                             </div>
                             <div class="col-9 p-0">
-                                <a href="#" class="btn btn-light w-100 d-flex justify-content-between">VIDEO <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                <a href="/login" class="btn btn-light w-100 d-flex justify-content-between">VIDEO <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                             </div>
                             <div class="col-3 p-0 px-sm-4">
                                 <button class="border-0 m-1" style="background-color: transparent;font-size:larger"><i class="far fa-heart"></i></button>
