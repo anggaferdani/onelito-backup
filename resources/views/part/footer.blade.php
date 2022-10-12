@@ -3,7 +3,7 @@ style="background-color: black;
  height = 31hv">
   <div class="row">
     <div class="col-4 col-lg-3 my-4 text-center">
-      <img src="img/onelito_wa.jpeg" alt="ONELITO" class="w-75">
+      <img src="img/onelito_wa.jpeg" alt="ONELITO" class="w-50">
     </div>
     <div class="col-3 col-lg-6">
       <nav class="justify-content-center navbar navbar-expand-lg navbar-dark">

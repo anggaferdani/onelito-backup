@@ -166,7 +166,7 @@
       <div class="p-3 border bg-light" style="width: 200px">
         <a href="#">
         <img src="img/Matala.jpg" alt="matala" class="card-img-top" style=" height: 166;width: 166;">
-       </a>
+        </a>
         <p>Matala Abu Media Filter
           Mekanik</p>
         <p><b>Rp. 974.000</b></p>
@@ -391,5 +391,5 @@ cillum dolore eu fugiat nulla pariatur.</p>
 
 @endsection
 
-  </body>
+</body>
 </html>
