@@ -77,7 +77,7 @@
 </style>
 
 <div class="container nav-atas">
-  <div class="d-flex">
+  <div class="d-flex overflow-scroll">
     <div class="">
       <div class="p-3 border bg-light" style="width: 200px;/* height: 200px; */">
         <a href="/detail_onelito_store">
