@@ -17,15 +17,29 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
       -->
 
-      
+
       <title>ONELITO KOI</title>
   </head>
   <body>
+    <!-- kalau sudah login -->
+    @auth('member')
+        @include('part.navbarlog')
+
+        <div class="">
+            @yield('container')
+        </div>
+
+        @include('part.footerlog')
+    @endauth
+
+    <!-- kalau belum login -->
+    @guest('member')
       @include('part.navbar')
 
       <div class="">
         @yield('container')
       </div>
       @include('part.footer')
+    @endguest
   </body>
 </html>

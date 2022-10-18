@@ -32,8 +32,8 @@
                                     <i class="fa-solid fa-circle-user" style="font-size: xxx-large"></i>
                                     </div>
                                     <div class="col-10">
-                                    <h4 class="m-0 ms-lg-3 text-md-start">JOHN DOE</h4>
-                                    <p class="m-0 ms-lg-3 text-md-start">johndoe@gmail.com</p>
+                                    <h4 class="m-0 ms-lg-3 text-md-start">{{ $auth->nama }}</h4>
+                                    <p class="m-0 ms-lg-3 text-md-start">{{ $auth->email }}</p>
                                     </div>
                                 </div>
                             </button>
@@ -70,25 +70,24 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div class="p-2 border bg-light m-4">
-                                        
+
                                             <img src="img/foto.png" class="card-img-top" alt="image">
                                             <div class="card-body">
                                                 <a href="#" class="border btn btn-light w-100 justify-content-between"><b><center>Change photo</center> </b></a>
                                             </div>
-                                        
+
                                     </div>
                                 </div>
                                 <div class="col-8 m-auto p-0">
                                     <div class="">
                                         <p class="m-0">Name:</p>
-                                        <p><b>John Doe</b></p>
+                                        <p><b>{{ $auth->nama }}</b></p>
                                         <p class="m-0">Email:</p>
-                                        <p><b>johndoe@gmail.com</b></p>
+                                        <p><b>{{ $auth->email }}</b></p>
                                         <p class="m-0">Phone number:</p>
-                                        <p><b>0857 5694 2365</b></p>
+                                        <p><b>{{ $auth->no_hp }}</b></p>
                                         <p class="m-0">Address:</p>
-                                        <p><b>Jl. Tandon Ciater D No. 50, BSD, Ciater, Serpong Sub-District,
-                                            South Tangerang City, Banten 15310</b></p>                                
+                                        <p><b>{{ $auth->alamat }}</b></p>
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +143,7 @@
                                             </div>
                                         </label>
                                     </div>
-                                    
+
                                     <hr>
                                     <div class="form-check">
                                         <input class="form-check-input my-xxl-4 rounded-0" style="font-size: large" type="radio" name="flexRadioDefault" id="flexRadioDefault1">

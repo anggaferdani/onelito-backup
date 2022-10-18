@@ -14,6 +14,10 @@ class LogBid extends Model
     protected $table = 't_log_bidding';
     protected $primaryKey = 'id_bidding';
 
+    protected $casts = [
+        'nominal_bid' => 'integer'
+    ];
+
     public function eventFish()
     {
         return $this->belongsTo(EventFish::class, 'id_ikan_lelang');

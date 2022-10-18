@@ -51,10 +51,11 @@
 
                 <center>
                     <div class="d-grid gap-2 col-6 mx-auto">
-                        {{-- <button herf="/home" type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"> LOGIN </button> --}}
-                        <a href="/homelog" type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"> LOGIN </a>
+                        <button herf="/home" type="submit" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"> LOGIN </button>
+                        <!-- <a href="/homelog" type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"> LOGIN </a> -->
                     </div>
                     <p>Don't have an account yet let's join <a class="text-danger" style="text-decoration: blink" href="/registrasi">here</a></p>
+                    </form>
                 </center>
                 </div>
             </div>

@@ -92,7 +92,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
         <a class="navbar-brand" href="/">
-          <img src="img/oneli.svg" alt="ONELITO">
+          <img src="{{ url('img/oneli.svg') }}" alt="ONELITO">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -124,7 +124,7 @@
   <div id="mySidebar" class="sidebar">
     <div class="d-flex">
       <a class="navbar-brand" href="/">
-        <img src="img/oneli.svg" alt="ONELITO" class="w-75">
+        <img src="{{ url('img/oneli.svg') }}" alt="ONELITO" class="w-75">
       </a>
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     </div>
@@ -135,7 +135,7 @@
     <a class="nav-link {{ ($title === 'koi_stok') ? 'active text-danger' : '' }}"href="/koi_stok">KOI STOCK</a>
     <a class="nav-link {{ ($title === 'login') ? 'active text-danger' : '' }}"href="/login">LOGIN</a>
   </div>
-  
+
   <div id="main" class="d-flex">
     <button class="openbtn" onclick="openNav()">&#9776;</button>
     <p class="title my-0 mx-auto">{{ $title }}</p>
@@ -169,7 +169,7 @@
     document.getElementById("mySidebar").style.width = "250px";
     document.getElementById("main").style.marginLeft = "250px";
   }
-  
+
   function closeNav() {
     document.getElementById("mySidebar").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
