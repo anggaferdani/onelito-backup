@@ -1,7 +1,7 @@
 @extends('layout.main')
 
 @section('container')
-<div class="container px-4">
+<div class="container my-4">
     <style>
 
       /* On screens that are 992px or less, set the background color to blue */
@@ -18,31 +18,37 @@
         }
       }
 
+      .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+          color: #fff;
+          background-color: #F0F0F0;
+      }
+
     </style>
     <div class="row gx-3">
       {{-- On screens that are 992px or less, set the display on --}}
       <div class="col-3 nav-samping">
         <div class="">
-          <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+          <div class="card text-dark bg-light mb-3 position-fixed" style="max-width: 18rem;">
             <div class="card-header">Etalase Toko</div>
             <div class="card-body">
               <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <button class="nav-link active bg-tranparent btn-danger text-body m-2" style="background-color: transparent" id="v-pills-Semua-tab" data-bs-toggle="pill" data-bs-target="#v-pills-Semua" type="button" role="tab" aria-controls="v-pills-Semua" aria-selected="true">All Product</button>
-                <button class="nav-link bg-tranparent btn-danger text-body m-2" style="background-color: transparent" id="v-pills-makanan-tab" data-bs-toggle="pill" data-bs-target="#v-pills-makanan" type="button" role="tab" aria-controls="v-pills-makanan" aria-selected="false">Fish Food</button>
-                <button class="nav-link bg-tranparent btn-danger text-body m-2" style="background-color: transparent" id="v-pills-alat-tab" data-bs-toggle="pill" data-bs-target="#v-pills-alat" type="button" role="tab" aria-controls="v-pills-alat" aria-selected="false">Fish Equipment</button>
-                <button class="nav-link bg-tranparent btn-danger text-body m-2" style="background-color: transparent" id="v-pills-ikan-tab" data-bs-toggle="pill" data-bs-target="#v-pills-ikan" type="button" role="tab" aria-controls="v-pills-ikan" aria-selected="false">Fish</button>
+                <button class="nav-link active bg-tranparent text-body m-2" style="text-align:left"  id="v-pills-Semua-tab" data-bs-toggle="pill" data-bs-target="#v-pills-Semua" type="button" role="tab" aria-controls="v-pills-Semua" aria-selected="true">All Product</button>
+                <button class="nav-link bg-tranparent text-body m-2" style="text-align:left"  id="v-pills-makanan-tab" data-bs-toggle="pill" data-bs-target="#v-pills-makanan" type="button" role="tab" aria-controls="v-pills-makanan" aria-selected="false">Fish Food</button>
+                <button class="nav-link bg-tranparent text-body m-2" style="text-align:left"  id="v-pills-alat-tab" data-bs-toggle="pill" data-bs-target="#v-pills-alat" type="button" role="tab" aria-controls="v-pills-alat" aria-selected="false">Fish Equipment</button>
+                <button class="nav-link bg-tranparent text-body m-2" style="text-align:left"  id="v-pills-ikan-tab" data-bs-toggle="pill" data-bs-target="#v-pills-ikan" type="button" role="tab" aria-controls="v-pills-ikan" aria-selected="false">Fish</button>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       {{-- On screens that are 600px or less, set the display none --}}
       <div class="container nav-atas overflow-auto">
-        <div class="d-flex nav nav-pills" style="width: 120vw" id="v-pills-tab" role="tablist">
-          <button type="button" class="btn btn-outline-secondary rounded-pill mr-2">Filter</button>
+        <div class="d-flex nav nav-pills" style="width: 124vw" id="v-pills-tab" role="tablist">
+          <button type="button" class="btn btn-outline-secondary rounded-pill mr-2" >Filter</button>
           <button type="button" class="btn btn-outline-secondary rounded-pill mr-2" id="v-pills-Semua-tab" data-bs-toggle="pill" data-bs-target="#v-pills-Semua" type="button" role="tab" aria-controls="v-pills-Semua" aria-selected="true">All Product</button>
-          <button type="button" class="btn btn-outline-secondary rounded-pill mr-2">Fish Food</button>
-          <button type="button" class="btn btn-outline-secondary rounded-pill mr-2">Equipment Fish</button>
+          <button type="button" class="btn btn-outline-secondary rounded-pill mr-2" id="v-pills-makanan-tab" data-bs-toggle="pill" data-bs-target="#v-pills-makanan" type="button" role="tab" aria-controls="v-pills-makanan" aria-selected="false">Fish Food</button>
+          <button type="button" class="btn btn-outline-secondary rounded-pill mr-2" id="v-pills-alat-tab" data-bs-toggle="pill" data-bs-target="#v-pills-alat" type="button" role="tab" aria-controls="v-pills-alat" aria-selected="false">Fish Equipment</button>
           <button type="button" class="btn btn-outline-secondary rounded-pill mr-2" id="v-pills-ikan-tab" data-bs-toggle="pill" data-bs-target="#v-pills-ikan" type="button" role="tab" aria-controls="v-pills-ikan" aria-selected="false">Fish</button>
         </div>
       </div>

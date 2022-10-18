@@ -1,4 +1,4 @@
-<div class="container-fluit" 
+<div class="container-fluid" 
 style="background-color: black;
  height = 31hv">
   <div class="row">
