@@ -26,11 +26,11 @@ style="background-color: black;
         </ul>
       </nav>
     </div>
-    <div class="col-5 col-lg-3 p-0">
+    <div class="col-5 col-lg-3 px-lg-5">
       <nav class="navbar-expand-lg navbar-dark">
         <ul class="list-unstyled mr-auto">
           <li class="nav-item">
-            <a class="nav-link active text-danger" aria-current="page" href="#">SUBSCRIBE US</a>
+            <p class="nav-link active text-danger m-0" aria-current="page">SUBSCRIBE US</p>
           </li>
           <li class="nav-item">
             <a class="nav-link active text-white" aria-current="page" href="https://www.instagram.com/onelitokoi.id/?hl=id"><i class="fa-brands fa-instagram"></i> @Onelitokoi.id</a>

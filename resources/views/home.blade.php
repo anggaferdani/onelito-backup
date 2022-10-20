@@ -1,15 +1,79 @@
 @extends('layout.main')
 
 @section('container')
+<style>
+
+  /* On screens that are 992px or less, set the background color to blue */
+  @media screen and (min-width: 601px) {
+    .nav-atas {
+      display: none
+    }
+  }
+
+  /* On screens that are 600px or less, set the background color to olive */
+  @media screen and (max-width: 600px) {
+    .nav-samping {
+      display: none;
+    }
+  }
+
+</style>
+
+
 <div class="container-fluit" style="background-color:red;" heigh="25vh">
   <img src="img/Frame.png" class="d-block w-100" alt="Frame" >
 </div>
     
     <div class="container mt-3 mt-lg mt-lg-5">
-    <h5><b>Next event</b></h5>
+      <h5><b>Next event</b></h5>
     </div>
 
-<div class="container">
+<div class="container nav-atas">
+  <div class="row">
+    <div class="col-6 col-lg-3">
+      <div class="card modal-header">
+        <img src="img/koi.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 style="font-size: 10px" class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm</h5>
+          <p style="font-size: 10px" class="card-text ma" >Starting Price</p>
+          <p style="color :red;font-size: 12px" >Rp. 10.500.000</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="card modal-header">
+        <img src="img/koi.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 style="font-size: 10px" class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm</h5>
+          <p style="font-size: 10px" class="card-text ma" >Starting Price</p>
+          <p style="color :red;font-size: 12px"  >Rp. 5.500.000</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="card modal-header">
+        <img src="img/koi.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 style="font-size: 10px" class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm</h5>
+          <p style="font-size: 10px" class="card-text ma" >Starting Price</p>
+          <p style="color :red;font-size: 12px"  >Rp. 8.500.000</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="card modal-header">
+        <img src="img/koi.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 style="font-size: 10px" class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm</h5>
+          <p style="font-size: 10px" class="card-text ma" >Starting Price</p>
+          <p style="color :red;font-size: 12px"  >Rp. 4.500.000</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container nav-samping">
   <div class="row">
     <div class="col-6 col-lg-3">
       <div class="card modal-header">
@@ -58,23 +122,7 @@
   <h5><b>Hot Product</b></h5>
 </div>
 
-<style>
 
-  /* On screens that are 992px or less, set the background color to blue */
-  @media screen and (min-width: 601px) {
-    .nav-atas {
-      display: none
-    }
-  }
-
-  /* On screens that are 600px or less, set the background color to olive */
-  @media screen and (max-width: 600px) {
-    .nav-samping {
-      display: none;
-    }
-  }
-
-</style>
 
 <div class="container nav-atas">
   <div class="d-flex overflow-scroll">

@@ -29,7 +29,7 @@
       <div class="col-3 nav-samping">
         <div class="">
           <div class="card text-dark bg-light mb-3 position-fixed" style="max-width: 18rem;">
-            <div class="card-header">Etalase Toko</div>
+            <div class="card-header"><i class='bx bx-menu-alt-left'></i> Etalase Toko</div>
             <div class="card-body">
               <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <button class="nav-link active bg-tranparent text-body m-2" style="text-align:left"  id="v-pills-Semua-tab" data-bs-toggle="pill" data-bs-target="#v-pills-Semua" type="button" role="tab" aria-controls="v-pills-Semua" aria-selected="true">All Product</button>
@@ -44,8 +44,8 @@
 
       {{-- On screens that are 600px or less, set the display none --}}
       <div class="container nav-atas overflow-auto">
-        <div class="d-flex nav nav-pills" style="width: 124vw" id="v-pills-tab" role="tablist">
-          <button type="button" class="btn btn-outline-secondary rounded-pill mr-2" >Filter</button>
+        <div class="d-flex nav nav-pills" style="width: 125vw" id="v-pills-tab" role="tablist">
+          <button type="button" class="btn btn-outline-secondary rounded-pill mr-2" ><i class='bx bx-menu-alt-left'></i> Filter</button>
           <button type="button" class="btn btn-outline-secondary rounded-pill mr-2" id="v-pills-Semua-tab" data-bs-toggle="pill" data-bs-target="#v-pills-Semua" type="button" role="tab" aria-controls="v-pills-Semua" aria-selected="true">All Product</button>
           <button type="button" class="btn btn-outline-secondary rounded-pill mr-2" id="v-pills-makanan-tab" data-bs-toggle="pill" data-bs-target="#v-pills-makanan" type="button" role="tab" aria-controls="v-pills-makanan" aria-selected="false">Fish Food</button>
           <button type="button" class="btn btn-outline-secondary rounded-pill mr-2" id="v-pills-alat-tab" data-bs-toggle="pill" data-bs-target="#v-pills-alat" type="button" role="tab" aria-controls="v-pills-alat" aria-selected="false">Fish Equipment</button>

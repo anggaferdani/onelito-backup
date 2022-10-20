@@ -20,7 +20,7 @@
     /* On screens that are 992px or less, set the background color to blue */
     @media screen and (min-width: 601px) {
     .res {
-        display: none
+        display: none;
         }
     }
 
