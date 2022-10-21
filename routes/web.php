@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 //     ]);
 // });
 
-Route::get('/homelog', function () {
+Route::get('/', function () {
     return view('homelog',[
         "title" => "home"
     ]);
@@ -46,7 +46,7 @@ Route::get('/auction', [AuctionController::class, 'index'])->name('auction.index
 // MEMBER
 Route::group(['middleware' => 'auth:member'], function () {
     Route::get('/profil', [ProfileController::class, 'index'])->name('profile.index');
-
+    Route::get('/auction', [AuctionController::class, 'index'])->name('auction.index');
     Route::get('/auction/{idIkan}', [AuctionController::class, 'bid'])->name('auction.bid');
     Route::POST('/auction/{idIkan}', [AuctionController::class, 'bidProcess'])->name('auction.bid_process');
 
@@ -119,11 +119,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
 //     ]);
 // });
 
-Route::get('/auctionlog', function () {
-    return view('auctionlog',[
-        "title" => "auction"
-    ]);
-});
+// Route::get('/auction', function () {
+//     return view('auctionlog',[
+//         "title" => "auction"
+//     ]);
+// });
 
 Route::get('/onelito_store', function () {
     return view('onelito_store',[

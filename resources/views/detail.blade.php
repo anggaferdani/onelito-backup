@@ -2,7 +2,7 @@
 
 @section('container')
 <div class="container">
-    <a href="/auctionlog"><i class="fa-solid fa-arrow-left-long text-body" style="font-size: x-large"></i></a>
+    <a href="/auction"><i class="fa-solid fa-arrow-left-long text-body" style="font-size: x-large"></i></a>
 
     <style>
 
@@ -12,19 +12,19 @@
             display: none
             }
         }
-    
+
         /* On screens that are 600px or less, set the background color to olive */
         @media screen and (max-width: 600px) {
         .web {
             display: none;
             }
         }
-    
+
     </style>
 
     <div class="res">
         <div class="row">
-            <div class="col-6">           
+            <div class="col-6">
                 <div class="">
                     <img src="img/koi_3.jpg" class="card-img-top" alt="...">
                     <br><br>
@@ -86,7 +86,7 @@
 
     <div class="web">
         <div class="row gx-5">
-            <div class="col-4">           
+            <div class="col-4">
                 <div class="m-lg-auto" style="width: 18rem;">
                     <img src="img/koi_3.jpg" class="card-img-top" alt="...">
                     <br><br>
@@ -95,7 +95,7 @@
             <div class="col-8">
                 <p style="font-size: larger">Auction Detail</p>
                 <hr>
-                
+
             <div class="row">
                 <div class="col">
                 <h3><table>
@@ -130,7 +130,7 @@
                 </table></h3>
                 </div>
             </div>
-                
+
                 <hr>
 
                 <p class="m-0" style="font-size: larger">Note :</p>

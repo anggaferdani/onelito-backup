@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\EventFish;
 use App\Models\LogBid;
 use Carbon\Carbon;
@@ -14,8 +15,24 @@ class AuctionController extends Controller
     {
         $auth = Auth::guard('member')->user();
 
+        $now = Carbon::now()->format('Y-m-d');
+
+        $currentAuction = Event::with([
+            'auctionProducts' => function ($q) {
+                $q->withCount('bids')->with(['photo', 'maxBid']);
+            }
+            ])
+            ->where('tgl_mulai', '<=', $now)
+            ->where('tgl_akhir', '>=', $now)
+            ->where('kategori_event', Event::REGULAR)
+            ->where('status_aktif', 1)
+            ->orderBy('tgl_mulai')
+            ->orderBy('created_at', 'desc')
+            ->first();
+
         return view('auction',[
             'auth' => $auth,
+            'currentAuction' => $currentAuction,
             'title' => 'ONELITO KOI'
         ]);
     }

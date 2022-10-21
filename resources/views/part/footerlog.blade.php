@@ -12,7 +12,7 @@ style="background-color: black;
           <a class="nav-link {{ ($title === 'home') ? 'active text-danger' : '' }}"href="/home">HOME</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ ($title === 'auction') ? 'active text-danger' : '' }}"href="/auctionlog">AUCTION</a>
+          <a class="nav-link {{ ($title === 'auction') ? 'active text-danger' : '' }}"href="/auction">AUCTION</a>
         </li>
          <li class="nav-item">
           <a class="nav-link {{ ($title === 'onelito_store') ? 'active text-danger' : '' }}"href="/onelito_store">ONELITO STORE</a>

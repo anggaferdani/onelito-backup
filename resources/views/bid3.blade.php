@@ -2,7 +2,7 @@
 
 @section('container')
 <div class="container w-75">
-    <a href="/auctionlog"><i class="fa-solid fa-arrow-left-long text-body"></i></a>
+    <a href="/auction"><i class="fa-solid fa-arrow-left-long text-body"></i></a>
 </div>
 
 <div class="container px-4">

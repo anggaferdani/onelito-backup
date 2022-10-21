@@ -21,7 +21,7 @@
                 $photo = 'img/koi.jpg';
                 if ($auctionProduct->photo !== null)
                 {
-                    $photo = $url('storage/') . $auctionProduct->photo->path_foto;
+                    $photo = url('storage') .'/'. $auctionProduct->photo->path_foto;
                 }
             @endphp
             <img src="{{ $photo }}" class="card-img-top" alt="...">

@@ -13,7 +13,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $now = Carbon::now();
+        $now = Carbon::now()->format('Y-m-d');
 
         $nextAuction = Event::with('auctionProducts.photo')->where('tgl_akhir', '>=', $now)
             ->where('kategori_event', Event::EVENT)
