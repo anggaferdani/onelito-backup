@@ -55,7 +55,7 @@
             </div>
             <br><br>
             <div class="card p-0" style="width: 18rem;">
-                <a class="btn btn-danger w-100 justify-content-between" href="/login" role="button" style="font-size: x-large">Log Out</a>
+                <a class="btn btn-danger w-100 justify-content-between" href="/logout" role="button" style="font-size: x-large">Log Out</a>
             </div>
         </div>
         <div class="col-md-9">

@@ -40,13 +40,14 @@ Route::get('/admin-login', function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
+Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
+
 Route::get('/auction', [AuctionController::class, 'index'])->name('auction.index');
 
 
 // MEMBER
 Route::group(['middleware' => 'auth:member'], function () {
     Route::get('/profil', [ProfileController::class, 'index'])->name('profile.index');
-    Route::get('/auction', [AuctionController::class, 'index'])->name('auction.index');
     Route::get('/auction/{idIkan}', [AuctionController::class, 'bid'])->name('auction.bid');
     Route::POST('/auction/{idIkan}', [AuctionController::class, 'bidProcess'])->name('auction.bid_process');
 

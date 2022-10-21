@@ -24,6 +24,17 @@ class AuthenticationController extends Controller
         ])->onlyInput('email');
     }
 
+    public function logout()
+    {
+        Auth::guard('member')->logout();
+
+        $this->request->session()->invalidate();
+
+        $this->request->session()->regenerateToken();
+
+        return redirect('/');
+    }
+
     public function register()
     {
         $this->request->validate([
