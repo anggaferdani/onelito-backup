@@ -194,8 +194,8 @@
                     $('#edit_breeder').val(res.breeder)
                     $('#edit_bloodline').val(res.bloodline)
                     $('#edit_sex').html(`
-                        <option value="Jantan" ${((res.sex === 'Jantan') ? 'selected' : '')}>Jantan</option>
-                        <option value="Betina" ${((res.sex === 'Betina') ? 'selected' : '')}>Betina</option>
+                        <option value="Male" ${((res.sex === 'Male') ? 'selected' : '')}>Male</option>
+                        <option value="Female" ${((res.sex === 'Female') ? 'selected' : '')}>Female</option>
                     `)
                     $('#edit_dob').val(res.dob)
                     $('#edit_size').val(res.size)

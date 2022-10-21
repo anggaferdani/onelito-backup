@@ -21,7 +21,7 @@ class EventFishFactory extends Factory
             'variety' => 'koi',
             'breeder' => fake()->randomElement(['Parent fish', 'Normal Fish']),
             'bloodline' => '-',
-            'sex' => fake()->randomElement(['Jantan', 'Betina']),
+            'sex' => fake()->randomElement(['Male', 'Female']),
             'dob' => 'Pedigree',
             'size' => fake()->numberBetween(10, 100),
             'ob' => fake()->numberBetween(10, 100),

@@ -30,8 +30,8 @@
             <div class="form-group">
                 <label for="edit_sex">Jenis Kelamin</label>
                 <select id="edit_sex" name="edit_sex" class="form-control">
-                    <option value="Jantan">Jantan</option>
-                    <option value="Betina">Betina</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
                 </select >
             </div>
             <div class="form-group">

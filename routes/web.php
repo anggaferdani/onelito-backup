@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin;
 use App\Http\Controllers\AuctionController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KoiStockController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Routing\Route as RoutingRoute;
@@ -43,6 +44,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 
 Route::get('/auction', [AuctionController::class, 'index'])->name('auction.index');
+
+Route::get('/koi_stok', [KoiStockController::class, 'index'])->name('koi_stock.index');
 
 
 // MEMBER
@@ -132,23 +135,23 @@ Route::get('/onelito_store', function () {
     ]);
 });
 
-Route::get('/onelito_storelog', function () {
-    return view('onelito_storelog',[
+Route::get('/onelito_store', function () {
+    return view('onelito_store',[
         "title" => "onelito_store"
     ]);
 });
 
-Route::get('/koi_stok', function () {
-    return view('koi_stok',[
-        "title" => "koi_stok"
-    ]);
-});
+// Route::get('/koi_stok', function () {
+//     return view('koi_stok',[
+//         "title" => "koi_stok"
+//     ]);
+// });
 
-Route::get('/koi_stoklog', function () {
-    return view('koi_stoklog',[
-        "title" => "koi_stok"
-    ]);
-});
+// Route::get('/koi_stok', function () {
+//     return view('koi_stok',[
+//         "title" => "koi_stok"
+//     ]);
+// });
 
 Route::get('/login', function () {
     return view('login',[
