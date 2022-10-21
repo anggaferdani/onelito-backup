@@ -98,7 +98,7 @@
                 </div>
             </form>
 
-            <form class="row">
+            <form method="POST" action="/auction/{{ $idIkan }}"  class="row">
                 <div class="col-9">
                     <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nominal Max Auto BID">
                 </div>
@@ -111,3 +111,28 @@
     <br><br><br>
 </div>
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+
+    <script type="text/javascript">
+    let currentMaxBid = @json($maxBid);
+    let nominalBid = @json($logBid);
+    let autoBid = @json($autoBid);
+    let auctionProduct = @json($auctionProduct);
+    let statusGetMaxBid = false;
+
+
+
+    setInterval(function(){
+
+    }, 2000);
+
+    </script>
+@endpush
