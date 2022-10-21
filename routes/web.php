@@ -122,6 +122,7 @@ Route::get('/registrasi', function () {
 
 Route::get('/profil', function () {
     return view('profil',[
+        "title" => ""
     ]);
 });
 
@@ -182,5 +183,29 @@ Route::get('/event_auction', function () {
 Route::get('/detail_onelito_store', function () {
     return view('detail_onelito_store',[
         "title" => "onelito_store"
+    ]);
+});
+
+Route::get('/shoppingcart', function () {
+    return view('shoppingcart',[
+        "title" => "Shopping Cart"
+    ]);
+});
+
+Route::get('/profil2', function () {
+    return view('profil2',[
+        "title" => "Profil"
+    ]);
+});
+
+Route::get('/wishlist', function () {
+    return view('wishlist',[
+        "title" => "wishlist"
+    ]);
+});
+
+Route::get('/purchase', function () {
+    return view('purchase',[
+        "title" => "purchase"
     ]);
 });
