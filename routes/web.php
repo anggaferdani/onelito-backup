@@ -209,3 +209,9 @@ Route::get('/purchase', function () {
         "title" => "purchase"
     ]);
 });
+
+Route::get('/transaksi', function () {
+    return view('transaksi',[
+        "title" => "transaksi"
+    ]);
+});

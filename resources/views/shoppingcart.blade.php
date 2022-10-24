@@ -181,7 +181,7 @@
                 <h5 class="">Total Harga</h5>
                 <h5 class="font-bold">Rp. 0</h5>
             </div>
-            <a class="btn btn-secondary w-25" href="" role="button">Pesan
+            <a class="btn btn-secondary w-25" href="/transaksi" role="button">Pesan
                 Sekarang</a>
         </div>
     </div>
