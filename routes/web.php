@@ -215,3 +215,9 @@ Route::get('/transaksi', function () {
         "title" => "transaksi"
     ]);
 });
+
+Route::get('/transaksiweb', function () {
+    return view('transaksiweb',[
+        "title" => "transaksiweb"
+    ]);
+});
