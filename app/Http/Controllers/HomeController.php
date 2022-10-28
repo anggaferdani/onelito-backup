@@ -17,7 +17,7 @@ class HomeController extends Controller
 
         $nextAuction = Event::with('auctionProducts.photo')->where('tgl_akhir', '>=', $now)
             ->where('kategori_event', Event::EVENT)
-            ->where('tgl_mulai', '<=', $now)
+            ->where('tgl_mulai', '>', $now)
             ->where('status_aktif', 1)
             ->orderBy('tgl_mulai')
             ->first();
