@@ -105,7 +105,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="/">
-                <img src="img/oneli.svg" alt="ONELITO">
+                <img src="{{ url('img/oneli.svg') }}" alt="ONELITO">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -142,7 +142,7 @@
     <div id="mySidebar" class="sidebar">
         <div class="d-flex">
             <a class="navbar-brand" href="/">
-                <img src="img/oneli.svg" alt="ONELITO" class="w-75">
+                <img src="{{ url('img/oneli.svg') }}" alt="ONELITO" class="w-75">
             </a>
             <h1 href="javascript:void(0)" class="closebtn" style="font-size: x-large" onclick="closeNav()">&times;</h1>
         </div>

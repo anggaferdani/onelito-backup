@@ -23,4 +23,10 @@ class Product extends Model
     {
         return $this->hasOne(ProductPhoto::class, 'id_produk');
     }
+
+    public function orderDetails()
+    {
+        return $this->hasMany(OrderDetail::class, 'id_produk')
+            ->whereHas('order', fn($q) => $q->where('status_aktif', 1));
+    }
 }

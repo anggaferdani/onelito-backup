@@ -24,6 +24,17 @@ class AuthenticationController extends Controller
         ])->onlyInput('email');
     }
 
+    public function logout()
+    {
+        Auth::guard('member')->logout();
+
+        $this->request->session()->invalidate();
+
+        $this->request->session()->regenerateToken();
+
+        return redirect('/');
+    }
+
     public function register()
     {
         $this->request->validate([
@@ -50,7 +61,7 @@ class AuthenticationController extends Controller
         if (Auth::guard('admin')->attempt($credentials)) {
             $this->request->session()->regenerate();
 
-            return redirect()->intended('/admin/dashboard');
+            return redirect('/admin/dashboard');
         }
 
         return back()->withErrors([

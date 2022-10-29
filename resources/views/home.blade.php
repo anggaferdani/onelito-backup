@@ -26,97 +26,56 @@
         <h5><b>Next event</b></h5>
     </div>
 
+    @php
+        $auctionProducts = $nextAuction->auctionProducts ?? [];
+    @endphp
     <div class="container nav-atas">
         <div class="row">
+        @forelse($auctionProducts as $auctionProduct)
             <div class="col-6 col-lg-3">
-                <div class="card modal-header">
-                    <img src="img/koi.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 style="font-size: 10px" class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm
-                        </h5>
-                        <p style="font-size: 10px" class="card-text ma">Starting Price</p>
-                        <p style="color :red;font-size: 12px">Rp. 10.500.000</p>
-                    </div>
+            <div class="card modal-header">
+                @php
+                    $photo = 'img/koi.jpg';
+                    if ($auctionProduct->photo !== null)
+                    {
+                        $photo = url('storage') .'/'. $auctionProduct->photo->path_foto;
+                    }
+                @endphp
+                <img src="{{ $photo }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h5 style="font-size: 10px" class="card-title">{{ $auctionProduct->variety }} |   {{ $auctionProduct->breeder }} | Pedigree | {{ $auctionProduct->size }} | {{ $auctionProduct->bloodline }}</h5>
+                <p style="font-size: 10px" class="card-text ma" >Starting Price</p>
+                <p style="color :red;font-size: 12px">Rp. {{ $auctionProduct->ob }}</p>
                 </div>
             </div>
-            <div class="col-6 col-lg-3">
-                <div class="card modal-header">
-                    <img src="img/koi.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 style="font-size: 10px" class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm
-                        </h5>
-                        <p style="font-size: 10px" class="card-text ma">Starting Price</p>
-                        <p style="color :red;font-size: 12px">Rp. 5.500.000</p>
-                    </div>
-                </div>
             </div>
-            <div class="col-6 col-lg-3 mt-3">
-                <div class="card modal-header">
-                    <img src="img/koi.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 style="font-size: 10px" class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm
-                        </h5>
-                        <p style="font-size: 10px" class="card-text ma">Starting Price</p>
-                        <p style="color :red;font-size: 12px">Rp. 8.500.000</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 col-lg-3 mt-3">
-                <div class="card modal-header">
-                    <img src="img/koi.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 style="font-size: 10px" class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm
-                        </h5>
-                        <p style="font-size: 10px" class="card-text ma">Starting Price</p>
-                        <p style="color :red;font-size: 12px">Rp. 4.500.000</p>
-                    </div>
-                </div>
-            </div>
+        @empty
+        @endforelse
         </div>
     </div>
 
     <div class="container nav-samping">
         <div class="row">
+        @forelse($auctionProducts as $auctionProduct)
             <div class="col-6 col-lg-3">
-                <div class="card modal-header">
-                    <img src="img/koi.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm</h5>
-                        <p class="card-text ma">Starting Price</p>
-                        <p style="color :red">Rp. 10.500.000</p>
-                    </div>
+            <div class="card modal-header">
+                @php
+                    $photo = 'img/koi.jpg';
+                    if ($auctionProduct->photo !== null)
+                    {
+                        $photo = url('storage') .'/'. $auctionProduct->photo->path_foto;
+                    }
+                @endphp
+                <img src="{{ $photo }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h5 class="card-title">{{ $auctionProduct->variety }} |   {{ $auctionProduct->breeder }} | Pedigree | {{ $auctionProduct->size }} | {{ $auctionProduct->bloodline }}</h5>
+                <p class="card-text ma" >Starting Price</p>
+                <p style="color :red">Rp. {{ $auctionProduct->ob }}</p>
                 </div>
             </div>
-            <div class="col-6 col-lg-3">
-                <div class="card modal-header">
-                    <img src="img/koi.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm</h5>
-                        <p class="card-text ma">Starting Price</p>
-                        <p style="color :red">Rp. 5.500.000</p>
-                    </div>
-                </div>
             </div>
-            <div class="col-6 col-lg-3">
-                <div class="card modal-header">
-                    <img src="img/koi.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm</h5>
-                        <p class="card-text ma">Starting Price</p>
-                        <p style="color :red">Rp. 8.500.000</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 col-lg-3">
-                <div class="card modal-header">
-                    <img src="img/koi.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm</h5>
-                        <p class="card-text ma">Starting Price</p>
-                        <p style="color :red">Rp. 4.500.000</p>
-                    </div>
-                </div>
-            </div>
+        @empty
+        @endforelse
         </div>
     </div>
 
@@ -128,247 +87,70 @@
 
     <div class="container nav-atas">
         <div class="d-flex overflow-scroll">
+        @forelse($hotProductStores as $hotProduct)
+            @php
+                $productPhoto2 = 'img/bio_media.png';
+
+                if ($hotProduct->photo !== null) {
+                    $productPhoto2 = url('storage').'/'.$hotProduct->photo->path_foto;
+                }
+            @endphp
             <div class="">
                 <div class="p-3 border bg-light" style="width: 200px;/* height: 200px; */">
                     <a href="/login">
-                        <img src="img/bio_media.png" alt="bio media" class="card-img-top"
-                            style=" height: 166;width: 166;">
+                    <img src="{{ $productPhoto2 }}" alt="bio media" class="card-img-top" style=" height: 166;width: 166;">
                     </a>
-                    <p>Bio Tube Bacteria House
-                        Media Filter</p>
-                    <p><b>Rp. 1.300.000</b></p>
+                    <p>{{ "$hotProduct->merek_produk $hotProduct->nama_produk" }}</p>
+                    <p><b>Rp. {{ $hotProduct->harga }}</b></p>
                     <div class="row">
-                        <div class="col-6 p-0">
-                            <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order
-                                Now</button>
-                        </div>
-                        <div class="col-2 m-auto">
-                            <button class="border-4 rounded" style="background-color: red;border-color:red"><i
-                                    class="fa-solid fa-cart-shopping" style="color: white"></i></button>
-                        </div>
-                        <div class="col-2 m-auto">
-                            <button class="border-0" style="background-color: transparent"><i class="far fa-heart"
-                                    style="font-size: x-large"></i></button>
-                        </div>
+                    <div class="col-6 p-0">
+                        <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order Now</button>
+                    </div>
+                    <div class="col-2 m-auto">
+                        <button class="border-4 rounded" style="background-color: red;border-color:red"><i class="fa-solid fa-cart-shopping" style="color: white"></i></button>
+                    </div>
+                    <div class="col-2 m-auto">
+                        <button class="border-0" style="background-color: transparent"><i class="far fa-heart" style="font-size: x-large"></i></button>
+                    </div>
                     </div>
                 </div>
             </div>
-            <div class="">
-                <div class="p-3 border bg-light" style="width: 200px">
-                    <a href="/login">
-                        <img src="img/uniring.jpeg" alt="uniring" class="card-img-top"
-                            style=" height: 166;width: 166;">
-                    </a>
-                    <p>Uniring rubber hose /
-                        selang aerasi</p>
-                    <p><b>Rp. 580.000</b></p>
-                    <div class="row">
-                        <div class="col-6 p-0">
-                            <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order
-                                Now</button>
-                        </div>
-                        <div class="col-2 m-auto">
-                            <button class="border-4 rounded" style="background-color: red;border-color:red"><i
-                                    class="fa-solid fa-cart-shopping" style="color: white"></i></button>
-                        </div>
-                        <div class="col-2 m-auto">
-                            <button class="border-0" style="background-color: transparent"><i class="far fa-heart"
-                                    style="font-size: x-large"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="">
-                <div class="p-3 border bg-light" style="width: 200px">
-                    <a href="/login">
-                        <img src="img/selang.jpg" alt="selang" class="card-img-top"
-                            style="width: 166px;height: 166px;">
-                    </a>
-                    <p>Bio Tube Bacteria House
-                        Media Filter</p>
-                    <p><b>Rp. 90.000</b></p>
-                    <div class="row">
-                        <div class="col-6 p-0">
-                            <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order
-                                Now</button>
-                        </div>
-                        <div class="col-2 m-auto">
-                            <button class="border-4 rounded" style="background-color: red;border-color:red"><i
-                                    class="fa-solid fa-cart-shopping" style="color: white"></i></button>
-                        </div>
-                        <div class="col-2 m-auto">
-                            <button class="border-0" style="background-color: transparent"><i class="far fa-heart"
-                                    style="font-size: x-large"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="">
-                <div class="p-3 border bg-light" style="width: 200px">
-                    <a href="/login">
-                        <img src="img/bak_ukur.jpg" alt="bak_ukur" class="card-img-top"
-                            style=" height: 166;width: 166;">
-                    </a>
-                    <p>Mistar ukur koi /
-                        bak ukur</p>
-                    <p><b>Rp. 600.000</b></p>
-                    <div class="row">
-                        <div class="col-6 p-0">
-                            <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order
-                                Now</button>
-                        </div>
-                        <div class="col-2 m-auto">
-                            <button class="border-4 rounded" style="background-color: red;border-color:red"><i
-                                    class="fa-solid fa-cart-shopping" style="color: white"></i></button>
-                        </div>
-                        <div class="col-2 m-auto">
-                            <button class="border-0" style="background-color: transparent"><i class="far fa-heart"
-                                    style="font-size: x-large"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="">
-                <div class="p-3 border bg-light" style="width: 200px">
-                    <a href="/login">
-                        <img src="img/matala.jpg" alt="matala" class="card-img-top" style=" height: 166;width: 166;">
-                    </a>
-                    <p>Matala Abu Media Filter
-                        Mekanik</p>
-                    <p><b>Rp. 974.000</b></p>
-                    <div class="row">
-                        <div class="col-6 p-0">
-                            <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order
-                                Now</button>
-                        </div>
-                        <div class="col-2 m-auto">
-                            <button class="border-4 rounded" style="background-color: red;border-color:red"><i
-                                    class="fa-solid fa-cart-shopping" style="color: white"></i></button>
-                        </div>
-                        <div class="col-2 m-auto">
-                            <button class="border-0" style="background-color: transparent"><i class="far fa-heart"
-                                    style="font-size: x-large"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        @empty
+        @endforelse
         </div>
     </div>
 
     <div class="class nav-samping">
         <div class="container">
             <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+            @forelse($hotProductStores as $hotProduct)
+                @php
+                    $productPhoto = 'img/bio_media.png';
+
+                    if ($hotProduct->photo !== null) {
+                        $productPhoto = url('storage').'/'.$hotProduct->photo->path_foto;
+                    }
+                @endphp
                 <div class="col">
                     <div class="p-3 border bg-light">
-                        <a href="/detail_onelito_store"><img src="img/bio_media.png" alt="bio media"
-                                class="card-img-top" height="170"></a>
-                        <p>Bio Tube Bacteria House
-                            Media Filter</p>
-                        <p><b>Rp. 1.300.000</b></p>
-                        <div class="row">
-                            <div class="col-md-6 d-grid p-0">
-                                <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order
-                                    Now</button>
-                            </div>
-                            <div class="col-md-3 m-auto">
-                                <button class="border-4 rounded" style="background-color: red;border-color:red"><i
-                                        class="fa-solid fa-cart-shopping" style="color: white"></i></button>
-                            </div>
-                            <div class="col-md-3 m-auto">
-                                <button class="border-0" style="background-color: transparent"><i class="far fa-heart"
-                                        style="font-size: x-large"></i></button>
-                            </div>
+                    <a href="/detail_onelito_store"><img src="{{ $productPhoto }}" alt="bio media" class="card-img-top" height="170"></a>
+                    <p>{{ "$hotProduct->merek_produk $hotProduct->nama_produk" }}</p>
+                    <p><b>Rp. {{ $hotProduct->harga }}</b></p>
+                    <div class="row">
+                        <div class="col-md-6 d-grid p-0">
+                        <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order Now</button>
+                        </div>
+                        <div class="col-md-3 m-auto">
+                        <button class="border-4 rounded" style="background-color: red;border-color:red"><i class="fa-solid fa-cart-shopping" style="color: white"></i></button>
+                        </div>
+                        <div class="col-md-3 m-auto">
+                        <button class="border-0" style="background-color: transparent"><i class="far fa-heart" style="font-size: x-large"></i></button>
                         </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="p-3 border bg-light">
-                        <img src="img/uniring.jpeg" alt="uniring" class="card-img-top" height="170">
-                        <p>Uniring rubber hose /
-                            selang aerasi</p>
-                        <p><b>Rp. 580.000</b></p>
-                        <div class="row">
-                            <div class="col-md-6 d-grid p-0">
-                                <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order
-                                    Now</button>
-                            </div>
-                            <div class="col-md-3 m-auto">
-                                <button class="border-4 rounded" style="background-color: red;border-color:red"><i
-                                        class="fa-solid fa-cart-shopping" style="color: white"></i></button>
-                            </div>
-                            <div class="col-md-3 m-auto">
-                                <button class="border-0" style="background-color: transparent"><i class="far fa-heart"
-                                        style="font-size: x-large"></i></button>
-                            </div>
-                        </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="p-3 border bg-light">
-                        <img src="img/selang.jpg" alt="selang" class="card-img-top" height="170">
-                        <p>Bio Tube Bacteria House
-                            Media Filter</p>
-                        <p><b>Rp. 90.000</b></p>
-                        <div class="row">
-                            <div class="col-md-6 d-grid p-0">
-                                <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order
-                                    Now</button>
-                            </div>
-                            <div class="col-md-3 m-auto">
-                                <button class="border-4 rounded" style="background-color: red;border-color:red"><i
-                                        class="fa-solid fa-cart-shopping" style="color: white"></i></button>
-                            </div>
-                            <div class="col-md-3 m-auto">
-                                <button class="border-0" style="background-color: transparent"><i class="far fa-heart"
-                                        style="font-size: x-large"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="p-3 border bg-light">
-                        <img src="img/bak_ukur.jpg" alt="bak_ukur" class="card-img-top" height="170">
-                        <p>Mistar ukur koi /
-                            bak ukur</p>
-                        <p><b>Rp. 600.000</b></p>
-                        <div class="row">
-                            <div class="col-md-6 d-grid p-0">
-                                <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order
-                                    Now</button>
-                            </div>
-                            <div class="col-md-3 m-auto">
-                                <button class="border-4 rounded" style="background-color: red;border-color:red"><i
-                                        class="fa-solid fa-cart-shopping" style="color: white"></i></button>
-                            </div>
-                            <div class="col-md-3 m-auto">
-                                <button class="border-0" style="background-color: transparent"><i class="far fa-heart"
-                                        style="font-size: x-large"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="p-3 border bg-light">
-                        <img src="img/matala.jpg" alt="matala" class="card-img-top" height="170">
-                        <p>Matala Abu Media Filter
-                            Mekanik</p>
-                        <p><b>Rp. 974.000</b></p>
-                        <div class="row">
-                            <div class="col-md-6 d-grid p-0">
-                                <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order
-                                    Now</button>
-                            </div>
-                            <div class="col-md-3 m-auto">
-                                <button class="border-4 rounded" style="background-color: red;border-color:red"><i
-                                        class="fa-solid fa-cart-shopping" style="color: white"></i></button>
-                            </div>
-                            <div class="col-md-3 m-auto">
-                                <button class="border-0" style="background-color: transparent"><i class="far fa-heart"
-                                        style="font-size: x-large"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            @empty
+            @endforelse
             </div>
         </div>
     </div>
@@ -430,46 +212,27 @@
 
     <div class="container">
         <div class="row ">
+        @forelse($championFishes as $championFish)
+            @php
+                $photoChampion = 'img/koi_2.jpg';
+
+                if ($championFish->foto_ikan !== null)
+                {
+                    $photoChampion = url('storage').'/'. $championFish->foto_ikan;
+                }
+            @endphp
             <div class="col-lg-3 col-6 mt-3">
-                <div class="card modal-header">
-                    <img src="img/koi_2.jpg" class="card-img-top" alt="...">
-                    <div class="m-2 me-auto">
-                        <h5 class="card-title">32nd Champion</h5>
-                        <p class="card-text ma">Tahun : 2015</p>
-                        <p>Size : 50 cm</p>
-                    </div>
+            <div class="card modal-header">
+                <img src="{{ $photoChampion }}" class="card-img-top" alt="...">
+                <div class="m-2 me-auto">
+                <h5 class="card-title">{{ $championFish->nama_champion }}</h5>
+                <p class="card-text ma" >Tahun : {{ $championFish->tahun }}</p>
+                <p >Size : {{ $championFish->size }}</p>
+                </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-6 mt-3">
-                <div class="card modal-header">
-                    <img src="img/koi_2.jpg" class="card-img-top" alt="...">
-                    <div class="m-2 me-auto">
-                        <h5 class="card-title">32nd Champion</h5>
-                        <p class="card-text ma">Tahun : 2015</p>
-                        <p>Size : 50 cm</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-6 mt-3">
-                <div class="card modal-header">
-                    <img src="img/koi_2.jpg" class="card-img-top" alt="...">
-                    <div class="m-2 me-auto">
-                        <h5 class="card-title">32nd Champion</h5>
-                        <p class="card-text ma">Tahun : 2015</p>
-                        <p>Size : 50 cm</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-6 mt-3">
-                <div class="card modal-header">
-                    <img src="img/koi_2.jpg" class="card-img-top" alt="...">
-                    <div class="m-2 me-auto">
-                        <h5 class="card-title">32nd Champion</h5>
-                        <p class="card-text ma">Tahun : 2015</p>
-                        <p>Size : 50 cm</p>
-                    </div>
-                </div>
-            </div>
+        @empty
+        @endforelse
         </div>
     </div>
 

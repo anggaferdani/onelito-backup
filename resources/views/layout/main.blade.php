@@ -62,12 +62,26 @@
 </head>
 
 <body>
-    @include('part.navbar')
+    <!-- kalau sudah login -->
+    @auth('member')
+        @include('part.navbarlog')
 
-    <div class="">
+        <div class="">
+            @yield('container')
+        </div>
+
+        @include('part.footerlog')
+    @endauth
+
+    <!-- kalau belum login -->
+    @guest('member')
+      @include('part.navbar')
+
+      <div class="">
         @yield('container')
-    </div>
-    @include('part.footer')
+      </div>
+      @include('part.footer')
+    @endguest
 </body>
 
 </html>

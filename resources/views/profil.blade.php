@@ -82,17 +82,17 @@
             <div class="fixed-top p-4 bg-white">
                 <div class="container mb-3">
                     <div class="d-flex">
-                        <a href="/profil2" class="{{ $title === 'profil2' ? 'active' : '' }}">
+                        <a href="/profil" class="{{ $title === 'profil' ? 'active' : '' }}">
                             <div class="d-flex">
                                 <i class="fa-solid fa-circle-user mr-4" style="font-size: xx-large"></i>
                                 <div>
-                                    <h4 style="font-size: 15px" class="text-start">JOHN DOE</h4>
-                                    <p style="font-size: 12px" class="text-start">johndoe@gmail.com</p>
+                                    <h4 style="font-size: 15px" class="text-start">{{ $auth->nama }}</h4>
+                                    <p style="font-size: 12px" class="text-start">{{ $auth->email }}</p>
                                 </div>
                             </div>
                         </a>
                         <div class="ml-auto" style="font-size: 22px">
-                            <a href="/homelog"><i class='bx bx-x-circle text-danger' style="font-size: x-large"></i></a>
+                            <a href="/"><i class='bx bx-x-circle text-danger' style="font-size: x-large"></i></a>
                         </div>
                     </div>
                 </div>
@@ -117,7 +117,36 @@
             </div>
 
             <div style="margin-top: 17vh; margin-bottom: 10vh">
-                @yield('container')
+                <div class="container my-3 text-center">
+                    <h5><i class="fa-solid fa-user"></i> <strong>Profile</strong></h5>
+                </div>
+                <div class="container p-0">
+                    <img src="img/foto.png" class="card-img-top px-5" alt="image">
+                    <div class="container text-center">
+                        <button type="button" class="btn btn-light btn-sm">
+                            <a href="#" class="border btn btn-light" style="width: 68vw">
+                                Change photo</a>
+                        </button>
+                    </div>
+                    <div class="">
+                        <div class="mb-3">
+                            <p class="m-0">Name:</p>
+                            <p><b>{{ $auth->nama }}</b></p>
+                        </div>
+                        <div class="mb-3">
+                            <p class="m-0">Email:</p>
+                            <p><b>{{ $auth->email }}</b></p>
+                        </div>
+                        <div class="mb-3">
+                            <p class="m-0">Phone number:</p>
+                            <p><b>{{ $auth->no_hp }}</b></p>
+                        </div>
+                        <div class="mb-3">
+                            <p class="m-0">Address:</p>
+                            <p><b>{{ $auth->alamat }}</b></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -143,8 +172,8 @@
                                                 <i class="fa-solid fa-circle-user" style="font-size: xxx-large"></i>
                                             </div>
                                             <div class="col-10">
-                                                <h4 class="m-0 ms-lg-3 text-md-start">JOHN DOE</h4>
-                                                <p class="m-0 ms-lg-3 text-md-start">johndoe@gmail.com</p>
+                                                <h4 class="m-0 ms-lg-3 text-md-start">{{ $auth->nama }}</h4>
+                                                <p class="m-0 ms-lg-3 text-md-start">{{ $auth->email }}</p>
                                             </div>
                                         </div>
                                     </button>
@@ -205,14 +234,13 @@
                                         <div class="col-8 m-auto p-0">
                                             <div class="">
                                                 <p class="m-0">Name:</p>
-                                                <p><b>John Doe</b></p>
+                                                <p><b>{{ $auth->nama }}</b></p>
                                                 <p class="m-0">Email:</p>
-                                                <p><b>johndoe@gmail.com</b></p>
+                                                <p><b>{{ $auth->email }}</b></p>
                                                 <p class="m-0">Phone number:</p>
-                                                <p><b>0857 5694 2365</b></p>
+                                                <p><b>{{ $auth->no_hp }}</b></p>
                                                 <p class="m-0">Address:</p>
-                                                <p><b>Jl. Tandon Ciater D No. 50, BSD, Ciater, Serpong Sub-District,
-                                                        South Tangerang City, Banten 15310</b></p>
+                                                <p><b>{{ $auth->alamat }}</b></p>
                                             </div>
                                         </div>
                                     </div>

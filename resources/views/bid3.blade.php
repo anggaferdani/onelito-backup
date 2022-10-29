@@ -12,18 +12,18 @@
             display: none
             }
         }
-    
+
         /* On screens that are 600px or less, set the background color to olive */
         @media screen and (max-width: 600px) {
         .web {
             display: none;
             }
         }
-    
+
     </style>
     <div class="res">
         <div class="row">
-            <div class="col-6">           
+            <div class="col-6">
                 <div class="">
                     <img src="img/koi_3.jpg" class="card-img-top" alt="...">
                     <br><br>
@@ -174,7 +174,7 @@
                     </div>
                 </form>
             </div>
-        </div>    
+        </div>
     </div>
 
     <br><br><br>

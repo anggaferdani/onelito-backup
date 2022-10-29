@@ -23,4 +23,15 @@ class EventFish extends Model
     {
         return $this->belongsTo(Event::class, 'id_event');
     }
+
+    public function bids()
+    {
+        return $this->hasMany(LogBid::class, 'id_ikan_lelang')->where('status_aktif', 1);
+    }
+
+    public function maxBid()
+    {
+        return $this->hasOne(LogBid::class, 'id_ikan_lelang')->where('status_aktif', 1)
+            ->orderBy('nominal_bid', 'desc');
+    }
 }

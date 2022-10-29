@@ -1,7 +1,12 @@
 <?php
 
 use App\Http\Controllers\Admin;
+use App\Http\Controllers\AuctionController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KoiStockController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
@@ -16,13 +21,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home',[
-        "title" => "home"
-    ]);
-});
+// Route::get('/', function () {
+//     return view('home',[
+//         "title" => "home"
+//     ]);
+// });
 
-Route::get('/homelog', function () {
+Route::get('/', function () {
     return view('homelog',[
         "title" => "home"
     ]);
@@ -34,6 +39,48 @@ Route::get('/admin-login', function () {
     ]);
 });
 
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
+
+Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
+
+Route::get('/auction', [AuctionController::class, 'index'])->name('auction.index');
+
+Route::get('/koi_stok', [KoiStockController::class, 'index'])->name('koi_stock.index');
+
+
+// MEMBER
+Route::group(['middleware' => 'auth:member'], function () {
+    Route::get('/profil', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/auction/{idIkan}', [AuctionController::class, 'bid'])->name('auction.bid');
+    Route::POST('/auction/{idIkan}', [AuctionController::class, 'bidProcess'])->name('auction.bid_process');
+
+    Route::get('/auction/{idIkan}/detail', [AuctionController::class, 'detail'])->name('auction.detail');
+
+
+    Route::get('/bid', function () {
+        return view('bid',[
+            "title" => "auction"
+        ]);
+    });
+
+    Route::get('/bid2', function () {
+        return view('bid2',[
+            "title" => "auction"
+        ]);
+    });
+
+    Route::get('/bid3', function () {
+        return view('bid3',[
+            "title" => "auction"
+        ]);
+    });
+
+    Route::get('/bid4', function () {
+        return view('bid4',[
+            "title" => "auction"
+        ]);
+    });
+});
 
 Route::group(['prefix' => 'authentications'], function () {
     Route::post('/', [AuthenticationController::class, 'login'])->name('login.post');
@@ -72,16 +119,21 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::resource('auction-winners', Admin\AuctionWinnerController::class);
 });
 
+// Route::get('/auction', function () {
+//     return view('auction',[
+//         "title" => "auction"
+//     ]);
+// });
 
-Route::get('/auction', function () {
-    return view('auction',[
-        "title" => "auction"
-    ]);
-});
+// Route::get('/auction', function () {
+//     return view('auctionlog',[
+//         "title" => "auction"
+//     ]);
+// });
 
-Route::get('/auctionlog', function () {
-    return view('auctionlog',[
-        "title" => "auction"
+Route::get('/onelito_store', function () {
+    return view('onelito_store',[
+        "title" => "onelito_store"
     ]);
 });
 
@@ -91,23 +143,17 @@ Route::get('/onelito_store', function () {
     ]);
 });
 
-Route::get('/onelito_storelog', function () {
-    return view('onelito_storelog',[
-        "title" => "onelito_store"
-    ]);
-});
+// Route::get('/koi_stok', function () {
+//     return view('koi_stok',[
+//         "title" => "koi_stok"
+//     ]);
+// });
 
-Route::get('/koi_stok', function () {
-    return view('koi_stok',[
-        "title" => "koi_stok"
-    ]);
-});
-
-Route::get('/koi_stoklog', function () {
-    return view('koi_stoklog',[
-        "title" => "koi_stok"
-    ]);
-});
+// Route::get('/koi_stoklog', function () {
+//     return view('koi_stoklog',[
+//         "title" => "koi_stok"
+//     ]);
+// });
 
 Route::get('/detail_koichampion', function () {
     return view('detail_koichampion',[
@@ -121,22 +167,22 @@ Route::get('/login', function () {
     ]);
 })->name('login');
 
-Route::get('/registrasi', function () {
-    return view('registrasi',[
-    ]);
-});
+// Route::get('/registrasi', function () {
+//     return view('registrasi',[
+//     ]);
+// });
 
-Route::get('/profil', function () {
-    return view('profil',[
-        "title" => ""
-    ]);
-});
+// Route::get('/profil', function () {
+//     return view('profil',[
+//         "title" => ""
+//     ]);
+// });
 
-Route::get('/bid', function () {
-    return view('bid',[
-        "title" => "auction"
-    ]);
-});
+// Route::get('/bid', function () {
+//     return view('bid',[
+//         "title" => "auction"
+//     ]);
+// });
 
 Route::get('/bid2', function () {
     return view('bid2',[

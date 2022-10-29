@@ -104,8 +104,8 @@
 <div class="atas">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="/homelog">
-                <img src="img/oneli.svg" alt="ONELITO">
+            <a class="navbar-brand" href="/">
+                <img src="{{ url('img/oneli.svg') }}" alt="ONELITO">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -114,23 +114,23 @@
             <div class="collapse flex-grow-0 navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link {{ $title === 'home' ? 'active text-danger' : '' }}"href="/homelog">HOME</a>
+                        <a class="nav-link {{ $title === 'home' ? 'active text-danger' : '' }}"href="/">HOME</a>
                     </li>
                     <li class="nav-item">
                         <a
-                            class="nav-link {{ $title === 'auction' ? 'active text-danger' : '' }}"href="/auctionlog">AUCTION</a>
+                            class="nav-link {{ $title === 'auction' ? 'active text-danger' : '' }}"href="/auction">AUCTION</a>
                     </li>
                     <li class="nav-item">
                         <a
-                            class="nav-link {{ $title === 'onelito_store' ? 'active text-danger' : '' }}"href="/onelito_storelog">ONELITO
+                            class="nav-link {{ $title === 'onelito_store' ? 'active text-danger' : '' }}"href="/onelito_store">ONELITO
                             STORE</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ $title === 'koi_stok' ? 'active text-danger' : '' }}"href="/koi_stoklog">KOI
+                        <a class="nav-link {{ $title === 'koi_stok' ? 'active text-danger' : '' }}"href="/koi_stok">KOI
                             STOCK</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ $title === 'login' ? 'active text-danger' : '' }}"href="/profil2"><i
+                        <a class="nav-link {{ $title === 'login' ? 'active text-danger' : '' }}"href="/profil"><i
                                 class="fa-solid fa-circle-user" style="font-size: x-large"></i></a>
                     </li>
                 </ul>
@@ -143,16 +143,16 @@
     <div id="mySidebar" class="sidebar">
         <div class="d-flex">
             <a class="navbar-brand" href="/">
-                <img src="img/oneli.svg" alt="ONELITO" class="w-75">
+                <img src="{{ url('img/oneli.svg') }}" alt="ONELITO" class="w-75">
             </a>
             <h2 href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</h2>
         </div>
         <hr>
-        <a class="nav-link {{ $title === 'home' ? 'active text-danger' : '' }}"href="/homelog">HOME</a>
-        <a class="nav-link {{ $title === 'auction' ? 'active text-danger' : '' }}"href="/auctionlog">AUCTION</a>
-        <a class="nav-link {{ $title === 'onelito_store' ? 'active text-danger' : '' }}"href="/onelito_storelog">ONELITO
+        <a class="nav-link {{ $title === 'home' ? 'active text-danger' : '' }}"href="/">HOME</a>
+        <a class="nav-link {{ $title === 'auction' ? 'active text-danger' : '' }}"href="/auction">AUCTION</a>
+        <a class="nav-link {{ $title === 'onelito_store' ? 'active text-danger' : '' }}"href="/onelito_store">ONELITO
             STORE</a>
-        <a class="nav-link {{ $title === 'koi_stok' ? 'active text-danger' : '' }}"href="/koi_stoklog">KOI STOCK</a>
+        <a class="nav-link {{ $title === 'koi_stok' ? 'active text-danger' : '' }}"href="/koi_stok">KOI STOCK</a>
 
         <div class="px-4">
             <a style="margin-top: 23rem" class="btn btn-danger fs-6 text-center text-white" href="/login"

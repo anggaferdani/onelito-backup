@@ -29,8 +29,8 @@
             <div class="form-group">
                 <label for="sex">Jenis Kelamin</label>
                 <select id="sex" name="sex" class="form-control">
-                    <option value="Jantan">Jantan</option>
-                    <option value="Betina">Betina</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
                 </select >
             </div>
             <div class="form-group">
