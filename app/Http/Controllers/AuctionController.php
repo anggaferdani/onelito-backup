@@ -117,6 +117,35 @@ class AuctionController extends Controller
         return response()->json(['message' => 'error', 500]);
     }
 
+    public function detail($idIkan)
+    {
+        $auth = Auth::guard('member')->user();
+
+        $auctionProduct = EventFish::with(['photo', 'event'])->findOrFail($idIkan);
+
+        $logBid = LogBid::where('id_peserta', $auth->id_peserta)->where('id_ikan_lelang', $idIkan)->first();
+
+        $maxBid = LogBid::where('id_ikan_lelang', $idIkan)->orderBy('nominal_bid', 'desc')->first()->nominal_bid ?? 0;
+
+        $autoBid = 0;
+
+        if ($logBid) {
+            $nominalBid = $logBid->nominal_bid;
+            $maxBid = $nominalBid > $maxBid ? $nominalBid : $maxBid;
+            $autoBid = $logBid->auto_bid;
+        }
+
+        return view('detail',[
+            'auth' => $auth,
+            'logBid' => $logBid,
+            'autoBid' => $autoBid,
+            'maxBid' => $maxBid,
+            'idIkan' => $idIkan,
+            'auctionProduct' => $auctionProduct,
+            'title' => 'ONELITO KOI'
+        ]);
+    }
+
     private function getCurrentMaxBid($idIkan)
     {
 

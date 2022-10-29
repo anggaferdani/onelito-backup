@@ -54,6 +54,8 @@ Route::group(['middleware' => 'auth:member'], function () {
     Route::get('/auction/{idIkan}', [AuctionController::class, 'bid'])->name('auction.bid');
     Route::POST('/auction/{idIkan}', [AuctionController::class, 'bidProcess'])->name('auction.bid_process');
 
+    Route::get('/auction/{idIkan}/detail', [AuctionController::class, 'detail'])->name('auction.detail');
+
 
     Route::get('/bid', function () {
         return view('bid',[
@@ -140,18 +142,6 @@ Route::get('/onelito_store', function () {
         "title" => "onelito_store"
     ]);
 });
-
-// Route::get('/koi_stok', function () {
-//     return view('koi_stok',[
-//         "title" => "koi_stok"
-//     ]);
-// });
-
-// Route::get('/koi_stok', function () {
-//     return view('koi_stok',[
-//         "title" => "koi_stok"
-//     ]);
-// });
 
 Route::get('/login', function () {
     return view('login',[

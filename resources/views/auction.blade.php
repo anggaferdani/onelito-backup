@@ -57,7 +57,7 @@
                                 <a href="{{ '/auction/'. $auctionProduct->id_ikan }}" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 60%">BID NOW <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                             </div>
                             <div class="col-6 col-md-6 pe-0 px-sm-2">
-                                <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between px-1 p-1" style="font-size: 60%">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                <a href="{{ '/auction/'. $auctionProduct->id_ikan . '/detail' }}" class="btn btn-secondary w-100 d-flex justify-content-between px-1 p-1" style="font-size: 60%">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                             </div>
                             <div class="col-9 p-0">
                                 <a target="_blank" href="{{ $auctionProduct->link_video }}" class="btn btn-light w-100 d-flex justify-content-between">VIDEO <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
