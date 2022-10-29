@@ -210,7 +210,7 @@
                         maiores commodi aliquid fugiat, laboriosam ipsa similique blanditiis.</p>
                     <hr>
 
-                    <p style="font-size:30px">Harga saat ini: <span class="alert-link text-danger">Rp {{ $currentPrice }}</span></p>
+                    <p style="font-size:30px">Harga saat ini: <span id="currentPrice" class="alert-link text-danger">Rp {{ $currentPrice }}</span></p>
                     <hr>
 
                     <p style="font-size:25px">Kelipatan BID: <span class="alert-link text-danger">Rp. {{ $auctionProduct->kb }}</span></p>
@@ -423,13 +423,16 @@
             // autoBid = parseInt($('#auto_bid').val());
 
             meMaxBid = res.meMaxBid;
-            currentMaxBid = parseInt(res.maxBid)
-            nominalBid = parseInt(res.logBid.nominal_bid)
-            $('#currentPrice').html(`Rp. ${res.maxBid}`);
 
-            // if (nominalBid < currentMaxBid) {
-            //     statusAutoBid = true;
-            // }
+            if (res.maxBid !== null) {
+                currentMaxBid = parseInt(res.maxBid)
+            }
+
+            if (res.logBid !== null) {
+                nominalBid = parseInt(res.logBid.nominal_bid)
+            }
+
+            $('#currentPrice').html(`Rp. ${res.maxBid}`);
         },
         error(err){
 

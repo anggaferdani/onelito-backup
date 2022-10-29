@@ -55,12 +55,12 @@ class AuctionController extends Controller
 
         $logBid = LogBid::where('id_peserta', $auth->id_peserta)->where('id_ikan_lelang', $idIkan)->first();
 
-        $maxBid = LogBid::where('id_ikan_lelang', $idIkan)->orderBy('nominal_bid', 'desc')->first()->nominal_bid ?? 0;
+        $maxBid = LogBid::where('id_ikan_lelang', $idIkan)->orderBy('nominal_bid', 'desc')->first()->nominal_bid ?? $auctionProduct->ob;
 
         $autoBid = 0;
 
         if ($logBid) {
-            $nominalBid = $logBid->nominal_bid;
+            $nominalBid = $logBid->nominal_bid ?? 0;
             $maxBid = $nominalBid > $maxBid ? $nominalBid : $maxBid;
             $autoBid = $logBid->auto_bid;
         }
@@ -68,8 +68,8 @@ class AuctionController extends Controller
         return view('bid',[
             'auth' => $auth,
             'logBid' => $logBid,
-            'autoBid' => $autoBid,
-            'maxBid' => $maxBid,
+            'autoBid' => (int) $autoBid,
+            'maxBid' => (int) $maxBid,
             'idIkan' => $idIkan,
             'auctionProduct' => $auctionProduct,
             'title' => 'auction'
