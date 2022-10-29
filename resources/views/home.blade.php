@@ -477,7 +477,3 @@
         <a href="/login" style="color: red">Lihat lebih Banyak >></a>
     </div>
 @endsection
-
-</body>
-
-</html>

@@ -35,7 +35,7 @@
             <nav class="justify-content-center navbar navbar-dark navbar-expand-lg py-5">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link {{ $title === 'home' ? 'active text-danger' : '' }}"href="/home">HOME</a>
+                        <a class="nav-link {{ $title === 'home' ? 'active text-danger' : '' }}"href="/homelog">HOME</a>
                     </li>
                     <li class="nav-item">
                         <a
@@ -43,7 +43,7 @@
                     </li>
                     <li class="nav-item">
                         <a
-                            class="nav-link {{ $title === 'onelito_store' ? 'active text-danger' : '' }}"href="/onelito_store">ONELITO
+                            class="nav-link {{ $title === 'onelito_store' ? 'active text-danger' : '' }}"href="/onelito_storelog">ONELITO
                             STORE</a>
                     </li>
                     <li class="nav-item">
@@ -51,7 +51,7 @@
                             STOCK</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ $title === 'login' ? 'active text-danger' : '' }}"href="/profil"><i
+                        <a class="nav-link {{ $title === 'login' ? 'active text-danger' : '' }}"href="/profil2"><i
                                 class="fa-solid fa-circle-user" style="font-size: x-large"></i></a>
                     </li>
                 </ul>

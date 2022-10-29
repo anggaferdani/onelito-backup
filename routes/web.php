@@ -109,6 +109,12 @@ Route::get('/koi_stoklog', function () {
     ]);
 });
 
+Route::get('/detail_koichampion', function () {
+    return view('detail_koichampion',[
+        "title" => "koi_stok"
+    ]);
+});
+
 Route::get('/login', function () {
     return view('login',[
         "title" => "login"

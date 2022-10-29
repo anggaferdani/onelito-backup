@@ -472,7 +472,7 @@
     </div>
 
     <div class="container my-5">
-        <a href="#/login" style="color: red">Lihat lebih Banyak >></a>
+        <a href="/detail_koichampion" style="color: red">Lihat lebih Banyak >></a>
     </div>
 @endsection
 
