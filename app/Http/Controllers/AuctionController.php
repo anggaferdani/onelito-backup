@@ -87,18 +87,33 @@ class AuctionController extends Controller
 
         $modKb = $nominalBid % $auctionProduct->kb === 0;
 
+        if ($autoBid !== null) {
+            $modAutoKb = $autoBid % $auctionProduct->kb === 0;
+            if (!$modAutoKb) {
+                return response()->json(['message' => 'Nominal auto bid harus sesuai dengan kelipatan bid'], 400);
+            }
+        }
+
         if (!$modKb) {
-            return response()->json(['message' => 'Nominal bid harus sesuai dengan kelipatan bid', 400]);
+            return response()->json(['message' => 'Nominal bid harus sesuai dengan kelipatan bid'], 400);
         }
 
         $logBid = LogBid::where('id_peserta', $auth->id_peserta)->where('id_ikan_lelang', $idIkan)->first();
 
         if ($logBid !== null) {
+            if ($autoBid <= $logBid->nominal_bid && $autoBid !== null) {
+                return response()->json(['message' => 'success updated']);
+            }
+
             $logBid->nominal_bid = $nominalBid;
+
+            if ($autoBid !== null) {
+                $logBid->auto_bid = $autoBid;
+            }
 
             $logBid->save();
 
-            return response()->json(['message' => 'success']);
+            return response()->json(['message' => 'success updated']);
         }
 
         $createBid = LogBid::create([
@@ -111,7 +126,7 @@ class AuctionController extends Controller
         ]);
 
         if ($createBid) {
-            return response()->json(['message' => 'success']);
+            return response()->json(['message' => 'success created']);
         }
 
         return response()->json(['message' => 'error', 500]);
@@ -125,14 +140,33 @@ class AuctionController extends Controller
 
         $logBid = LogBid::where('id_peserta', $auth->id_peserta)->where('id_ikan_lelang', $idIkan)->first();
 
-        $maxBid = LogBid::where('id_ikan_lelang', $idIkan)->orderBy('nominal_bid', 'desc')->first()->nominal_bid ?? 0;
+        $maxBidData = LogBid::where('id_ikan_lelang', $idIkan)->orderBy('nominal_bid', 'desc')->first();
+
+        $maxBid = $maxBidData->nominal_bid ?? $auctionProduct->op;
 
         $autoBid = 0;
+
+        $meMaxBid = false;
 
         if ($logBid) {
             $nominalBid = $logBid->nominal_bid;
             $maxBid = $nominalBid > $maxBid ? $nominalBid : $maxBid;
             $autoBid = $logBid->auto_bid;
+
+            if ($maxBidData->id_bidding === $logBid->id_bidding) {
+                $meMaxBid = true;
+            }
+        }
+
+        if ($this->request->ajax()) {
+            return response()->json([
+                'logBid' => $logBid,
+                'autoBid' => $autoBid,
+                'maxBid' => $maxBid,
+                'idIkan' => $idIkan,
+                'meMaxBid' => $meMaxBid,
+                'auctionProduct' => $auctionProduct,
+            ]);
         }
 
         return view('detail',[
@@ -141,6 +175,7 @@ class AuctionController extends Controller
             'autoBid' => $autoBid,
             'maxBid' => $maxBid,
             'idIkan' => $idIkan,
+            'meMaxBid' => $meMaxBid,
             'auctionProduct' => $auctionProduct,
             'title' => 'ONELITO KOI'
         ]);
