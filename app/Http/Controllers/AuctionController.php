@@ -65,14 +65,22 @@ class AuctionController extends Controller
             $autoBid = $logBid->auto_bid;
         }
 
+        Carbon::setLocale('id');
+
+        $now = Carbon::now();
+        $addedExtraTime = Carbon::createFromDate($auctionProduct->event->tgl_akhir)
+            ->addMinutes($auctionProduct->extra_time ?? 0);
+
         return view('bid',[
             'auth' => $auth,
             'logBid' => $logBid,
             'autoBid' => (int) $autoBid,
             'maxBid' => (int) $maxBid,
             'idIkan' => $idIkan,
+            'now' => $now,
             'auctionProduct' => $auctionProduct,
-            'title' => 'auction'
+            'title' => 'auction',
+            'addedExtraTime' => $addedExtraTime,
         ]);
     }
 
