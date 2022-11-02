@@ -85,7 +85,7 @@
 <script src="{{ asset('library/moment/min/moment.min.js') }}"></script>
 <script type="text/javascript">
     let currentTime = "{{ $now }}";
-    let currentEndTime = "{{ $currentAuction->tgl_akhir }}";
+    let currentEndTime = "{{ $currentAuction->tgl_akhir ?? null }}";
     let timerLabels = document.getElementsByClassName('countdown-label');
 
     function allTimer() {

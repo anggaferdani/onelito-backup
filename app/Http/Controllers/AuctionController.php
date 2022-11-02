@@ -38,9 +38,6 @@ class AuctionController extends Controller
             }
         }
 
-        $currentAuction->tgl_akhir = Carbon::createFromDate($currentAuction->tgl_akhir)
-        ->subMinutes(80)->toDateTimeString();
-
         Carbon::setLocale('id');
 
         $now = Carbon::now();
