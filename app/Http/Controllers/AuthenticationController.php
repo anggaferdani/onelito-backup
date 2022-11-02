@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Member;
 use Illuminate\Support\Facades\Auth;
 
 class AuthenticationController extends Controller
@@ -38,17 +39,35 @@ class AuthenticationController extends Controller
     public function register()
     {
         $this->request->validate([
-            'name' => ['required'],
+            'nama' => ['required'],
             'email' => ['required', 'email', 'unique:m_peserta,email'],
             'password' => ['required'],
-            'address' => ['required'],
-            'phone' => ['required'],
-            'province' => ['required'],
-            'city' => ['required'],
+            'alamat' => ['required'],
+            'no_hp' => ['required'],
+            'provinsi' => ['required'],
+            'kota' => ['required'],
             'kecamatan' => ['required'],
             'kelurahan' => ['required'],
-            'postcode' => ['required'],
+            'kode_pos' => ['required'],
         ]);
+
+        $data = $this->request->all();
+        $data['status_aktif'] = 1;
+
+        $createMember = Member::create($data);
+
+        if($createMember){
+            return redirect()->back()->with([
+                'success' => true,
+                'message' => 'Sukses Menambahkan Peserta',
+
+            ],200);
+        }else{
+            return redirect()->back()->with([
+                'success' => false,
+                'message' => 'Gagal Menambahkan Peserta'
+            ],500);
+        }
     }
 
     public function adminLogin()
