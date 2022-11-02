@@ -30,9 +30,25 @@ class AuctionController extends Controller
             ->orderBy('created_at', 'desc')
             ->first();
 
+        if ($currentAuction !== null) {
+            foreach ($currentAuction->auctionProducts as $product) {
+                $product->tgl_akhir_extra_time = Carbon::createFromDate($currentAuction->tgl_akhir)
+                    ->addMinutes($product->extra_time ?? 0)->toDateTimeString();
+
+            }
+        }
+
+        $currentAuction->tgl_akhir = Carbon::createFromDate($currentAuction->tgl_akhir)
+        ->subMinutes(80)->toDateTimeString();
+
+        Carbon::setLocale('id');
+
+        $now = Carbon::now();
+
         return view('auction',[
             'auth' => $auth,
             'currentAuction' => $currentAuction,
+            'now' => $now,
             'title' => 'auction'
         ]);
     }

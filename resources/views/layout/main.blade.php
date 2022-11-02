@@ -82,6 +82,9 @@
       </div>
       @include('part.footer')
     @endguest
+
+    <script src="{{ asset('library/jquery/dist/jquery.min.js') }}"></script>
+    @stack('scripts')
 </body>
 
 </html>

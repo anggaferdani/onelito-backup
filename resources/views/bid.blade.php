@@ -273,7 +273,6 @@
 
     <script type="text/javascript">
 
-
     let currentMaxBid = @json($maxBid);
     let nominalBid = @json($logBid);
     let autoBid = @json($autoBid);
@@ -297,12 +296,16 @@
     function cancelAutoBid ()
     {
         statusAutoBid = false;
+        document.getElementById("nominal_bid").disabled = false;
+        document.getElementById("auto_bid").disabled = false;
         $('#buttonCancelAutoBid').attr('hidden', 'hidden');
         $('#buttonNormalBid').removeAttr('hidden');
         $('#buttonAutoBid').html(`AUTO BID`)
     }
 
     $('#autoBidForm').submit(function(e) {
+        document.getElementById("nominal_bid").disabled = true;
+        document.getElementById("auto_bid").disabled = true;
         $('#buttonCancelAutoBid').removeAttr('hidden');
         $('#buttonNormalBid').attr('hidden', 'hidden');
         $('#buttonAutoBid').html(`
@@ -461,8 +464,9 @@
             var duration = endTime - now;
 
             // Time calculations for days, hours, minutes and seconds
-            // var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var days = Math.floor(duration / (1000 * 60 * 60 * 24));
             var hours = Math.floor((duration % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            hours = hours + (days * 60);
             var minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((duration % (1000 * 60)) / 1000);
 
@@ -480,50 +484,48 @@
                 clearInterval(x);
                 startExtraTimer();
             }
-    }, 1000);
+        }, 1000);
+    }
 
+    function startExtraTimer() {
+            // let modalRunningOutHasShown = false;
+            var currTime = moment()
 
-}
+            var end = moment(addedExtraTime);
+            var endTime = end.valueOf();
+            // Update the count down every 1 second
+            var x = setInterval(function() {
+                // Get today's date and time and extend it
+                var now = currTime.add(1, 'seconds').valueOf();
 
-function startExtraTimer() {
-        // let modalRunningOutHasShown = false;
-        var currTime = moment()
+                // Find the distance between now and the count down date
+                var duration = endTime - now;
 
-        var end = moment(addedExtraTime);
-        var endTime = end.valueOf();
-        // Update the count down every 1 second
-        var x = setInterval(function() {
-            // Get today's date and time and extend it
-            var now = currTime.add(1, 'seconds').valueOf();
+                // Time calculations for days, hours, minutes and seconds
+                // var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((duration % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((duration % (1000 * 60)) / 1000);
 
-            // Find the distance between now and the count down date
-            var duration = endTime - now;
+                // Display the result in the element with id="timer"
+                const hourString = `${hours < 10 ? '0' : ''}${hours}`;
+                const minuteString = `${minutes < 10 ? '0' : ''}${minutes}`;
+                const secondString = `${seconds < 10 ? '0' : ''}${seconds}`;
+                const timerString = `${hourString} : ${minuteString} : ${secondString}`;
+                $('.countdown-label').html(timerString);
 
-            // Time calculations for days, hours, minutes and seconds
-            // var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((duration % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((duration % (1000 * 60)) / 1000);
+                // If the count down is finished, finish the exam
+                if (duration < 0) {
+                    $('.countdown-label').html(`00 : 00 : 00`);
 
-            // Display the result in the element with id="timer"
-            const hourString = `${hours < 10 ? '0' : ''}${hours}`;
-            const minuteString = `${minutes < 10 ? '0' : ''}${minutes}`;
-            const secondString = `${seconds < 10 ? '0' : ''}${seconds}`;
-            const timerString = `${hourString} : ${minuteString} : ${secondString}`;
-            $('.countdown-label').html(timerString);
-
-            // If the count down is finished, finish the exam
-            if (duration < 0) {
-                $('.countdown-label').html(`00 : 00 : 00`);
-
-                document.getElementById("nominal_bid").disabled = true;
-                document.getElementById("auto_bid").disabled = true;
-                document.getElementById("buttonAutoBid").disabled = true;
-                document.getElementById("buttonNormalBid").disabled = true;
-                clearInterval(x);
-            }
-    }, 1000);
-}
+                    document.getElementById("nominal_bid").disabled = true;
+                    document.getElementById("auto_bid").disabled = true;
+                    document.getElementById("buttonAutoBid").disabled = true;
+                    document.getElementById("buttonNormalBid").disabled = true;
+                    clearInterval(x);
+                }
+        }, 1000);
+    }
 
     startTimer();
     autoDetailBid();
