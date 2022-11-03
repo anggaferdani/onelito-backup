@@ -1,6 +1,21 @@
 @extends('layout.main')
 
 @section('container')
+    <style>
+        .card {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .cb-judul {
+            height: 6rem;
+
+        }
+    </style>
     <div class="container">
         <h5>Rules Auction</h5>
         <p class="m-0">{{ $currentAuction->rules_event ?? "" }}</p>
@@ -41,25 +56,25 @@
                             <p class="" style="color: red">{{ $auctionProduct->bids_count }}</p>
                             <div class="row">
                                 <div class="col-6 p-0 px-lg-2">
-                                    <p class="m-0" style="font-size:x-small">Harga saat ini</p>
+                                    <p class="m-0" style="font-size:80%">Harga saat ini</p>
                                     <p class="m-0" style="color: red;font-size:75%">Rp. {{ $currentMaxBid }}</p>
                                 </div>
 
                                 <div class="col-6 p-0 px-lg-2">
-                                    <p class="m-0" style="text-align: end;font-size: x-small">Countdown</p>
+                                    <p class="m-0" style="text-align: end;font-size:80%">Countdown</p>
                                     <p class="m-0 countdown-label" id="{{ $auctionProduct->id_ikan }}" data-end-extratime="{{ $auctionProduct->tgl_akhir_extra_time }}" style="text-align: end;color :red;font-size:75%;">00:00:00</p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-6 col-md-6 p-0 px-sm-2">
                                     <a id="btn-bid-{{ $auctionProduct->id_ikan }}" href="{{ '/auction/'. $auctionProduct->id_ikan }}" class="btn btn-danger w-100 d-flex justify-content-between p-1"
-                                        style="font-size: 60%">BID NOW <span><i
+                                        style="font-size: 80%">BID NOW <span><i
                                                 class="fa-solid fa-circle-chevron-right"></i></span></a>
                                 </div>
                                 <div class="col-6 col-md-6 pe-0 px-sm-2">
                                     <a href="{{ '/auction/'. $auctionProduct->id_ikan . '/detail' }}"
                                         class="btn btn-secondary w-100 d-flex justify-content-between px-1 p-1"
-                                        style="font-size: 60%">DETAIL <span><i
+                                        style="font-size: 80%">DETAIL <span><i
                                                 class="fa-solid fa-circle-chevron-right"></i></span></a>
                                 </div>
                                 <div class="col-9 p-0">

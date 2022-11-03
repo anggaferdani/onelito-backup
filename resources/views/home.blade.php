@@ -14,12 +14,49 @@
             .nav-samping {
                 display: none;
             }
+
+        }
+
+        @media screen and (max-width: 600px) {
+
+            .img-mh-300px img {
+                min-height: 400vh;
+            }
+        }
+
+        .cb-judul {
+            height: 7rem;
+
+        }
+
+        .cb-judu {
+            height: 5rem;
         }
     </style>
 
 
-    <div class="container-fluit" style="background-color:red;" heigh="25vh">
-        <img src="img/Frame.png" class="d-block w-100" alt="Frame">
+
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner img-mh-300">
+            <div class="carousel-item active">
+                <div class="container-fluit" style="background-color:red;">
+                    <img src="img/Frame.png" class="d-block w-100" alt="Frame">
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container-fluit" style="background-color:red;">
+                    <img src="img/Frame.png" class="d-block w-100" alt="Frame">
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
 
     <div class="container mt-3 mt-lg mt-lg-5">
@@ -32,8 +69,8 @@
     <div class="container nav-atas">
         <div class="row">
         @forelse($auctionProducts as $auctionProduct)
-            <div class="col-6 col-lg-3">
-            <div class="card modal-header">
+            <div class="col-6 col-lg-3 mt-3">
+            <div class="card">
                 @php
                     $photo = 'img/koi.jpg';
                     if ($auctionProduct->photo !== null)
@@ -43,9 +80,11 @@
                 @endphp
                 <img src="{{ $photo }}" class="card-img-top" alt="...">
                 <div class="card-body">
-                <h5 style="font-size: 10px" class="card-title">{{ $auctionProduct->variety }} |   {{ $auctionProduct->breeder }} | Pedigree | {{ $auctionProduct->size }} | {{ $auctionProduct->bloodline }}</h5>
-                <p style="font-size: 10px" class="card-text ma" >Starting Price</p>
-                <p style="color :red;font-size: 12px">Rp. {{ $auctionProduct->ob }}</p>
+                    <div class="cb-judu">
+                        <h5 style="font-size: 10px" class="card-title">{{ $auctionProduct->variety }} |   {{ $auctionProduct->breeder }} | Pedigree | {{ $auctionProduct->size }} | {{ $auctionProduct->bloodline }}</h5>
+                    </div>
+                    <p style="font-size: 10px" class="card-text ma" >Starting Price</p>
+                    <p style="color :red;font-size: 12px">Rp. {{ $auctionProduct->ob }}</p>
                 </div>
             </div>
             </div>
@@ -57,8 +96,8 @@
     <div class="container nav-samping">
         <div class="row">
         @forelse($auctionProducts as $auctionProduct)
-            <div class="col-6 col-lg-3">
-            <div class="card modal-header">
+            <div class="col-6 col-lg-3 mt-3">
+            <div class="card">
                 @php
                     $photo = 'img/koi.jpg';
                     if ($auctionProduct->photo !== null)
@@ -68,9 +107,11 @@
                 @endphp
                 <img src="{{ $photo }}" class="card-img-top" alt="...">
                 <div class="card-body">
-                <h5 class="card-title">{{ $auctionProduct->variety }} |   {{ $auctionProduct->breeder }} | Pedigree | {{ $auctionProduct->size }} | {{ $auctionProduct->bloodline }}</h5>
-                <p class="card-text ma" >Starting Price</p>
-                <p style="color :red">Rp. {{ $auctionProduct->ob }}</p>
+                    <div class="cb-judu">
+                        <h5 style="font-size: 10px" class="card-title">{{ $auctionProduct->variety }} |   {{ $auctionProduct->breeder }} | Pedigree | {{ $auctionProduct->size }} | {{ $auctionProduct->bloodline }}</h5>
+                    </div>
+                    <p class="card-text ma" >Starting Price</p>
+                    <p style="color :red">Rp. {{ $auctionProduct->ob }}</p>
                 </div>
             </div>
             </div>
@@ -95,12 +136,14 @@
                     $productPhoto2 = url('storage').'/'.$hotProduct->photo->path_foto;
                 }
             @endphp
-            <div class="">
+            <div class="p-1">
                 <div class="p-3 border bg-light" style="width: 200px;/* height: 200px; */">
                     <a href="/login">
                     <img src="{{ $productPhoto2 }}" alt="bio media" class="card-img-top" style=" height: 166;width: 166;">
                     </a>
-                    <p>{{ "$hotProduct->merek_produk $hotProduct->nama_produk" }}</p>
+                    <div class="cb-judu">
+                        <p>{{ "$hotProduct->merek_produk $hotProduct->nama_produk" }}</p>
+                    </div>
                     <p><b>Rp. {{ $hotProduct->harga }}</b></p>
                     <div class="row">
                     <div class="col-6 p-0">
@@ -180,14 +223,14 @@
 
     <div class="container">
         <div class="justify-content-around row">
-            <div class="card col-md-3 col-sm-12 mt-3">
+            <div class="border col-lg-3 col-9 mt-4">
                 <div class="card-body">
                     <p class="style text-center"><i class="fa-solid fa-envelope" style="color: red"></i></p>
                     <p class="style text-center"><b>Email</b></p>
                     <p class="style text-center">onelito@gmail.com</p>
                 </div>
             </div>
-            <div class="card col-md-3 col-sm-12 mt-3">
+            <div class="border col-lg-3 col-9 mt-4">
                 <div class="card-body">
                     <p class="style text-center"><i class="fas fa-map-marker-alt" style="color: red"></i></p>
                     <p class="style text-center"><b>Address</b></p>
@@ -195,7 +238,7 @@
                         Tangerang City Banten 15310</p>
                 </div>
             </div>
-            <div class="card col-md-3 col-sm-12 mt-3">
+            <div class="border col-lg-3 col-9 mt-4">
                 <div class="card-body">
                     <p class="style text-center"><i class="fas fa-phone" style="color: red"></i></p>
                     <p class="style text-center"><b>Contact Us</b></p>

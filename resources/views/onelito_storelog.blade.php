@@ -22,6 +22,20 @@
                 color: #fff;
                 background-color: #F0F0F0;
             }
+
+            .cart {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .cb-judul {
+                height: 6rem;
+
+            }
         </style>
         <div class="row gx-3">
             {{-- On screens that are 992px or less, set the display on --}}
@@ -84,11 +98,13 @@
                             </div>
                             <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <a href="/detail_onelito_store"><img src="img/bio_media.png" alt="bio media"
                                                 class="card-img-top" height="170"></a>
-                                        <p>Bio Tube Bacteria House
-                                            Media Filter</p>
+                                        <div class="cb-judul">
+                                            <p>Bio Tube Bacteria House
+                                                Media Filter</p>
+                                        </div>
                                         <p><b>Rp. 1.300.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -98,10 +114,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/uniring.jpeg" alt="uniring" class="card-img-top" height="170">
-                                        <p>Uniring rubber hose /
-                                            selang aerasi</p>
+                                        <div class="cb-judul">
+                                            <p>Uniring rubber hose /
+                                                selang aerasi</p>
+                                        </div>
                                         <p><b>Rp. 580.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -111,10 +129,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/selang.jpg" alt="selang" class="card-img-top" height="170">
-                                        <p>Bio Tube Bacteria House
-                                            Media Filter</p>
+                                        <div class="cb-judul">
+                                            <p>Bio Tube Bacteria House
+                                                Media Filter</p>
+                                        </div>
                                         <p><b>Rp. 90.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -124,10 +144,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/bak_ukur.jpg" alt="bak_ukur" class="card-img-top" height="170">
-                                        <p>Mistar ukur koi /
-                                            bak ukur</p>
+                                        <div class="cb-judul">
+                                            <p>Mistar ukur koi /
+                                                bak ukur</p>
+                                        </div>
                                         <p><b>Rp. 600.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -137,10 +159,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/matala.jpg" alt="matala" class="card-img-top" height="170">
-                                        <p>matala Abu Media Filter
-                                            Mekanik</p>
+                                        <div class="cb-judul">
+                                            <p>matala Abu Media Filter
+                                                Mekanik</p>
+                                        </div>
                                         <p><b>Rp. 974.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -150,11 +174,13 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/bio_media.png" alt="bio media" class="card-img-top"
                                             height="170">
-                                        <p>Bio Tube Bacteria House
-                                            Media Filter</p>
+                                        <div class="cb-judul">
+                                            <p>Bio Tube Bacteria House
+                                                Media Filter</p>
+                                        </div>
                                         <p><b>Rp. 1.300.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -164,10 +190,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/uniring.jpeg" alt="uniring" class="card-img-top" height="170">
-                                        <p>Uniring rubber hose /
-                                            selang aerasi</p>
+                                        <div class="cb-judul">
+                                            <p>Uniring rubber hose /
+                                                selang aerasi</p>
+                                        </div>
                                         <p><b>Rp. 580.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -177,10 +205,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/selang.jpg" alt="selang" class="card-img-top" height="170">
-                                        <p>Bio Tube Bacteria House
-                                            Media Filter</p>
+                                        <div class="cb-judul">
+                                            <p>Bio Tube Bacteria House
+                                                Media Filter</p>
+                                        </div>
                                         <p><b>Rp. 90.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -190,10 +220,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/bak_ukur.jpg" alt="bak_ukur" class="card-img-top" height="170">
-                                        <p>Mistar ukur koi /
-                                            bak ukur</p>
+                                        <div class="cb-judul">
+                                            <p>Mistar ukur koi /
+                                                bak ukur</p>
+                                        </div>
                                         <p><b>Rp. 600.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -203,10 +235,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/matala.jpg" alt="matala" class="card-img-top" height="170">
-                                        <p>matala Abu Media Filter
-                                            Mekanik</p>
+                                        <div class="cb-judul">
+                                            <p>matala Abu Media Filter
+                                                Mekanik</p>
+                                        </div>
                                         <p><b>Rp. 974.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -216,11 +250,13 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/bio_media.png" alt="bio media" class="card-img-top"
                                             height="170">
-                                        <p>Bio Tube Bacteria House
-                                            Media Filter</p>
+                                        <div class="cb-judul">
+                                            <p>Bio Tube Bacteria House
+                                                Media Filter</p>
+                                        </div>
                                         <p><b>Rp. 1.300.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -230,10 +266,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/uniring.jpeg" alt="uniring" class="card-img-top" height="170">
-                                        <p>Uniring rubber hose /
-                                            selang aerasi</p>
+                                        <div class="cb-judul">
+                                            <p>Uniring rubber hose /
+                                                selang aerasi</p>
+                                        </div>
                                         <p><b>Rp. 580.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -243,10 +281,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/selang.jpg" alt="selang" class="card-img-top" height="170">
-                                        <p>Bio Tube Bacteria House
-                                            Media Filter</p>
+                                        <div class="cb-judul">
+                                            <p>Bio Tube Bacteria House
+                                                Media Filter</p>
+                                        </div>
                                         <p><b>Rp. 90.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -256,10 +296,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/bak_ukur.jpg" alt="bak_ukur" class="card-img-top" height="170">
-                                        <p>Mistar ukur koi /
-                                            bak ukur</p>
+                                        <div class="cb-judul">
+                                            <p>Mistar ukur koi /
+                                                bak ukur</p>
+                                        </div>
                                         <p><b>Rp. 600.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -269,10 +311,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/matala.jpg" alt="matala" class="card-img-top" height="170">
-                                        <p>matala Abu Media Filter
-                                            Mekanik</p>
+                                        <div class="cb-judul">
+                                            <p>matala Abu Media Filter
+                                                Mekanik</p>
+                                        </div>
                                         <p><b>Rp. 974.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -282,11 +326,13 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/bio_media.png" alt="bio media" class="card-img-top"
                                             height="170">
-                                        <p>Bio Tube Bacteria House
-                                            Media Filter</p>
+                                        <div class="cb-judul">
+                                            <p>Bio Tube Bacteria House
+                                                Media Filter</p>
+                                        </div>
                                         <p><b>Rp. 1.300.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -296,10 +342,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/uniring.jpeg" alt="uniring" class="card-img-top" height="170">
-                                        <p>Uniring rubber hose /
-                                            selang aerasi</p>
+                                        <div class="cb-judul">
+                                            <p>Uniring rubber hose /
+                                                selang aerasi</p>
+                                        </div>
                                         <p><b>Rp. 580.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -309,10 +357,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/selang.jpg" alt="selang" class="card-img-top" height="170">
-                                        <p>Bio Tube Bacteria House
-                                            Media Filter</p>
+                                        <div class="cb-judul">
+                                            <p>Bio Tube Bacteria House
+                                                Media Filter</p>
+                                        </div>
                                         <p><b>Rp. 90.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -322,10 +372,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/bak_ukur.jpg" alt="bak_ukur" class="card-img-top" height="170">
-                                        <p>Mistar ukur koi /
-                                            bak ukur</p>
+                                        <div class="cb-judul">
+                                            <p>Mistar ukur koi /
+                                                bak ukur</p>
+                                        </div>
                                         <p><b>Rp. 600.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -335,10 +387,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/matala.jpg" alt="matala" class="card-img-top" height="170">
-                                        <p>matala Abu Media Filter
-                                            Mekanik</p>
+                                        <div class="cb-judul">
+                                            <p>matala Abu Media Filter
+                                                Mekanik</p>
+                                        </div>
                                         <p><b>Rp. 974.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -356,11 +410,13 @@
                             </div>
                             <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/bio_media.png" alt="bio media" class="card-img-top"
                                             height="170">
-                                        <p>Bio Tube Bacteria House
-                                            Media Filter</p>
+                                        <div class="cb-judul">
+                                            <p>Bio Tube Bacteria House
+                                                Media Filter</p>
+                                        </div>
                                         <p><b>Rp. 1.300.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -370,10 +426,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/uniring.jpeg" alt="uniring" class="card-img-top" height="170">
-                                        <p>Uniring rubber hose /
-                                            selang aerasi</p>
+                                        <div class="cb-judul">
+                                            <p>Uniring rubber hose /
+                                                selang aerasi</p>
+                                        </div>
                                         <p><b>Rp. 580.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -383,10 +441,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/selang.jpg" alt="selang" class="card-img-top" height="170">
-                                        <p>Bio Tube Bacteria House
-                                            Media Filter</p>
+                                        <div class="cb-judul">
+                                            <p>Bio Tube Bacteria House
+                                                Media Filter</p>
+                                        </div>
                                         <p><b>Rp. 90.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -396,10 +456,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/bak_ukur.jpg" alt="bak_ukur" class="card-img-top" height="170">
-                                        <p>Mistar ukur koi /
-                                            bak ukur</p>
+                                        <div class="cb-judul">
+                                            <p>Mistar ukur koi /
+                                                bak ukur</p>
+                                        </div>
                                         <p><b>Rp. 600.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -409,10 +471,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/matala.jpg" alt="matala" class="card-img-top" height="170">
-                                        <p>matala Abu Media Filter
-                                            Mekanik</p>
+                                        <div class="cb-judul">
+                                            <p>matala Abu Media Filter
+                                                Mekanik</p>
+                                        </div>
                                         <p><b>Rp. 974.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -429,11 +493,13 @@
                             </div>
                             <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/bio_media.png" alt="bio media" class="card-img-top"
                                             height="170">
-                                        <p>Bio Tube Bacteria House
-                                            Media Filter</p>
+                                        <div class="cb-judul">
+                                            <p>Bio Tube Bacteria House
+                                                Media Filter</p>
+                                        </div>
                                         <p><b>Rp. 1.300.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -443,10 +509,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/uniring.jpeg" alt="uniring" class="card-img-top" height="170">
-                                        <p>Uniring rubber hose /
-                                            selang aerasi</p>
+                                        <div class="cb-judul">
+                                            <p>Uniring rubber hose /
+                                                selang aerasi</p>
+                                        </div>
                                         <p><b>Rp. 580.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -456,10 +524,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/selang.jpg" alt="selang" class="card-img-top" height="170">
-                                        <p>Bio Tube Bacteria House
-                                            Media Filter</p>
+                                        <div class="cb-judul">
+                                            <p>Bio Tube Bacteria House
+                                                Media Filter</p>
+                                        </div>
                                         <p><b>Rp. 90.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -469,10 +539,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/bak_ukur.jpg" alt="bak_ukur" class="card-img-top" height="170">
-                                        <p>Mistar ukur koi /
-                                            bak ukur</p>
+                                        <div class="cb-judul">
+                                            <p>Mistar ukur koi /
+                                                bak ukur</p>
+                                        </div>
                                         <p><b>Rp. 600.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -482,10 +554,12 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/matala.jpg" alt="matala" class="card-img-top" height="170">
-                                        <p>matala Abu Media Filter
-                                            Mekanik</p>
+                                        <div class="cb-judul">
+                                            <p>matala Abu Media Filter
+                                                Mekanik</p>
+                                        </div>
                                         <p><b>Rp. 974.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -502,9 +576,11 @@
                             </div>
                             <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/koi_3.jpg" alt="bio media" class="card-img-top" height="170">
-                                        <p>Jenis ikan | Parent Fish | Pedigree | Size | Farm</p>
+                                        <div class="cb-judul">
+                                            <p>Jenis ikan | Parent Fish | Pedigree | Size | Farm</p>
+                                        </div>
                                         <p><b>Rp. 7.000.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -514,9 +590,11 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/koi_2.jpg" alt="uniring" class="card-img-top" height="170">
-                                        <p>Jenis ikan | Parent Fish | Pedigree | Size | Farm</p>
+                                        <div class="cb-judul">
+                                            <p>Jenis ikan | Parent Fish | Pedigree | Size | Farm</p>
+                                        </div>
                                         <p><b>Rp. 2.500.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -526,9 +604,11 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/koi_3.jpg" alt="selang" class="card-img-top" height="170">
-                                        <p>Jenis ikan | Parent Fish | Pedigree | Size | Farm</p>
+                                        <div class="cb-judul">
+                                            <p>Jenis ikan | Parent Fish | Pedigree | Size | Farm</p>
+                                        </div>
                                         <p><b>Rp. 3.500.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -538,9 +618,11 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/koi_3.jpg" alt="bak_ukur" class="card-img-top" height="170">
-                                        <p>Jenis ikan | Parent Fish | Pedigree | Size | Farm</p>
+                                        <div class="cb-judul">
+                                            <p>Jenis ikan | Parent Fish | Pedigree | Size | Farm</p>
+                                        </div>
                                         <p><b>Rp. 5.000.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"
@@ -550,9 +632,11 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="p-0 border bg-light">
+                                    <div class="p-0 border bg-light cart">
                                         <img src="img/koi_2.jpg" alt="matala" class="card-img-top" height="170">
-                                        <p>Jenis ikan | Parent Fish | Pedigree | Size | Farm</p>
+                                        <div class="cb-judul">
+                                            <p>Jenis ikan | Parent Fish | Pedigree | Size | Farm</p>
+                                        </div>
                                         <p><b>Rp. 3.974.000</b></p>
                                         <div class="col" style="text-align: end">
                                             <button class="border rounded-1 m-2 text-black-50"

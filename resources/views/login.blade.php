@@ -35,7 +35,7 @@
 
 <div class="res">
     <div class="container d-flex justify-content-center align-content-center p-0">
-        <div class="card w-100" style="height: 100vh">
+        <div class="card w-100" style="height: 105vh">
             <div class="card-body">
                 <a href="/" class="text-dark" style="text-decoration: blink"><i class="fa-solid fa-arrow-left text dark"></i> back to main page</a>
                 <br>

@@ -55,6 +55,7 @@
                 font-size: 10px !important;
             }
         }
+        
     </style>
 
 

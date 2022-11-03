@@ -15,10 +15,46 @@
                 display: none;
             }
         }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .cb-judul {
+            height: 7rem;
+
+        }
+
+        .cb-judu {
+            height: 6rem;
+        }
     </style>
 
-    <div class="container-fluit" style="background-color:red;" heigh="25vh">
-        <img src="img/Frame.png" class="d-block w-100" alt="Frame">
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="img/Frame.png" class="d-block w-100" alt="Frame">
+            </div>
+            <div class="carousel-item">
+                <img src="img/banner.jpg" class="d-block w-100" alt="Frame">
+            </div>
+            <div class="carousel-item">
+                <img src="img/Frame.png" class="d-block w-100" alt="Frame">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
 
     <div class="container mt-3 mt-lg mt-lg-5">
@@ -27,45 +63,49 @@
 
     <div class="container nav-atas">
         <div class="row">
-            <div class="col-6 col-lg-3">
-                <div class="card modal-header">
+            <div class="col-6 col-lg-3 mt-3">
+                <div class="card">
                     <img src="img/koi.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 style="font-size: 10px" class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm
-                        </h5>
+                        <div class="cb-judu">
+                            <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm</h5>
+                        </div>
                         <p style="font-size: 10px" class="card-text ma">Starting Price</p>
                         <p style="color :red;font-size: 12px">Rp. 10.500.000</p>
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-lg-3">
-                <div class="card modal-header">
+            <div class="col-6 col-lg-3 mt-3">
+                <div class="card">
                     <img src="img/koi.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 style="font-size: 10px" class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm
-                        </h5>
+                        <div class="cb-judu">
+                            <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm</h5>
+                        </div>
                         <p style="font-size: 10px" class="card-text ma">Starting Price</p>
                         <p style="color :red;font-size: 12px">Rp. 5.500.000</p>
                     </div>
                 </div>
             </div>
             <div class="col-6 col-lg-3 mt-3">
-                <div class="card modal-header">
+                <div class="card">
                     <img src="img/koi.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 style="font-size: 10px" class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm
-                        </h5>
+                        <div class="cb-judu">
+                            <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm</h5>
+                        </div>
                         <p style="font-size: 10px" class="card-text ma">Starting Price</p>
                         <p style="color :red;font-size: 12px">Rp. 8.500.000</p>
                     </div>
                 </div>
             </div>
             <div class="col-6 col-lg-3 mt-3">
-                <div class="card modal-header">
+                <div class="card">
                     <img src="img/koi.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 style="font-size: 10px" class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm
-                        </h5>
+                        <div class="cb-judu">
+                            <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm</h5>
+                        </div>
                         <p style="font-size: 10px" class="card-text ma">Starting Price</p>
                         <p style="color :red;font-size: 12px">Rp. 4.500.000</p>
                     </div>
@@ -77,40 +117,48 @@
     <div class="container nav-samping">
         <div class="row">
             <div class="col-6 col-lg-3">
-                <div class="card modal-header">
+                <div class="card">
                     <img src="img/koi.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm</h5>
+                        <div class="cb-judul">
+                            <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm</h5>
+                        </div>
                         <p class="card-text ma">Starting Price</p>
                         <p style="color :red">Rp. 10.500.000</p>
                     </div>
                 </div>
             </div>
             <div class="col-6 col-lg-3">
-                <div class="card modal-header">
+                <div class="card">
                     <img src="img/koi.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm</h5>
+                        <div class="cb-judul">
+                            <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm</h5>
+                        </div>
                         <p class="card-text ma">Starting Price</p>
                         <p style="color :red">Rp. 5.500.000</p>
                     </div>
                 </div>
             </div>
             <div class="col-6 col-lg-3">
-                <div class="card modal-header">
+                <div class="card">
                     <img src="img/koi.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm</h5>
+                        <div class="cb-judul">
+                            <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm</h5>
+                        </div>
                         <p class="card-text ma">Starting Price</p>
                         <p style="color :red">Rp. 8.500.000</p>
                     </div>
                 </div>
             </div>
             <div class="col-6 col-lg-3">
-                <div class="card modal-header">
+                <div class="card">
                     <img src="img/koi.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm</h5>
+                        <div class="cb-judul">
+                            <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farm</h5>
+                        </div>
                         <p class="card-text ma">Starting Price</p>
                         <p style="color :red">Rp. 4.500.000</p>
                     </div>
@@ -127,14 +175,16 @@
 
     <div class="container nav-atas">
         <div class="d-flex overflow-scroll">
-            <div class="">
+            <div class="p-1">
                 <div class="p-3 border bg-light" style="width: 200px;/* height: 200px; */">
                     <a href="/detail_onelito_store">
                         <img src="img/bio_media.png" alt="bio media" class="card-img-top"
                             style=" height: 166;width: 166;">
                     </a>
-                    <p>Bio Tube Bacteria House
-                        Media Filter</p>
+                    <div class="cb-judu">
+                        <p>Bio Tube Bacteria House
+                            Media Filter</p>
+                    </div>
                     <p><b>Rp. 1.300.000</b></p>
                     <div class="row">
                         <div class="col-6 p-0">
@@ -152,14 +202,16 @@
                     </div>
                 </div>
             </div>
-            <div class="">
+            <div class="p-1">
                 <div class="p-3 border bg-light" style="width: 200px">
                     <a href="#">
                         <img src="img/uniring.jpeg" alt="uniring" class="card-img-top"
                             style=" height: 166;width: 166;">
                     </a>
-                    <p>Uniring rubber hose /
-                        selang aerasi</p>
+                    <div class="cb-judu">
+                        <p>Uniring rubber hose /
+                            selang aerasi</p>
+                    </div>
                     <p><b>Rp. 580.000</b></p>
                     <div class="row">
                         <div class="col-6 p-0">
@@ -177,14 +229,16 @@
                     </div>
                 </div>
             </div>
-            <div class="">
+            <div class="p-1">
                 <div class="p-3 border bg-light" style="width: 200px">
                     <a href="#">
                         <img src="img/selang.jpg" alt="selang" class="card-img-top"
                             style="width: 166px;height: 166px;">
                     </a>
-                    <p>Bio Tube Bacteria House
-                        Media Filter</p>
+                    <div class="cb-judu">
+                        <p>Bio Tube Bacteria House
+                            Media Filter</p>
+                    </div>
                     <p><b>Rp. 90.000</b></p>
                     <div class="row">
                         <div class="col-6 p-0">
@@ -202,14 +256,16 @@
                     </div>
                 </div>
             </div>
-            <div class="">
+            <div class="p-1">
                 <div class="p-3 border bg-light" style="width: 200px">
                     <a href="#">
                         <img src="img/bak_ukur.jpg" alt="bak_ukur" class="card-img-top"
                             style=" height: 166;width: 166;">
                     </a>
-                    <p>Mistar ukur koi /
-                        bak ukur</p>
+                    <div class="cb-judu">
+                        <p>Mistar ukur koi /
+                            bak ukur</p>
+                    </div>
                     <p><b>Rp. 600.000</b></p>
                     <div class="row">
                         <div class="col-6 p-0">
@@ -227,13 +283,15 @@
                     </div>
                 </div>
             </div>
-            <div class="">
+            <div class="p-1">
                 <div class="p-3 border bg-light" style="width: 200px">
                     <a href="#">
                         <img src="img/matala.jpg" alt="matala" class="card-img-top" style=" height: 166;width: 166;">
                     </a>
-                    <p>Matala Abu Media Filter
-                        Mekanik</p>
+                    <div class="cb-judu">
+                        <p>Matala Abu Media Filter
+                            Mekanik</p>
+                    </div>
                     <p><b>Rp. 974.000</b></p>
                     <div class="row">
                         <div class="col-6 p-0">
@@ -261,8 +319,10 @@
                     <div class="p-3 border bg-light">
                         <a href="/detail_onelito_store"><img src="img/bio_media.png" alt="bio media"
                                 class="card-img-top" height="170"></a>
-                        <p>Bio Tube Bacteria House
-                            Media Filter</p>
+                        <div class="cb-judu">
+                            <p>Bio Tube Bacteria House
+                                Media Filter</p>
+                        </div>
                         <p><b>Rp. 1.300.000</b></p>
                         <div class="row">
                             <div class="col-md-6 d-grid p-0">
@@ -283,8 +343,10 @@
                 <div class="col">
                     <div class="p-3 border bg-light">
                         <img src="img/uniring.jpeg" alt="uniring" class="card-img-top" height="170">
-                        <p>Uniring rubber hose /
-                            selang aerasi</p>
+                        <div class="cb-judu">
+                            <p>Uniring rubber hose /
+                                selang aerasi</p>
+                        </div>
                         <p><b>Rp. 580.000</b></p>
                         <div class="row">
                             <div class="col-md-6 d-grid p-0">
@@ -305,8 +367,10 @@
                 <div class="col">
                     <div class="p-3 border bg-light">
                         <img src="img/selang.jpg" alt="selang" class="card-img-top" height="170">
-                        <p>Bio Tube Bacteria House
-                            Media Filter</p>
+                        <div class="cb-judu">
+                            <p>Bio Tube Bacteria House
+                                Media Filter</p>
+                        </div>
                         <p><b>Rp. 90.000</b></p>
                         <div class="row">
                             <div class="col-md-6 d-grid p-0">
@@ -327,8 +391,9 @@
                 <div class="col">
                     <div class="p-3 border bg-light">
                         <img src="img/bak_ukur.jpg" alt="bak_ukur" class="card-img-top" height="170">
-                        <p>Mistar ukur koi /
-                            bak ukur</p>
+                        <div class="cb-judu">
+                            <p>Mistar ukur koi / bak ukur</p>
+                        </div>
                         <p><b>Rp. 600.000</b></p>
                         <div class="row">
                             <div class="col-md-6 d-grid p-0">
@@ -349,8 +414,10 @@
                 <div class="col">
                     <div class="p-3 border bg-light">
                         <img src="img/matala.jpg" alt="matala" class="card-img-top" height="170">
-                        <p>Matala Abu Media Filter
-                            Mekanik</p>
+                        <div class="cb-judu">
+                            <p>Matala Abu Media Filter
+                                Mekanik</p>
+                        </div>
                         <p><b>Rp. 974.000</b></p>
                         <div class="row">
                             <div class="col-md-6 d-grid p-0">
@@ -396,14 +463,14 @@
 
     <div class="container">
         <div class="justify-content-around row">
-            <div class="card col-md-3 col-sm-12 mt-3">
+            <div class="border col-md-3 col-9 mt-4">
                 <div class="card-body">
                     <p class="style text-center"><i class="fa-solid fa-envelope" style="color: red"></i></p>
                     <p class="style text-center"><b>Email</b></p>
                     <p class="style text-center">onelito@gmail.com</p>
                 </div>
             </div>
-            <div class="card col-md-3 col-sm-12 mt-3">
+            <div class="border col-md-3 col-9 mt-4">
                 <div class="card-body">
                     <p class="style text-center"><i class="fas fa-map-marker-alt" style="color: red"></i></p>
                     <p class="style text-center"><b>Address</b></p>
@@ -411,7 +478,7 @@
                         Tangerang City Banten 15310</p>
                 </div>
             </div>
-            <div class="card col-md-3 col-sm-12 mt-3">
+            <div class="border col-md-3 col-9 mt-4">
                 <div class="card-body">
                     <p class="style text-center"><i class="fas fa-phone" style="color: red"></i></p>
                     <p class="style text-center"><b>Contact Us</b></p>

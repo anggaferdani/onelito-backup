@@ -153,7 +153,7 @@
 
     <div class="web">
         <div class="container p-0">
-            <a href="/" class="text-dark" style="text-decoration: blink"><i
+            <a href="/homelog" class="text-dark" style="text-decoration: blink"><i
                     class="fa-solid fa-arrow-left text dark"></i> back to main page</a>
             <br><br>
             <div class="row">
