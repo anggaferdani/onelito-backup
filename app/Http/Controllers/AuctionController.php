@@ -163,7 +163,7 @@ class AuctionController extends Controller
 
         $maxBidData = LogBid::where('id_ikan_lelang', $idIkan)->orderBy('nominal_bid', 'desc')->first();
 
-        $maxBid = $maxBidData->nominal_bid ?? $auctionProduct->op;
+        $maxBid = $maxBidData->nominal_bid ?? $auctionProduct->ob;
 
         $autoBid = 0;
 
