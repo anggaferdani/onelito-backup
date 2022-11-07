@@ -27,10 +27,10 @@
                         <img src="img/koi_3.jpg" class="card-img-top" alt="...">
                         <br><br>
                     </div>
-                    <div>
+                    <!-- <div>
                         <a class="btn btn-danger mb-3 d-block" href="/bid" style="font-size: 12px" role="button">VIDEO <span><i
                             class="fa-solid fa-circle-chevron-right"></i></span></a>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="col-6 ps-0">
                     <p class="m-0" style="font-size: 11px">Detail Koi</p>
@@ -64,18 +64,18 @@
                         </table>
                     </h3>
 
-                    <hr class="m-0">
+                    <!-- <hr class="m-0">
 
                     <p class="m-0" style="font-size: 11px">Note :</p>
                     <p style="font-size: 10px">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum,
                         voluptas! Porro suscipit obcaecati eius quia qui dolorem harum ipsam, illo laudantium officiis
                         maiores commodi aliquid fugiat, laboriosam ipsa similique blanditiis.</p>
 
-                    <hr class="m-0">
+                    <hr class="m-0"> -->
 
                     <p class="" style="font-size:11px">Harga : <span class="alert-link text-danger"
                             style="font-size:12px">Rp 7.500.000</span></p>
-                        
+
 
                     <hr class="m-0">
                     <a class="btn btn-danger float-end mb-3 mt-3" href="/" role="button">Question <span><i
@@ -90,11 +90,11 @@
                     <div class="m-lg-auto">
                         <img src="img/koi_3.jpg" class="card-img-top" alt="...">
                         <br><br>
-                        <div class="card-body p-0">
+                        <!-- <div class="card-body p-0">
                             <a href="#" class="btn btn-danger w-100 d-flex justify-content-between"
                                 style="font-size:larger">VIDEO <span><i
                                         class="fa-solid fa-circle-chevron-right"></i></span></a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="col-9">
@@ -140,13 +140,13 @@
                         </div>
                     </div>
 
-                    <hr>
+                    <!-- <hr>
 
                     <p class="m-0" style="font-size: larger">Note :</p>
                     <p style="font-size: larger">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum,
                         voluptas! Porro suscipit obcaecati eius quia qui dolorem harum ipsam, illo laudantium officiis
                         maiores commodi aliquid fugiat, laboriosam ipsa similique blanditiis.</p>
-                    <hr>
+                    <hr> -->
 
                     <p style="font-size:30px">Harga : <span class="alert-link text-danger">Rp 7.500.000</span></p>
                     <hr>

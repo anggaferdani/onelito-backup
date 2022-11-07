@@ -24,7 +24,6 @@ class AuctionController extends Controller
             ])
             ->where('tgl_mulai', '<=', $now)
             ->where('tgl_akhir', '>=', $now)
-            ->where('kategori_event', Event::REGULAR)
             ->where('status_aktif', 1)
             ->orderBy('tgl_mulai')
             ->orderBy('created_at', 'desc')

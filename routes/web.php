@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin;
 use App\Http\Controllers\AuctionController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\ChampionFishController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KoiStockController;
 use App\Http\Controllers\MemberController;
@@ -47,6 +48,8 @@ Route::post('/register', [AuthenticationController::class, 'register'])->name('r
 Route::get('/auction', [AuctionController::class, 'index'])->name('auction.index');
 
 Route::get('/koi_stok', [KoiStockController::class, 'index'])->name('koi_stock.index');
+
+Route::get('/detail_koichampion', [ChampionFishController::class, 'index'])->name('koi_champion.index');
 
 
 // MEMBER
@@ -162,11 +165,11 @@ Route::get('/detail_koistok', function () {
     ]);
 });
 
-Route::get('/detail_koichampion', function () {
-    return view('detail_koichampion',[
-        "title" => "koi_stok"
-    ]);
-});
+// Route::get('/detail_koichampion', function () {
+//     return view('detail_koichampion',[
+//         "title" => "koi_stok"
+//     ]);
+// });
 
 Route::get('/login', function () {
     return view('login',[

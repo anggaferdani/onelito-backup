@@ -16,17 +16,41 @@
 
         }
     </style>
-    <div class="container">
-        <h5>Rules Auction</h5>
-        <p class="m-0">{{ $currentAuction->rules_event ?? "" }}</p>
+    @if ($currentAuction && $currentAuction->kategori_event === "Event")
+        @php
+            $bannerImg = 'img/event.png';
 
-        <div class="my-5">
-            <p style="color: red">{{ $currentAuction->deskripsi_event ?? "" }}</p>
+            if ($currentAuction->banner !== null) {
+                $bannerImg = url('storage') .'/'. $currentAuction->banner;
+            }
+        @endphp
+        <div class="container-fluid p-0 mb-3">
+            <img src="{{ $bannerImg }}" class="w-100" alt="...">
+            </br>
         </div>
+    @endif
+    <div class="container">
+        @if ($currentAuction && $currentAuction->kategori_event === "Regular")
+            <h5>Rules Auction</h5>
+            <p class="m-0">{{ $currentAuction->rules_event ?? "" }}</p>
+
+            <div class="my-5">
+                <p style="color: red">{{ $currentAuction->deskripsi_event ?? "" }}</p>
+            </div>
+        @endif
+
+        @php
+            $auctionTitle = "Special";
+
+            if ($currentAuction && $currentAuction->kategori_event === "Event") {
+                $auctionTitle = "Event";
+            }
+
+        @endphp
 
         <div class="container-fluid">
             <div>
-                <h5>Spesial Auction</h5>
+                <h5>{{ $auctionTitle }} Auction</h5>
             </div>
 
             <div class="row mb-5">
@@ -51,7 +75,7 @@
                     <div class="card">
                         <img src="{{ $photo }}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $auctionProduct->variety }} |   {{ $auctionProduct->breeder }} | Pedigree | {{ $auctionProduct->size }} | {{ $auctionProduct->bloodline }}</h5>
+                            <h5 class="card-title">{{ $auctionProduct->variety }} |   {{ $auctionProduct->breeder }} | {{ $auctionProduct->bloodline }} | {{ $auctionProduct->size }}</h5>
                             <p class="m-0">Number of bids</p>
                             <p class="" style="color: red">{{ $auctionProduct->bids_count }}</p>
                             <div class="row">
