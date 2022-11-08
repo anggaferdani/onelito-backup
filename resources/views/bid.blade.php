@@ -228,7 +228,8 @@
                         <form method="POST" id="normalBidForm" action="/auction/{{ $idIkan }}" class="row">
                             @csrf
                             <div class="col-7 col-md-9" style="padding-right:0px">
-                                <input type="number" id="nominal_bid" name="nominal_bid" value="{{ $logBid->nominal_bid ?? '' }}" class="form-control" id="exampleFormControlInput1" placeholder="Nominal BID">
+                                <input type="text" id="nominal_bid2" name="nominal_bid2" value="{{ $logBid->nominal_bid ?? '' }}" class="form-control number-separator" id="exampleFormControlInput1" placeholder="Nominal BID">
+                                <input type="text" hidden id="nominal_bid" name="nominal_bid" value="{{ $logBid->nominal_bid ?? '' }}" class="form-control number-separator" id="exampleFormControlInput1" placeholder="Nominal BID">
                             </div>
                             <div class="col-5 col-md-3" style="padding-left:0px">
                                 <button id="buttonNormalBid" type="submit" class="btn btn-danger w-100 justify-content-between">BID AUCTION</button>
@@ -244,7 +245,8 @@
                     <div class="col-12 col-md-8 no-gutters">
                         <form method="POST" id="autoBidForm" action="/auction/{{ $idIkan }}"  class="row">
                             <div class="col-7 col-md-9" style="padding-right:0px">
-                                <input type="number" id="auto_bid" name="auto_bid" class="form-control" value="{{ $logBid->auto_bid ?? '' }}" id="exampleFormControlInput1" placeholder="Nominal Max Auto BID">
+                                <input type="text" id="auto_bid2" name="auto_bid2" class="form-control" value="{{ $logBid->auto_bid ?? '' }}" id="exampleFormControlInput1" placeholder="Nominal Max Auto BID">
+                                <input hidden type="text" id="auto_bid" name="auto_bid" class="form-control" value="{{ $logBid->auto_bid ?? '' }}" id="exampleFormControlInput1" placeholder="Nominal Max Auto BID">
                             </div>
                             <div class="col-5 col-md-3" style="padding-left:0px">
                                 <button type="submit" id="buttonAutoBid" class="btn btn-danger w-100 justify-content-between">
@@ -263,6 +265,7 @@
 
 @push('scripts')
     <script src="{{ asset('library/moment/min/moment.min.js') }}"></script>
+    <script src="{{ asset('/js/easy-number-separator.js') }}"></script>
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
@@ -284,6 +287,18 @@
     let currentTime = "{{ $now }}";
     let addedExtraTime = "{{ $addedExtraTime }}";
     let currentEndTime = auctionProduct.event.tgl_akhir;
+
+    easyNumberSeparator({
+        selector: '#nominal_bid2',
+        separator: '.',
+        resultInput: '#nominal_bid',
+    })
+
+    easyNumberSeparator({
+        selector: '#auto_bid2',
+        separator: '.',
+        resultInput: '#auto_bid',
+    })
 
     $('#normalBidForm').submit(function(e) {
         e.preventDefault();
