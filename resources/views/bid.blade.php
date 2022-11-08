@@ -32,12 +32,8 @@
                 }
 
                 button.btn-danger {
-                    font-size: 14px;
-                }
-
-                .spinner-border {
-                    width: 1rem;
-                    height: 1rem;
+                    font-size: 13px;
+                    height: 38px;
                 }
             }
         </style>
@@ -210,7 +206,7 @@
                         maiores commodi aliquid fugiat, laboriosam ipsa similique blanditiis.</p>
                     <hr>
 
-                    <p style="font-size:30px">Harga saat ini: <span id="currentPrice" class="alert-link text-danger">Rp {{ $currentPrice }}</span></p>
+                    <p style="font-size:30px">Harga saat ini: <span id="currentPrice" class="alert-link text-danger number-separator">Rp. {{ $currentPrice }}</span></p>
                     <hr>
 
                     <p style="font-size:25px">Kelipatan BID: <span class="alert-link text-danger">Rp. {{ $auctionProduct->kb }}</span></p>
@@ -228,10 +224,10 @@
                         <form method="POST" id="normalBidForm" action="/auction/{{ $idIkan }}" class="row">
                             @csrf
                             <div class="col-7 col-md-9" style="padding-right:0px">
-                                <input type="text" id="nominal_bid2" name="nominal_bid2" value="{{ $logBid->nominal_bid ?? '' }}" class="form-control number-separator" id="exampleFormControlInput1" placeholder="Nominal BID">
-                                <input type="text" hidden id="nominal_bid" name="nominal_bid" value="{{ $logBid->nominal_bid ?? '' }}" class="form-control number-separator" id="exampleFormControlInput1" placeholder="Nominal BID">
+                                <!-- <input type="text" id="nominal_bid2" name="nominal_bid2" value="{{ $logBid->nominal_bid ?? '' }}" class="form-control number-separator" id="exampleFormControlInput1" placeholder="Nominal BID"> -->
+                                <input type="text" id="nominal_bid" name="nominal_bid" value="" class="form-control number-separator" id="exampleFormControlInput1" placeholder="Nominal BID">
                             </div>
-                            <div class="col-5 col-md-3" style="padding-left:0px">
+                            <div class="col-5 col-md-3" style="padding-left:0px; max-height: 38px">
                                 <button id="buttonNormalBid" type="submit" class="btn btn-danger w-100 justify-content-between">BID AUCTION</button>
                                 <button hidden onclick="cancelAutoBid()" id="buttonCancelAutoBid" type="button" class="btn btn-danger mb-3 w-100 justify-content-between">CANCEL AUTO BID</button>
                             </div>
@@ -245,8 +241,8 @@
                     <div class="col-12 col-md-8 no-gutters">
                         <form method="POST" id="autoBidForm" action="/auction/{{ $idIkan }}"  class="row">
                             <div class="col-7 col-md-9" style="padding-right:0px">
-                                <input type="text" id="auto_bid2" name="auto_bid2" class="form-control" value="{{ $logBid->auto_bid ?? '' }}" id="exampleFormControlInput1" placeholder="Nominal Max Auto BID">
-                                <input hidden type="text" id="auto_bid" name="auto_bid" class="form-control" value="{{ $logBid->auto_bid ?? '' }}" id="exampleFormControlInput1" placeholder="Nominal Max Auto BID">
+                                <!-- <input type="text" id="auto_bid2" name="auto_bid2" class="form-control" value="{{ $logBid->auto_bid ?? '' }}" id="exampleFormControlInput1" placeholder="Nominal Max Auto BID"> -->
+                                <input type="text" id="auto_bid" name="auto_bid" class="form-control" value="" id="exampleFormControlInput1" placeholder="Nominal Max Auto BID">
                             </div>
                             <div class="col-5 col-md-3" style="padding-left:0px">
                                 <button type="submit" id="buttonAutoBid" class="btn btn-danger w-100 justify-content-between">
@@ -265,7 +261,7 @@
 
 @push('scripts')
     <script src="{{ asset('library/moment/min/moment.min.js') }}"></script>
-    <script src="{{ asset('/js/easy-number-separator.js') }}"></script>
+    <script src="{{ asset('/js/price-separator.min.js') }}"></script>
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
@@ -288,22 +284,40 @@
     let addedExtraTime = "{{ $addedExtraTime }}";
     let currentEndTime = auctionProduct.event.tgl_akhir;
 
-    easyNumberSeparator({
-        selector: '#nominal_bid2',
-        separator: '.',
-        resultInput: '#nominal_bid',
-    })
+    $('#nominal_bid').priceFormat({
+        prefix: '',
+        centsLimit: 0,
+        thousandsSeparator: '.'
+    });
 
-    easyNumberSeparator({
-        selector: '#auto_bid2',
-        separator: '.',
-        resultInput: '#auto_bid',
-    })
+    $('#auto_bid').priceFormat({
+        prefix: '',
+        centsLimit: 0,
+        thousandsSeparator: '.'
+    });
+
+    // easyNumberSeparator({
+    //     selector: '#nominal_bid2',
+    //     separator: '.',
+    //     resultInput: '#nominal_bid',
+    // })
+
+    // easyNumberSeparator({
+    //     selector: '#auto_bid2',
+    //     separator: '.',
+    //     resultInput: '#auto_bid',
+    // })
 
     $('#normalBidForm').submit(function(e) {
         e.preventDefault();
         let formData = new FormData(this);
         let url = $(this).attr('action')
+        let kb = parseInt(auctionProduct.kb);
+
+        var inputNominalBid = parseInt($('#nominal_bid').unmask());
+        var nextNominalBid = (currentMaxBid + inputNominalBid);
+
+        formData.set('nominal_bid', nextNominalBid)
 
         bidding(formData, url);
     })
@@ -324,7 +338,7 @@
         $('#buttonCancelAutoBid').removeAttr('hidden');
         $('#buttonNormalBid').attr('hidden', 'hidden');
         $('#buttonAutoBid').html(`
-            <div class="spinner-border" role="status">
+            <div class="spinner-border" style="width: 1rem; height: 1rem" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
         `)
@@ -333,14 +347,15 @@
         let url = $(this).attr('action')
         let kb = parseInt(auctionProduct.kb);
 
-        let inputNominalBid = parseInt($('#nominal_bid').val());
+        let inputNominalBid = parseInt($('#nominal_bid').unmask());
         let nextNominalBid = (kb + inputNominalBid);
 
         statusAutoBid = true;
 
-        autoBid = parseInt($('#auto_bid').val());
+        autoBid = parseInt($('#auto_bid').unmask());
 
         formData.append('nominal_bid', nextNominalBid)
+        formData.append('auto_bid', autoBid)
         // var interval = setInterval(function(){
         //     if(timesRun === 60){
         //         clearInterval(interval);
@@ -369,14 +384,14 @@
 
             let kb = parseInt(auctionProduct.kb);
 
-            let inputNominalBid = parseInt($('#nominal_bid').val());
+            let inputNominalBid = parseInt($('#nominal_bid').unmask());
             let nextNominalBid = (kb + inputNominalBid);
 
             formData.set('nominal_bid', nextNominalBid)
 
         },
         success: function(res){
-            $('#nominal_bid').val(formData.get('nominal_bid'))
+            $('#nominal_bid').val('')
             nominalBid = formData.get('nominal_bid');
             // autoBid = parseInt($('#auto_bid').val());
 
@@ -394,7 +409,7 @@
     {
         urlGet = `/auction/${idIkan}/detail`;
 
-        autoBid = parseInt($('#auto_bid').val());
+        autoBid = parseInt($('#auto_bid').unmask());
 
         $.ajax({
         type: 'GET',
@@ -419,15 +434,11 @@
                 return false;
             }
 
-            if (currentMaxBid > autoBid) {
-                console.log('currentMaxBid > autoBid')
+            if (currentMaxBid >= autoBid) {
+                cancelAutoBid();
+
                 return false;
             }
-
-            // if (nominalBid < currentMaxBid) {
-            //     console.log('currentMaxBid > nominalBid')
-            //     return false;
-            // }
 
             let formData = new FormData(document.getElementById("autoBidForm"));
 
@@ -436,6 +447,9 @@
 
             let nextNominalBid = (kb + currentMaxBid);
 
+            var autoBid = parseInt($('#auto_bid').unmask());
+
+            formData.append('auto_bid', autoBid)
             formData.set('nominal_bid', nextNominalBid)
 
             bidding(formData, url);
