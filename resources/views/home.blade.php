@@ -64,7 +64,7 @@
     </div>
 
     @php
-        $auctionProducts = $nextAuction->auctionProducts ?? [];
+        $auctionProducts = $nextAuction->pluck('auctionProducts')->flatten();
     @endphp
     <div class="container nav-atas">
         <div class="row">
@@ -81,7 +81,7 @@
                 <img src="{{ $photo }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <div class="cb-judu">
-                        <h5 style="font-size: 10px" class="card-title">{{ $auctionProduct->variety }} |   {{ $auctionProduct->breeder }} | Pedigree | {{ $auctionProduct->size }} | {{ $auctionProduct->bloodline }}</h5>
+                        <h5 style="font-size: 12px" class="card-title">{{ $auctionProduct->variety }} |   {{ $auctionProduct->breeder }} | Pedigree | {{ $auctionProduct->size }} | {{ $auctionProduct->bloodline }}</h5>
                     </div>
                     <p style="font-size: 10px" class="card-text ma" >Starting Price</p>
                     <p style="color :red;font-size: 12px">Rp. {{ $auctionProduct->ob }}</p>
@@ -108,7 +108,7 @@
                 <img src="{{ $photo }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <div class="cb-judu">
-                        <h5 style="font-size: 10px" class="card-title">{{ $auctionProduct->variety }} |   {{ $auctionProduct->breeder }} | Pedigree | {{ $auctionProduct->size }} | {{ $auctionProduct->bloodline }}</h5>
+                        <h5 style="font-size: 12px" class="card-title">{{ $auctionProduct->variety }} |   {{ $auctionProduct->breeder }} | Pedigree | {{ $auctionProduct->size }} | {{ $auctionProduct->bloodline }}</h5>
                     </div>
                     <p class="card-text ma" >Starting Price</p>
                     <p style="color :red">Rp. {{ $auctionProduct->ob }}</p>

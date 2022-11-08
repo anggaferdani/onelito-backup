@@ -54,9 +54,7 @@
             </div>
 
             <div class="row mb-5">
-            @php
-                $auctionProducts = $currentAuction->auctionProducts ?? [];
-            @endphp
+
             @forelse($auctionProducts as $auctionProduct)
                     @php
                         $photo = 'img/koi_3.jpg';
@@ -86,7 +84,7 @@
 
                                 <div class="col-6 p-0 px-lg-2">
                                     <p class="m-0" style="text-align: end;font-size:80%">Countdown</p>
-                                    <p class="m-0 countdown-label" id="{{ $auctionProduct->id_ikan }}" data-end-extratime="{{ $auctionProduct->tgl_akhir_extra_time }}" style="text-align: end;color :red;font-size:75%;">00:00:00</p>
+                                    <p class="m-0 countdown-label" id="{{ $auctionProduct->id_ikan }}" data-endtime="{{ $auctionProduct->event->tgl_akhir }}" data-end-extratime="{{ $auctionProduct->tgl_akhir_extra_time }}" style="text-align: end;color :red;font-size:75%;">00:00:00</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -124,20 +122,20 @@
 <script src="{{ asset('library/moment/min/moment.min.js') }}"></script>
 <script type="text/javascript">
     let currentTime = "{{ $now }}";
-    let currentEndTime = "{{ $currentAuction->tgl_akhir ?? null }}";
     let timerLabels = document.getElementsByClassName('countdown-label');
 
     function allTimer() {
         $.each(timerLabels,function(prefix,val) {
             var addedExtraTime = $(val).attr('data-end-extratime');
+            var currentEndTime = $(val).attr('data-endtime');
 
-            startTimer(addedExtraTime, val)
+            startTimer(addedExtraTime, currentEndTime, val)
         })
     }
 
     allTimer()
 
-    function startTimer(addedExtraTime, val) {
+    function startTimer(addedExtraTime, currentEndTime, val) {
         var currTime = moment()
         var end = moment(currentEndTime);
         var endTime = end.valueOf();
@@ -162,11 +160,11 @@
             const minuteString = `${minutes < 10 ? '0' : ''}${minutes}`;
             const secondString = `${seconds < 10 ? '0' : ''}${seconds}`;
             const timerString = `${hourString}:${minuteString}:${secondString}`;
-            $('.countdown-label').html(timerString);
+            $(val).html(timerString);
 
             // If the count down is finished, finish the exam
             if (duration < 0) {
-                $('.countdown-label').html(`00:00:00`);
+                $(val).html(`00:00:00`);
 
                 clearInterval(x);
                 startExtraTimer(addedExtraTime, val);

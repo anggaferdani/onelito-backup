@@ -16,10 +16,10 @@ class HomeController extends Controller
         $now = Carbon::now()->format('Y-m-d');
 
         $nextAuction = Event::with('auctionProducts.photo')->where('tgl_akhir', '>=', $now)
-            ->where('tgl_mulai', '>', $now)
+            ->where('tgl_mulai', '>=', $now)
             ->where('status_aktif', 1)
             ->orderBy('tgl_mulai')
-            ->first();
+            ->get();
 
         $hotProductStores = Product::where('status_aktif', 1)
             ->with(['category', 'photo'])

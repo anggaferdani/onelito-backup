@@ -17,24 +17,31 @@ class AuctionController extends Controller
 
         $now = Carbon::now()->format('Y-m-d');
 
-        $currentAuction = Event::with([
+        $currentAuctions = Event::with([
             'auctionProducts' => function ($q) {
-                $q->withCount('bids')->with(['photo', 'maxBid']);
+                $q->withCount('bids')->with(['photo', 'maxBid', 'event']);
             }
             ])
-            ->where('tgl_mulai', '<=', $now)
+            ->where('tgl_mulai', '>=', $now)
             ->where('tgl_akhir', '>=', $now)
             ->where('status_aktif', 1)
             ->orderBy('tgl_mulai')
             ->orderBy('created_at', 'desc')
-            ->first();
+            ->get();
 
-        if ($currentAuction !== null) {
-            foreach ($currentAuction->auctionProducts as $product) {
-                $product->tgl_akhir_extra_time = Carbon::createFromDate($currentAuction->tgl_akhir)
+        $currentProducts = $currentAuctions->pluck('auctionProducts')
+        ->flatten(1);
+
+        $currentAuction = null;
+
+        if (count($currentProducts) > 1) {
+            foreach ($currentProducts as $product) {
+                $product->tgl_akhir_extra_time = Carbon::createFromDate($product->event->tgl_akhir)
                     ->addMinutes($product->extra_time ?? 0)->toDateTimeString();
 
             }
+
+            $currentAuction = $currentAuctions->first();
         }
 
         Carbon::setLocale('id');
@@ -44,6 +51,7 @@ class AuctionController extends Controller
         return view('auction',[
             'auth' => $auth,
             'currentAuction' => $currentAuction,
+            'auctionProducts' => $currentProducts,
             'now' => $now,
             'title' => 'auction'
         ]);
@@ -199,10 +207,5 @@ class AuctionController extends Controller
             'auctionProduct' => $auctionProduct,
             'title' => 'ONELITO KOI'
         ]);
-    }
-
-    private function getCurrentMaxBid($idIkan)
-    {
-
     }
 }
