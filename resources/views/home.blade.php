@@ -60,7 +60,7 @@
     </div>
 
     <div class="container mt-3 mt-lg mt-lg-5">
-        <h5><b>Next event</b></h5>
+        <h5><b>Auction</b></h5>
     </div>
 
     @php
