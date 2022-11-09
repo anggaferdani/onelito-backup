@@ -35,7 +35,7 @@
                 <label for="edit_tgl_akhir">Tgl. Akhir</label>
                 <input  type="text" id="edit_tgl_akhir" class="form-control datepicker" name="edit_tgl_akhir" placeholder="">
             </div>
-            <div class="form-group">
+            <div class="form-group banner">
                 <label for="edit_banner">Banner</label>
                 <input type="file" name="edit_banner" id="edit_banner" class="form-control">
                 <br>
@@ -44,7 +44,7 @@
                     height: 400px;
                     object-fit: cover;">
             </div>
-            <div class="form-group">
+            <div class="form-group total_hadiah">
                 <label for="edit_total_hadiah">Total Hadiah</label>
                 <input  type="number" id="edit_total_hadiah" class="form-control" name="edit_total_hadiah" placeholder="">
             </div>

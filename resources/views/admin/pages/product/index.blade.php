@@ -90,6 +90,7 @@
     <!-- Page Specific JS File -->
     <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
     <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('/js/price-separator.min.js') }}"></script>
 
 
     <script type="text/javascript">
@@ -101,6 +102,18 @@
     </script>
     <script>
         $(document).ready(function() {
+            $('#harga').priceFormat({
+                prefix: '',
+                centsLimit: 0,
+                thousandsSeparator: '.'
+            });
+
+            $('#edit_harga').priceFormat({
+                prefix: '',
+                centsLimit: 0,
+                thousandsSeparator: '.'
+            });
+
             $('#table-1').DataTable({
                 // dom: 'Bfrtip',
                 lengthMenu: [

@@ -61,6 +61,7 @@ class ProductController extends Controller
 
         $data['create_by'] = Auth::guard('admin')->id();
         $data['update_by'] = Auth::guard('admin')->id();
+        $data['harga'] = str_replace('.', '', $data['harga']);
         $data['status_aktif'] = 1;
 
         $image = null;
@@ -117,6 +118,8 @@ class ProductController extends Controller
     {
         $product = Product::With('photo')->findOrFail($id);
         $data = $this->request->all();
+        $data['harga'] = str_replace('.', '', $data['harga']);
+
         $validator = Validator::make($this->request->all(), [
         ]);
 

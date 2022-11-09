@@ -97,6 +97,7 @@
     <script src="{{ asset('library/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('library/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
     <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('/js/price-separator.min.js') }}"></script>
 
     <script type="text/javascript">
         $.ajaxSetup({
@@ -107,6 +108,18 @@
     </script>
     <script>
         $(document).ready(function() {
+
+            $('#total_hadiah').priceFormat({
+                prefix: '',
+                centsLimit: 0,
+                thousandsSeparator: '.'
+            });
+
+            $('#edit_total_hadiah').priceFormat({
+                prefix: '',
+                centsLimit: 0,
+                thousandsSeparator: '.'
+            });
 
             $('#table-1').DataTable({
                 // dom: 'Bfrtip',
@@ -221,6 +234,16 @@
                     $('#edit_tgl_akhir').val(res.tgl_akhir)
                     $('#edit_banner2').attr('src', ``)
 
+                    if (res.kategori_event === 'Regular') {
+                        $('.banner').addClass('d-none');
+                        $('.total_hadiah').addClass('d-none');
+                    }
+
+                    if (res.kategori_event === 'Event') {
+                        $('.banner').removeClass('d-none');
+                        $('.total_hadiah').removeClass('d-none');
+                    }
+
                     if (res.banner) {
                         $('#edit_banner2').attr('src', `/storage/${res.banner}`)
                     }
@@ -289,6 +312,34 @@
                     })
                 }
             })
+        })
+
+        $(document).on('change', 'select#kategori_event', function () {
+            var val = $(this).val()
+
+            if (val === 'Regular') {
+                $('.banner').addClass('d-none');
+                $('.total_hadiah').addClass('d-none');
+            }
+
+            if (val === 'Event') {
+                $('.banner').removeClass('d-none');
+                $('.total_hadiah').removeClass('d-none');
+            }
+        })
+
+        $(document).on('change', 'select#edit_kategori_event', function () {
+            var val = $(this).val()
+
+            if (val === 'Regular') {
+                $('.banner').addClass('d-none');
+                $('.total_hadiah').addClass('d-none');
+            }
+
+            if (val === 'Event') {
+                $('.banner').removeClass('d-none');
+                $('.total_hadiah').removeClass('d-none');
+            }
         })
 
         $(document).on('click','button#btn-delete',function() {

@@ -96,6 +96,8 @@
     <!-- bootsrap datepicker -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 
+    <script src="{{ asset('/js/price-separator.min.js') }}"></script>
+
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
@@ -105,6 +107,30 @@
     </script>
     <script>
         $(document).ready(function() {
+            $('#ob').priceFormat({
+                prefix: '',
+                centsLimit: 0,
+                thousandsSeparator: '.'
+            });
+
+            $('#kb').priceFormat({
+                prefix: '',
+                centsLimit: 0,
+                thousandsSeparator: '.'
+            });
+
+            $('#edit_ob').priceFormat({
+                prefix: '',
+                centsLimit: 0,
+                thousandsSeparator: '.'
+            });
+
+            $('#edit_kb').priceFormat({
+                prefix: '',
+                centsLimit: 0,
+                thousandsSeparator: '.'
+            });
+
             $("#dob").datepicker( {
                 format: "mm-yyyy",
                 startView: "months",

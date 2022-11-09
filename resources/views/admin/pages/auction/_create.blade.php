@@ -34,11 +34,11 @@
                 <label for="tgl_akhir">Tgl. Akhir</label>
                 <input  type="text" id="tgl_akhir" class="form-control datepicker" name="tgl_akhir" placeholder="" min="document.getElementById('tgl_mulai').value">
             </div>
-            <div class="form-group">
+            <div class="form-group banner d-none">
                 <label for="banner">Banner</label>
                 <input type="file" name="banner" id="banner" class="form-control">
             </div>
-            <div class="form-group">
+            <div class="form-group total_hadiah d-none">
                 <label for="total_hadiah">Total Hadiah</label>
                 <input  type="number" id="total_hadiah" class="form-control" name="total_hadiah" placeholder="">
             </div>

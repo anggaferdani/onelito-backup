@@ -53,6 +53,8 @@ class EventFishController extends Controller
 
         $data['create_by'] = Auth::guard('admin')->id();
         $data['update_by'] = Auth::guard('admin')->id();
+        $data['ob'] = str_replace('.', '', $data['ob']);
+        $data['kb'] = str_replace('.', '', $data['kb']);
         $data['status_aktif'] = 1;
 
         $image = null;
@@ -109,6 +111,8 @@ class EventFishController extends Controller
     {
         $fish = EventFish::With('photo')->findOrFail($id);
         $data = $this->request->all();
+        $data['ob'] = str_replace('.', '', $data['ob']);
+        $data['kb'] = str_replace('.', '', $data['kb']);
         $validator = Validator::make($this->request->all(), [
         ]);
 
