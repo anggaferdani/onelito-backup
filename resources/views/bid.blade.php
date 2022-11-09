@@ -214,6 +214,7 @@
 
                     <p class="m-0" style="font-size: larger">Countdown</p>
                     <p class="alert-link text-danger countdown-label" style="font-size: 30px">00 : 00 : 00</p>
+
                     <br><br>
                 </div>
 
@@ -225,7 +226,7 @@
                             @csrf
                             <div class="col-7 col-md-9" style="padding-right:0px">
                                 <!-- <input type="text" id="nominal_bid2" name="nominal_bid2" value="{{ $logBid->nominal_bid ?? '' }}" class="form-control number-separator" id="exampleFormControlInput1" placeholder="Nominal BID"> -->
-                                <input type="text" id="nominal_bid" name="nominal_bid" value="" class="form-control number-separator" id="exampleFormControlInput1" placeholder="Nominal BID">
+                                <input type="text" id="nominal_bid" name="nominal_bid" value="" required class="form-control number-separator" id="exampleFormControlInput1" placeholder="Nominal BID">
                             </div>
                             <div class="col-5 col-md-3" style="padding-left:0px; max-height: 38px">
                                 <button id="buttonNormalBid" type="submit" class="btn btn-danger w-100 justify-content-between">BID AUCTION</button>
@@ -250,6 +251,9 @@
                                 </button>
                             </div>
                         </form>
+
+                        <div class="alert alert-danger bid alert-dismissible fade mb-0 mt-1" role="alert">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -400,7 +404,11 @@
             // }
         },
         error(err){
+            $('.alert.bid').html(err.responseJSON.message);
 
+            $('.alert.bid').addClass('show');
+
+            setTimeout(function(){ $('.alert.bid').removeClass('show') }, 2000);
         }
     })
     }

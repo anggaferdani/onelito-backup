@@ -22,7 +22,7 @@ class AuctionController extends Controller
                 $q->withCount('bids')->with(['photo', 'maxBid', 'event']);
             }
             ])
-            ->where('tgl_mulai', '>=', $now)
+            ->where('tgl_mulai', '<=', $now)
             ->where('tgl_akhir', '>=', $now)
             ->where('status_aktif', 1)
             ->orderBy('tgl_mulai')
