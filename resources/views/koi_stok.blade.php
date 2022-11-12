@@ -26,7 +26,7 @@
 
                     <div class="col mt-5">
                         <div class="card">
-                            <img src="img/koi_3.jpg" class="card-img-top" alt="..." style="height: 310px">
+                            <img src="img/koi12.jpg" class="card-img-top" alt="..." style="height: 310px">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $fish->variety }} |   {{ $fish->breeder }} | Pedigree | {{ $fish->size }} | {{ $fish->bloodline }}</h5>
 
