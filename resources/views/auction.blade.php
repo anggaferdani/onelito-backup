@@ -2,13 +2,23 @@
 
 @section('container')
     <style>
-        .card {
+        /* .card {
             width: 100%;
             height: 100%;
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             flex-direction: column;
+        } */
+
+        @media screen and (max-width: 600px) {
+            .card-body {
+                min-height: 217px;
+            }
+
+            .card-title {
+                min-height: 26px;
+            }
         }
 
         .cb-judul {
@@ -53,7 +63,7 @@
                 <h5>{{ $auctionTitle }} Auction</h5>
             </div>
 
-            <div class="row mb-5">
+            <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 mb-5">
 
             @forelse($auctionProducts as $auctionProduct)
                     @php
@@ -69,9 +79,9 @@
                             $currentMaxBid = $auctionProduct->maxBid->nominal_bid;
                         }
                     @endphp
-                <div class="col-6 col-md-3 mt-3">
+                <div class="col mt-3">
                     <div class="card">
-                        <img src="{{ $photo }}" class="card-img-top" alt="...">
+                        <img src="{{ $photo }}" class="card-img-top" alt="..." style="height: 310px">
                         <div class="card-body">
                             <h5 class="card-title">{{ $auctionProduct->variety }} |   {{ $auctionProduct->breeder }} | {{ $auctionProduct->bloodline }} | {{ $auctionProduct->size }}</h5>
                             <p class="m-0">Number of bids</p>
@@ -103,8 +113,8 @@
                                     <a target="_blank" href="{{ $auctionProduct->link_video }}" class="btn btn-light w-100 d-flex justify-content-between">VIDEO
                                         <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                                 </div>
-                                <div class="col-3 p-0 px-sm-4">
-                                    <button class="border-0 m-1" style="background-color: transparent;font-size:larger"><i
+                                <div class="col-3 p-0">
+                                    <button class="border-0 m-1" style="background-color: transparent;font-size:larger; float: right"><i
                                             class="far fa-heart"></i></button>
                                 </div>
 

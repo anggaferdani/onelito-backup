@@ -2,31 +2,31 @@
 
 @section('container')
 <style>
-    .card {
+    /* .card {
         width: 100%;
         height: 100%;
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
         flex-direction: column;
-    }
+    } */
 
     .cb-judul {
-        height: 7rem;
-
+        /* height: 7rem; */
+        height: 55%;
     }
 </style>
     <div class="container-fluit">
         <div class="container">
-            <div class="row mb-5">
+            <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 mb-5">
             @forelse($fishes as $fish)
                     @php
                         $photo = 'img/koi_3.jpg';
                     @endphp
 
-                    <div class="col-6 col-lg-2 mt-5">
+                    <div class="col mt-5">
                         <div class="card">
-                            <img src="img/koi_3.jpg" class="card-img-top" alt="...">
+                            <img src="img/koi_3.jpg" class="card-img-top" alt="..." style="height: 310px">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $fish->variety }} |   {{ $fish->breeder }} | Pedigree | {{ $fish->size }} | {{ $fish->bloodline }}</h5>
 

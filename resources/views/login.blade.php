@@ -14,7 +14,7 @@
 
     <title>ONELITO KOI</title>
 </head>
-<body style="background-image: url('img/login.png')">
+<body style="background-image: url('img/login.png'); background-size: cover">
 <style>
 
     /* On screens that are 992px or less, set the background color to blue */

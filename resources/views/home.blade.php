@@ -19,9 +19,9 @@
 
         @media screen and (max-width: 600px) {
 
-            .img-mh-300px img {
+            /* .img-mh-300px img {
                 min-height: 400vh;
-            }
+            } */
         }
 
         .cb-judul {
@@ -72,7 +72,7 @@
             <div class="col-6 col-lg-3 mt-3">
             <div class="card">
                 @php
-                    $photo = 'img/koi.jpg';
+                    $photo = 'img/koi11.jpg';
                     if ($auctionProduct->photo !== null)
                     {
                         $photo = url('storage') .'/'. $auctionProduct->photo->path_foto;
@@ -81,10 +81,10 @@
                 <img src="{{ $photo }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <div class="cb-judu">
-                        <h5 style="font-size: 12px" class="card-title">{{ $auctionProduct->variety }} |   {{ $auctionProduct->breeder }} | Pedigree | {{ $auctionProduct->size }} | {{ $auctionProduct->bloodline }}</h5>
+                        <h5 class="card-title">{{ $auctionProduct->variety }} |   {{ $auctionProduct->breeder }} | Pedigree | {{ $auctionProduct->size }} | {{ $auctionProduct->bloodline }}</h5>
                     </div>
                     <p style="font-size: 10px" class="card-text ma" >Starting Price</p>
-                    <p style="color :red;font-size: 12px">Rp. {{ $auctionProduct->ob }}</p>
+                    <p style="color :red;font-size: 12px" class="m-0">Rp. {{ $auctionProduct->ob }}</p>
                 </div>
             </div>
             </div>
@@ -94,9 +94,9 @@
     </div>
 
     <div class="container nav-samping">
-        <div class="row">
+        <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
         @forelse($auctionProducts as $auctionProduct)
-            <div class="col-6 col-lg-3 mt-3">
+            <div class="col">
             <div class="card">
                 @php
                     $photo = 'img/koi.jpg';
@@ -105,10 +105,10 @@
                         $photo = url('storage') .'/'. $auctionProduct->photo->path_foto;
                     }
                 @endphp
-                <img src="{{ $photo }}" class="card-img-top" alt="...">
+                <img src="{{ $photo }}" class="card-img-top" alt="..." style="height: 310px">
                 <div class="card-body">
                     <div class="cb-judu">
-                        <h5 style="font-size: 12px" class="card-title">{{ $auctionProduct->variety }} |   {{ $auctionProduct->breeder }} | Pedigree | {{ $auctionProduct->size }} | {{ $auctionProduct->bloodline }}</h5>
+                        <h5 class="card-title">{{ $auctionProduct->variety }} |   {{ $auctionProduct->breeder }} | Pedigree | {{ $auctionProduct->size }} | {{ $auctionProduct->bloodline }}</h5>
                     </div>
                     <p class="card-text ma" >Starting Price</p>
                     <p style="color :red">Rp. {{ $auctionProduct->ob }}</p>
@@ -254,7 +254,7 @@
     </div>
 
     <div class="container">
-        <div class="row ">
+        <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
         @forelse($championFishes as $championFish)
             @php
                 $photoChampion = 'img/koi_2.jpg';
@@ -264,9 +264,9 @@
                     $photoChampion = url('storage').'/'. $championFish->foto_ikan;
                 }
             @endphp
-            <div class="col-lg-3 col-6 mt-3">
-            <div class="card modal-header">
-                <img src="{{ $photoChampion }}" class="card-img-top" alt="...">
+            <div class="col mt-3">
+            <div class="card">
+                <img src="{{ $photoChampion }}" class="card-img-top" alt="..." style="height: 310px">
                 <div class="m-2 me-auto">
                 <h5 class="card-title">{{ $championFish->nama_champion }}</h5>
                 <p class="card-text ma" >Tahun : {{ $championFish->tahun }}</p>
