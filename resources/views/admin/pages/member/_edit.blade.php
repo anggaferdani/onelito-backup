@@ -29,19 +29,27 @@
                 </div>
                 <div class="form-group">
                     <label for="edit_provinsi">Provinsi</label>
-                    <input  type="text" id="edit_provinsi" class="form-control" name="edit_provinsi" placeholder="">
+                    <select name="edit_provinsi" id="edit_provinsi" required class="form-control select2">
+                        <option></option>
+                        @foreach($provinces as $province)
+                            <option value="{{ $province->prov_id }}">{{ $province->prov_name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="edit_kota">Kota</label>
-                    <input  type="text" id="edit_kota" class="form-control" name="edit_kota" placeholder="">
+                    <select name="edit_kota" id="edit_kota" required class="form-control select2">
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="edit_kecamatan">Kecamatan</label>
-                    <input  type="text" id="edit_kecamatan" class="form-control" name="edit_kecamatan" placeholder="">
+                    <select name="edit_kecamatan" id="edit_kecamatan" required class="form-control select2">
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="edit_kelurahan">Kelurahan</label>
-                    <input  type="text" id="edit_kelurahan" class="form-control" name="edit_kelurahan" placeholder="">
+                    <select name="edit_kelurahan" id="edit_kelurahan" required class="form-control select2">
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="edit_kode_pos">Kode Pos</label>

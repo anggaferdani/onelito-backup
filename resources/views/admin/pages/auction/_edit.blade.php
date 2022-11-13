@@ -29,11 +29,11 @@
             </div>
             <div class="form-group">
                 <label for="edit_tgl_mulai">Tgl. Mulai</label>
-                <input  type="text" id="edit_tgl_mulai" class="form-control datepicker" name="edit_tgl_mulai" placeholder="" required>
+                <input  type="text" id="edit_tgl_mulai" class="form-control datetimepicker" name="edit_tgl_mulai" placeholder="" required>
             </div>
             <div class="form-group">
                 <label for="edit_tgl_akhir">Tgl. Akhir</label>
-                <input  type="text" id="edit_tgl_akhir" class="form-control datepicker" name="edit_tgl_akhir" placeholder="">
+                <input  type="text" id="edit_tgl_akhir" class="form-control datetimepicker" name="edit_tgl_akhir" placeholder="">
             </div>
             <div class="form-group banner">
                 <label for="edit_banner">Banner</label>

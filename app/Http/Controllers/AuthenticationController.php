@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
+use App\Models\Province;
 use Illuminate\Support\Facades\Auth;
 
 class AuthenticationController extends Controller
@@ -34,6 +35,15 @@ class AuthenticationController extends Controller
         $this->request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    public function registration()
+    {
+        $provinces = Province::get();
+
+        return view('registrasi')->with([
+            'provinces' => $provinces
+        ]);
     }
 
     public function register()

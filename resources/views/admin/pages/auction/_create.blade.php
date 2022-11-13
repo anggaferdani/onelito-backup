@@ -28,11 +28,11 @@
             </div>
             <div class="form-group">
                 <label for="tgl_mulai">Tgl. Mulai</label>
-                <input  type="text" id="tgl_mulai" class="form-control datepicker" name="tgl_mulai" placeholder="" required>
+                <input  type="text" id="tgl_mulai" class="form-control datetimepicker" name="tgl_mulai" placeholder="" required>
             </div>
             <div class="form-group">
                 <label for="tgl_akhir">Tgl. Akhir</label>
-                <input  type="text" id="tgl_akhir" class="form-control datepicker" name="tgl_akhir" placeholder="" min="document.getElementById('tgl_mulai').value">
+                <input  type="text" id="tgl_akhir" class="form-control datetimepicker" name="tgl_akhir" placeholder="" min="document.getElementById('tgl_mulai').value">
             </div>
             <div class="form-group banner d-none">
                 <label for="banner">Banner</label>

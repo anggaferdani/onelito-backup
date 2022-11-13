@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KoiStockController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
@@ -42,8 +43,10 @@ Route::get('/admin-login', function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
+
 Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
-Route::post('/register', [AuthenticationController::class, 'register'])->name('registration');
+Route::get('/registrasi', [AuthenticationController::class, 'registration'])->name('registration');
+Route::post('/register', [AuthenticationController::class, 'register'])->name('register');
 
 Route::get('/auction', [AuctionController::class, 'index'])->name('auction.index');
 
@@ -51,6 +54,9 @@ Route::get('/koi_stok', [KoiStockController::class, 'index'])->name('koi_stock.i
 
 Route::get('/detail_koichampion', [ChampionFishController::class, 'index'])->name('koi_champion.index');
 
+Route::get('/cities', [ServiceController::class, 'cities'])->name('home.cities');
+Route::get('/districts', [ServiceController::class, 'districts'])->name('home.districts');
+Route::get('/subdistricts', [ServiceController::class, 'subdistricts'])->name('home.subdistricts');
 
 // MEMBER
 Route::group(['middleware' => 'auth:member'], function () {
@@ -177,10 +183,10 @@ Route::get('/login', function () {
     ]);
 })->name('login');
 
-Route::get('/registrasi', function () {
-    return view('registrasi',[
-    ]);
-});
+// Route::get('/registrasi', function () {
+//     return view('registrasi',[
+//     ]);
+// });
 
 // Route::get('/profil', function () {
 //     return view('profil',[

@@ -1,5 +1,5 @@
-<div class="modal fade" id="modalCreate" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+<div class="modal fade" id="modalCreate" role="dialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Tambah Member</h5>
@@ -32,20 +32,33 @@
             </div>
             <div class="form-group">
                 <label for="provinsi">Provinsi</label>
-                <input  type="text" id="provinsi" class="form-control" name="provinsi" placeholder="">
+                <!-- <input  type="text" id="provinsi" class="form-control" name="provinsi" placeholder=""> -->
+                <select name="provinsi" id="provinsi" required class="form-control select2">
+                    <option></option>
+                    @foreach($provinces as $province)
+                        <option value="{{ $province->prov_id }}">{{ $province->prov_name }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
                 <label for="kota">Kota</label>
-                <input  type="text" id="kota" class="form-control" name="kota" placeholder="">
+                <select name="kota" id="kota" required class="form-control select2">
+                    <option></option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="kecamatan">Kecamatan</label>
-                <input  type="text" id="kecamatan" class="form-control" name="kecamatan" placeholder="">
+                <select name="kecamatan" id="kecamatan" required class="form-control select2">
+                    <option></option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="kelurahan">Kelurahan</label>
-                <input  type="text" id="kelurahan" class="form-control" name="kelurahan" placeholder="">
+                <select name="kelurahan" id="kelurahan" required class="form-control select2">
+                    <option></option>
+                </select>
             </div>
+            </br>
             <div class="form-group">
                 <label for="kode_pos">Kode Pos</label>
                 <input  type="text" id="kode_pos" class="form-control" name="kode_pos" placeholder="">

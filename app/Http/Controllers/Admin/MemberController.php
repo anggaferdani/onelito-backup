@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Member;
+use App\Models\Province;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
@@ -14,17 +15,49 @@ class MemberController extends Controller
     {
         if ($this->request->ajax()) {
             $members = Member::query()
+                ->with(['province', 'city', 'district', 'subdistrict'])
                 ->where('status_aktif', 1);
 
             return DataTables::of($members)
             ->addIndexColumn()
             ->addColumn('action','admin.pages.member.dt-action')
+            ->editColumn('province.prov_name', function ($data) {
+                if ($data->province === null) {
+                    return "";
+                }
+
+                return $data->province->prov_name;
+            })
+            ->editColumn('city.city_name', function ($data) {
+                if ($data->city === null) {
+                    return "";
+                }
+
+                return $data->city->city_name;
+            })
+            ->editColumn('district.dis_name', function ($data) {
+                if ($data->district === null) {
+                    return "";
+                }
+
+                return $data->district->dis_name;
+            })
+            ->editColumn('subdistrict.city_name', function ($data) {
+                if ($data->subdistrict === null) {
+                    return "";
+                }
+
+                return $data->subdistrict->subdis_name;
+            })
             ->rawColumns(['action'])
             ->make(true);
         }
 
+        $provinces = Province::get();
+
         return view('admin.pages.member.index')->with([
-            'type_menu' => 'manage-member'
+            'type_menu' => 'manage-member',
+            'provinces' => $provinces,
         ]);
     }
 
@@ -55,7 +88,7 @@ class MemberController extends Controller
 
     public function show($id)
     {
-        $member = Member::findOrFail($id);
+        $member = Member::with(['province', 'city', 'district', 'subdistrict'])->findOrFail($id);
 
         if($member){
             return response()->json($member);

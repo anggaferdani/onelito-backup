@@ -31,4 +31,24 @@ class Member extends Authenticatable
     {
         $this->attributes['password'] = Hash::make($password);
     }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class, 'provinsi');
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'kota');
+    }
+
+    public function district()
+    {
+        return $this->belongsTo(District::class, 'kecamatan');
+    }
+
+    public function subdistrict()
+    {
+        return $this->belongsTo(Subdistrict::class, 'kelurahan');
+    }
 }

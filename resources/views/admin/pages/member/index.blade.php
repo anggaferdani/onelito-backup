@@ -15,6 +15,8 @@
         href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}">
     <link rel="stylesheet"
         href="{{ asset('library/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
+
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
 
 @section('main')
@@ -88,6 +90,8 @@
     <!-- Page Specific JS File -->
     <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
@@ -96,7 +100,134 @@
         });
     </script>
     <script>
+            async function editAjaxChained(source,target,slug){
+                return new Promise((resolve) => {
+
+                $.ajax({
+                        type: 'GET',
+                        url: '/'+slug,
+                        dataType: 'html',
+                        success: function(txt){
+                            //no action on success, its done in the next part
+                        }
+                    }).done(function(data){
+                        //get JSON
+                        data = $.parseJSON(data);
+
+                        //generate <options from JSON
+                        var list_html = '';
+                        $.each(data, function(i, item) {
+                            if (target === '#kota' || target === '#edit_kota') {
+                                list_html += '<option value='+data[i].city_id+'>'+data[i].city_name+'</option>'
+                            }else if (target === '#kecamatan' || target === '#edit_kecamatan') {
+                                list_html += '<option value='+data[i].dis_id+'>'+data[i].dis_name+'</option>';
+                            }else {
+                                list_html += '<option value='+data[i].subdis_id+'>'+data[i].subdis_name+'</option>';
+                            }
+
+                        });
+                        //replace <select2 with new options
+                        $(target).html(list_html);
+                        //change placeholder text
+                        $(target).select2({placeholder: data.length +' results'});
+                        resolve();
+                });
+            });
+        }
+
         $(document).ready(function() {
+            $('#provinsi').select2({
+                dropdownParent: $('#modalCreate')
+            });
+
+            $('#kota').select2({
+                dropdownParent: $('#modalCreate')
+            });
+
+            $('#kecamatan').select2({
+                dropdownParent: $('#modalCreate')
+            });
+
+            $('#edit_kelurahan').select2({
+                dropdownParent: $('#modalCreate')
+            });
+
+            $('#edit_provinsi').select2({
+                dropdownParent: $('#modalCreate')
+            });
+
+            $('#edit_kota').select2({
+                dropdownParent: $('#modalCreate')
+            });
+
+            $('#edit_kecamatan').select2({
+                dropdownParent: $('#modalCreate')
+            });
+
+            $('#edit_kelurahan').select2({
+                dropdownParent: $('#modalCreate')
+            });
+
+        function ajaxChained(source,target,slug){
+            $(source).on('change',function(){
+            var pid = $(source+' option:selected').val(); //$(this).val();
+
+            $.ajax({
+                    type: 'GET',
+                    url: '/'+slug+pid,
+                    dataType: 'html',
+                    success: function(txt){
+                        //no action on success, its done in the next part
+                    }
+                }).done(function(data){
+                    //get JSON
+                    data = $.parseJSON(data);
+
+                    //generate <options from JSON
+                    var list_html = '';
+                    $.each(data, function(i, item) {
+                        if (target === '#kota' || target === '#edit_kota') {
+                            list_html += '<option value='+data[i].city_id+'>'+data[i].city_name+'</option>'
+                        }else if (target === '#kecamatan' || target === '#edit_kecamatan') {
+                            list_html += '<option value='+data[i].dis_id+'>'+data[i].dis_name+'</option>';
+                        }else {
+                            list_html += '<option value='+data[i].subdis_id+'>'+data[i].subdis_name+'</option>';
+                        }
+
+                    });
+                    //replace <select2 with new options
+                    $(target).html(list_html);
+
+                    if (target === '#kota' || target === '#edit_kota') {
+                        $('#kecamatan').html('');
+                        $('#kelurahan').html('');
+                        $('#kecamatan').select2('');
+                        $('#kelurahan').select2('');
+                        $('#edit_kecamatan').html('');
+                        $('#edit_kelurahan').html('');
+                        $('#edit_kecamatan').select2('');
+                        $('#edit_kelurahan').select2('');
+
+                    }else if (target === '#kecamatan' || target === '#edit_kecamatan') {
+                        $('#kelurahan').html('');
+                        $('#kelurahan').select2('');
+                        $('#edit_kelurahan').html('');
+                        $('#edit_kelurahan').select2('');
+                    }else {
+                    }
+                    //change placeholder text
+                    $(target).select2({placeholder: data.length +' results'});
+                });
+            })
+        }
+
+        ajaxChained('#provinsi','#kota','cities?prov_id=');
+        ajaxChained('#kota','#kecamatan','districts?city_id=');
+        ajaxChained('#kecamatan','#kelurahan','subdistricts?dis_id=');
+        ajaxChained('#edit_provinsi','#edit_kota','cities?prov_id=');
+        ajaxChained('#edit_kota','#edit_kecamatan','districts?city_id=');
+        ajaxChained('#edit_kecamatan','#edit_kelurahan','subdistricts?dis_id=');
+
             $('#table-1').DataTable({
                 // dom: 'Bfrtip',
                 lengthMenu: [
@@ -126,10 +257,10 @@
                     { data : 'email'},
                     { data : 'no_hp'},
                     { data : 'alamat' , orderable : false,searchable :false},
-                    { data : 'provinsi' , orderable : false,searchable :false},
+                    { data : 'province.prov_name', orderable : false,searchable :false},
                     // { data : 'kecamatan' , orderable : false,searchable :false},
                     // { data : 'kelurahan' , orderable : false,searchable :false},
-                    { data : 'kota' , orderable : false,searchable :false},
+                    { data : 'city.city_name' , orderable : false,searchable :false},
                     { data : 'action' , orderable : false,searchable :false},
                 ]
             });
@@ -148,10 +279,32 @@
                     $('#show_email').val(res.email)
                     $('#show_no_hp').val(res.no_hp)
                     $('#show_alamat').val(res.alamat)
-                    $('#show_provinsi').val(res.provinsi)
-                    $('#show_kota').val(res.kota)
-                    $('#show_kecamatan').val(res.kecamatan)
-                    $('#show_kelurahan').val(res.kelurahan)
+
+                    var province = "";
+                    if (res.province !== null) {
+                        province = res.province.prov_name;
+                    }
+
+                    $('#show_provinsi').val(province)
+                    var kota = "";
+                    if (res.city !== null) {
+                        kota = res.city.city_name;
+                    }
+                    $('#show_kota').val(kota)
+
+                    var kecamatan = "";
+                    if (res.district !== null) {
+                        kecamatan = res.district.dis_name;
+                    }
+
+                    $('#show_kecamatan').val(kecamatan)
+
+                    var kelurahan = "";
+                    if (res.subdistrict !== null) {
+                        kelurahan = res.subdistrict.subdis_name;
+                    }
+
+                    $('#show_kelurahan').val(kelurahan)
                     $('#show_kode_pos').val(res.kode_pos)
                 },
                 error:function(error) {
@@ -161,24 +314,29 @@
             })
         })
 
-        $(document).on('click','button#btn-edit',function() {
+        $(document).on('click','button#btn-edit',async function() {
             let id = $(this).data('id');
             let dataUrl = $(this).data('url');
             $.ajax({
                 type: 'GET',
                 url : `members/${id}`,
                 dataType: "json",
-                success: function(res) {
+                success:async function(res) {
+                    await editAjaxChained('#edit_provinsi','#edit_kota',`cities?prov_id=${res.provinsi}`);
+
                     document.getElementById('formEdit').action = `members/${id}`;
                     $('#modalEdit').modal('show');
                     $('#edit_nama').val(res.nama)
                     $('#edit_email').val(res.email)
                     $('#edit_no_hp').val(res.no_hp)
                     $('#edit_alamat').val(res.alamat)
-                    $('#edit_provinsi').val(res.provinsi)
-                    $('#edit_kota').val(res.kota)
-                    $('#edit_kecamatan').val(res.kecamatan)
-                    $('#edit_kelurahan').val(res.kelurahan)
+                    $('#edit_provinsi').val(res.provinsi).trigger('change')
+                    await editAjaxChained('#edit_kota','#edit_kecamatan',`districts?city_id=${res.kota}`);
+
+                    $('#edit_kota').val(res.kota).trigger('change')
+                    // await editAjaxChained('#edit_kecamatan','#edit_kelurahan',`subdistricts?dis_id=${res.kecamatan}`);
+                    $('#edit_kecamatan').val(res.kecamatan).trigger('change')
+                    $('#edit_kelurahan').val(res.kelurahan).trigger('change')
                     $('#edit_kode_pos').val(res.kode_pos)
                 },
                 error:function(error) {

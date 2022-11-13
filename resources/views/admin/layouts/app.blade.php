@@ -25,6 +25,8 @@
     <link rel="stylesheet"
         href="{{ asset('css/components.css') }}">
 
+    <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> -->
+
     <!-- Start GA -->
     <script async
         src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
@@ -61,6 +63,7 @@
 
     <!-- General JS Scripts -->
     <script src="{{ asset('library/jquery/dist/jquery.min.js') }}"></script>
+
     <script src="{{ asset('library/popper.js/dist/umd/popper.js') }}"></script>
     <script src="{{ asset('library/tooltip.js/dist/umd/tooltip.js') }}"></script>
     <script src="{{ asset('library/bootstrap/dist/js/bootstrap.min.js') }}"></script>

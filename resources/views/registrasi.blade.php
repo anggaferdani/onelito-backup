@@ -17,7 +17,6 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
         integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <style>
         .select2-container--default .select2-selection--single {
@@ -158,10 +157,10 @@
             <div class="row">
                 <div class="mb-3">
                     <div class="relative">
-                        <input type="text" name="name" id="name" required
+                        <input type="text" name="nama" id="nama" required
                             class="block px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                             placeholder=" " />
-                        <label for="name"
+                        <label for="nama"
                             class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 left-1">Nama</label>
                     </div>
                 </div>
@@ -206,14 +205,10 @@
                             class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 left-1">Provinsi</label>
                                 --}}
                         <select name="provinsi" id="provinsi" required class="select2-setup form-control ">
-                            <option value="">Provinsi</option>
-                            <option value="">a</option>
-                            <option value="">b</option>
-                            <option value="">c</option>
-                            <option value="">d</option>
-                            <option value="">e</option>
-                            <option value="">f</option>
-                            <option value="">g</option>
+                            <option></option>
+                            @foreach($provinces as $province)
+                                <option value="{{ $province->prov_id }}">{{ $province->prov_name }}</option>
+                            @endforeach
                         </select>
                         {{-- <select id="countries"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -233,12 +228,8 @@
                         <label for="city"
                             class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 left-1">Kota
                         </label> --}}
-                        <select name="kota" id="kota" class="select2-setup form-control">
-                            <option selected="">Kota</option>
-                            <option value="US">Depok</option>
-                            <option value="CA">banyuwangi</option>
-                            <option value="FR">surabaya</option>
-                            <option value="DE">jakarta selatan</option>
+                        <select name="kota" id="kota" class="select2-setup form-control js-data-example-ajax">
+                            <option></option>
                         </select>
                     </div>
                 </div>
@@ -251,11 +242,7 @@
                             class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 left-1">Kecamatan
                         </label> --}}
                         <select name="kecamatan" id="kecamatan" required class="select2-setup form-control">
-                            <option selected="">Kecamatan</option>
-                            <option value="US">a</option>
-                            <option value="CA">b</option>
-                            <option value="FR">c</option>
-                            <option value="DE">d</option>
+                            <option></option>
                         </select>
                     </div>
                 </div>
@@ -269,11 +256,7 @@
                         </label> --}}
                         <select id="kelurahan" name="kelurahan" required
                         class="select2-setup form-control">
-                            <option selected="">Kelurahan</option>
-                            <option value="US">a</option>
-                            <option value="CA">b</option>
-                            <option value="FR">c</option>
-                            <option value="DE">d</option>
+                            <option></option>
                         </select>
                     </div>
                 </div>
@@ -342,12 +325,82 @@
     </div>
 </div>
 
-<script src="{{ asset('library/jquery/dist/jquery.min.js') }}"></script>
+<!-- <script src="{{ asset('library/jquery/dist/jquery.min.js') }}"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
+});
+
+$(document).ready(function() {
+    $('#provinsi').select2({
+        placeholder: 'Provinsi'
+    });
+
+    $('#kota').select2({
+        placeholder: 'Kota'
+    });
+
+    $('#kecamatan').select2({
+        placeholder: 'Kecamatan'
+    });
+
+    $('#kelurahan').select2({
+        placeholder: 'Kelurahan'
+    });
+
+    function ajaxChained(source,target,slug){
+        $(source).on('change',function(){
+        var pid = $(source+' option:selected').val(); //$(this).val();
+
+        $.ajax({
+                type: 'GET',
+                url: '/'+slug+pid,
+                dataType: 'html',
+                success: function(txt){
+                    //no action on success, its done in the next part
+                }
+            }).done(function(data){
+                //get JSON
+                data = $.parseJSON(data);
+
+
+                //generate <options from JSON
+                var list_html = '';
+                $.each(data, function(i, item) {
+                    if (target === '#kota') {
+                        list_html += '<option value='+data[i].city_id+'>'+data[i].city_name+'</option>'
+                    }else if (target === '#kecamatan') {
+                        list_html += '<option value='+data[i].dis_id+'>'+data[i].dis_name+'</option>';
+                    }else {
+                        list_html += '<option value='+data[i].subdis_id+'>'+data[i].subdis_name+'</option>';
+                    }
+
+                });
+                //replace <select2 with new options
+                $(target).html(list_html);
+                if (target === '#kota' || target === '#edit_kota') {
+                        $('#kecamatan').html('');
+                        $('#kelurahan').html('');
+                        $('#kecamatan').select2({placeholder: 'Kecamatan'});
+                        $('#kelurahan').select2({placeholder: 'Kelurahan'});
+
+                    }else if (target === '#kecamatan' || target === '#edit_kecamatan') {
+                        $('#kelurahan').html('');
+                        $('#kelurahan').select2({placeholder: 'Kelurahan'});
+                    }else {
+                    }
+                //change placeholder text
+                $(target).select2({placeholder: data.length +' results'});
+            });
+        })
+    }
+
+    ajaxChained('#provinsi','#kota','cities?prov_id=');
+    ajaxChained('#kota','#kecamatan','districts?city_id=');
+    ajaxChained('#kecamatan','#kelurahan','subdistricts?dis_id=');
 });
 
 $('#registration').submit(function(e) {
