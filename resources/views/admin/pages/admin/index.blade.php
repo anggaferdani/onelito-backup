@@ -64,7 +64,11 @@
                 </div>
             </div>
         </section>
+        @include('admin.pages.admin._create')
+        @include('admin.pages.admin._show')
+        @include('admin.pages.admin._edit')
     </div>
+
 @endsection
 
 @push('scripts')
@@ -75,6 +79,11 @@
     <!-- <script src="{{ asset('library/datatables.net-bs4/css/dataTables.bootstrap4.min.js') }}"></script> -->
     {{-- <script src="{{ asset() }}"></script> --}}
     <script src="{{ asset('library/jquery-ui-dist/jquery-ui.min.js') }}"></script>
+
+    <script src="https://demo.getstisla.com/assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://demo.getstisla.com/assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
+    <!-- Page Specific JS File -->
+    <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/admin-admin.js') }}"></script>
@@ -99,7 +108,7 @@
                 },
 
                 ajax : {
-                url : '{{ route("admin.admin.index") }}',
+                url : '{{ url("admin/admins") }}',
                 data : function(d) {
                     // d.jenis_task = $('#filter_jenis_task').val()
                 }
@@ -112,6 +121,143 @@
                     { data : 'level' , orderable : false,searchable :false},
                     { data : 'action' , orderable : false,searchable :false},
                 ]
+            });
+
+            $(document).on('click','button#btn-show',function() {
+                let id = $(this).data('id');
+                let dataUrl = $(this).data('url');
+                $.ajax({
+                    type: 'GET',
+                    url : `admins/${id}`,
+                    dataType: "json",
+                    success: function(res) {
+                        $('#modalShow').modal('show');
+                        $('#show_nama').val(res.nama)
+                        $('#show_username').val(res.nama)
+                        $('#show_email').val(res.email)
+                        $('#show_no_hp').val(res.no_hp)
+                        $('#show_alamat').val(res.alamat)
+                        $('#show_kota').val(res.kota)
+                        $('#show_level').val(res.level)
+                    },
+                    error:function(error) {
+                        console.log(error)
+                    }
+
+                })
+            })
+
+            $(document).on('click','button#btn-edit',async function() {
+                let id = $(this).data('id');
+                let dataUrl = $(this).data('url');
+                $.ajax({
+                    type: 'GET',
+                    url : `admins/${id}`,
+                    dataType: "json",
+                    success:async function(res) {
+
+                        document.getElementById('formEdit').action = `admins/${id}`;
+                        $('#modalEdit').modal('show');
+                        $('#edit_nama').val(res.nama)
+                        $('#edit_username').val(res.username)
+                        $('#edit_email').val(res.email)
+                        $('#edit_no_hp').val(res.no_hp)
+                        $('#edit_alamat').val(res.alamat)
+                        $('#edit_kota').val(res.kota)
+                        $('#edit_level').val(res.level)
+                        $('#edit_level').trigger('change');
+                    },
+                    error:function(error) {
+                        console.log(error)
+                    }
+
+                })
+            })
+
+            $('#formEdit').submit(function(e) {
+                e.preventDefault();
+                let formData = new FormData(this);
+
+                var dataForm = {
+                    nama: formData.get('edit_nama'),
+                    username: formData.get('edit_username'),
+                    email: formData.get('edit_email'),
+                    no_hp: formData.get('edit_no_hp'),
+                    alamat: formData.get('edit_alamat'),
+                    kota: formData.get('edit_kota'),
+                    level: formData.get('edit_level'),
+                }
+
+                $.ajax({
+                    type: 'PATCH',
+                    data : dataForm,
+                    dataType: 'json',
+                    url: $(this).attr('action'),
+                    beforeSend:function(){
+                        $('#btn-update').addClass("btn-progress");
+                        $(document).find('span.error-text').text('');
+                    },
+                    complete: function(){
+                        $('#btn-update').removeClass("btn-progress");
+                    },
+                    success: function(res){
+                        if(res.success == true){
+
+                            location.reload();
+                            $('#modalEdit').modal('hide');
+
+                            $('#formDataEdit').trigger('reset');
+                            $('#example').DataTable().ajax.reload();
+
+                            swal(res.message.title, res.message.content, res.message.type);
+                        }
+                    },
+                    error(err){
+                        $.each(err.responseJSON,function(prefix,val) {
+                            $('.'+prefix+'_error_edit').text(val[0]);
+                        })
+                    }
+                })
+            })
+
+            $(document).on('click','button#btn-delete',function() {
+                let id = $(this).data('id');
+
+                swal({
+                    title: 'Anda Yakin?',
+                    text: 'Anda akan menghapus data admin',
+                    icon: 'warning',
+                    buttons: true,
+                    dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            type:'DELETE',
+                            dataType: 'JSON',
+                            url: `admins/${id}`,
+                            data:{
+                                "_token": $('meta[name="csrf-token"]').attr('content'),
+                            },
+                            success:function(response){
+                                if(response.success){
+                                    swal('Data admin berhasil dihapus', {
+                                        icon: 'success',
+                                    });
+
+                                    location.reload();
+                                }
+                            },
+                            error:function(err){
+                                swal({
+                                    icon: 'error',
+                                    title: 'Terjadi kesalahan',
+                                    text: err.responseJSON.message+'.',
+                                })
+                            }
+                        });
+                    }
+                });
             });
         });
     </script>

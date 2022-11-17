@@ -45,6 +45,10 @@
                 <input readonly type="text" id="show_kb" class="form-control" name="show_kb" placeholder="">
             </div>
             <div class="form-group">
+                <label for="show_note">Note</label>
+                <input readonly type="text" id="show_note" class="form-control" name="show_kb" placeholder="">
+            </div>
+            <div class="form-group">
                 <label for="show_link_video">Link Video</label>
                 <input readonly type="text" id="show_link_video" class="form-control" name="show_link_video" placeholder="">
             </div>

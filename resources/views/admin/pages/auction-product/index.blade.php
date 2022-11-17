@@ -199,6 +199,7 @@
                     $('#show_size').val(res.size)
                     $('#show_ob').val(res.ob)
                     $('#show_kb').val(res.kb)
+                    $('#show_note').val(res.note)
                     $('#show_link_video').val(res.link_video)
                     $('#show_extra_time').val(res.extra_time)
 
@@ -236,6 +237,7 @@
                     $('#edit_size').val(res.size)
                     $('#edit_ob').val(res.ob)
                     $('#edit_kb').val(res.kb)
+                    $('#edit_note').val(res.note)
                     $('#edit_link_video').val(res.link_video)
                     $('#edit_extra_time').val(res.extra_time)
 
@@ -265,6 +267,7 @@
             formData.append('size', formData.get('edit_size'));
             formData.append('ob', formData.get('edit_ob'));
             formData.append('kb', formData.get('edit_kb'));
+            formData.append('note', formData.get('edit_note'));
             formData.append('link_video', formData.get('edit_link_video'));
             formData.append('path_foto', formData.get('edit_foto'));
             formData.append('extra_time', formData.get('edit_extra_time'));
@@ -279,6 +282,7 @@
             formData.delete('edit_size');
             formData.delete('edit_ob');
             formData.delete('edit_kb');
+            formData.delete('edit_note');
             formData.delete('edit_link_video');
             formData.delete('edit_foto');
             formData.delete('edit_extra_time');

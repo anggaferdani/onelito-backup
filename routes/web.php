@@ -9,6 +9,7 @@ use App\Http\Controllers\KoiStockController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\StoreController;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
@@ -51,6 +52,9 @@ Route::post('/register', [AuthenticationController::class, 'register'])->name('r
 Route::get('/auction', [AuctionController::class, 'index'])->name('auction.index');
 
 Route::get('/koi_stok', [KoiStockController::class, 'index'])->name('koi_stock.index');
+
+Route::get('/onelito_store', [StoreController::class, 'index'])->name('store.index');
+Route::get('/onelito_store/{id}', [StoreController::class, 'detail'])->name('store.detail');
 
 Route::get('/detail_koichampion', [ChampionFishController::class, 'index'])->name('koi_champion.index');
 
@@ -108,9 +112,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('/charts/sum-nominal-product-sold', [Admin\DashboardController::class, 'productSoldNominalChart']);
     Route::get('/charts/sum-auction-participant', [Admin\DashboardController::class, 'auctionParticipantChart']);
 
-    Route::group(['prefix' => 'admins'], function () {
-        Route::get('/', [Admin\AdminController::class, 'index'])->name('admin.admin.index');
-    });
+    Route::resource('admins', Admin\AdminController::class);
 
     Route::resource('members', Admin\MemberController::class);
 
@@ -141,17 +143,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
 //     ]);
 // });
 
-Route::get('/onelito_store', function () {
-    return view('onelito_store',[
-        "title" => "onelito_store"
-    ]);
-});
-
-Route::get('/onelito_store', function () {
-    return view('onelito_store',[
-        "title" => "onelito_store"
-    ]);
-});
+// Route::get('/onelito_store', function () {
+//     return view('onelito_store',[
+//         "title" => "onelito_store"
+//     ]);
+// });
 
 // Route::get('/koi_stok', function () {
 //     return view('koi_stok',[
@@ -248,11 +244,11 @@ Route::get('/event_auction', function () {
     ]);
 });
 
-Route::get('/detail_onelito_store', function () {
-    return view('detail_onelito_store',[
-        "title" => "onelito_store"
-    ]);
-});
+// Route::get('/detail_onelito_store', function () {
+//     return view('detail_onelito_store',[
+//         "title" => "onelito_store"
+//     ]);
+// });
 
 Route::get('/shoppingcart', function () {
     return view('shoppingcart',[

@@ -201,9 +201,7 @@
                     <hr>
 
                     <p class="m-0" style="font-size: larger">Note :</p>
-                    <p style="font-size: larger">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum,
-                        voluptas! Porro suscipit obcaecati eius quia qui dolorem harum ipsam, illo laudantium officiis
-                        maiores commodi aliquid fugiat, laboriosam ipsa similique blanditiis.</p>
+                    <p style="font-size: larger">{{ $auctionProduct->note }}</p>
                     <hr>
 
                     <p style="font-size:30px">Harga saat ini: <span id="currentPrice" class="alert-link text-danger number-separator">Rp. {{ $currentPrice }}</span></p>

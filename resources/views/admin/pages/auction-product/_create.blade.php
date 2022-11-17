@@ -50,6 +50,10 @@
                 <input  type="text" id="kb" name="kb" class="form-control" placeholder="">
             </div>
             <div class="form-group">
+                <label for="note">Note</label>
+                <input  type="text" id="note" name="note" class="form-control" placeholder="">
+            </div>
+            <div class="form-group">
                 <label for="link_video">Link Video</label>
                 <input  type="text" id="link_video" name="link_video" class="form-control" placeholder="">
             </div>

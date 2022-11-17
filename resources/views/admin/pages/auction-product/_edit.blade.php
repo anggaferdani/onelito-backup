@@ -51,6 +51,10 @@
                 <input  type="text" id="edit_kb" name="edit_kb" class="form-control" placeholder="">
             </div>
             <div class="form-group">
+                <label for="edit_note">Note</label>
+                <input  type="text" id="edit_note" name="edit_note" class="form-control" placeholder="">
+            </div>
+            <div class="form-group">
                 <label for="edit_link_video">Link Video</label>
                 <input  type="text" id="edit_link_video" name="edit_link_video" class="form-control" placeholder="">
             </div>

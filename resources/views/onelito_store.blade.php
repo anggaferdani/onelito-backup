@@ -90,16 +90,23 @@
                                 <h5><b>All Product</b></h5>
                             </div>
                             <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                                @forelse ($products as $product)
+                                    @php
+                                        $productPhoto = 'img/bio_media.png';
+
+                                        if ($product->photo !== null) {
+                                            $productPhoto = url('storage').'/'.$product->photo->path_foto;
+                                        }
+                                    @endphp
                                 <div class="col">
                                     <div class="p-0 border bg-light cart">
-                                        <a href="/detail_onelito_store"><img src="img/bio_media.png" alt="bio media"
+                                        <a href="/onelito_store/{{ $product->id_produk }}"><img src="{{ $productPhoto }}" alt="bio media"
                                                 class="card-img-top" height="170"></a>
                                         <div class="container px-2">
                                             <div class="cb-judul">
-                                                <p>Bio Tube Bacteria House
-                                                    Media Filter</p>
+                                                <p>{{ "$product->merek_produk $product->nama_produk" }}</p>
                                             </div>
-                                            <p><b>Rp. 1.300.000</b></p>
+                                            <p><b>Rp. {{ $product->harga }}</b></p>
                                         </div>
                                         <div class="col px-2 mb-2" style="text-align: end">
                                             <button class="border rounded-1 text-black-50"
@@ -108,332 +115,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/uniring.jpeg" alt="uniring" class="card-img-top" height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>Uniring rubber hose /
-                                                    selang aerasi</p>
-                                            </div>
-                                            <p><b>Rp. 580.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/selang.jpg" alt="selang" class="card-img-top" height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>Bio Tube Bacteria House
-                                                    Media Filter</p>
-                                            </div>
-                                            <p><b>Rp. 90.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/bak_ukur.jpg" alt="bak_ukur" class="card-img-top" height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>Mistar ukur koi /
-                                                    bak ukur</p>
-                                            </div>
-                                            <p><b>Rp. 600.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/matala.jpg" alt="matala" class="card-img-top" height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>matala Abu Media Filter
-                                                    Mekanik</p>
-                                            </div>
-                                            <p><b>Rp. 974.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/bio_media.png" alt="bio media" class="card-img-top"
-                                            height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>Bio Tube Bacteria House
-                                                    Media Filter</p>
-                                            </div>
-                                            <p><b>Rp. 1.300.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/uniring.jpeg" alt="uniring" class="card-img-top" height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>Uniring rubber hose /
-                                                    selang aerasi</p>
-                                            </div>
-                                            <p><b>Rp. 580.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/selang.jpg" alt="selang" class="card-img-top" height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>Bio Tube Bacteria House
-                                                    Media Filter</p>
-                                            </div>
-                                            <p><b>Rp. 90.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/bak_ukur.jpg" alt="bak_ukur" class="card-img-top" height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>Mistar ukur koi /
-                                                    bak ukur</p>
-                                            </div>
-                                            <p><b>Rp. 600.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/matala.jpg" alt="matala" class="card-img-top" height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>matala Abu Media Filter
-                                                    Mekanik</p>
-                                            </div>
-                                            <p><b>Rp. 974.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/bio_media.png" alt="bio media" class="card-img-top"
-                                            height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>Bio Tube Bacteria House
-                                                    Media Filter</p>
-                                            </div>
-                                            <p><b>Rp. 1.300.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/uniring.jpeg" alt="uniring" class="card-img-top" height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>Uniring rubber hose /
-                                                    selang aerasi</p>
-                                            </div>
-                                            <p><b>Rp. 580.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/selang.jpg" alt="selang" class="card-img-top" height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>Bio Tube Bacteria House
-                                                    Media Filter</p>
-                                            </div>
-                                            <p><b>Rp. 90.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/bak_ukur.jpg" alt="bak_ukur" class="card-img-top" height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>Mistar ukur koi /
-                                                    bak ukur</p>
-                                            </div>
-                                            <p><b>Rp. 600.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/matala.jpg" alt="matala" class="card-img-top" height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>matala Abu Media Filter
-                                                    Mekanik</p>
-                                            </div>
-                                            <p><b>Rp. 974.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/bio_media.png" alt="bio media" class="card-img-top"
-                                            height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>Bio Tube Bacteria House
-                                                    Media Filter</p>
-                                            </div>
-                                            <p><b>Rp. 1.300.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/uniring.jpeg" alt="uniring" class="card-img-top" height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>Uniring rubber hose /
-                                                    selang aerasi</p>
-                                            </div>
-                                            <p><b>Rp. 580.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/selang.jpg" alt="selang" class="card-img-top" height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>Bio Tube Bacteria House
-                                                    Media Filter</p>
-                                            </div>
-                                            <p><b>Rp. 90.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/bak_ukur.jpg" alt="bak_ukur" class="card-img-top" height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>Mistar ukur koi /
-                                                    bak ukur</p>
-                                            </div>
-                                            <p><b>Rp. 600.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/matala.jpg" alt="matala" class="card-img-top" height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>matala Abu Media Filter
-                                                    Mekanik</p>
-                                            </div>
-                                            <p><b>Rp. 974.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
+                                @empty
+                                @endforelse
                             </div>
                         </div>
                         <div class="tab-pane fade" id="v-pills-makanan" role="tabpanel"
@@ -442,92 +125,33 @@
                                 <h5><b>Fish Food</b></h5>
                             </div>
                             <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/bio_media.png" alt="bio media" class="card-img-top"
-                                            height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>Bio Tube Bacteria House
-                                                    Media Filter</p>
+                                @forelse ($products->where('id_kategori_produk', 2) as $fishfoodProduct)
+                                    @php
+                                        $productPhoto2 = 'img/uniring.jpeg';
+
+                                        if ($fishfoodProduct->photo !== null) {
+                                            $productPhoto2 = url('storage').'/'.$fishfoodProduct->photo->path_foto;
+                                        }
+                                    @endphp
+                                    <div class="col">
+                                        <div class="p-0 border bg-light cart">
+                                            <a href="/onelito_store/{{ $fishfoodProduct->id_produk }}"><img src="{{ $productPhoto2 }}" alt="bio media"
+                                                    class="card-img-top" height="170"></a>
+                                            <div class="container px-2">
+                                                <div class="cb-judul">
+                                                    <p>{{ "$fishfoodProduct->merek_produk $fishfoodProduct->nama_produk" }}</p>
+                                                </div>
+                                                <p><b>Rp. {{ $fishfoodProduct->harga }}</b></p>
                                             </div>
-                                            <p><b>Rp. 1.300.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
+                                            <div class="col px-2 mb-2" style="text-align: end">
+                                                <button class="border rounded-1 text-black-50"
+                                                    style="background-color: transparent;font-size:small"><i
+                                                        class="far fa-heart"></i> <span>Wishlist</span></button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/uniring.jpeg" alt="uniring" class="card-img-top" height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>Uniring rubber hose /
-                                                    selang aerasi</p>
-                                            </div>
-                                            <p><b>Rp. 580.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/selang.jpg" alt="selang" class="card-img-top" height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>Bio Tube Bacteria House
-                                                    Media Filter</p>
-                                            </div>
-                                            <p><b>Rp. 90.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/bak_ukur.jpg" alt="bak_ukur" class="card-img-top" height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>Mistar ukur koi /
-                                                    bak ukur</p>
-                                            </div>
-                                            <p><b>Rp. 600.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/matala.jpg" alt="matala" class="card-img-top" height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>matala Abu Media Filter
-                                                    Mekanik</p>
-                                            </div>
-                                            <p><b>Rp. 974.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
+                                @empty
+                                @endforelse
                             </div>
                         </div>
                         <div class="tab-pane fade" id="v-pills-alat" role="tabpanel" aria-labelledby="v-pills-alat-tab">
@@ -535,16 +159,24 @@
                                 <h5><b>Fish Equipment</b></h5>
                             </div>
                             <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+
+                            @forelse ($products->where('id_kategori_produk', 1) as $fishgearProduct)
+                                @php
+                                    $productPhoto3 = 'img/selang.jpg';
+
+                                    if ($fishgearProduct->photo !== null) {
+                                        $productPhoto3 = url('storage').'/'.$fishgearProduct->photo->path_foto;
+                                    }
+                                @endphp
                                 <div class="col">
                                     <div class="p-0 border bg-light cart">
-                                        <img src="img/bio_media.png" alt="bio media" class="card-img-top"
-                                            height="170">
+                                        <a href="/onelito_store/{{ $fishgearProduct->id_produk }}"><img src="{{ $productPhoto2 }}" alt="bio media"
+                                                class="card-img-top" height="170"></a>
                                         <div class="container px-2">
                                             <div class="cb-judul">
-                                                <p>Bio Tube Bacteria House
-                                                    Media Filter</p>
+                                                <p>{{ "$fishgearProduct->merek_produk $fishgearProduct->nama_produk" }}</p>
                                             </div>
-                                            <p><b>Rp. 1.300.000</b></p>
+                                            <p><b>Rp. {{ $fishgearProduct->harga }}</b></p>
                                         </div>
                                         <div class="col px-2 mb-2" style="text-align: end">
                                             <button class="border rounded-1 text-black-50"
@@ -553,74 +185,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/uniring.jpeg" alt="uniring" class="card-img-top" height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>Uniring rubber hose /
-                                                    selang aerasi</p>
-                                            </div>
-                                            <p><b>Rp. 580.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/selang.jpg" alt="selang" class="card-img-top" height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>Bio Tube Bacteria House
-                                                    Media Filter</p>
-                                            </div>
-                                            <p><b>Rp. 90.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/bak_ukur.jpg" alt="bak_ukur" class="card-img-top" height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>Mistar ukur koi /
-                                                    bak ukur</p>
-                                            </div>
-                                            <p><b>Rp. 600.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <img src="img/matala.jpg" alt="matala" class="card-img-top" height="170">
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>matala Abu Media Filter
-                                                    Mekanik</p>
-                                            </div>
-                                            <p><b>Rp. 974.000</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    class="far fa-heart"></i> <span>Wishlist</span></button>
-                                        </div>
-                                    </div>
-                                </div>
+                            @empty
+                            @endforelse
                             </div>
                         </div>
                     </div>

@@ -15,38 +15,42 @@
                     display: none
                 }
             }
-        
+
             /* On screens that are 600px or less, set the background color to olive */
             @media screen and (max-width: 600px) {
                 .nav-samping {
                     display: none;
                 }
             }
-        
+
         </style>
+        @php
+            $imgUrl = 'img/bio_media.png';
+
+            if ($product->photo !== null) {
+                $imgUrl = 'storage/'. $product->photo->path_foto;
+            }
+        @endphp
         <div class="nav-atas">
+
             <div class=>
-                <img src="img/bio_media.png" alt="bio media" class="w-100">
+                <img src="{{ url($imgUrl) }}" alt="bio media" class="w-100">
             </div>
             <div class="row">
                 <div class="col">
                     <div class="row">
                         <div class="col-10">
-                            <p>Bio Tube Bacteria House Media Filter</p>
+                            <p>{{ "$product->merek_produk $product->nama_produk" }}</p>
                         </div>
                         <div class="col-2">
                             <i class="far fa-heart m-3" style="font-size:large"></i>
                         </div>
                     </div>
-                    
-                    <h2>Rp 1.300.000</h2>
+
+                    <h2>Rp. {{ $product->harga }}</h2>
                     <hr>
                     <p class="alert-link text-danger">Detail</p>
-                    <p>Condition . . . . . . . New</p>
-                    <p>Unit weight . . . . . . . 15 Kg</p>
-                    <p>Category . . . . . . . Filter Aquarium</p>
-                    <p>Etalase . . . . . . . Koi Equipment</p>
-                    <p>Bio Tube bacteria house merupakan media filter biologis kolam koi maupun aquarium air tawar, bio tube di design khusus sehingga bakteri dapat tumbuh secara maximal untuk mengelola amoniak yang dihasilkan oleh limbah ikan.</p>
+                    <p>{{ $product->deskripsi }}</p>
                 </div>
                 <div>
                     <h5 class="card-title">Ordered quantity</h5>
@@ -80,18 +84,14 @@
         <div class="nav-samping">
             <div class="row">
                 <div class="col">
-                    <img src="img/bio_media.png" alt="bio media" class="w-100">
+                    <img src="{{ url($imgUrl) }}" alt="bio media" class="w-100">
                 </div>
                 <div class="col">
-                    <p style="font-size: 35px">Bio Tube Bacteria House Media Filter</p>
-                        <h2>Rp 1.300.000</h2>
+                    <p style="font-size: 35px">{{ "$product->merek_produk $product->nama_produk" }}</p>
+                        <h2>Rp {{ $product->harga }}</h2>
                         <hr>
                         <p class="alert-link text-danger">Detail</p>
-                        <p>Condition . . . . . . . New</p>
-                        <p>Unit weight . . . . . . . 15 Kg</p>
-                        <p>Category . . . . . . . Filter Aquarium</p>
-                        <p>Etalase . . . . . . . Koi Equipment</p>
-                        <p>Bio Tube bacteria house merupakan media filter biologis kolam koi maupun aquarium air tawar, bio tube di design khusus sehingga bakteri dapat tumbuh secara maximal untuk mengelola amoniak yang dihasilkan oleh limbah ikan.</p>
+                        <p>{{ $product->deskripsi }}</p>
                 </div>
                 <div class="col">
                     <div class="card" style="width: 18rem;">
