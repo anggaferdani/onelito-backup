@@ -15,7 +15,7 @@ class AuctionController extends Controller
     {
         $auth = Auth::guard('member')->user();
 
-        $now = Carbon::now()->format('Y-m-d');
+        $now = Carbon::now();
 
         $currentAuctions = Event::with([
             'auctionProducts' => function ($q) {
