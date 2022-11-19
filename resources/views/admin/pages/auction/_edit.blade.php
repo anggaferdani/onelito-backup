@@ -18,13 +18,13 @@
                     <option value="Event">Event</option>
                 </select>
             </div>
-            <div class="form-group">
+            <div class="form-group d-none">
                 <label for="edit_deskripsi_event">Deskripsi</label>
-                <input  type="text" id="edit_deskripsi_event" class="form-control" name="edit_deskripsi_event" placeholder="" required>
+                <input  type="text" id="edit_deskripsi_event" class="form-control" name="edit_deskripsi_event" placeholder="">
             </div>
             <div class="form-group">
                 <label for="edit_rules_event">Rules</label>
-                <textarea id="edit_rules_event" name="edit_rules_event" class="form-control" placeholder="" required></textarea>
+                <textarea id="edit_rules_event" name="edit_rules_event" class="form-control summernote" placeholder="" required></textarea>
                 <!-- <input  type="text" id="rules_events" class="form-control" name="rules_events" placeholder="" required> -->
             </div>
             <div class="form-group">

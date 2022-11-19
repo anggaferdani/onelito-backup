@@ -199,7 +199,7 @@
                     $('#show_size').val(res.size)
                     $('#show_ob').val(res.ob)
                     $('#show_kb').val(res.kb)
-                    $('#show_note').val(res.note)
+                    $('#show_note').html(res.note)
                     $('#show_link_video').val(res.link_video)
                     $('#show_extra_time').val(res.extra_time)
 
@@ -237,7 +237,7 @@
                     $('#edit_size').val(res.size)
                     $('#edit_ob').val(res.ob)
                     $('#edit_kb').val(res.kb)
-                    $('#edit_note').val(res.note)
+                    $('#edit_note').summernote('code', res.note)
                     $('#edit_link_video').val(res.link_video)
                     $('#edit_extra_time').val(res.extra_time)
 

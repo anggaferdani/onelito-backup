@@ -38,7 +38,7 @@ class EventFishController extends Controller
                 ';
             })
             ->addColumn('action','admin.pages.auction-product.dt-action')
-            ->rawColumns(['action', 'photo'])
+            ->rawColumns(['action', 'photo', 'note'])
             ->make(true);
         }
 

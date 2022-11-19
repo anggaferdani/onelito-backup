@@ -52,7 +52,7 @@
             </div>
             <div class="form-group">
                 <label for="edit_note">Note</label>
-                <input  type="text" id="edit_note" name="edit_note" class="form-control" placeholder="">
+                <textarea id="edit_note" name="edit_note" class="form-control summernote" placeholder=""></textarea>
             </div>
             <div class="form-group">
                 <label for="edit_link_video">Link Video</label>

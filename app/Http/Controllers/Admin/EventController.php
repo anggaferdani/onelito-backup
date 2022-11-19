@@ -36,7 +36,7 @@ class EventController extends Controller
                 ';
             })
             ->addColumn('action','admin.pages.auction.dt-action')
-            ->rawColumns(['action', 'banner'])
+            ->rawColumns(['action', 'banner', 'rules_event'])
             ->make(true);
         }
 

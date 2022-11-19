@@ -12,13 +12,14 @@
                 <label for="show_kategori_event">Kategori Event</label>
                 <input readonly type="text" id="show_kategori_event" class="form-control" name="show_kategori_event" placeholder="" required>
             </div>
-            <div class="form-group">
+            <div class="form-group d-none">
                 <label for="show_deskripsi_event">Deskripsi</label>
                 <input readonly  type="text" id="show_deskripsi_event" class="form-control" name="show_deskripsi_event" placeholder="" required>
             </div>
             <div class="form-group">
                 <label for="show_rules_event">Rules</label>
-                <textarea readonly id="show_rules_event" name="show_rules_event" class="form-control" placeholder="" required></textarea>
+                <div id="show_rules_event"></div>
+                <!-- <textarea readonly id="show_rules_event" name="show_rules_event" class="form-control" placeholder="" required></textarea> -->
                 <!-- <input  type="text" id="show_rules_events" class="form-control" name="show_rules_events" placeholder="" required> -->
             </div>
             <div class="form-group">

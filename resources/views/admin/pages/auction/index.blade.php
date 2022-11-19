@@ -23,6 +23,9 @@
 
     <link rel="stylesheet"
         href="{{ asset('library/select2/dist/css/select2.min.css') }}">
+
+    <link rel="stylesheet"
+        href="{{ asset('library/summernote/dist/summernote-bs4.css') }}">
 @endpush
 
 @section('main')
@@ -55,7 +58,6 @@
                                                     #
                                                 </th>
                                                 <th>Kategori Event</th>
-                                                <th>Deskripsi</th>
                                                 <th>Rules</th>
                                                 <th>Tgl. Mulai</th>
                                                 <th>Tgl. Akhir</th>
@@ -94,6 +96,7 @@
     <!-- Page Specific JS File -->
     <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
 
+    <script src="{{ asset('library/summernote/dist/summernote-bs4.js') }}"></script>
     <script src="{{ asset('library/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('library/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
     <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
@@ -108,6 +111,19 @@
     </script>
     <script>
         $(document).ready(function() {
+
+            // $('.summernote').summernote({
+            //     height: 200,
+            //     toolbar: [
+            //         ['style',['style']],
+            //         ['style', ['bold', 'italic', 'underline', 'clear']],
+            //         ['font', ['strikethrough', 'superscript', 'subscript']],
+            //         ['fontsize', ['fontsize']],
+            //         ['color', ['color']],
+            //         ['para', ['ul', 'ol', 'paragraph']],
+            //         ['insert',['picture', 'link', 'emoji']]
+            //     ]
+            // });
 
             $('#total_hadiah').priceFormat({
                 prefix: '',
@@ -146,7 +162,6 @@
                 columns : [
                     { data : 'DT_RowIndex' , orderable : false,searchable :false},
                     { data : 'kategori_event'},
-                    { data : 'deskripsi_event'},
                     { data : 'rules_event'},
                     { data : 'tgl_mulai'},
                     { data : 'tgl_akhir'},
@@ -167,7 +182,7 @@
                 success: function(res) {
                     $('#modalShow').modal('show');
                     $('#show_kategori_event').val(res.kategori_event)
-                    $('#show_rules_event').val(res.rules_event)
+                    $('#show_rules_event').html(res.rules_event)
                     $('#show_deskripsi_event').val(res.deskripsi_event)
                     $('#show_tgl_mulai').val(res.tgl_mulai)
                     $('#show_tgl_akhir').val(res.tgl_akhir)
@@ -228,7 +243,7 @@
                         <option value="Regular" ${((res.kategori_event === 'Regular') ? 'selected' : '')}>Regular</option>
                         <option value="Event" ${((res.kategori_event === 'Event') ? 'selected' : '')}>Event</option>
                     `)
-                    $('#edit_rules_event').val(res.rules_event)
+                    $('#edit_rules_event').summernote('code', res.rules_event)
                     $('#edit_deskripsi_event').val(res.deskripsi_event)
                     $('#edit_tgl_mulai').val(res.tgl_mulai)
                     $('#edit_tgl_akhir').val(res.tgl_akhir)
