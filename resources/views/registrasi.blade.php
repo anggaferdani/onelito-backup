@@ -26,7 +26,7 @@
         }
 
         .select2-container--default .select2-selection--single .select2-selection__rendered {
-            padding: 8px 10px;
+            padding: 7px 10px;
             color: rgb(17, 24, 39);
             font-size: 14px
         }
