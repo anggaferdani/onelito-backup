@@ -35,6 +35,7 @@ class KoiStockController extends Controller
 
         $data['create_by'] = Auth::guard('admin')->id();
         $data['update_by'] = Auth::guard('admin')->id();
+        $data['harga_ikan'] = str_replace('.', '', $data['harga_ikan']);
         $data['status_aktif'] = 1;
 
         $createFish = KoiStock::create($data);
@@ -71,6 +72,7 @@ class KoiStockController extends Controller
     {
         $fish = KoiStock::findOrFail($id);
         $data = $this->request->all();
+
         $validator = Validator::make($this->request->all(), [
         ]);
 
@@ -78,6 +80,7 @@ class KoiStockController extends Controller
             return response()->json($validator->errors(), 400);
         }
 
+        $data['harga_ikan'] = str_replace('.', '', $data['harga_ikan']);
         $data['update_by'] = Auth::guard('admin')->id();
         $updateFish = $fish->update($data);
 

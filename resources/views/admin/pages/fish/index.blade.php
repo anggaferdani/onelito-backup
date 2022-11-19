@@ -94,6 +94,7 @@
 
     <!-- bootsrap datepicker -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="{{ asset('/js/price-separator.min.js') }}"></script>
 
     <script type="text/javascript">
         $.ajaxSetup({
@@ -115,6 +116,18 @@
                 format: "mm-yyyy",
                 startView: "months",
                 minViewMode: "months"
+            });
+
+            $('#harga_ikan').priceFormat({
+                prefix: '',
+                centsLimit: 0,
+                thousandsSeparator: '.'
+            });
+
+            $('#edit_harga_ikan').priceFormat({
+                prefix: '',
+                centsLimit: 0,
+                thousandsSeparator: '.'
             });
 
             $('#table-1').DataTable({
