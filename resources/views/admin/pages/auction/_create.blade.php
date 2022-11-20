@@ -40,7 +40,7 @@
             </div>
             <div class="form-group total_hadiah d-none">
                 <label for="total_hadiah">Total Hadiah</label>
-                <input  type="number" id="total_hadiah" class="form-control" name="total_hadiah" placeholder="">
+                <input  type="text" id="total_hadiah" class="form-control" name="total_hadiah" placeholder="">
             </div>
             <div class="form-group">
             <label for="auction_products">Barang Lelang</label>

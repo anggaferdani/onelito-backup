@@ -35,7 +35,7 @@
             </div>
             <div class="form-group">
                 <label for="edit_harga">Harga</label>
-                <input  type="number" id="edit_harga" class="form-control" name="edit_harga" placeholder="">
+                <input  type="text" id="edit_harga" class="form-control" name="edit_harga" placeholder="">
             </div>
             <div class="form-group">
                 <label for="edit_deskripsi">Deskripsi</label>

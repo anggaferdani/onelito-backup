@@ -46,7 +46,7 @@
             </div>
             <div class="form-group total_hadiah">
                 <label for="edit_total_hadiah">Total Hadiah</label>
-                <input  type="number" id="edit_total_hadiah" class="form-control" name="edit_total_hadiah" placeholder="">
+                <input  type="text" id="edit_total_hadiah" class="form-control" name="edit_total_hadiah" placeholder="">
             </div>
             <div class="form-group">
             <label for="edit_auction_products">Barang Lelang</label>

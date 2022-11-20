@@ -22,6 +22,8 @@ class Admin extends Authenticatable
         'password',
     ];
 
+    protected $guarded = [];
+
     /**
      * Password need to be all time encrypted.
      *

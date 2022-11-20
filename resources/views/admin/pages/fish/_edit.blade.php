@@ -44,7 +44,7 @@
             </div>
             <div class="form-group">
                 <label for="edit_harga_ikan">Harga</label>
-                <input  type="number" id="edit_harga_ikan" class="form-control" name="edit_harga_ikan" placeholder="">
+                <input  type="text" id="edit_harga_ikan" class="form-control" name="edit_harga_ikan" placeholder="">
             </div>
         </div>
         <div class="modal-footer">

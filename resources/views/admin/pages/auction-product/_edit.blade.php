@@ -51,7 +51,7 @@
                 <input  type="text" id="edit_kb" name="edit_kb" class="form-control" placeholder="">
             </div>
             <div class="form-group">
-                <label for="edit_note">Note</label>
+                <label for="edit_note">Deskripsi</label>
                 <textarea id="edit_note" name="edit_note" class="form-control summernote" placeholder=""></textarea>
             </div>
             <div class="form-group">
