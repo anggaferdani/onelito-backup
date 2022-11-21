@@ -106,17 +106,17 @@
     <script>
         $(document).ready(function() {
 
-            $("#dob").datepicker( {
-                format: "mm-yyyy",
-                startView: "months",
-                minViewMode: "months"
-            });
+            // $("#dob").datepicker( {
+            //     format: "mm-yyyy",
+            //     startView: "months",
+            //     minViewMode: "months"
+            // });
 
-            $("#edit_dob").datepicker( {
-                format: "mm-yyyy",
-                startView: "months",
-                minViewMode: "months"
-            });
+            // $("#edit_dob").datepicker( {
+            //     format: "mm-yyyy",
+            //     startView: "months",
+            //     minViewMode: "months"
+            // });
 
             $('#harga_ikan').priceFormat({
                 prefix: '',
@@ -209,6 +209,7 @@
                     $('#edit_sex').html(`
                         <option value="Male" ${((res.sex === 'Male') ? 'selected' : '')}>Male</option>
                         <option value="Female" ${((res.sex === 'Female') ? 'selected' : '')}>Female</option>
+                        <option value="Unknown" ${((res.sex === 'Unknown') ? 'selected' : '')}>Unknown</option>
                     `)
                     $('#edit_dob').val(res.dob)
                     $('#edit_size').val(res.size)
