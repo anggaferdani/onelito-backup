@@ -1,4 +1,4 @@
-@extends('layout.mainlog')
+@extends('layout.main')
 
 @section('container')
     <div class="container">
@@ -201,7 +201,7 @@
                     <hr>
 
                     <p class="m-0" style="font-size: larger">Note :</p>
-                    <p style="font-size: larger">{{ $auctionProduct->note }}</p>
+                    <p style="font-size: larger">{!! $auctionProduct->note !!}</p>
                     <hr>
 
                     <p style="font-size:30px">Harga saat ini: <span id="currentPrice" class="alert-link text-danger number-separator">Rp. {{ $currentPrice }}</span></p>
@@ -219,6 +219,7 @@
                 <div class="row m-1">
                     <div class="col-md-4">
                     </div>
+                    @auth('member')
                     <div class="col-12 col-md-8 no-gutters">
                         <form method="POST" id="normalBidForm" action="/auction/{{ $idIkan }}" class="row">
                             @csrf
@@ -232,11 +233,13 @@
                             </div>
                         </form>
                     </div>
+                    @endauth
                 </div>
 
                 <div class="row m-1">
                     <div class="col-md-4 no-gutters">
                     </div>
+                    @auth('member')
                     <div class="col-12 col-md-8 no-gutters">
                         <form method="POST" id="autoBidForm" action="/auction/{{ $idIkan }}"  class="row">
                             <div class="col-7 col-md-9" style="padding-right:0px">
@@ -253,6 +256,7 @@
                         <div class="alert alert-danger bid alert-dismissible fade mb-0 mt-1" role="alert">
                         </div>
                     </div>
+                    @endauth
                 </div>
             </div>
         </div>
@@ -286,29 +290,21 @@
     let addedExtraTime = "{{ $addedExtraTime }}";
     let currentEndTime = auctionProduct.event.tgl_akhir;
 
-    $('#nominal_bid').priceFormat({
-        prefix: '',
-        centsLimit: 0,
-        thousandsSeparator: '.'
-    });
+    if ($('#nominal_bid').length !== 0) {
+        $('#nominal_bid').priceFormat({
+            prefix: '',
+            centsLimit: 0,
+            thousandsSeparator: '.'
+        });
+    }
 
-    $('#auto_bid').priceFormat({
-        prefix: '',
-        centsLimit: 0,
-        thousandsSeparator: '.'
-    });
-
-    // easyNumberSeparator({
-    //     selector: '#nominal_bid2',
-    //     separator: '.',
-    //     resultInput: '#nominal_bid',
-    // })
-
-    // easyNumberSeparator({
-    //     selector: '#auto_bid2',
-    //     separator: '.',
-    //     resultInput: '#auto_bid',
-    // })
+    if ($('#auto_bid').length !== 0) {
+        $('#auto_bid').priceFormat({
+            prefix: '',
+            centsLimit: 0,
+            thousandsSeparator: '.'
+        });
+    }
 
     $('#normalBidForm').submit(function(e) {
         e.preventDefault();
@@ -386,7 +382,9 @@
 
             let kb = parseInt(auctionProduct.kb);
 
-            let inputNominalBid = parseInt($('#nominal_bid').unmask());
+            if ($('#nominal_bid').length !== 0) {
+                let inputNominalBid = parseInt($('#nominal_bid').unmask());
+            }
             let nextNominalBid = (kb + inputNominalBid);
 
             formData.set('nominal_bid', nextNominalBid)
@@ -415,7 +413,9 @@
     {
         urlGet = `/auction/${idIkan}/detail`;
 
-        autoBid = parseInt($('#auto_bid').unmask());
+        if ($('#auto_bid').length !== 0) {
+            autoBid = parseInt($('#auto_bid').unmask());
+        }
 
         $.ajax({
         type: 'GET',

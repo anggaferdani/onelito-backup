@@ -204,7 +204,7 @@
                     </div>
                     <br><br>
                     <div class="card p-0">
-                        <a class="btn btn-danger w-100 justify-content-between" href="/login" role="button"
+                        <a class="btn btn-danger w-100 justify-content-between" href="/logout" role="button"
                             style="font-size: x-large">Log Out</a>
                     </div>
                 </div>

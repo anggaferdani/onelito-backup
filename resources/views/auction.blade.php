@@ -42,7 +42,7 @@
     <div class="container">
         @if ($currentAuction && $currentAuction->kategori_event === "Regular")
             <h5>Rules Auction</h5>
-            <p class="m-0">{{ $currentAuction->rules_event ?? "" }}</p>
+            <p class="m-0">{!! $currentAuction->rules_event ?? "" !!}</p>
 
             <div class="my-5">
                 <p style="color: red">{{ $currentAuction->deskripsi_event ?? "" }}</p>
@@ -104,7 +104,7 @@
                                                 class="fa-solid fa-circle-chevron-right"></i></span></a>
                                 </div>
                                 <div class="col-6 col-md-6 pe-0 px-sm-2">
-                                    <a href="{{ '/auction/'. $auctionProduct->id_ikan . '/detail' }}"
+                                    <a href="{{ '/auction/'. $auctionProduct->id_ikan }}"
                                         class="btn btn-secondary w-100 d-flex justify-content-between px-1 p-1"
                                         style="font-size: 80%">DETAIL <span><i
                                                 class="fa-solid fa-circle-chevron-right"></i></span></a>

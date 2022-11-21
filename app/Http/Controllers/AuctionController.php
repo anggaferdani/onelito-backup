@@ -73,7 +73,11 @@ class AuctionController extends Controller
 
         $auctionProduct = EventFish::with(['photo', 'event'])->findOrFail($idIkan);
 
-        $logBid = LogBid::where('id_peserta', $auth->id_peserta)->where('id_ikan_lelang', $idIkan)->first();
+        $logBid = null;
+
+        if ($auth) {
+            $logBid = LogBid::where('id_peserta', $auth->id_peserta)->where('id_ikan_lelang', $idIkan)->first();
+        }
 
         $maxBid = LogBid::where('id_ikan_lelang', $idIkan)->orderBy('nominal_bid', 'desc')->first()->nominal_bid ?? $auctionProduct->ob;
 
@@ -166,7 +170,10 @@ class AuctionController extends Controller
 
         $auctionProduct = EventFish::with(['photo', 'event'])->findOrFail($idIkan);
 
-        $logBid = LogBid::where('id_peserta', $auth->id_peserta)->where('id_ikan_lelang', $idIkan)->first();
+        $logBid = null;
+        if ($auth) {
+            $logBid = LogBid::where('id_peserta', $auth->id_peserta)->where('id_ikan_lelang', $idIkan)->first();
+        }
 
         $maxBidData = LogBid::where('id_ikan_lelang', $idIkan)->orderBy('nominal_bid', 'desc')->first();
 

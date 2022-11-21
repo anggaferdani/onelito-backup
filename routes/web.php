@@ -62,14 +62,13 @@ Route::get('/cities', [ServiceController::class, 'cities'])->name('home.cities')
 Route::get('/districts', [ServiceController::class, 'districts'])->name('home.districts');
 Route::get('/subdistricts', [ServiceController::class, 'subdistricts'])->name('home.subdistricts');
 
+Route::get('/auction/{idIkan}', [AuctionController::class, 'bid'])->name('auction.bid');
+Route::get('/auction/{idIkan}/detail', [AuctionController::class, 'detail'])->name('auction.detail');
+
 // MEMBER
 Route::group(['middleware' => 'auth:member'], function () {
     Route::get('/profil', [ProfileController::class, 'index'])->name('profile.index');
-    Route::get('/auction/{idIkan}', [AuctionController::class, 'bid'])->name('auction.bid');
     Route::POST('/auction/{idIkan}', [AuctionController::class, 'bidProcess'])->name('auction.bid_process');
-
-    Route::get('/auction/{idIkan}/detail', [AuctionController::class, 'detail'])->name('auction.detail');
-
 
     Route::get('/bid', function () {
         return view('bid',[
