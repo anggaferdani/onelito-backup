@@ -290,21 +290,21 @@
     let addedExtraTime = "{{ $addedExtraTime }}";
     let currentEndTime = auctionProduct.event.tgl_akhir;
 
-    if ($('#nominal_bid').length !== 0) {
+    // if ($('#nominal_bid').length !== 0) {
         $('#nominal_bid').priceFormat({
             prefix: '',
             centsLimit: 0,
             thousandsSeparator: '.'
         });
-    }
+    // }
 
-    if ($('#auto_bid').length !== 0) {
+    // if ($('#auto_bid').length !== 0) {
         $('#auto_bid').priceFormat({
             prefix: '',
             centsLimit: 0,
             thousandsSeparator: '.'
         });
-    }
+    // }
 
     $('#normalBidForm').submit(function(e) {
         e.preventDefault();
@@ -333,13 +333,14 @@
     $('#autoBidForm').submit(function(e) {
         document.getElementById("nominal_bid").disabled = true;
         document.getElementById("auto_bid").disabled = true;
-        $('#buttonCancelAutoBid').removeAttr('hidden');
-        $('#buttonNormalBid').attr('hidden', 'hidden');
-        $('#buttonAutoBid').html(`
-            <div class="spinner-border" style="width: 1rem; height: 1rem" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-        `)
+        // $('#buttonCancelAutoBid').removeAttr('hidden');
+        // $('#buttonNormalBid').attr('hidden', 'hidden');
+        // $('#buttonAutoBid').html(`
+        //     <div class="spinner-border" style="width: 1rem; height: 1rem" role="status">
+        //         <span class="visually-hidden">Loading...</span>
+        //     </div>
+        // `)
+
         e.preventDefault();
         let formData = new FormData(this);
         let url = $(this).attr('action')
@@ -382,9 +383,8 @@
 
             let kb = parseInt(auctionProduct.kb);
 
-            if ($('#nominal_bid').length !== 0) {
-                let inputNominalBid = parseInt($('#nominal_bid').unmask());
-            }
+            let inputNominalBid = parseInt($('#nominal_bid').unmask());
+
             let nextNominalBid = (kb + inputNominalBid);
 
             formData.set('nominal_bid', nextNominalBid)
@@ -432,11 +432,15 @@
             // console.log({statusAutoBid, autoBid, nominalBid})
             if (meMaxBid === true) {
                 console.log('meMaxBid')
+                document.getElementById("nominal_bid").disabled = false;
+                document.getElementById("auto_bid").disabled = false;
                 return false;
             }
 
             if (statusAutoBid === false) {
                 console.log('statusAutoBid')
+                document.getElementById("nominal_bid").disabled = false;
+                document.getElementById("auto_bid").disabled = false;
                 return false;
             }
 
