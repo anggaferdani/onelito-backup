@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\EventFish;
 use App\Models\LogBid;
+use App\Models\LogBidDetail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -111,13 +112,14 @@ class AuctionController extends Controller
     public function bidProcess($idIkan)
     {
         $nominalBid = $this->request->input('nominal_bid', null);
+        $nominalBidDetail = $this->request->input('nominal_bid_detail', null);
         $autoBid = $this->request->input('auto_bid', null);
 
         $auth = Auth::guard('member')->user();
 
         $auctionProduct = EventFish::with(['photo', 'event'])->findOrFail($idIkan);
 
-        $modKb = $nominalBid % $auctionProduct->kb === 0;
+        $modKb = $nominalBidDetail % $auctionProduct->kb === 0;
 
         if ($autoBid !== null) {
             $modAutoKb = $autoBid % $auctionProduct->kb === 0;
@@ -126,13 +128,15 @@ class AuctionController extends Controller
             }
         }
 
-        if (!$modKb) {
+        if (!$modKb && $autoBid === null) {
             return response()->json(['message' => 'Nominal bid harus sesuai dengan kelipatan bid'], 400);
         }
 
         $logBid = LogBid::where('id_peserta', $auth->id_peserta)->where('id_ikan_lelang', $idIkan)->first();
 
         if ($logBid !== null) {
+            $nominalBidDetail = (int) $nominalBid - (int) $logBid->nominal_bid;
+
             if ($autoBid <= $logBid->nominal_bid && $autoBid !== null) {
                 return response()->json(['message' => 'success updated']);
             }
@@ -145,6 +149,12 @@ class AuctionController extends Controller
 
             $logBid->save();
 
+            LogBidDetail::create([
+                'id_bidding' => $logBid->id_bidding,
+                'nominal_bid' => $auctionProduct->kb,
+                'status_aktif' => 1,
+            ]);
+
             return response()->json(['message' => 'success updated']);
         }
 
@@ -154,6 +164,12 @@ class AuctionController extends Controller
             'nominal_bid' => $nominalBid,
             'auto_bid' => $autoBid,
             'waktu_bid' => Carbon::now(),
+            'status_aktif' => 1,
+        ]);
+
+        LogBidDetail::create([
+            'id_bidding' => $createBid->id_bidding,
+            'nominal_bid' => $nominalBid,
             'status_aktif' => 1,
         ]);
 
@@ -175,7 +191,8 @@ class AuctionController extends Controller
             $logBid = LogBid::where('id_peserta', $auth->id_peserta)->where('id_ikan_lelang', $idIkan)->first();
         }
 
-        $maxBidData = LogBid::where('id_ikan_lelang', $idIkan)->orderBy('nominal_bid', 'desc')->first();
+        $logBids = LogBid::with('member')->where('id_ikan_lelang', $idIkan)->orderBy('nominal_bid', 'desc')->limit(10)->get();
+        $maxBidData = $logBids->first();
 
         $maxBid = $maxBidData->nominal_bid ?? $auctionProduct->ob;
 
@@ -200,6 +217,7 @@ class AuctionController extends Controller
                 'maxBid' => $maxBid,
                 'idIkan' => $idIkan,
                 'meMaxBid' => $meMaxBid,
+                'logBids' => $logBids,
                 'auctionProduct' => $auctionProduct,
             ]);
         }
