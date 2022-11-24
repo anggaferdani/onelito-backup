@@ -1,268 +1,300 @@
 @extends('layout.main')
 
 @section('container')
-    <div class="container">
-        <a href="/auction"><i class="fa-solid fa-arrow-left-long text-body" style="font-size: x-large"></i></a>
 
-        <style>
-            /* On screens that are 992px or less, set the background color to blue */
-            @media screen and (min-width: 601px) {
-                /* .res {
-                    display: none
-                } */
+<div class="container">
+<div class="modal fade" id="exampleModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">History Bidding</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>
+    <a href="/auction"><i class="fa-solid fa-arrow-left-long text-body" style="font-size: x-large"></i></a>
+
+    <style>
+        /* On screens that are 992px or less, set the background color to blue */
+        @media screen and (min-width: 601px) {
+            /* .res {
+                display: none
+            } */
+        }
+
+        /* On screens that are 600px or less, set the background color to olive */
+        @media screen and (max-width: 600px) {
+            /* .web {
+                display: none;
+            } */
+            hr {
+                margin: 0;
             }
 
-            /* On screens that are 600px or less, set the background color to olive */
-            @media screen and (max-width: 600px) {
-                /* .web {
-                    display: none;
-                } */
-                hr {
-                    margin: 0;
-                }
-
-                p {
-                    font: size 11px !important;
-                    margin-bottom: 0.5rem;
-                }
-
-                h3 {
-                    font-size: 12px !important;
-                    margin-bottom: 0;
-                }
-
-                button.btn-danger {
-                    font-size: 13px;
-                    height: 38px;
-                }
+            p {
+                font: size 11px !important;
+                margin-bottom: 0.5rem;
             }
-        </style>
 
-        <!-- <div class="res">
-            <div class="row">
-                <div class="col-6">
-                    @php
-                        $imgUrl = 'img/koi_3.jpg';
+            h3 {
+                font-size: 12px !important;
+                margin-bottom: 0;
+            }
 
-                        if ($auctionProduct->photo) {
-                            $imgUrl = 'storage/'. $auctionProduct->photo->path_foto;
-                        }
-                    @endphp
-                    <div class="">
-                        <img src="{{ url($imgUrl) }}" class="card-img-top" alt="...">
-                        <br><br>
-                    </div>
-                    <div class="card-body p-0">
-                        <a target="_blank" href="{{ $auctionProduct->link_video }}" class="btn btn-danger w-100 d-flex justify-content-between"
-                            style="font-size:larger">VIDEO <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
-                    </div>
-                </div>
-                <div class="col-6 ps-0">
-                    <p class="m-0" style="font-size: 11px">Auction Detail</p>
-                    <hr class="m-0">
-                    <h3 style="font-size: 12px">
-                        <table>
-                        <tr>
-                            <td>Variety</td>
-                            <td>: {{ $auctionProduct->variety }}</td>
-                        </tr>
-                        <tr>
-                            <td>Breeder</td>
-                            <td>: {{ $auctionProduct->breeder }}</td>
-                        </tr>
-                        <tr>
-                            <td>Bloodline</td>
-                            <td>: {{ $auctionProduct->bloodline }}</td>
-                        </tr>
-                        <tr>
-                            <td>Sex</td>
-                            <td>: {{ $auctionProduct->sex }}</td>
-                        </tr>
-                        <tr>
-                            <td>DOB</td>
-                            <td>: {{ $auctionProduct->dob }}</td>
-                        </tr>
-                        <tr>
-                            <td>Size</td>
-                            <td>: {{ $auctionProduct->size }}</td>
-                        </tr>
-                        </table>
-                    </h3>
+            button.btn-danger {
+                font-size: 13px;
+                height: 38px;
+            }
+        }
+    </style>
 
-                    <hr class="m-0">
+    <!-- <div class="res">
+        <div class="row">
+            <div class="col-6">
+                @php
+                    $imgUrl = 'img/koi_3.jpg';
 
-                    <p class="m-0" style="font-size: 11px">Note :</p>
-                    <p style="font-size: 10px">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum,
-                        voluptas! Porro suscipit obcaecati eius quia qui dolorem harum ipsam, illo laudantium officiis
-                        maiores commodi aliquid fugiat, laboriosam ipsa similique blanditiis.</p>
-
-                    <hr class="m-0">
-
-                    @php
-                        $currentPrice = $auctionProduct->ob;
-
-                        $currentPrice = $maxBid > $currentPrice ? $maxBid : $currentPrice;
-                    @endphp
-
-                    <p class="m-0" style="font-size:11px">Harga saat ini: <span class="alert-link text-danger"
-                            style="font-size:12px">Rp {{ $currentPrice }}</span></p>
-
-                    <hr class="m-0">
-
-                    <p style="font-size:10px" class="m-0">Kelipatan BID: <span class="alert-link text-danger"
-                            style="font-size: 11px">Rp. {{ $auctionProduct->kb }}</span></p>
-
-                    <hr class="m-0">
-
-                    <p class="m-0 mt-2" style="font-size: 13px">Countdown</p>
-                    <p class="alert-link text-danger" style="font-size: 16px">00 : 35 : 45</p>
-                </div>
-
-                <div class="input-group input-group-sm mb-3 mt-5">
-                    <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-sm" placeholder="Nominal BID">
-                    <span class="bg-danger input-group-text text-white" id="inputGroup-sizing-sm">BID AUCTION</span>
-                </div>
-                <div class="input-group input-group-sm mb-3">
-                    <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-sm" placeholder="Nominal Max Auto BID">
-                    <span class="bg-danger input-group-text text-white" id="inputGroup-sizing-sm">AUTO BID</span>
-                </div>
-            </div>
-        </div> -->
-
-        <div class="web">
-            <div class="row gx-5">
-                <div class="col-6 col-md-4">
-                    <div class="m-lg-auto" style="max-width: 18rem;">
-                    @php
-                        $imgUrl = 'img/koi_3.jpg';
-
-                        if ($auctionProduct->photo) {
-                            $imgUrl = 'storage/'. $auctionProduct->photo->path_foto;
-                        }
-                    @endphp
+                    if ($auctionProduct->photo) {
+                        $imgUrl = 'storage/'. $auctionProduct->photo->path_foto;
+                    }
+                @endphp
+                <div class="">
                     <img src="{{ url($imgUrl) }}" class="card-img-top" alt="...">
-                        <br><br>
-                        <div class="card-body p-0">
-                            <a target="_blank" href="{{ $auctionProduct->link_video }}" class="btn btn-danger w-100 d-flex justify-content-between"
-                                style="font-size:larger">VIDEO <span><i
-                                        class="fa-solid fa-circle-chevron-right"></i></span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-8 ps-0">
-                    <p style="font-size: larger">Auction Detail</p>
-                    <hr>
-                    <div class="row">
-                        <div class="col">
-                            <h3>
-                                <table>
-                                    <tr>
-                                        <td>Variety</td>
-                                        <!-- <td>: Kohaku</td> -->
-                                        <td>: {{ $auctionProduct->variety }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Breeder</td>
-                                        <!-- <td>: Sakai Fish Farm</td> -->
-                                        <td>: {{ $auctionProduct->breeder }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bloodline</td>
-                                        <!-- <td>: S Legend</td> -->
-                                        <td>: {{ $auctionProduct->bloodline }}</td>
-                                    </tr>
-                                </table>
-                            </h3>
-                        </div>
-                        <div class="col">
-                            <h3>
-                                <table>
-                                <tr>
-                                    <td>Sex</td>
-                                    <!-- <td>: Female</td> -->
-                                    <td>: {{ $auctionProduct->sex }}</td>
-                                </tr>
-                                <tr>
-                                    <td>DOB</td>
-                                    <!-- <td>: 2020</td> -->
-                                    <td>: {{ $auctionProduct->dob }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Size</td>
-                                    <!-- <td>: 57 cm</td> -->
-                                    <td>: {{ $auctionProduct->size }}</td>
-                                </tr>
-                                </table>
-                            </h3>
-                        </div>
-                    </div>
-                    <hr>
-
-                    <p class="m-0" style="font-size: larger">Note :</p>
-                    <p style="font-size: larger">{!! $auctionProduct->note !!}</p>
-                    <hr>
-
-                    <p style="font-size:30px">Harga saat ini: <span id="currentPrice" class="alert-link text-danger number-separator">Rp. {{ $currentPrice }}</span></p>
-                    <hr>
-
-                    <p style="font-size:25px">Kelipatan BID: <span class="alert-link text-danger">Rp. {{ $auctionProduct->kb }}</span></p>
-                    <hr>
-
-                    <p class="m-0" style="font-size: larger">Countdown</p>
-                    <p class="alert-link text-danger countdown-label" style="font-size: 30px">00 : 00 : 00</p>
-
                     <br><br>
                 </div>
-
-                <div class="row m-1">
-                    <div class="col-md-4">
-                    </div>
-                    @auth('member')
-                    <div class="col-12 col-md-8 no-gutters">
-                        <form method="POST" id="normalBidForm" action="/auction/{{ $idIkan }}" class="row">
-                            @csrf
-                            <div class="col-7 col-md-9" style="padding-right:0px">
-                                <!-- <input type="text" id="nominal_bid2" name="nominal_bid2" value="{{ $logBid->nominal_bid ?? '' }}" class="form-control number-separator" id="exampleFormControlInput1" placeholder="Nominal BID"> -->
-                                <input type="text" id="nominal_bid" name="nominal_bid" value="" required class="form-control number-separator" id="exampleFormControlInput1" placeholder="Nominal BID">
-                            </div>
-                            <div class="col-5 col-md-3" style="padding-left:0px; max-height: 38px">
-                                <button id="buttonNormalBid" type="submit" class="btn btn-danger w-100 justify-content-between">BID AUCTION</button>
-                                <button hidden onclick="cancelAutoBid()" id="buttonCancelAutoBid" type="button" class="btn btn-danger mb-3 w-100 justify-content-between">CANCEL AUTO BID</button>
-                            </div>
-                        </form>
-                    </div>
-                    @endauth
-                </div>
-
-                <div class="row m-1">
-                    <div class="col-md-4 no-gutters">
-                    </div>
-                    @auth('member')
-                    <div class="col-12 col-md-8 no-gutters">
-                        <form method="POST" id="autoBidForm" action="/auction/{{ $idIkan }}"  class="row">
-                            <div class="col-7 col-md-9" style="padding-right:0px">
-                                <!-- <input type="text" id="auto_bid2" name="auto_bid2" class="form-control" value="{{ $logBid->auto_bid ?? '' }}" id="exampleFormControlInput1" placeholder="Nominal Max Auto BID"> -->
-                                <input type="text" id="auto_bid" name="auto_bid" class="form-control" value="" id="exampleFormControlInput1" placeholder="Nominal Max Auto BID">
-                            </div>
-                            <div class="col-5 col-md-3" style="padding-left:0px">
-                                <button type="submit" id="buttonAutoBid" class="btn btn-danger w-100 justify-content-between">
-                                    AUTO BID
-                                </button>
-                            </div>
-                        </form>
-
-                        <div class="alert alert-danger bid alert-dismissible fade mb-0 mt-1" role="alert">
-                        </div>
-                    </div>
-                    @endauth
+                <div class="card-body p-0">
+                    <a target="_blank" href="{{ $auctionProduct->link_video }}" class="btn btn-danger w-100 d-flex justify-content-between"
+                        style="font-size:larger">VIDEO <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                 </div>
             </div>
-        </div>
+            <div class="col-6 ps-0">
+                <p class="m-0" style="font-size: 11px">Auction Detail</p>
+                <hr class="m-0">
+                <h3 style="font-size: 12px">
+                    <table>
+                    <tr>
+                        <td>Variety</td>
+                        <td>: {{ $auctionProduct->variety }}</td>
+                    </tr>
+                    <tr>
+                        <td>Breeder</td>
+                        <td>: {{ $auctionProduct->breeder }}</td>
+                    </tr>
+                    <tr>
+                        <td>Bloodline</td>
+                        <td>: {{ $auctionProduct->bloodline }}</td>
+                    </tr>
+                    <tr>
+                        <td>Sex</td>
+                        <td>: {{ $auctionProduct->sex }}</td>
+                    </tr>
+                    <tr>
+                        <td>DOB</td>
+                        <td>: {{ $auctionProduct->dob }}</td>
+                    </tr>
+                    <tr>
+                        <td>Size</td>
+                        <td>: {{ $auctionProduct->size }}</td>
+                    </tr>
+                    </table>
+                </h3>
 
-        <br><br><br>
+                <hr class="m-0">
+
+                <p class="m-0" style="font-size: 11px">Note :</p>
+                <p style="font-size: 10px">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum,
+                    voluptas! Porro suscipit obcaecati eius quia qui dolorem harum ipsam, illo laudantium officiis
+                    maiores commodi aliquid fugiat, laboriosam ipsa similique blanditiis.</p>
+
+                <hr class="m-0">
+
+                @php
+                    $currentPrice = $auctionProduct->ob;
+
+                    $currentPrice = $maxBid > $currentPrice ? $maxBid : $currentPrice;
+                @endphp
+
+                <p class="m-0" style="font-size:11px">Harga saat ini: <span class="alert-link text-danger"
+                        style="font-size:12px">Rp {{ $currentPrice }}</span></p>
+
+                <hr class="m-0">
+
+                <p style="font-size:10px" class="m-0">Kelipatan BID: <span class="alert-link text-danger"
+                        style="font-size: 11px">Rp. {{ $auctionProduct->kb }}</span></p>
+
+                <hr class="m-0">
+
+                <p class="m-0 mt-2" style="font-size: 13px">Countdown</p>
+                <p class="alert-link text-danger" style="font-size: 16px">00 : 35 : 45</p>
+            </div>
+
+            <div class="input-group input-group-sm mb-3 mt-5">
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm" placeholder="Nominal BID">
+                <span class="bg-danger input-group-text text-white" id="inputGroup-sizing-sm">BID AUCTION</span>
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm" placeholder="Nominal Max Auto BID">
+                <span class="bg-danger input-group-text text-white" id="inputGroup-sizing-sm">AUTO BID</span>
+            </div>
+        </div>
+    </div> -->
+    <div class="web">
+        <div class="row gx-5">
+            <div class="col-6 col-md-4">
+                <div class="m-lg-auto" style="max-width: 18rem;">
+                @php
+                    $imgUrl = 'img/koi_3.jpg';
+
+                    if ($auctionProduct->photo) {
+                        $imgUrl = 'storage/'. $auctionProduct->photo->path_foto;
+                    }
+                @endphp
+                <img src="{{ url($imgUrl) }}" class="card-img-top" alt="...">
+                    <br><br>
+                    <div class="card-body p-0">
+                        <a target="_blank" href="{{ $auctionProduct->link_video }}" class="btn btn-danger w-100 d-flex justify-content-between"
+                            style="font-size:larger">VIDEO <span><i
+                                    class="fa-solid fa-circle-chevron-right"></i></span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-8 ps-0">
+                <p style="font-size: larger">Auction Detail</p>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <h3>
+                            <table>
+                                <tr>
+                                    <td>Variety</td>
+                                    <!-- <td>: Kohaku</td> -->
+                                    <td>: {{ $auctionProduct->variety }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Breeder</td>
+                                    <!-- <td>: Sakai Fish Farm</td> -->
+                                    <td>: {{ $auctionProduct->breeder }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Bloodline</td>
+                                    <!-- <td>: S Legend</td> -->
+                                    <td>: {{ $auctionProduct->bloodline }}</td>
+                                </tr>
+                            </table>
+                        </h3>
+                    </div>
+                    <div class="col">
+                        <h3>
+                            <table>
+                            <tr>
+                                <td>Sex</td>
+                                <!-- <td>: Female</td> -->
+                                <td>: {{ $auctionProduct->sex }}</td>
+                            </tr>
+                            <tr>
+                                <td>DOB</td>
+                                <!-- <td>: 2020</td> -->
+                                <td>: {{ $auctionProduct->dob }}</td>
+                            </tr>
+                            <tr>
+                                <td>Size</td>
+                                <!-- <td>: 57 cm</td> -->
+                                <td>: {{ $auctionProduct->size }}</td>
+                            </tr>
+                            </table>
+                        </h3>
+                    </div>
+                </div>
+                <hr>
+
+                <p class="m-0" style="font-size: larger">Note :</p>
+                <p style="font-size: larger">{!! $auctionProduct->note !!}</p>
+                <hr>
+
+                <p style="font-size:30px">Harga saat ini: <span id="currentPrice" class="alert-link text-danger number-separator">Rp. {{ $currentPrice }}</span></p>
+                <hr>
+
+                <p style="font-size:25px">Kelipatan BID: <span class="alert-link text-danger">Rp. {{ $auctionProduct->kb }}</span></p>
+                <hr>
+
+                <p class="m-0" style="font-size: larger">Countdown</p>
+                <p class="alert-link text-danger countdown-label" style="font-size: 30px">00 : 00 : 00</p>
+
+                <br><br>
+            </div>
+
+            <div class="row m-1">
+                <div class="col-md-4">
+                </div>
+                @auth('member')
+                <div class="col-12 col-md-8 no-gutters">
+                    <form method="" id="" action="" class="row">
+                        @csrf
+                        <div class="col-7 col-md-9" style="padding-right:0px">
+                            <input type="text" id="" name="" value="" class="d-none form-control number-separator" >
+                        </div>
+                        <div class="col-5 col-md-3" style="padding-left:0px; max-height: 38px">
+                            <button id="buttonHistoryBidding" type="button"
+                            class="btn btn-danger w-100 justify-content-between"
+                            data-bs-toggle="modal" data-bs-target="#exampleModal">HISTORY BIDDING</button>
+                        </div>
+                    </form>
+                </div>
+                @endauth
+            </div>
+
+            <div class="row m-1">
+                <div class="col-md-4">
+                </div>
+                @auth('member')
+                <div class="col-12 col-md-8 no-gutters">
+                    <form method="POST" id="normalBidForm" action="/auction/{{ $idIkan }}" class="row">
+                        @csrf
+                        <div class="col-7 col-md-9" style="padding-right:0px">
+                            <!-- <input type="text" id="nominal_bid2" name="nominal_bid2" value="{{ $logBid->nominal_bid ?? '' }}" class="form-control number-separator" id="exampleFormControlInput1" placeholder="Nominal BID"> -->
+                            <input type="text" id="nominal_bid" name="nominal_bid" value="" required class="form-control number-separator" id="exampleFormControlInput1" placeholder="Nominal BID">
+                        </div>
+                        <div class="col-5 col-md-3" style="padding-left:0px; max-height: 38px">
+                            <button id="buttonNormalBid" type="submit" class="btn btn-danger w-100 justify-content-between">BID AUCTION</button>
+                            <button hidden onclick="cancelAutoBid()" id="buttonCancelAutoBid" type="button" class="btn btn-danger mb-3 w-100 justify-content-between">CANCEL AUTO BID</button>
+                        </div>
+                    </form>
+                </div>
+                @endauth
+            </div>
+
+            <div class="row m-1">
+                <div class="col-md-4 no-gutters">
+                </div>
+                @auth('member')
+                <div class="col-12 col-md-8 no-gutters">
+                    <form method="POST" id="autoBidForm" action="/auction/{{ $idIkan }}"  class="row">
+                        <div class="col-7 col-md-9" style="padding-right:0px">
+                            <!-- <input type="text" id="auto_bid2" name="auto_bid2" class="form-control" value="{{ $logBid->auto_bid ?? '' }}" id="exampleFormControlInput1" placeholder="Nominal Max Auto BID"> -->
+                            <input type="text" id="auto_bid" name="auto_bid" class="form-control" value="" id="exampleFormControlInput1" placeholder="Nominal Max Auto BID">
+                        </div>
+                        <div class="col-5 col-md-3" style="padding-left:0px">
+                            <button type="submit" id="buttonAutoBid" class="btn btn-danger w-100 justify-content-between">
+                                AUTO BID
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="alert alert-danger bid alert-dismissible fade mb-0 mt-1" role="alert">
+                    </div>
+                </div>
+                @endauth
+            </div>
+        </div>
     </div>
+
+    <br><br><br>
+</div>
 @endsection
 
 @push('scripts')
@@ -316,6 +348,7 @@
         var nextNominalBid = (currentMaxBid + inputNominalBid);
 
         formData.set('nominal_bid', nextNominalBid)
+        formData.append('nominal_bid_detail', inputNominalBid)
 
         bidding(formData, url);
     })
@@ -354,6 +387,7 @@
         autoBid = parseInt($('#auto_bid').unmask());
 
         formData.append('nominal_bid', nextNominalBid)
+        // formData.append('nominal_bid_detail', inputNominalBid)
         formData.append('auto_bid', autoBid)
         // var interval = setInterval(function(){
         //     if(timesRun === 60){
@@ -400,6 +434,9 @@
             // }
         },
         error(err){
+            statusAutoBid = false;
+            document.getElementById("nominal_bid").disabled = false;
+            document.getElementById("auto_bid").disabled = false;
             $('.alert.bid').html(err.responseJSON.message);
 
             $('.alert.bid').addClass('show');
@@ -480,6 +517,41 @@
                 nominalBid = parseInt(res.logBid.nominal_bid)
             }
 
+            var historyBidHtml = 'Belum ada data bidding';
+
+            if (res.logBids !== null) {
+                historyBidHtml = `<ul class="list-group">`
+                $.each(res.logBids, function( index, value ) {
+                    var name = value.member.nama
+                    name = name.replace(/(.{3})(.+)(.{2})/g, function(match, start, middle, end) {
+                        return start + "*".repeat(middle.length) + end;
+                    });
+
+                    var nominal = value.nominal_bid
+                    historyBidHtml += `<li class="list-group-item d-flex justify-content-between align-items-center">
+                                            ${name}
+                                            <span class="">Rp. ${nominal}</span>
+                                        </li>`
+                });
+                historyBidHtml += `</ul>`
+            }
+
+            // <ul class="list-group">
+            // <li class="list-group-item d-flex justify-content-between align-items-center">
+            //     A list item
+            //     <span class="badge bg-primary rounded-pill">14</span>
+            // </li>
+            // <li class="list-group-item d-flex justify-content-between align-items-center">
+            //     A second list item
+            //     <span class="badge bg-primary rounded-pill">2</span>
+            // </li>
+            // <li class="list-group-item d-flex justify-content-between align-items-center">
+            //     A third list item
+            //     <span class="">Rp. 1.000</span>
+            // </li>
+            // </ul>
+
+            $('#exampleModal .modal-body').html(historyBidHtml);
             $('#currentPrice').html(`Rp. ${res.maxBid}`);
         },
         error(err){

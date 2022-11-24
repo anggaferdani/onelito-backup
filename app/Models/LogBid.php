@@ -22,4 +22,9 @@ class LogBid extends Model
     {
         return $this->belongsTo(EventFish::class, 'id_ikan_lelang');
     }
+
+    public function member()
+    {
+        return $this->belongsTo(Member::class, 'id_peserta');
+    }
 }
