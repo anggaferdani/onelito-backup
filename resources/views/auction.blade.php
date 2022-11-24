@@ -60,8 +60,11 @@
 
         <div class="container-fluid">
             <div>
-                <h5>{{ $auctionTitle }} Auction</h5>
+                {{-- <h5>{{ $auctionTitle }} Auction</h5> --}}
+                <img src="{{ url('img/nolelang.png') }}" class="d-block w-100" alt="ceklis">
             </div>
+
+
 
             <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 mb-5">
 

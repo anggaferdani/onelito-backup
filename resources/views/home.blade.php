@@ -17,20 +17,17 @@
 
         }
 
-        @media screen and (max-width: 600px) {
-
-            /* .img-mh-300px img {
-                min-height: 400vh;
-            } */
-        }
-
         .cb-judul {
-            height: 7rem;
+            height: 5rem;
 
         }
 
         .cb-judu {
-            height: 5rem;
+            height: 3.5rem;
+        }
+
+        .cb-jud {
+            height: 2.5rem;
         }
     </style>
 
@@ -60,7 +57,7 @@
     </div>
 
     <div class="container mt-3 mt-lg mt-lg-5">
-        <h5><b>Auction</b></h5>
+        {{-- <h5><b>Auction</b></h5> --}}
     </div>
 
     @php
@@ -68,132 +65,142 @@
     @endphp
     <div class="container nav-atas">
         <div class="row">
-        @forelse($auctionProducts as $auctionProduct)
-            <div class="col-6 col-lg-3 mt-3">
-            <div class="card">
-                @php
-                    $photo = 'img/koi11.jpg';
-                    if ($auctionProduct->photo !== null)
-                    {
-                        $photo = url('storage') .'/'. $auctionProduct->photo->path_foto;
-                    }
-                @endphp
-                <img src="{{ $photo }}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <div class="cb-judu">
-                        <h5 class="card-title">{{ $auctionProduct->variety }} |   {{ $auctionProduct->breeder }} | Pedigree | {{ $auctionProduct->size }} | {{ $auctionProduct->bloodline }}</h5>
+            @forelse($auctionProducts as $auctionProduct)
+                <div class="col-6 col-lg-3 mt-3">
+                    <div class="card">
+                        @php
+                            $photo = 'img/koi11.jpg';
+                            if ($auctionProduct->photo !== null) {
+                                $photo = url('storage') . '/' . $auctionProduct->photo->path_foto;
+                            }
+                        @endphp
+                        <img src="{{ $photo }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <div class="cb-judu">
+                                <h5 class="card-title">{{ $auctionProduct->variety }} | {{ $auctionProduct->breeder }} |
+                                    Pedigree | {{ $auctionProduct->size }} | {{ $auctionProduct->bloodline }}</h5>
+                            </div>
+                            <p style="font-size: 10px" class="card-text ma">Starting Price</p>
+                            <p style="color :red;font-size: 12px" class="m-0">Rp. {{ $auctionProduct->ob }}</p>
+                        </div>
                     </div>
-                    <p style="font-size: 10px" class="card-text ma" >Starting Price</p>
-                    <p style="color :red;font-size: 12px" class="m-0">Rp. {{ $auctionProduct->ob }}</p>
                 </div>
-            </div>
-            </div>
-        @empty
-        @endforelse
+            @empty
+            @endforelse
         </div>
     </div>
 
     <div class="container nav-samping">
         <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-        @forelse($auctionProducts as $auctionProduct)
-            <div class="col">
-            <div class="card">
-                @php
-                    $photo = 'img/koi.jpg';
-                    if ($auctionProduct->photo !== null)
-                    {
-                        $photo = url('storage') .'/'. $auctionProduct->photo->path_foto;
-                    }
-                @endphp
-                <img src="{{ $photo }}" class="card-img-top" alt="..." style="height: 310px">
-                <div class="card-body">
-                    <div class="cb-judu">
-                        <h5 class="card-title">{{ $auctionProduct->variety }} |   {{ $auctionProduct->breeder }} | Pedigree | {{ $auctionProduct->size }} | {{ $auctionProduct->bloodline }}</h5>
+            @forelse($auctionProducts as $auctionProduct)
+                <div class="col">
+                    <div class="card">
+                        @php
+                            $photo = 'img/koi.jpg';
+                            if ($auctionProduct->photo !== null) {
+                                $photo = url('storage') . '/' . $auctionProduct->photo->path_foto;
+                            }
+                        @endphp
+                        <img src="{{ $photo }}" class="card-img-top" alt="..." style="height: 310px">
+                        <div class="card-body">
+                            <div class="cb-judu">
+                                <h5 class="card-title">{{ $auctionProduct->variety }} | {{ $auctionProduct->breeder }} |
+                                    Pedigree | {{ $auctionProduct->size }} | {{ $auctionProduct->bloodline }}</h5>
+                            </div>
+                            <p class="card-text ma">Starting Price</p>
+                            <p style="color :red">Rp. {{ $auctionProduct->ob }}</p>
+                        </div>
                     </div>
-                    <p class="card-text ma" >Starting Price</p>
-                    <p style="color :red">Rp. {{ $auctionProduct->ob }}</p>
                 </div>
-            </div>
-            </div>
-        @empty
-        @endforelse
+            @empty
+            @endforelse
         </div>
     </div>
 
     <div class="container mt-5">
-        <h5><b>Hot Product</b></h5>
+        {{-- <h5><b>Hot Product</b></h5> --}}
     </div>
 
 
 
     <div class="container nav-atas">
         <div class="d-flex overflow-scroll">
-        @forelse($hotProductStores as $hotProduct)
-            @php
-                $productPhoto2 = 'img/bio_media.png';
-
-                if ($hotProduct->photo !== null) {
-                    $productPhoto2 = url('storage').'/'.$hotProduct->photo->path_foto;
-                }
-            @endphp
-            <div class="p-1">
-                <div class="p-3 border bg-light" style="width: 200px;/* height: 200px; */">
-                    <a href="/login">
-                    <img src="{{ $productPhoto2 }}" alt="bio media" class="card-img-top" style=" height: 166;width: 166;">
-                    </a>
-                    <div class="cb-judu">
-                        <p>{{ "$hotProduct->merek_produk $hotProduct->nama_produk" }}</p>
-                    </div>
-                    <p><b>Rp. {{ $hotProduct->harga }}</b></p>
-                    <div class="row">
-                    <div class="col-6 p-0">
-                        <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order Now</button>
-                    </div>
-                    <div class="col-2 m-auto">
-                        <button class="border-4 rounded" style="background-color: red;border-color:red"><i class="fa-solid fa-cart-shopping" style="color: white"></i></button>
-                    </div>
-                    <div class="col-2 m-auto">
-                        <button class="border-0" style="background-color: transparent"><i class="far fa-heart" style="font-size: x-large"></i></button>
-                    </div>
+            @forelse($hotProductStores as $hotProduct)
+                @php
+                    $productPhoto2 = 'img/bio_media.png';
+                    
+                    if ($hotProduct->photo !== null) {
+                        $productPhoto2 = url('storage') . '/' . $hotProduct->photo->path_foto;
+                    }
+                @endphp
+                <div class="p-1">
+                    <div class="p-3 border bg-light" style="width: 200px;/* height: 200px; */">
+                        <a href="/login">
+                            <img src="{{ $productPhoto2 }}" alt="bio media" class="card-img-top"
+                                style=" height: 166;width: 166;">
+                        </a>
+                        <div class="cb-judu">
+                            <p>{{ "$hotProduct->merek_produk $hotProduct->nama_produk" }}</p>
+                        </div>
+                        <p><b>Rp. {{ $hotProduct->harga }}</b></p>
+                        <div class="row">
+                            <div class="col-6 p-0">
+                                <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order
+                                    Now</button>
+                            </div>
+                            <div class="col-2 m-auto">
+                                <button class="border-4 rounded" style="background-color: red;border-color:red"><i
+                                        class="fa-solid fa-cart-shopping" style="color: white"></i></button>
+                            </div>
+                            <div class="col-2 m-auto">
+                                <button class="border-0" style="background-color: transparent"><i class="far fa-heart"
+                                        style="font-size: x-large"></i></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        @empty
-        @endforelse
+            @empty
+            @endforelse
         </div>
     </div>
 
     <div class="class nav-samping">
         <div class="container">
             <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-            @forelse($hotProductStores as $hotProduct)
-                @php
-                    $productPhoto = 'img/bio_media.png';
-
-                    if ($hotProduct->photo !== null) {
-                        $productPhoto = url('storage').'/'.$hotProduct->photo->path_foto;
-                    }
-                @endphp
-                <div class="col">
-                    <div class="p-3 border bg-light">
-                    <a href="/detail_onelito_store"><img src="{{ $productPhoto }}" alt="bio media" class="card-img-top" height="170"></a>
-                    <p>{{ "$hotProduct->merek_produk $hotProduct->nama_produk" }}</p>
-                    <p><b>Rp. {{ $hotProduct->harga }}</b></p>
-                    <div class="row">
-                        <div class="col-md-6 d-grid p-0">
-                        <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order Now</button>
-                        </div>
-                        <div class="col-md-3 m-auto">
-                        <button class="border-4 rounded" style="background-color: red;border-color:red"><i class="fa-solid fa-cart-shopping" style="color: white"></i></button>
-                        </div>
-                        <div class="col-md-3 m-auto">
-                        <button class="border-0" style="background-color: transparent"><i class="far fa-heart" style="font-size: x-large"></i></button>
+                @forelse($hotProductStores as $hotProduct)
+                    @php
+                        $productPhoto = 'img/bio_media.png';
+                        
+                        if ($hotProduct->photo !== null) {
+                            $productPhoto = url('storage') . '/' . $hotProduct->photo->path_foto;
+                        }
+                    @endphp
+                    <div class="col">
+                        <div class="p-3 border bg-light">
+                            <a href="/detail_onelito_store"><img src="{{ $productPhoto }}" alt="bio media"
+                                    class="card-img-top" height="170"></a>
+                            <div class="cb-judu">
+                                <p>{!! Illuminate\Support\Str::limit("$hotProduct->merek_produk $hotProduct->nama_produk", 35) !!}</p>
+                            </div>
+                            <p><b>Rp. {{ $hotProduct->harga }}</b></p>
+                            <div class="row">
+                                <div class="col-md-6 d-grid p-0">
+                                    <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order
+                                        Now</button>
+                                </div>
+                                <div class="col-md-3 m-auto">
+                                    <button class="border-4 rounded" style="background-color: red;border-color:red"><i
+                                            class="fa-solid fa-cart-shopping" style="color: white"></i></button>
+                                </div>
+                                <div class="col-md-3 m-auto">
+                                    <button class="border-0" style="background-color: transparent"><i
+                                            class="far fa-heart" style="font-size: x-large"></i></button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    </div>
-                </div>
-            @empty
-            @endforelse
+                @empty
+                @endforelse
             </div>
         </div>
     </div>
@@ -223,23 +230,32 @@
 
     <div class="container">
         <div class="justify-content-around row">
-            <div class="border col-lg-3 col-9 mt-4">
-                <div class="card-body">
+            <div class="border col-lg-2 col-9 mt-4">
+                <div class="">
                     <p class="style text-center"><i class="fa-solid fa-envelope" style="color: red"></i></p>
                     <p class="style text-center"><b>Email</b></p>
-                    <p class="style text-center">onelito@gmail.com</p>
+                    <p class="style text-center">onelito.koi@gmail.com</p>
                 </div>
             </div>
-            <div class="border col-lg-3 col-9 mt-4">
-                <div class="card-body">
+            <div class="border col-lg-2 col-9 mt-4">
+                <div class="">
+                    <p class="style text-center"><i class="fa-solid fa-bag-shopping" style="color: red"></i></p>
+                    <p class="style text-center"><b>Tokopedia</b></p>
+                    <a href="https://www.tokopedia.com/onelitokoi">
+                        <p class="style text-center">onelitokoi</p>
+                    </a>
+                </div>
+            </div>
+            <div class="border col-lg-2 col-9 mt-4">
+                <div class="">
                     <p class="style text-center"><i class="fas fa-map-marker-alt" style="color: red"></i></p>
                     <p class="style text-center"><b>Address</b></p>
-                    <p class="style text-center">Jl. Tandon Ciater D No. 50, BSD, Ciater, Serpong Sub-District, South
-                        Tangerang City Banten 15310</p>
+                    <p class="style text-center">Jl. Tandon Ciater D No. 50, BSD, Ciater, Serpong, Tangerang selatan Banten
+                        15310</p>
                 </div>
             </div>
-            <div class="border col-lg-3 col-9 mt-4">
-                <div class="card-body">
+            <div class="border col-lg-2 col-9 mt-4">
+                <div class="">
                     <p class="style text-center"><i class="fas fa-phone" style="color: red"></i></p>
                     <p class="style text-center"><b>Contact Us</b></p>
                     <p class="style text-center">0811-972-857</p>
@@ -249,33 +265,68 @@
         </div>
     </div>
 
+    {{-- <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-12 mt-4">
+                <div class="card">
+                    <p class="style text-center"><i class="fa-solid fa-envelope" style="color: red"></i></p>
+                    <p class="style text-center"><b>Email</b></p>
+                    <p class="style text-center">onelito.koi@gmail.com</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-12 mt-4">
+                <div class="card">
+                    <p class="style text-center"><i class="fa-solid fa-bag-shopping" style="color: red"></i></p>
+                    <p class="style text-center"><b>Tokopedia</b></p>
+                    <a href="https://www.tokopedia.com/onelitokoi">
+                        <p class="style text-center">onelitokoi</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-12 mt-4">
+                <div class="card">
+                    <p class="style text-center"><i class="fas fa-map-marker-alt" style="color: red"></i></p>
+                    <p class="style text-center"><b>Address</b></p>
+                    <p class="style text-center">Jl. Tandon Ciater D No. 50, BSD, Ciater, Serpong, Tangerang selatan Banten 15310</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-12 mt-4">
+                <div class="card">
+                    <p class="style text-center"><i class="fas fa-phone" style="color: red"></i></p>
+                    <p class="style text-center"><b>Contact Us</b></p>
+                    <p class="style text-center">0811-972-857</p>
+                    <p class="style text-center">0811-972-857</p>
+                </div>
+            </div>
+        </div>
+    </div> --}}
+
     <div class="container-fluit m-5">
-        <img src="img/gc.png" alt="gc" class="w-100">
+        {{-- <img src="img/gc.png" alt="gc" class="w-100"> --}}
     </div>
 
     <div class="container">
         <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-        @forelse($championFishes as $championFish)
-            @php
-                $photoChampion = 'img/koi_2.jpg';
-
-                if ($championFish->foto_ikan !== null)
-                {
-                    $photoChampion = url('storage').'/'. $championFish->foto_ikan;
-                }
-            @endphp
-            <div class="col mt-3">
-            <div class="card">
-                <img src="{{ $photoChampion }}" class="card-img-top" alt="..." style="height: 310px">
-                <div class="m-2 me-auto">
-                <h5 class="card-title">{{ $championFish->nama_champion }}</h5>
-                <p class="card-text ma" >Tahun : {{ $championFish->tahun }}</p>
-                <p >Size : {{ $championFish->size }}</p>
+            @forelse($championFishes as $championFish)
+                @php
+                    $photoChampion = 'img/koi_2.jpg';
+                    
+                    if ($championFish->foto_ikan !== null) {
+                        $photoChampion = url('storage') . '/' . $championFish->foto_ikan;
+                    }
+                @endphp
+                <div class="col mt-3">
+                    <div class="card">
+                        <img src="{{ $photoChampion }}" class="card-img-top" alt="..." style="height: 310px">
+                        <div class="m-2 me-auto">
+                            <h5 class="card-title">{{ $championFish->nama_champion }}</h5>
+                            <p class="card-text ma">Tahun : {{ $championFish->tahun }}</p>
+                            <p>Size : {{ $championFish->size }}</p>
+                        </div>
+                    </div>
                 </div>
-                </div>
-            </div>
-        @empty
-        @endforelse
+            @empty
+            @endforelse
         </div>
     </div>
 
