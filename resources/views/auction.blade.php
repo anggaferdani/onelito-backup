@@ -44,9 +44,9 @@
             <h5>Rules Auction</h5>
             <p class="m-0">{!! $currentAuction->rules_event ?? "" !!}</p>
 
-            <div class="my-5">
+            {{-- <div class="my-5">
                 <p style="color: red">{{ $currentAuction->deskripsi_event ?? "" }}</p>
-            </div>
+            </div> --}}
         @endif
 
         @php
@@ -60,8 +60,9 @@
 
         <div class="container-fluid">
             <div>
-                {{-- <h5>{{ $auctionTitle }} Auction</h5> --}}
-                <img src="{{ url('img/nolelang.png') }}" class="d-block w-100" alt="ceklis">
+                {{-- <h5>{{ $auctionTitle }} Auction</h5>
+
+                <img src="{{ url('img/nolelang.png') }}" class="d-block w-100" alt="ceklis"> --}}
             </div>
 
 

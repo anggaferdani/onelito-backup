@@ -31,7 +31,7 @@
         <div class="col-3 col-lg-3 py-4 text-center">
             <img src="{{ url('img/onelito_wa.jpeg') }}" alt="ONELITO" class="p-lg-5 py-5 w-75">
         </div>
-        <div class="col-4 col-lg-6">
+        <div class="col-4 col-lg-5">
             <nav class="justify-content-center navbar navbar-dark navbar-expand-lg py-5">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
@@ -57,8 +57,8 @@
                 </ul>
             </nav>
         </div>
-        <div class="col-5 col-lg-3 justify-content-center mx-auto py-5 row">
-            <nav class="navbar-dark p-0">
+        <div class="col-5 col-lg-3 mx-auto py-5 row">
+            {{-- <nav class="navbar-dark p-0">
                 <ul class="list-unstyled mr-auto">
                     <li class="nav-item">
                         <p class="active  nav-link text-danger m-0" aria-current="page">SUBSCRIBE US</p>
@@ -67,7 +67,7 @@
                         <a class="nav-link active text-white" aria-current="page"
                             href="https://www.instagram.com/onelitokoi.id/?hl=id">
                             <i class="fa-brands fa-instagram"></i>
-                            @Onelitokoi.id</a>
+                            @onelitokoi.id</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active text-white" aria-current="page" href="#"><i
@@ -79,6 +79,36 @@
                                 class="fa-brands fa-youtube"></i> Onelito koi</a>
                     </li>
                 </ul>
+            </nav> --}}
+            <div class="col-lg-6 p-0">
+                <div class="">
+                    <p class="active  nav-link text-danger m-0" aria-current="page">SUBSCRIBE US</p>
+                </div>
+                <div class="">
+                    <a class="nav-link active text-white" aria-current="page"
+                        href="https://www.instagram.com/onelitokoi.id/?hl=id">
+                        <i class="fa-brands fa-instagram"></i>
+                        @onelitokoi.id</a>
+                </div>
+                <div class="">
+                    <a class="nav-link active text-white" aria-current="page" href="#"><i
+                            class="fa-brands fa-facebook"></i> @Onelito koi</a>
+                </div>
+                <div class="">
+                    <a class="nav-link active text-white" aria-current="page"
+                        href="https://www.youtube.com/channel/UCbhkQaiMUPUVQWw5KBLT0Bw"><i
+                            class="fa-brands fa-youtube"></i> Onelito koi</a>
+                </div>
+            </div>
+            <div class="col-lg-6 p-0">
+                <div class="">
+                    <p class="active  nav-link text-danger m-0" aria-current="page">ONLINE SHOP</p>
+                </div>
+                <div class="">
+                    <a class="nav-link active text-white" aria-current="page"
+                        href="https://www.tokopedia.com/onelitokoi?source=universe&st=product"><i class="fa-solid fa-bag-shopping"></i> Tokopedia</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

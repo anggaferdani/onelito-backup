@@ -76,9 +76,11 @@
                         @endphp
                         <img src="{{ $photo }}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <div class="cb-judu">
-                                <h5 class="card-title">{{ $auctionProduct->variety }} | {{ $auctionProduct->breeder }} |
-                                    Pedigree | {{ $auctionProduct->size }} | {{ $auctionProduct->bloodline }}</h5>
+                            <div class="cb-jud">
+                                <h5 class="card-title">{!! Illuminate\Support\Str::limit(
+                                    "$auctionProduct->variety | $auctionProduct->breeder | Pedigree | $auctionProduct->size | $auctionProduct->bloodline",
+                                    45,
+                                ) !!}</h5>
                             </div>
                             <p style="font-size: 10px" class="card-text ma">Starting Price</p>
                             <p style="color :red;font-size: 12px" class="m-0">Rp. {{ $auctionProduct->ob }}</p>
@@ -104,8 +106,11 @@
                         <img src="{{ $photo }}" class="card-img-top" alt="..." style="height: 310px">
                         <div class="card-body">
                             <div class="cb-judu">
-                                <h5 class="card-title">{{ $auctionProduct->variety }} | {{ $auctionProduct->breeder }} |
-                                    Pedigree | {{ $auctionProduct->size }} | {{ $auctionProduct->bloodline }}</h5>
+                                <h5 class="card-title"> {!! Illuminate\Support\Str::limit(
+                                    "$auctionProduct->variety | $auctionProduct->breeder | Pedigree | $auctionProduct->size | $auctionProduct->bloodline",
+                                    38,
+                                ) !!}
+                                </h5>
                             </div>
                             <p class="card-text ma">Starting Price</p>
                             <p style="color :red">Rp. {{ $auctionProduct->ob }}</p>
@@ -139,8 +144,8 @@
                             <img src="{{ $productPhoto2 }}" alt="bio media" class="card-img-top"
                                 style=" height: 166;width: 166;">
                         </a>
-                        <div class="cb-judu">
-                            <p>{{ "$hotProduct->merek_produk $hotProduct->nama_produk" }}</p>
+                        <div class="cb-jud">
+                            <p>{!! Illuminate\Support\Str::limit("$hotProduct->merek_produk $hotProduct->nama_produk", 45) !!}</p>
                         </div>
                         <p><b>Rp. {{ $hotProduct->harga }}</b></p>
                         <div class="row">
@@ -319,7 +324,7 @@
                     <div class="card">
                         <img src="{{ $photoChampion }}" class="card-img-top" alt="..." style="height: 310px">
                         <div class="m-2 me-auto">
-                            <h5 class="card-title">{{ $championFish->nama_champion }}</h5>
+                            <h5 class="card-title">{!! Illuminate\Support\Str::limit("$championFish->nama_champion", 20) !!}</h5>
                             <p class="card-text ma">Tahun : {{ $championFish->tahun }}</p>
                             <p>Size : {{ $championFish->size }}</p>
                         </div>
