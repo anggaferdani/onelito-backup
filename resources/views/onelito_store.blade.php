@@ -33,7 +33,7 @@
             }
 
             .cb-judul {
-                height: 6rem;
+                height: 3.5rem;
 
             }
         </style>
@@ -104,7 +104,7 @@
                                                 class="card-img-top" height="170"></a>
                                         <div class="container px-2">
                                             <div class="cb-judul">
-                                                <p>{{ "$product->merek_produk $product->nama_produk" }}</p>
+                                                <p>{!! Illuminate\Support\Str::limit("$product->merek_produk $product->nama_produk", 25) !!}</p>
                                             </div>
                                             <p><b>Rp. {{ $product->harga }}</b></p>
                                         </div>
@@ -139,7 +139,7 @@
                                                     class="card-img-top" height="170"></a>
                                             <div class="container px-2">
                                                 <div class="cb-judul">
-                                                    <p>{{ "$fishfoodProduct->merek_produk $fishfoodProduct->nama_produk" }}</p>
+                                                    <p>{!! Illuminate\Support\Str::limit("$fishfoodProduct->merek_produk $fishfoodProduct->nama_produk", 25) !!}</p>
                                                 </div>
                                                 <p><b>Rp. {{ $fishfoodProduct->harga }}</b></p>
                                             </div>
@@ -174,7 +174,7 @@
                                                 class="card-img-top" height="170"></a>
                                         <div class="container px-2">
                                             <div class="cb-judul">
-                                                <p>{{ "$fishgearProduct->merek_produk $fishgearProduct->nama_produk" }}</p>
+                                                <p>{!! Illuminate\Support\Str::limit("$fishgearProduct->merek_produk $fishgearProduct->nama_produk", 25) !!}</p>
                                             </div>
                                             <p><b>Rp. {{ $fishgearProduct->harga }}</b></p>
                                         </div>
