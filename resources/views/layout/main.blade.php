@@ -56,7 +56,6 @@
                 font-size: 10px !important;
             }
         }
-
     </style>
 
 
@@ -77,12 +76,12 @@
 
     <!-- kalau belum login -->
     @guest('member')
-      @include('part.navbar')
+        @include('part.navbar')
 
-      <div class="">
-        @yield('container')
-      </div>
-      @include('part.footer')
+        <div class="">
+            @yield('container')
+        </div>
+        @include('part.footer')
     @endguest
 
     <script src="{{ asset('library/jquery/dist/jquery.min.js') }}"></script>
