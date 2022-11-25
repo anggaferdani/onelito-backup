@@ -469,6 +469,7 @@
             // console.log({statusAutoBid, autoBid, nominalBid})
             if (meMaxBid === true) {
                 console.log('meMaxBid')
+                statusAutoBid = false;
                 document.getElementById("nominal_bid").disabled = false;
                 document.getElementById("auto_bid").disabled = false;
                 return false;
