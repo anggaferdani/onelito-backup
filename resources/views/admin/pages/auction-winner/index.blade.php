@@ -46,10 +46,10 @@
                                                 <th class="text-center">
                                                     #
                                                 </th>
-                                                <th>Nama Champion</th>
-                                                <th>Tahun</th>
-                                                <th>Size</th>
-                                                <th>Foto</th>
+                                                <th>Pemenang</th>
+                                                <th>Ikan</th>
+                                                <th>Alamat</th>
+                                                <th>Tinggal</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -64,9 +64,9 @@
                 </div>
             </div>
         </section>
-        @include('admin.pages.champion-fish._create')
-        @include('admin.pages.champion-fish._show')
-        @include('admin.pages.champion-fish._edit')
+        @include('admin.pages.auction-winner._create')
+        @include('admin.pages.auction-winner._show')
+        @include('admin.pages.auction-winner._edit')
     </div>
 @endsection
 
@@ -94,7 +94,6 @@
     <script>
         $(document).ready(function() {
             $('#table-1').DataTable({
-                // dom: 'Bfrtip',
                 lengthMenu: [
                     [ 10, 25, 50, -1 ],
                     [ '10 rows', '25 rows', '50 rows', 'Show all' ]
@@ -110,17 +109,17 @@
                     return: true
                 },
                 ajax : {
-                url : '{{ url("admin/champion-fishes") }}',
+                url : '{{ url("admin/auction-winners") }}',
                 data : function(d) {
                     // filter here
                 }
                 },
                 columns : [
                     { data : 'DT_RowIndex' , orderable : false,searchable :false},
-                    { data : 'nama_champion' },
-                    { data : 'tahun'},
-                    { data : 'size'},
-                    { data : 'foto_ikan', orderable : false,searchable :false},
+                    { data : 'bidding.member.nama' },
+                    { data : 'bidding.event_fish.no_ikan' },
+                    { data : 'bidding.member.alamat'},
+                    { data : 'bidding.member.city.city_name'},
                     { data : 'action' , orderable : false,searchable :false},
                 ]
             });
@@ -131,7 +130,7 @@
             let dataUrl = $(this).data('url');
             $.ajax({
                 type: 'GET',
-                url : `champion-fishes/${id}`,
+                url : `auction-winners/${id}`,
                 dataType: "json",
                 success: function(res) {
                     $('#modalShow').modal('show');
@@ -157,10 +156,10 @@
             let dataUrl = $(this).data('url');
             $.ajax({
                 type: 'GET',
-                url : `champion-fishes/${id}`,
+                url : `auction-winners/${id}`,
                 dataType: "json",
                 success: function(res) {
-                    document.getElementById('formEdit').action = `champion-fishes/${id}`;
+                    document.getElementById('formEdit').action = `auction-winners/${id}`;
                     $('#modalEdit').modal('show');
                     $('#edit_nama_champion').val(res.nama_champion)
                     $('#edit_tahun').val(res.tahun)
@@ -243,7 +242,7 @@
                     $.ajax({
                         type:'DELETE',
                         dataType: 'JSON',
-                        url: `champion-fishes/${id}`,
+                        url: `auction-winners/${id}`,
                         data:{
                             "_token": $('meta[name="csrf-token"]').attr('content'),
                         },

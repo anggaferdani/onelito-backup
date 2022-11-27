@@ -8,7 +8,7 @@
           </button>
         </div>
         <div class="modal-body" id="modalCreateBody">
-            <form action="{{ url('admin/champion-fishes') }}" method="post" id="formData" enctype="multipart/form-data">
+            <form action="{{ url('admin/auction-winners') }}" method="post" id="formData" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="nama_champion">Nama Champion</label>

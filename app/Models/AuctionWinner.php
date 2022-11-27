@@ -13,4 +13,9 @@ class AuctionWinner extends Model
 
     protected $table = 't_pemenang_lelang';
     protected $primaryKey = 'id_pemenang_lelang';
+
+    public function bidding()
+    {
+        return $this->belongsTo(LogBid::class, 'id_bidding');
+    }
 }

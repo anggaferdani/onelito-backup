@@ -27,4 +27,9 @@ class LogBid extends Model
     {
         return $this->belongsTo(Member::class, 'id_peserta');
     }
+
+    public function winner()
+    {
+        return $this->hasOne(AuctionWinner::class, 'id_bidding');
+    }
 }

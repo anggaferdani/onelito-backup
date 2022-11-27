@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\AuctionWinner;
+use App\Models\Event;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
@@ -13,16 +14,23 @@ class AuctionWinnerController extends Controller
     public function index()
     {
         if ($this->request->ajax()) {
-            $fishes = AuctionWinner::query()
+            $winners = AuctionWinner::query()
+                ->with(['bidding.member.city', 'bidding.eventFish'])
                 ->where('status_aktif', 1)
                 ->orderBy('created_at', 'desc');
 
-            return DataTables::of($fishes)
+            return DataTables::of($winners)
             ->addIndexColumn()
             ->addColumn('action','admin.pages.auction-winner.dt-action')
             ->rawColumns(['action'])
             ->make(true);
         }
+
+        $auctions = Event::whereDoesntHave('biddings', function ($query) {
+            $query->has('winner');
+        })->where('status_aktif', 1)->get();
+
+        // dd($auctions);
 
         return view('admin.pages.auction-winner.index')->with([
             'type_menu' => 'manage-auction-winner'
@@ -37,35 +45,25 @@ class AuctionWinnerController extends Controller
         $data['update_by'] = Auth::guard('admin')->id();
         $data['status_aktif'] = 1;
 
-        $image = null;
-        if($this->request->hasFile('path_foto')){
-            $image = $this->request->file('path_foto')->store(
-                'foto_champion_koi','public'
-            );
-        }
+        $createWinner = AuctionWinner::create($data);
 
-        $data['foto_ikan'] = $image;
-        unset($data['path_foto']);
-
-        $createFish = ChampionFish::create($data);
-
-        if($createFish){
+        if($createWinner){
             return redirect()->back()->with([
                 'success' => true,
-                'message' => 'Sukses Menambahkan Champion Koi',
+                'message' => 'Sukses Menambahkan Pemenang Lelang',
 
             ],200);
         }else{
             return redirect()->back()->with([
                 'success' => false,
-                'message' => 'Gagal Menambahkan Champion Koi'
+                'message' => 'Gagal Menambahkan Pemenang Lelang'
             ],500);
         }
     }
 
     public function show($id)
     {
-        $fish = ChampionFish::findOrFail($id);
+        $fish = AuctionWinner::findOrFail($id);
 
         if($fish){
             return response()->json($fish);
@@ -79,7 +77,7 @@ class AuctionWinnerController extends Controller
 
     public function update($id)
     {
-        $fish = ChampionFish::findOrFail($id);
+        $fish = AuctionWinner::findOrFail($id);
         $data = $this->request->all();
         $validator = Validator::make($this->request->all(), [
         ]);
@@ -107,7 +105,7 @@ class AuctionWinnerController extends Controller
                 'success' => true,
                 'message' => [
                     'title' => 'Berhasil',
-                    'content' => 'Mengubah data Champion Koi',
+                    'content' => 'Mengubah data Pemenang Lelang',
                     'type' => 'success'
                 ],
             ],200);

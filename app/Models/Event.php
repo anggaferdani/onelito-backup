@@ -22,4 +22,9 @@ class Event extends Model
     {
         return $this->hasMany(EventFish::class, 'id_event')->where('status_aktif', 1);
     }
+
+    public function biddings()
+    {
+        return $this->hasManyThrough(LogBid::class, EventFish::class, 'id_ikan', 'id_ikan_lelang');
+    }
 }
