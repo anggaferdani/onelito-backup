@@ -129,7 +129,7 @@
                         //replace <select2 with new options
                         $(target).html(list_html);
                         //change placeholder text
-                        $(target).select2({placeholder: data.length +' results'});
+                        // $(target).select2({placeholder: data.length +' results'});
                         resolve();
                 });
             });
@@ -171,6 +171,10 @@
         function ajaxChained(source,target,slug){
             $(source).on('change',function(){
             var pid = $(source+' option:selected').val(); //$(this).val();
+
+            if (pid === null || pid === undefined) {
+                return false;
+            }
 
             $.ajax({
                     type: 'GET',
@@ -216,7 +220,7 @@
                     }else {
                     }
                     //change placeholder text
-                    $(target).select2({placeholder: data.length +' results'});
+                    // $(target).select2({placeholder: data.length +' results'});
                 });
             })
         }
@@ -322,7 +326,14 @@
                 url : `members/${id}`,
                 dataType: "json",
                 success:async function(res) {
-                    await editAjaxChained('#edit_provinsi','#edit_kota',`cities?prov_id=${res.provinsi}`);
+                    $('#edit_provinsi').val(null).trigger('change')
+                    $('#edit_kota').val(null).trigger('change')
+                    $('#edit_kecamatan').val(null).trigger('change')
+                    $('#edit_kelurahan').val(null).trigger('change')
+
+                    if (res.provinsi !== null) {
+                        await editAjaxChained('#edit_provinsi','#edit_kota',`cities?prov_id=${res.provinsi}`);
+                    }
 
                     document.getElementById('formEdit').action = `members/${id}`;
                     $('#modalEdit').modal('show');
@@ -330,13 +341,23 @@
                     $('#edit_email').val(res.email)
                     $('#edit_no_hp').val(res.no_hp)
                     $('#edit_alamat').val(res.alamat)
-                    $('#edit_provinsi').val(res.provinsi).trigger('change')
-                    await editAjaxChained('#edit_kota','#edit_kecamatan',`districts?city_id=${res.kota}`);
 
-                    $('#edit_kota').val(res.kota).trigger('change')
-                    // await editAjaxChained('#edit_kecamatan','#edit_kelurahan',`subdistricts?dis_id=${res.kecamatan}`);
-                    $('#edit_kecamatan').val(res.kecamatan).trigger('change')
-                    $('#edit_kelurahan').val(res.kelurahan).trigger('change')
+                    if (res.provinsi !== null) {
+                        $('#edit_provinsi').val(res.provinsi).trigger('change')
+                    }
+
+                    if (res.kota !== null) {
+                        await editAjaxChained('#edit_kota','#edit_kecamatan',`districts?city_id=${res.kota}`);
+                        $('#edit_kota').val(res.kota).trigger('change')
+                    }
+
+                    if (res.kecamatan !== null) {
+                        $('#edit_kecamatan').val(res.kecamatan).trigger('change')
+                    }
+
+                    if (res.kelurahan !== null) {
+                        $('#edit_kelurahan').val(res.kelurahan).trigger('change')
+                    }
                     $('#edit_kode_pos').val(res.kode_pos)
                 },
                 error:function(error) {

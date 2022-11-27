@@ -37,6 +37,16 @@ class EventFishController extends Controller
                     object-fit: cover;">
                 ';
             })
+            ->editColumn('ob', function ($data) {
+                $number = number_format( $data->ob , 0 , '.' , '.' );
+
+                return $number;
+            })
+            ->editColumn('kb', function ($data) {
+                $number = number_format( $data->kb , 0 , '.' , '.' );
+
+                return $number;
+            })
             ->addColumn('action','admin.pages.auction-product.dt-action')
             ->rawColumns(['action', 'photo', 'note'])
             ->make(true);

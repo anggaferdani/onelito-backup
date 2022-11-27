@@ -35,6 +35,11 @@ class EventController extends Controller
                     object-fit: cover;">
                 ';
             })
+            ->editColumn('total_hadiah', function ($data) {
+                $number = number_format( $data->total_hadiah , 0 , '.' , '.' );
+
+                return $number;
+            })
             ->addColumn('action','admin.pages.auction.dt-action')
             ->rawColumns(['action', 'banner', 'rules_event'])
             ->make(true);

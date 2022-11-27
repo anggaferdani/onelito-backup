@@ -28,6 +28,11 @@ class ProductController extends Controller
             ->editColumn('category', function ($data) {
                 return $data->category->kategori_produk ?? '';
             })
+            ->editColumn('harga', function ($data) {
+                $number = number_format( $data->harga , 0 , '.' , '.' );
+
+                return $number;
+            })
             ->editColumn('photo', function ($data) {
                 $path = $data->photo->path_foto ?? false;
 

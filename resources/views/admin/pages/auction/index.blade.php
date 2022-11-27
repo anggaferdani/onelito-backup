@@ -264,6 +264,12 @@
                     }
 
                     $('#edit_total_hadiah').val(res.total_hadiah)
+                    $('#edit_total_hadiah').priceFormat({
+                        prefix: '',
+                        centsLimit: 0,
+                        thousandsSeparator: '.'
+                    });
+
                     var editProducts = res.auction_products.map(o => o['id_ikan']);
                     $('#edit_auction_products').val(editProducts);
                     $('#edit_auction_products').trigger('change');

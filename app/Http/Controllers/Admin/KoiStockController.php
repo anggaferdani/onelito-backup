@@ -20,6 +20,11 @@ class KoiStockController extends Controller
             return DataTables::of($fishes)
             ->addIndexColumn()
             ->addColumn('action','admin.pages.fish.dt-action')
+            ->editColumn('harga_ikan', function ($data) {
+                $number = number_format( $data->harga_ikan , 0 , '.' , '.' );
+
+                return $number;
+            })
             ->rawColumns(['action'])
             ->make(true);
         }

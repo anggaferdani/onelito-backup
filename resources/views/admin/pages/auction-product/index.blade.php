@@ -242,6 +242,16 @@
                     $('#edit_size').val(res.size)
                     $('#edit_ob').val(res.ob)
                     $('#edit_kb').val(res.kb)
+                    $('#edit_ob').priceFormat({
+                        prefix: '',
+                        centsLimit: 0,
+                        thousandsSeparator: '.'
+                    });
+                    $('#edit_kb').priceFormat({
+                        prefix: '',
+                        centsLimit: 0,
+                        thousandsSeparator: '.'
+                    });
                     $('#edit_note').summernote('code', res.note)
                     $('#edit_link_video').val(res.link_video)
                     $('#edit_extra_time').val(res.extra_time)

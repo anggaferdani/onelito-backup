@@ -193,6 +193,11 @@
                     $('#edit_nama_produk').val(res.nama_produk)
                     $('#edit_berat').val(res.berat)
                     $('#edit_harga').val(res.harga)
+                    $('#edit_harga').priceFormat({
+                        prefix: '',
+                        centsLimit: 0,
+                        thousandsSeparator: '.'
+                    });
                     $('#edit_deskripsi').val(res.deskripsi)
 
                     $('#edit_foto2').attr('src', ``)

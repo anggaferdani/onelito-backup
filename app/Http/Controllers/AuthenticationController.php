@@ -58,11 +58,29 @@ class AuthenticationController extends Controller
             'kota' => ['required'],
             'kecamatan' => ['required'],
             'kelurahan' => ['required'],
-            'kode_pos' => ['required'],
         ]);
 
-        $data = $this->request->all();
+        $name = $this->request->input('nama');
+
+        $data = $this->request->only([
+            'nama',
+            'email',
+            'password',
+            'alamat',
+            'no_hp',
+            'provinsi',
+            'kota',
+            'kecamatan',
+            'kelurahan',
+        ]);
         $data['status_aktif'] = 1;
+
+        $firstName = $name[0];
+        $lastName = $name[1];
+
+        $data['nama'] = "$firstName $lastName";
+        $data['nama_depan'] = $firstName;
+        $data['nama_belakang'] = $lastName;
 
         $createMember = Member::create($data);
 

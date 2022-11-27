@@ -214,6 +214,12 @@
                     $('#edit_dob').val(res.dob)
                     $('#edit_size').val(res.size)
                     $('#edit_harga_ikan').val(res.harga_ikan)
+
+                    $('#edit_harga_ikan').priceFormat({
+                        prefix: '',
+                        centsLimit: 0,
+                        thousandsSeparator: '.'
+                    });
                 },
                 error:function(error) {
                     console.log(error)
