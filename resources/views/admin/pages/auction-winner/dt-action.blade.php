@@ -1,4 +1,4 @@
-<button class="btn btn-sm btn-secondary mb-2"
+<!-- <button class="btn btn-sm btn-secondary mb-2"
 data-url="{{ url('admin/auction-winners/'. $model->id_pemenang_lelang) }}"
 data-id="{{ $model->id_pemenang_lelang }}"
 id="btn-show"
@@ -16,7 +16,7 @@ data-toggle="tooltip"
 data-placement="top"
 title="Edit">
     <i class="fa fa-pencil"></i>
-</button>
+</button> -->
 
 
 <button class="btn btn-sm btn-danger mb-2"

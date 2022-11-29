@@ -15,6 +15,9 @@
         href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}">
     <link rel="stylesheet"
         href="{{ asset('library/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
+
+    <link rel="stylesheet"
+        href="{{ asset('library/select2/dist/css/select2.min.css') }}">
 @endpush
 
 @section('main')
@@ -84,6 +87,8 @@
     <!-- Page Specific JS File -->
     <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
 
+    <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
+
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
@@ -92,6 +97,8 @@
         });
     </script>
     <script>
+        let auctionProducts = @json($auctionProducts)
+
         $(document).ready(function() {
             $('#table-1').DataTable({
                 lengthMenu: [
@@ -123,6 +130,20 @@
                     { data : 'action' , orderable : false,searchable :false},
                 ]
             });
+
+            $(document).on('change','select#auction_product',function() {
+                console.log('clicked');
+                var id = $('#auction_product').val();
+
+                var data = $.map(auctionProducts[id].bids, function(item) {
+                    return {id: item.id_bidding, text: item.member.nama};
+                });
+
+                $("select#id_bidding").html('');
+                $("select#id_bidding").select2({
+                    data: data
+                })
+            })
         });
 
         $(document).on('click','button#btn-show',function() {

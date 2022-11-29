@@ -34,4 +34,16 @@ class EventFish extends Model
         return $this->hasOne(LogBid::class, 'id_ikan_lelang')->where('status_aktif', 1)
             ->orderBy('nominal_bid', 'desc');
     }
+
+    public function winners()
+    {
+        return $this->hasManyThrough(AuctionWinner::class, LogBid::class, 'id_ikan_lelang', 'id_bidding')
+        ->where('t_pemenang_lelang.status_aktif', 1);
+    }
+
+    public function members()
+    {
+        return $this->hasManyThrough(Member::class, LogBid::class, 'id_ikan_lelang', 'id_peserta')
+        ->where('m_peserta.status_aktif', 1);
+    }
 }
