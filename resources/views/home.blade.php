@@ -133,7 +133,7 @@
             @forelse($hotProductStores as $hotProduct)
                 @php
                     $productPhoto2 = 'img/bio_media.png';
-                    
+
                     if ($hotProduct->photo !== null) {
                         $productPhoto2 = url('storage') . '/' . $hotProduct->photo->path_foto;
                     }
@@ -175,14 +175,14 @@
                 @forelse($hotProductStores as $hotProduct)
                     @php
                         $productPhoto = 'img/bio_media.png';
-                        
+
                         if ($hotProduct->photo !== null) {
                             $productPhoto = url('storage') . '/' . $hotProduct->photo->path_foto;
                         }
                     @endphp
                     <div class="col">
                         <div class="p-3 border bg-light">
-                            <a href="/detail_onelito_store"><img src="{{ $productPhoto }}" alt="bio media"
+                            <a href="{{ url('/onelito_store') . '/' . $hotProduct->id_produk}}"><img src="{{ $productPhoto }}" alt="bio media"
                                     class="card-img-top" height="170"></a>
                             <div class="cb-judu">
                                 <p>{!! Illuminate\Support\Str::limit("$hotProduct->merek_produk $hotProduct->nama_produk", 35) !!}</p>
@@ -315,7 +315,7 @@
             @forelse($championFishes as $championFish)
                 @php
                     $photoChampion = 'img/koi_2.jpg';
-                    
+
                     if ($championFish->foto_ikan !== null) {
                         $photoChampion = url('storage') . '/' . $championFish->foto_ikan;
                     }
