@@ -389,28 +389,25 @@
                                 <div class="card">
                                     <div class="row m-4">
                                         <h4>2 <span>Barang</span></h4>
-                                        <div class="border col-3 m-1">
-                                            <div class="cart">
-                                                <a href="/detail_onelito_store"><img src="img/bio_media.png"
-                                                        alt="bio media" class="card-img-top" height="170"></a>
-                                                <p>Bio Tube Bacteria House
-                                                    Media Filter</p>
-                                                <p><b>Rp. 1.300.000</b></p>
+                                        @forelse($wishlists as $wishlist)
+                                            @php
+                                                $wishlistPhoto = url('img/uniring.jpeg');
+
+                                                if ($wishlist->product->photo !== null) {
+                                                    $wishlistPhoto = url('storage') . '/' . $wishlist->product->photo->path_foto;
+                                                }
+                                            @endphp
+                                            <div class="col-3 border m-1">
+                                                <img src="{{$wishlistPhoto}}" alt="uniring" class="card-img-top"
+                                                    height="170">
+                                                <p>{{ $wishlist->product->merek_produk}} {{ $wishlist->product->nama_produk }}</p>
+                                                <p><b>Rp. {{ number_format($wishlist->product->harga, 0, '.', '.') }}</b></p>
                                                 <button class="mb-3 text-danger "
                                                     style="background-color: transparent;font-size:small;border-color:red"><i
                                                         class="fa-solid fa-plus"></i> <span>Keranjang</span></button>
                                             </div>
-                                        </div>
-                                        <div class="col-3 border m-1">
-                                            <img src="img/uniring.jpeg" alt="uniring" class="card-img-top"
-                                                height="170">
-                                            <p>Uniring rubber hose /
-                                                selang aerasi</p>
-                                            <p><b>Rp. 580.000</b></p>
-                                            <button class="mb-3 text-danger "
-                                                style="background-color: transparent;font-size:small;border-color:red"><i
-                                                    class="fa-solid fa-plus"></i> <span>Keranjang</span></button>
-                                        </div>
+                                        @empty
+                                        @endforelse
                                     </div>
                                 </div>
                             </div>

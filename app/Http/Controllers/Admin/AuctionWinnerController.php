@@ -22,6 +22,11 @@ class AuctionWinnerController extends Controller
 
             return DataTables::of($winners)
             ->addIndexColumn()
+            ->editColumn('bidding.nominal_bid', function ($data) {
+                $number = number_format( $data->bidding->nominal_bid , 0 , '.' , '.' );
+
+                return "Rp.$number";
+            })
             ->addColumn('action','admin.pages.auction-winner.dt-action')
             ->rawColumns(['action'])
             ->make(true);

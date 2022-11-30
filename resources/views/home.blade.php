@@ -83,7 +83,7 @@
                                 ) !!}</h5>
                             </div>
                             <p style="font-size: 10px" class="card-text ma">Starting Price</p>
-                            <p style="color :red;font-size: 12px" class="m-0">Rp. {{ $auctionProduct->ob }}</p>
+                            <p style="color :red;font-size: 12px" class="m-0">Rp. {{ number_format($auctionProduct->ob, 0, '.', '.') }}</p>
                         </div>
                     </div>
                 </div>
@@ -113,7 +113,7 @@
                                 </h5>
                             </div>
                             <p class="card-text ma">Starting Price</p>
-                            <p style="color :red">Rp. {{ $auctionProduct->ob }}</p>
+                            <p style="color :red">Rp. {{ number_format($auctionProduct->ob, 0, '.', '.') }}</p>
                         </div>
                     </div>
                 </div>
@@ -137,6 +137,12 @@
                     if ($hotProduct->photo !== null) {
                         $productPhoto2 = url('storage') . '/' . $hotProduct->photo->path_foto;
                     }
+
+                    $wishlistClass = 'far fa-heart';
+
+                    if ($hotProduct->wishlist !== null) {
+                        $wishlistClass = 'fas fa-heart';
+                    }
                 @endphp
                 <div class="p-1">
                     <div class="p-3 border bg-light" style="width: 200px;/* height: 200px; */">
@@ -147,7 +153,7 @@
                         <div class="cb-jud">
                             <p>{!! Illuminate\Support\Str::limit("$hotProduct->merek_produk $hotProduct->nama_produk", 45) !!}</p>
                         </div>
-                        <p><b>Rp. {{ $hotProduct->harga }}</b></p>
+                        <p><b>Rp. {{ number_format($hotProduct->harga, 0, '.', '.') }}</b></p>
                         <div class="row">
                             <div class="col-6 p-0">
                                 <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order
@@ -158,8 +164,8 @@
                                         class="fa-solid fa-cart-shopping" style="color: white"></i></button>
                             </div>
                             <div class="col-2 m-auto">
-                                <button class="border-0" style="background-color: transparent"><i class="far fa-heart"
-                                        style="font-size: x-large"></i></button>
+                                <button class="border-0" style="background-color: transparent"><i class="{{ $wishlistClass }} wishlist"
+                                        data-id="{{ $hotProduct->id_produk }}" style="font-size: x-large"></i></button>
                             </div>
                         </div>
                     </div>
@@ -179,6 +185,12 @@
                         if ($hotProduct->photo !== null) {
                             $productPhoto = url('storage') . '/' . $hotProduct->photo->path_foto;
                         }
+
+                        $wishlistClass = 'far fa-heart';
+
+                        if ($hotProduct->wishlist !== null) {
+                            $wishlistClass = 'fas fa-heart';
+                        }
                     @endphp
                     <div class="col">
                         <div class="p-3 border bg-light">
@@ -187,7 +199,7 @@
                             <div class="cb-judu">
                                 <p>{!! Illuminate\Support\Str::limit("$hotProduct->merek_produk $hotProduct->nama_produk", 35) !!}</p>
                             </div>
-                            <p><b>Rp. {{ $hotProduct->harga }}</b></p>
+                            <p><b>Rp. {{ number_format($hotProduct->harga, 0, '.', '.') }}</b></p>
                             <div class="row">
                                 <div class="col-md-6 d-grid p-0">
                                     <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order
@@ -199,7 +211,7 @@
                                 </div>
                                 <div class="col-md-3 m-auto">
                                     <button class="border-0" style="background-color: transparent"><i
-                                            class="far fa-heart" style="font-size: x-large"></i></button>
+                                    data-id="{{ $hotProduct->id_produk }}" class="{{ $wishlistClass }} wishlist" style="font-size: x-large"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -339,3 +351,58 @@
         <a href="/detail_koichampion" style="color: red">Lihat lebih Banyak >></a>
     </div>
 @endsection
+@push('scripts')
+<script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).on('click','.wishlist',function(e) {
+            var element = $(e.currentTarget);
+            var elClass = element.attr('class');
+            var id = element.attr('data-id');
+
+            if (elClass === 'far fa-heart wishlist') {
+                $.ajax({
+                    type: 'POST',
+                    url : `wishlists`,
+                    data: {
+                        id_produk: id
+                    },
+                    dataType: "json",
+                    success: function(res) {
+                        element.attr('class', 'fas fa-heart wishlist');
+
+                        return true;
+                    },
+                    error:function(error) {
+                        console.log(error)
+                        return false
+                    }
+
+                })
+            }
+
+            if (elClass === 'fas fa-heart wishlist') {
+                $.ajax({
+                    type: 'DELETE',
+                    url : `wishlists/${id}`,
+                    data: {
+                        id_produk: id
+                    },
+                    dataType: "json",
+                    success: function(res) {
+                        element.attr('class', 'far fa-heart wishlist');
+                        return true;
+                    },
+                    error:function(error) {
+                        console.log(error)
+                        return false
+                    }
+                })
+            }
+        })
+</script>
+@endpush

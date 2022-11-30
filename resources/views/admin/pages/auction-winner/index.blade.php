@@ -53,6 +53,7 @@
                                                 <th>Ikan</th>
                                                 <th>Alamat</th>
                                                 <th>Tinggal</th>
+                                                <th>Nominal Bid</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -126,17 +127,25 @@
                     { data : 'bidding.member.nama' },
                     { data : 'bidding.event_fish.no_ikan' },
                     { data : 'bidding.member.alamat'},
-                    { data : 'bidding.member.city.city_name'},
+                    { data : 'bidding.member.city.city_name', defaultContent: ''},
+                    { data : 'bidding.nominal_bid'},
                     { data : 'action' , orderable : false,searchable :false},
                 ]
             });
+
+            function thousandSeparator(x) {
+                return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+            }
 
             $(document).on('change','select#auction_product',function() {
                 console.log('clicked');
                 var id = $('#auction_product').val();
 
                 var data = $.map(auctionProducts[id].bids, function(item) {
-                    return {id: item.id_bidding, text: item.member.nama};
+                    var name = item.member.nama;
+                    var nominalBid = thousandSeparator(item.nominal_bid)
+
+                    return {id: item.id_bidding, text: `${name} | Rp. ${nominalBid}`};
                 });
 
                 $("select#id_bidding").html('');

@@ -10,6 +10,7 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\WishlistController;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
@@ -69,6 +70,8 @@ Route::get('/auction/{idIkan}/detail', [AuctionController::class, 'detail'])->na
 Route::group(['middleware' => 'auth:member'], function () {
     Route::get('/profil', [ProfileController::class, 'index'])->name('profile.index');
     Route::POST('/auction/{idIkan}', [AuctionController::class, 'bidProcess'])->name('auction.bid_process');
+    Route::resource('/wishlists', WishlistController::class);
+
 
     Route::get('/bid', function () {
         return view('bid',[

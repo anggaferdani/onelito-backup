@@ -11,9 +11,12 @@ class ProfileController extends Controller
     {
         $auth = Auth::guard('member')->user();
 
+        $wishlists = $auth->wishlists()->with('product.photo')->get();
+
         return view('profil',[
             'auth' => $auth,
-            'title' => 'profil'
+            'title' => 'profil',
+            'wishlists' => $wishlists
         ]);
     }
 }

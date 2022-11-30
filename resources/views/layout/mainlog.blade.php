@@ -24,6 +24,9 @@
         body::-webkit-scrollbar {
             display: none;
         } */
+        i.fas.fa-heart.wishlist:before {
+            color: red;
+        }
     </style>
 
 </head>

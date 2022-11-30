@@ -13,7 +13,15 @@ class StoreController extends Controller
 
         $products = Product::
             where('status_aktif', 1)
-            ->with(['category', 'photo'])
+            ->when($auth !== null, function ($q) use ($auth){
+                return $q->with([
+                    'category',
+                    'photo',
+                    'wishlist' => fn($w) => $w->where('id_peserta', $auth->id_peserta)]
+                );
+            }, function ($q) {
+                return $q->with(['category', 'photo']);
+            })
             ->orderBy('created_at', 'desc')
             ->get();
 
