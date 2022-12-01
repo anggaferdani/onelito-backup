@@ -2,6 +2,20 @@
 
 @section('container')
     <style>
+        /* On screens that are 992px or less, set the background color to blue */
+        @media screen and (min-width: 601px) {
+                .res {
+                    display: none
+                }
+            }
+
+            /* On screens that are 600px or less, set the background color to olive */
+            @media screen and (max-width: 600px) {
+                .web {
+                    display: none;
+                }
+            }
+
         .bottom {
             position: absolute;
             bottom: 217px;
@@ -13,7 +27,7 @@
         }
     </style>
 
-    <div class="container-fluid p-0">
+    <div class="container-fluid p-0 web">
         <img src="img/event.png" class="w-100" alt="...">
         <div class="bottom">
             <div class="row justify-content-center">
@@ -31,6 +45,27 @@
                             <p class="m-0" style="font-size: small">CURRENT TOTAL PRIZE</p>
                             <h3 class="m-0 text-danger">978.007.000</h3>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container res">
+        <img src="img/event.png" class="w-100" alt="...">
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body p-2 text-center">
+                        <p class="m-0" >CURRENT TOTAL BID</p>
+                        <h3 class="m-0 text-danger">1.978.007.000</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body p-2 text-center">
+                        <p class="m-0" >CURRENT TOTAL PRIZE</p>
+                        <h3 class="m-0 text-danger">978.007.000</h3>
                     </div>
                 </div>
             </div>

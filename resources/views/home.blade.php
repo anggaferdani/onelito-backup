@@ -58,6 +58,8 @@
 
     <div class="container mt-3 mt-lg mt-lg-5">
         {{-- <h5><b>Auction</b></h5> --}}
+
+        {{-- <img src="{{ url('img/nolelang.png') }}" class="d-block w-100" alt="ceklis"> --}}
     </div>
 
     @php

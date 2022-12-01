@@ -36,7 +36,7 @@
         @endphp
         <div class="container-fluid p-0 mb-3">
             <img src="{{ $bannerImg }}" class="w-100" alt="...">
-            </br>
+            <br>
         </div>
     @endif
     <div class="container">
