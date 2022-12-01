@@ -2,13 +2,15 @@
 
 @section('container')
     <div class="container">
-        <div class="row ">
+        <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 mb-5">
             @forelse ($championFishes as $fish)
-                <div class="col-lg-3 col-6 mt-3">
-                    <div class="card modal-header">
-                        <img src="img/koi_2.jpg" class="card-img-top" alt="...">
+                <div class="col mt-3">
+                    <div class="card">
+                        <img src="img/koi_2.jpg" class="card-img-top" alt="..." style="height: 310px">
                         <div class="m-2 me-auto">
-                            <h5 class="card-title">{{ $fish->nama_champion }}</h5>
+                            <h5 class="card-title">
+                                {!! Illuminate\Support\Str::limit("$fish->nama_champion", 23) !!}
+                            </h5>
                             <p class="card-text ma">Tahun : {{ $fish->tahun }}</p>
                             <p>Size : {{ $fish->size }}</p>
                         </div>
