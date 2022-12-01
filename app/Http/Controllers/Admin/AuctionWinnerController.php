@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\AuctionWinner;
 use App\Models\Event;
+use App\Models\EventFish;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
@@ -21,25 +22,31 @@ class AuctionWinnerController extends Controller
 
             return DataTables::of($winners)
             ->addIndexColumn()
+            ->editColumn('bidding.nominal_bid', function ($data) {
+                $number = number_format( $data->bidding->nominal_bid , 0 , '.' , '.' );
+
+                return "Rp.$number";
+            })
             ->addColumn('action','admin.pages.auction-winner.dt-action')
             ->rawColumns(['action'])
             ->make(true);
         }
 
-        $auctions = Event::whereDoesntHave('biddings', function ($query) {
-            $query->has('winner');
-        })->where('status_aktif', 1)->get();
-
-        // dd($auctions);
+        $auctionProducts = EventFish::
+        doesntHave('winners')
+        ->with('bids.member')
+        ->where('status_aktif', 1)->get()
+        ->mapWithKeys(fn($a) => [$a->id_ikan => $a]);
 
         return view('admin.pages.auction-winner.index')->with([
-            'type_menu' => 'manage-auction-winner'
+            'type_menu' => 'manage-auction-winner',
+            'auctionProducts' => $auctionProducts,
         ]);
     }
 
     public function store()
     {
-        $data = $this->request->all();
+        $data = $this->request->only(['id_bidding']);
 
         $data['create_by'] = Auth::guard('admin')->id();
         $data['update_by'] = Auth::guard('admin')->id();

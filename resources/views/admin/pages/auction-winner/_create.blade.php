@@ -11,20 +11,20 @@
             <form action="{{ url('admin/auction-winners') }}" method="post" id="formData" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <label for="nama_champion">Nama Champion</label>
-                <input  type="text" id="nama_champion" class="form-control" name="nama_champion" placeholder="" required>
+                <label for="auction_product">Barang Lelang</label>
+                <!-- <input  type="text" id="provinsi" class="form-control" name="provinsi" placeholder=""> -->
+                <select name="auction_product" id="auction_product" required class="form-control select2 auction-product">
+                    <option></option>
+                    @foreach($auctionProducts as $product)
+                        <option value="{{ $product->id_ikan }}">No Ikan: {{ $product->no_ikan }} | variety: {{ $product->variety }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
-                <label for="tahun">Tahun</label>
-                <input  type="text" id="tahun" class="form-control" name="tahun" placeholder="" required>
-            </div>
-            <div class="form-group">
-                <label for="size">Size</label>
-                <input  type="text" id="size" class="form-control" name="size" placeholder="" required>
-            </div>
-            <div class="form-group">
-                <label for="path_foto">Foto Ikan</label>
-                <input type="file" name="path_foto" id="path_foto" class="form-control">
+                <label for="id_bidding">Pemenang Lelang</label>
+                <!-- <input  type="text" id="provinsi" class="form-control" name="provinsi" placeholder=""> -->
+                <select name="id_bidding" id="id_bidding" required class="form-control select2 id_bidding">
+                </select>
             </div>
         </div>
         <div class="modal-footer">

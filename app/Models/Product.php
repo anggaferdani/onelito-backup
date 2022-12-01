@@ -29,4 +29,10 @@ class Product extends Model
         return $this->hasMany(OrderDetail::class, 'id_produk')
             ->whereHas('order', fn($q) => $q->where('status_aktif', 1));
     }
+
+    // only use with auth
+    public function wishlist()
+    {
+        return $this->hasOne(Wishlist::class, 'id_produk');
+    }
 }

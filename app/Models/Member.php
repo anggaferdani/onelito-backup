@@ -51,4 +51,9 @@ class Member extends Authenticatable
     {
         return $this->belongsTo(Subdistrict::class, 'kelurahan');
     }
+
+    public function wishlists()
+    {
+        return $this->hasMany(Wishlist::class, 'id_peserta');
+    }
 }

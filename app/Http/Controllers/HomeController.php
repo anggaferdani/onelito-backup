@@ -8,12 +8,15 @@ use App\Models\OrderDetail;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function index()
     {
         $now = Carbon::now();
+
+        $auth = Auth::guard('member')->user();
 
         $nextAuction = Event::with('auctionProducts.photo')->where('tgl_akhir', '>=', $now)
             ->where('tgl_mulai', '<=', $now)
@@ -22,7 +25,15 @@ class HomeController extends Controller
             ->get();
 
         $hotProductStores = Product::where('status_aktif', 1)
-            ->with(['category', 'photo'])
+            ->when($auth !== null, function ($q) use ($auth){
+                return $q->with([
+                    'category',
+                    'photo',
+                    'wishlist' => fn($w) => $w->where('id_peserta', $auth->id_peserta)]
+                );
+            }, function ($q) {
+                return $q->with(['category', 'photo']);
+            })
             ->withCount('orderDetails')
             ->has('orderDetails', '>=', 1)
             ->orderByRaw('order_details_count desc')

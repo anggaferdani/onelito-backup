@@ -97,6 +97,12 @@
                                         if ($product->photo !== null) {
                                             $productPhoto = url('storage') . '/' . $product->photo->path_foto;
                                         }
+
+                                        $wishlistClass = 'far fa-heart';
+
+                                        if ($product->wishlist !== null) {
+                                            $wishlistClass = 'fas fa-heart';
+                                        }
                                     @endphp
                                     <div class="col">
                                         <div class="p-0 border bg-light cart">
@@ -111,8 +117,9 @@
                                             </div>
                                             <div class="col px-2 mb-2" style="text-align: end">
                                                 <button class="border rounded-1 text-black-50"
-                                                    style="background-color: transparent;font-size:small"><i
-                                                        class="far fa-heart"></i> <span>Wishlist</span></button>
+                                                style="background-color: transparent;font-size:small"><i
+                                                    data-id="{{ $product->id_produk }}"
+                                                    class="{{$wishlistClass}} wishlist produk-{{ $product->id_produk }}"></i> <span>Wishlist</span></button>
                                             </div>
                                         </div>
                                     </div>
@@ -144,6 +151,12 @@
                                         if ($fishfoodProduct->photo !== null) {
                                             $productPhoto2 = url('storage') . '/' . $fishfoodProduct->photo->path_foto;
                                         }
+
+                                        $wishlistClass = 'far fa-heart';
+
+                                        if ($fishfoodProduct->wishlist !== null) {
+                                            $wishlistClass = 'fas fa-heart';
+                                        }
                                     @endphp
                                     <div class="col">
                                         <div class="p-0 border bg-light cart">
@@ -159,7 +172,8 @@
                                             <div class="col px-2 mb-2" style="text-align: end">
                                                 <button class="border rounded-1 text-black-50"
                                                     style="background-color: transparent;font-size:small"><i
-                                                        class="far fa-heart"></i> <span>Wishlist</span></button>
+                                                        data-id="{{ $fishfoodProduct->id_produk }}"
+                                                        class="{{ $wishlistClass }} wishlist produk-{{ $fishfoodProduct->id_produk }}"></i> <span>Wishlist</span></button>
                                             </div>
                                         </div>
                                     </div>
@@ -184,30 +198,34 @@
                             </div>
                             <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
 
-                                @forelse ($products->where('id_kategori_produk', 1) as $fishgearProduct)
-                                    @php
-                                        $productPhoto3 = 'img/selang.jpg';
-                                        
-                                        if ($fishgearProduct->photo !== null) {
-                                            $productPhoto3 = url('storage') . '/' . $fishgearProduct->photo->path_foto;
-                                        }
-                                    @endphp
-                                    <div class="col">
-                                        <div class="p-0 border bg-light cart">
-                                            <a href="/onelito_store/{{ $fishgearProduct->id_produk }}"><img
-                                                    src="{{ $productPhoto2 }}" alt="bio media" class="card-img-top"
-                                                    height="170"></a>
-                                            <div class="container px-2">
-                                                <div class="cb-judul">
-                                                    <p>{!! Illuminate\Support\Str::limit("$fishgearProduct->merek_produk $fishgearProduct->nama_produk", 25) !!}</p>
-                                                </div>
-                                                <p><b>Rp. {{ $fishgearProduct->harga }}</b></p>
+                            @forelse ($products->where('id_kategori_produk', 1) as $fishgearProduct)
+                                @php
+                                    $productPhoto3 = 'img/selang.jpg';
+
+                                    if ($fishgearProduct->photo !== null) {
+                                        $productPhoto3 = url('storage').'/'.$fishgearProduct->photo->path_foto;
+                                    }
+                                    $wishlistClass = 'far fa-heart';
+
+                                    if ($fishgearProduct->wishlist !== null) {
+                                        $wishlistClass = 'fas fa-heart';
+                                    }
+                                @endphp
+                                <div class="col">
+                                    <div class="p-0 border bg-light cart">
+                                        <a href="/onelito_store/{{ $fishgearProduct->id_produk }}"><img src="{{ $productPhoto2 }}" alt="bio media"
+                                                class="card-img-top" height="170"></a>
+                                        <div class="container px-2">
+                                            <div class="cb-judul">
+                                                <p>{!! Illuminate\Support\Str::limit("$fishgearProduct->merek_produk $fishgearProduct->nama_produk", 25) !!}</p>
                                             </div>
-                                            <div class="col px-2 mb-2" style="text-align: end">
-                                                <button class="border rounded-1 text-black-50"
-                                                    style="background-color: transparent;font-size:small"><i
-                                                        class="far fa-heart"></i> <span>Wishlist</span></button>
-                                            </div>
+                                            <p><b>Rp. {{ $fishgearProduct->harga }}</b></p>
+                                        </div>
+                                        <div class="col px-2 mb-2" style="text-align: end">
+                                            <button class="border rounded-1 text-black-50"
+                                                style="background-color: transparent;font-size:small"><i
+                                                    data-id="{{ $fishgearProduct->id_produk }}"
+                                                    class="{{$wishlistClass}} wishlist produk-{{ $fishgearProduct->id_produk }}"></i> <span>Wishlist</span></button>
                                         </div>
                                     </div>
                                 @empty
@@ -231,3 +249,66 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+<script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).on('click','.wishlist',function(e) {
+            var element = $(e.currentTarget);
+            var elClass = element.attr('class');
+            var targetClass = elClass.substr(0, 21);
+            var idClass = elClass.substr(22);
+            var id = element.attr('data-id');
+            var targetElements = $(`.${idClass}`)
+
+            if (targetClass === 'far fa-heart wishlist') {
+                $.ajax({
+                    type: 'POST',
+                    url : `wishlists`,
+                    data: {
+                        id_produk: id
+                    },
+                    dataType: "json",
+                    success: function(res) {
+                        $.map(targetElements, function (item) {
+                            $(item).attr('class', `fas fa-heart wishlist ${idClass}`);
+                        })
+
+                        return true;
+                    },
+                    error:function(error) {
+                        console.log(error)
+                        return false
+                    }
+
+                })
+            }
+
+            if (targetClass === 'fas fa-heart wishlist') {
+                $.ajax({
+                    type: 'DELETE',
+                    url : `wishlists/${id}`,
+                    data: {
+                        id_produk: id
+                    },
+                    dataType: "json",
+                    success: function(res) {
+                        $.map(targetElements, function (item) {
+                            $(item).attr('class', `far fa-heart wishlist ${idClass}`);
+                        })
+
+                        return true;
+                    },
+                    error:function(error) {
+                        console.log(error)
+                        return false
+                    }
+                })
+            }
+        })
+</script>
+@endpush

@@ -56,6 +56,10 @@
                 font-size: 10px !important;
             }
         }
+
+        i.fas.fa-heart.wishlist:before {
+            color: red;
+        }
     </style>
 
 
