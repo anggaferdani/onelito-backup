@@ -93,7 +93,7 @@
                                 @forelse ($products as $product)
                                     @php
                                         $productPhoto = 'img/bio_media.png';
-                                        
+
                                         if ($product->photo !== null) {
                                             $productPhoto = url('storage') . '/' . $product->photo->path_foto;
                                         }
@@ -147,7 +147,7 @@
                                 @forelse ($products->where('id_kategori_produk', 2) as $fishfoodProduct)
                                     @php
                                         $productPhoto2 = 'img/uniring.jpeg';
-                                        
+
                                         if ($fishfoodProduct->photo !== null) {
                                             $productPhoto2 = url('storage') . '/' . $fishfoodProduct->photo->path_foto;
                                         }
@@ -228,6 +228,7 @@
                                                     class="{{$wishlistClass}} wishlist produk-{{ $fishgearProduct->id_produk }}"></i> <span>Wishlist</span></button>
                                         </div>
                                     </div>
+                                </div>
                                 @empty
                                 @endforelse
                             </div>
