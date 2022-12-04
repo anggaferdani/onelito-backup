@@ -60,6 +60,7 @@
         {{-- <h5><b>Auction</b></h5> --}}
 
         {{-- <img src="{{ url('img/nolelang.png') }}" class="d-block w-100" alt="ceklis"> --}}
+        <!-- <img src="{{ url('img/nolelang.png') }}" class="d-block w-100 mt-5" alt="ceklis"> -->
     </div>
 
     @php
@@ -90,6 +91,7 @@
                     </div>
                 </div>
             @empty
+                <img src="{{ url('img/nolelang.png') }}" class="d-block w-100 mt-5" alt="ceklis">
             @endforelse
         </div>
     </div>
@@ -120,6 +122,7 @@
                     </div>
                 </div>
             @empty
+                <img src="{{ url('img/nolelang.png') }}" class="d-block w-100 mt-5" alt="ceklis">
             @endforelse
         </div>
     </div>
