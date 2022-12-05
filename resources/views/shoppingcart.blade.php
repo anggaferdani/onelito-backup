@@ -164,11 +164,11 @@
                 <button class="border-0" style="background-color: transparent"><i
                         class="fa-regular fa-trash-can"></i></button>
                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                    <button type="button" class="border-0 btn-light mr-2" style="background-color:tranparent">
+                    <button type="button" id="subtract" class="border-0 btn-light mr-2" style="background-color:tranparent">
                         <i class="fa-sharp fa-solid fa-circle-minus text-black-50" style="font-size: larger"></i>
                     </button>
-                    <h1> 1 </h1>
-                    <button type="button" class=" border-0 btn-light ml-2">
+                    <h1 id="output"> 1 </h1>
+                    <button type="button" id="add" class=" border-0 btn-light ml-2">
                         <i class="fa-solid fa-circle-plus text-danger" style="font-size: larger"></i>
                     </button>
                 </div>
@@ -185,4 +185,29 @@
                 Sekarang</a>
         </div>
     </div>
+
+
+    <script>
+        let add = document.querySelector("#add");
+
+        add.addEventListener("click", function() {
+            let output = document.querySelector("#output");
+            let result = Number(output.innerText) + 1;
+
+            output.innerText = result;
+        });
+
+        let kurang = document.querySelector("#subtract");
+
+        kurang.addEventListener("click", function() {
+            let output = document.querySelector("#output");
+            let result = Number(output.innerText) - 1;
+
+            if (result < 0) {
+                result = 0
+            }
+
+            output.innerText = result;
+        });
+    </script>
 @endsection

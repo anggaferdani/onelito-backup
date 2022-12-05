@@ -55,7 +55,7 @@
             <div class="row">
                 <div class="col-6">
                     @php
-                        $imgUrl = 'img/koi_3.jpg';
+                        $imgUrl = 'img/koi11.jpg';
 
                         if ($auctionProduct->photo) {
                             $imgUrl = 'storage/' . $auctionProduct->photo->path_foto;
@@ -148,7 +148,7 @@
                 <div class="col-6 col-md-4">
                     <div class="m-lg-auto" style="max-width: 18rem;">
                         @php
-                            $imgUrl = 'img/koi_3.jpg';
+                            $imgUrl = 'img/koi11.jpg';
 
                             if ($auctionProduct->photo) {
                                 $imgUrl = 'storage/' . $auctionProduct->photo->path_foto;

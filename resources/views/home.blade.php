@@ -341,7 +341,7 @@
                     <div class="card">
                         <img src="{{ $photoChampion }}" class="card-img-top" alt="..." style="height: 310px">
                         <div class="m-2 me-auto">
-                            <h5 class="card-title">{!! Illuminate\Support\Str::limit("$championFish->nama_champion", 20) !!}</h5>
+                            <h5 class="card-title">{!! Illuminate\Support\Str::limit("$championFish->nama_champion", 18) !!}</h5>
                             <p class="card-text ma">Tahun : {{ $championFish->tahun }}</p>
                             <p>Size : {{ $championFish->size }}</p>
                         </div>
