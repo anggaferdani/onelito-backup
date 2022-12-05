@@ -71,7 +71,7 @@
 
             @forelse($auctionProducts as $auctionProduct)
                     @php
-                        $photo = 'img/koi_3.jpg';
+                        $photo = 'img/koi11.jpg';
                         if ($auctionProduct->photo !== null)
                         {
                             $photo = url('storage') .'/'. $auctionProduct->photo->path_foto;

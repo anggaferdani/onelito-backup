@@ -291,13 +291,16 @@
                                                             class="fa-regular fa-trash-can"></i></button>
                                                     <div class="btn-group" role="group"
                                                         aria-label="Basic outlined example">
-                                                        <button type="button" class="border-0 btn-light mr-2"
+                                                        <button type="button" id="subtract"
+                                                            class="border-0 btn-light mr-2"
                                                             style="background-color:tranparent">
                                                             <i class="fa-sharp fa-solid fa-circle-minus text-black-50"
                                                                 style="font-size: larger"></i>
                                                         </button>
-                                                        <h1> 1 </h1>
-                                                        <button type="button" class=" border-0 btn-light ml-2">
+                                                        <button type="button" id="output"
+                                                            class="btn btn-light">1</button>
+                                                        <button id="add" type="button"
+                                                            class=" border-0 btn-light ml-2">
                                                             <i class="fa-solid fa-circle-plus text-danger"
                                                                 style="font-size: larger"></i>
                                                         </button>
@@ -331,13 +334,16 @@
                                                             class="fa-regular fa-trash-can"></i></button>
                                                     <div class="btn-group" role="group"
                                                         aria-label="Basic outlined example">
-                                                        <button type="button" class="border-0 btn-light mr-2"
+                                                        <button type="button" id="subtract"
+                                                            class="border-0 btn-light mr-2"
                                                             style="background-color:tranparent">
                                                             <i class="fa-sharp fa-solid fa-circle-minus text-black-50"
                                                                 style="font-size: larger"></i>
                                                         </button>
-                                                        <h1> 1 </h1>
-                                                        <button type="button" class=" border-0 btn-light ml-2">
+                                                        <button type="button" id="output"
+                                                            class="btn btn-light">1</button>
+                                                        <button id="add" type="button"
+                                                            class=" border-0 btn-light ml-2">
                                                             <i class="fa-solid fa-circle-plus text-danger"
                                                                 style="font-size: larger"></i>
                                                         </button>
@@ -392,16 +398,19 @@
                                         @forelse($wishlists as $wishlist)
                                             @php
                                                 $wishlistPhoto = url('img/uniring.jpeg');
-
+                                                
                                                 if ($wishlist->product->photo !== null) {
                                                     $wishlistPhoto = url('storage') . '/' . $wishlist->product->photo->path_foto;
                                                 }
                                             @endphp
                                             <div class="col-3 border m-1">
-                                                <img src="{{$wishlistPhoto}}" alt="uniring" class="card-img-top"
+                                                <img src="{{ $wishlistPhoto }}" alt="uniring" class="card-img-top"
                                                     height="170">
-                                                <p>{{ $wishlist->product->merek_produk}} {{ $wishlist->product->nama_produk }}</p>
-                                                <p><b>Rp. {{ number_format($wishlist->product->harga, 0, '.', '.') }}</b></p>
+                                                <p>{{ $wishlist->product->merek_produk }}
+                                                    {{ $wishlist->product->nama_produk }}</p>
+                                                <p><b>Rp.
+                                                        {{ number_format($wishlist->product->harga, 0, '.', '.') }}</b>
+                                                </p>
                                                 <button class="mb-3 text-danger "
                                                     style="background-color: transparent;font-size:small;border-color:red"><i
                                                         class="fa-solid fa-plus"></i> <span>Keranjang</span></button>
@@ -539,8 +548,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-
-        
     </script>
     <script>
         let add = document.querySelector("#add");
