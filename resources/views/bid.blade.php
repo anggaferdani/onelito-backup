@@ -457,9 +457,8 @@
         function autoDetailBid() {
             urlGet = `/auction/${idIkan}/detail`;
 
-            if ($('#auto_bid').length !== 0) {
-                autoBid = parseInt($('#auto_bid').unmask());
-            }
+            // if ($('#auto_bid').length !== 0) {
+            // }
 
             $.ajax({
                 type: 'GET',
@@ -475,10 +474,18 @@
                         autoDetailBid()
                     }, 2000);
 
+                    autoBid = parseInt($('#auto_bid').unmask());
+
+                    if (currentMaxBid >= autoBid) {
+                        cancelAutoBid()
+                        return false;
+                    }
+
+
                     // console.log({statusAutoBid, autoBid, nominalBid})
                     if (meMaxBid === true) {
                         console.log('meMaxBid')
-                        statusAutoBid = false;
+                        // statusAutoBid = false;
                         document.getElementById("nominal_bid").disabled = false;
                         document.getElementById("auto_bid").disabled = false;
                         return false;
@@ -488,12 +495,6 @@
                         console.log('statusAutoBid')
                         document.getElementById("nominal_bid").disabled = false;
                         document.getElementById("auto_bid").disabled = false;
-                        return false;
-                    }
-
-                    if (currentMaxBid >= autoBid) {
-                        cancelAutoBid();
-
                         return false;
                     }
 
