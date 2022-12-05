@@ -99,6 +99,12 @@
             font-size: 18px;
         }
     }
+
+    .atas {
+        position: fixed;
+        z-index: 99;
+        width: 100vw;
+    }
 </style>
 
 <div class="atas">
