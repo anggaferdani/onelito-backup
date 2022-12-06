@@ -80,7 +80,7 @@
                 </ul>
             </nav>
         </div> --}}
-        <div class="col-5 col-lg-3 mx-auto py-5 row">
+        <div class="col-5 col-lg-4 py-5 row">
             {{-- <nav class="navbar-dark p-0">
                 <ul class="list-unstyled mr-auto">
                     <li class="nav-item">

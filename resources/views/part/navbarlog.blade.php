@@ -104,8 +104,8 @@
 <div class="atas">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="/">
-                <img src="{{ url('img/oneli.svg') }}" alt="ONELITO">
+            <a class="w-25 navbar-brand" href="/">
+                <img src="{{ url('img/logo-onelito.jpg') }}" alt="ONELITO" class="w-100">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -143,7 +143,7 @@
     <div id="mySidebar" class="sidebar">
         <div class="d-flex">
             <a class="navbar-brand" href="/">
-                <img src="{{ url('img/oneli.svg') }}" alt="ONELITO" class="w-75">
+                <img src="{{ url('img/logo-onelito.jpg') }}" alt="ONELITO" class="w-75">
             </a>
             <h2 href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</h2>
         </div>

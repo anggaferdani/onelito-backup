@@ -1,42 +1,75 @@
 @extends('layout.main')
 
 @section('container')
-    <div class="container my-4">
-        <style>
-            /* On screens that are 992px or less, set the background color to blue */
-            @media screen and (min-width: 601px) {
-                .nav-atas {
-                    display: none
-                }
+    <style>
+        /* On screens that are 992px or less, set the background color to blue */
+        @media screen and (min-width: 601px) {
+            .nav-atas {
+                display: none
             }
+        }
 
-            /* On screens that are 600px or less, set the background color to olive */
-            @media screen and (max-width: 600px) {
-                .nav-samping {
-                    display: none;
-                }
+        /* On screens that are 600px or less, set the background color to olive */
+        @media screen and (max-width: 600px) {
+            .nav-samping {
+                display: none;
             }
+        }
 
-            .nav-pills .nav-link.active,
-            .nav-pills .show>.nav-link {
-                color: #fff;
-                background-color: #F0F0F0;
-            }
+        .nav-pills .nav-link.active,
+        .nav-pills .show>.nav-link {
+            color: #fff;
+            background-color: #F0F0F0;
+        }
 
-            .cart {
-                width: 100%;
-                height: 100%;
-                display: flex;
-                justify-content: space-between;
-                align-items: flex-start;
-                flex-direction: column;
-            }
+        .cart {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-direction: column;
+        }
 
-            .cb-judul {
-                height: 3.5rem;
+        .cb-judul {
+            height: 3.5rem;
 
-            }
-        </style>
+        }
+    </style>
+    <div class="container">
+
+        <nav class="nav-samping navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <img src="{{ url('img/oneli.svg') }}" alt="ONELITO">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse flex-grow-0 navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link "href="/">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link "href="/auction">AUCTION</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link "href="/onelito_store">ONELITO
+                                STORE</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link "href="/koi_stok">KOI
+                                STOCK</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link "href="/login">LOGIN</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
         <div class="row gx-3">
             {{-- On screens that are 992px or less, set the display on --}}
             <div class="col-3 nav-samping">
@@ -93,13 +126,13 @@
                                 @forelse ($products as $product)
                                     @php
                                         $productPhoto = 'img/bio_media.png';
-
+                                        
                                         if ($product->photo !== null) {
                                             $productPhoto = url('storage') . '/' . $product->photo->path_foto;
                                         }
-
+                                        
                                         $wishlistClass = 'far fa-heart';
-
+                                        
                                         if ($product->wishlist !== null) {
                                             $wishlistClass = 'fas fa-heart';
                                         }
@@ -117,16 +150,18 @@
                                             </div>
                                             <div class="col px-2 mb-2" style="text-align: end">
                                                 <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    data-id="{{ $product->id_produk }}"
-                                                    class="{{$wishlistClass}} wishlist produk-{{ $product->id_produk }}"></i> <span>Wishlist</span></button>
+                                                    style="background-color: transparent;font-size:small"><i
+                                                        data-id="{{ $product->id_produk }}"
+                                                        class="{{ $wishlistClass }} wishlist produk-{{ $product->id_produk }}"></i>
+                                                    <span>Wishlist</span></button>
                                             </div>
                                         </div>
                                     </div>
                                 @empty
                                 @endforelse
                             </div>
-                            <div class="btn-toolbar mb-3 justify-content-end" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-toolbar mb-3 justify-content-end" role="toolbar"
+                                aria-label="Toolbar with button groups">
                                 <div class="btn-group me-2" role="group" aria-label="First group">
                                     <button type="button" class="btn btn-danger">1</button>
                                 </div>
@@ -147,13 +182,13 @@
                                 @forelse ($products->where('id_kategori_produk', 2) as $fishfoodProduct)
                                     @php
                                         $productPhoto2 = 'img/uniring.jpeg';
-
+                                        
                                         if ($fishfoodProduct->photo !== null) {
                                             $productPhoto2 = url('storage') . '/' . $fishfoodProduct->photo->path_foto;
                                         }
-
+                                        
                                         $wishlistClass = 'far fa-heart';
-
+                                        
                                         if ($fishfoodProduct->wishlist !== null) {
                                             $wishlistClass = 'fas fa-heart';
                                         }
@@ -173,14 +208,16 @@
                                                 <button class="border rounded-1 text-black-50"
                                                     style="background-color: transparent;font-size:small"><i
                                                         data-id="{{ $fishfoodProduct->id_produk }}"
-                                                        class="{{ $wishlistClass }} wishlist produk-{{ $fishfoodProduct->id_produk }}"></i> <span>Wishlist</span></button>
+                                                        class="{{ $wishlistClass }} wishlist produk-{{ $fishfoodProduct->id_produk }}"></i>
+                                                    <span>Wishlist</span></button>
                                             </div>
                                         </div>
                                     </div>
                                 @empty
                                 @endforelse
                             </div>
-                            <div class="btn-toolbar mb-3 justify-content-end" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-toolbar mb-3 justify-content-end" role="toolbar"
+                                aria-label="Toolbar with button groups">
                                 <div class="btn-group me-2" role="group" aria-label="First group">
                                     <button type="button" class="btn btn-danger">1</button>
                                 </div>
@@ -198,41 +235,44 @@
                             </div>
                             <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
 
-                            @forelse ($products->where('id_kategori_produk', 1) as $fishgearProduct)
-                                @php
-                                    $productPhoto3 = 'img/selang.jpg';
-
-                                    if ($fishgearProduct->photo !== null) {
-                                        $productPhoto3 = url('storage').'/'.$fishgearProduct->photo->path_foto;
-                                    }
-                                    $wishlistClass = 'far fa-heart';
-
-                                    if ($fishgearProduct->wishlist !== null) {
-                                        $wishlistClass = 'fas fa-heart';
-                                    }
-                                @endphp
-                                <div class="col">
-                                    <div class="p-0 border bg-light cart">
-                                        <a href="/onelito_store/{{ $fishgearProduct->id_produk }}"><img src="{{ $productPhoto2 }}" alt="bio media"
-                                                class="card-img-top" height="170"></a>
-                                        <div class="container px-2">
-                                            <div class="cb-judul">
-                                                <p>{!! Illuminate\Support\Str::limit("$fishgearProduct->merek_produk $fishgearProduct->nama_produk", 25) !!}</p>
+                                @forelse ($products->where('id_kategori_produk', 1) as $fishgearProduct)
+                                    @php
+                                        $productPhoto3 = 'img/selang.jpg';
+                                        
+                                        if ($fishgearProduct->photo !== null) {
+                                            $productPhoto3 = url('storage') . '/' . $fishgearProduct->photo->path_foto;
+                                        }
+                                        $wishlistClass = 'far fa-heart';
+                                        
+                                        if ($fishgearProduct->wishlist !== null) {
+                                            $wishlistClass = 'fas fa-heart';
+                                        }
+                                    @endphp
+                                    <div class="col">
+                                        <div class="p-0 border bg-light cart">
+                                            <a href="/onelito_store/{{ $fishgearProduct->id_produk }}"><img
+                                                    src="{{ $productPhoto2 }}" alt="bio media" class="card-img-top"
+                                                    height="170"></a>
+                                            <div class="container px-2">
+                                                <div class="cb-judul">
+                                                    <p>{!! Illuminate\Support\Str::limit("$fishgearProduct->merek_produk $fishgearProduct->nama_produk", 25) !!}</p>
+                                                </div>
+                                                <p><b>Rp. {{ $fishgearProduct->harga }}</b></p>
                                             </div>
-                                            <p><b>Rp. {{ $fishgearProduct->harga }}</b></p>
-                                        </div>
-                                        <div class="col px-2 mb-2" style="text-align: end">
-                                            <button class="border rounded-1 text-black-50"
-                                                style="background-color: transparent;font-size:small"><i
-                                                    data-id="{{ $fishgearProduct->id_produk }}"
-                                                    class="{{$wishlistClass}} wishlist produk-{{ $fishgearProduct->id_produk }}"></i> <span>Wishlist</span></button>
+                                            <div class="col px-2 mb-2" style="text-align: end">
+                                                <button class="border rounded-1 text-black-50"
+                                                    style="background-color: transparent;font-size:small"><i
+                                                        data-id="{{ $fishgearProduct->id_produk }}"
+                                                        class="{{ $wishlistClass }} wishlist produk-{{ $fishgearProduct->id_produk }}"></i>
+                                                    <span>Wishlist</span></button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 @empty
                                 @endforelse
                             </div>
-                            <div class="btn-toolbar mb-3 justify-content-end" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-toolbar mb-3 justify-content-end" role="toolbar"
+                                aria-label="Toolbar with button groups">
                                 <div class="btn-group me-2" role="group" aria-label="First group">
                                     <button type="button" class="btn btn-danger">1</button>
                                 </div>
@@ -251,14 +291,14 @@
     </div>
 @endsection
 @push('scripts')
-<script type="text/javascript">
+    <script type="text/javascript">
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
 
-        $(document).on('click','.wishlist',function(e) {
+        $(document).on('click', '.wishlist', function(e) {
             var element = $(e.currentTarget);
             var elClass = element.attr('class');
             var targetClass = elClass.substr(0, 21);
@@ -269,19 +309,19 @@
             if (targetClass === 'far fa-heart wishlist') {
                 $.ajax({
                     type: 'POST',
-                    url : `wishlists`,
+                    url: `wishlists`,
                     data: {
                         id_produk: id
                     },
                     dataType: "json",
                     success: function(res) {
-                        $.map(targetElements, function (item) {
+                        $.map(targetElements, function(item) {
                             $(item).attr('class', `fas fa-heart wishlist ${idClass}`);
                         })
 
                         return true;
                     },
-                    error:function(error) {
+                    error: function(error) {
                         console.log(error)
                         return false
                     }
@@ -292,24 +332,24 @@
             if (targetClass === 'fas fa-heart wishlist') {
                 $.ajax({
                     type: 'DELETE',
-                    url : `wishlists/${id}`,
+                    url: `wishlists/${id}`,
                     data: {
                         id_produk: id
                     },
                     dataType: "json",
                     success: function(res) {
-                        $.map(targetElements, function (item) {
+                        $.map(targetElements, function(item) {
                             $(item).attr('class', `far fa-heart wishlist ${idClass}`);
                         })
 
                         return true;
                     },
-                    error:function(error) {
+                    error: function(error) {
                         console.log(error)
                         return false
                     }
                 })
             }
         })
-</script>
+    </script>
 @endpush
