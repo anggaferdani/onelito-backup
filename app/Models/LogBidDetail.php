@@ -20,6 +20,6 @@ class LogBidDetail extends Model
 
     public function logBid()
     {
-        return $this->belongsTo(LogBid::class, 'id_biddng');
+        return $this->belongsTo(LogBid::class, 'id_bidding');
     }
 }

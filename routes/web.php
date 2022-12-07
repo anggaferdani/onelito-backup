@@ -68,6 +68,7 @@ Route::get('/auction/{idIkan}/detail', [AuctionController::class, 'detail'])->na
 
 // MEMBER
 Route::group(['middleware' => 'auth:member'], function () {
+    Route::get('/auction-bid-now/{idIkan}', [AuctionController::class, 'bidNow'])->name('auction.bid_now');
     Route::get('/profil', [ProfileController::class, 'index'])->name('profile.index');
     Route::POST('/auction/{idIkan}', [AuctionController::class, 'bidProcess'])->name('auction.bid_process');
     Route::resource('/wishlists', WishlistController::class);
