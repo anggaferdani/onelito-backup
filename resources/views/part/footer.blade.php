@@ -30,7 +30,7 @@
  height = 31hv">
     <div class="row">
         <div class="col-3 col-lg-3 py-4 text-center">
-            <img src="{{ url('img/grup123.png') }}" alt="ONELITO" class="p-lg-5 py-5 w-75">
+            <img src="{{ url('img/logo-bawah.png') }}" alt="ONELITO" class="p-lg-5 py-5 w-100">
         </div>
         <div class="col-4 col-lg-5">
             <nav class="justify-content-center navbar navbar-dark navbar-expand-lg py-5">
@@ -80,7 +80,7 @@
                 </ul>
             </nav>
         </div> --}}
-        <div class="col-5 col-lg-3 mx-auto py-5 row">
+        <div class="col-5 col-lg-4 py-5 row">
             {{-- <nav class="navbar-dark p-0">
                 <ul class="list-unstyled mr-auto">
                     <li class="nav-item">

@@ -60,6 +60,9 @@
         i.fas.fa-heart.wishlist:before {
             color: red;
         }
+
+        
+
     </style>
 
 
@@ -69,6 +72,7 @@
 <body>
     <!-- kalau sudah login -->
     @auth('member')
+
         @include('part.navbarlog')
 
         <div class="">

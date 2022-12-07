@@ -32,8 +32,40 @@
     </style>
 
 
+    <nav class="nav-samping navbar navbar-expand-lg navbar-light bg-danger">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="{{ url('img/oneli.svg') }}" alt="ONELITO">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse flex-grow-0 navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link "href="/">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link "href="/auction">AUCTION</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link "href="/onelito_store">ONELITO
+                            STORE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link "href="/koi_stok">KOI
+                            STOCK</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link "href="/login">LOGIN</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleControls" class="pt-2 carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner img-mh-300">
             <div class="carousel-item active">
                 <div class="container-fluit" style="background-color:red;">
@@ -86,7 +118,8 @@
                                 ) !!}</h5>
                             </div>
                             <p style="font-size: 10px" class="card-text ma">Starting Price</p>
-                            <p style="color :red;font-size: 12px" class="m-0">Rp. {{ number_format($auctionProduct->ob, 0, '.', '.') }}</p>
+                            <p style="color :red;font-size: 12px" class="m-0">Rp.
+                                {{ number_format($auctionProduct->ob, 0, '.', '.') }}</p>
                         </div>
                     </div>
                 </div>
@@ -169,8 +202,9 @@
                                         class="fa-solid fa-cart-shopping" style="color: white"></i></button>
                             </div>
                             <div class="col-2 m-auto">
-                                <button class="border-0" style="background-color: transparent"><i class="{{ $wishlistClass }} wishlist"
-                                        data-id="{{ $hotProduct->id_produk }}" style="font-size: x-large"></i></button>
+                                <button class="border-0" style="background-color: transparent"><i
+                                        class="{{ $wishlistClass }} wishlist" data-id="{{ $hotProduct->id_produk }}"
+                                        style="font-size: x-large"></i></button>
                             </div>
                         </div>
                     </div>
@@ -199,8 +233,8 @@
                     @endphp
                     <div class="col">
                         <div class="p-3 border bg-light">
-                            <a href="{{ url('/onelito_store') . '/' . $hotProduct->id_produk}}"><img src="{{ $productPhoto }}" alt="bio media"
-                                    class="card-img-top" height="170"></a>
+                            <a href="{{ url('/onelito_store') . '/' . $hotProduct->id_produk }}"><img
+                                    src="{{ $productPhoto }}" alt="bio media" class="card-img-top" height="170"></a>
                             <div class="cb-judu">
                                 <p>{!! Illuminate\Support\Str::limit("$hotProduct->merek_produk $hotProduct->nama_produk", 35) !!}</p>
                             </div>
@@ -216,7 +250,8 @@
                                 </div>
                                 <div class="col-md-3 m-auto">
                                     <button class="border-0" style="background-color: transparent"><i
-                                    data-id="{{ $hotProduct->id_produk }}" class="{{ $wishlistClass }} wishlist" style="font-size: x-large"></i></button>
+                                            data-id="{{ $hotProduct->id_produk }}" class="{{ $wishlistClass }} wishlist"
+                                            style="font-size: x-large"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -357,14 +392,14 @@
     </div>
 @endsection
 @push('scripts')
-<script type="text/javascript">
+    <script type="text/javascript">
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
 
-        $(document).on('click','.wishlist',function(e) {
+        $(document).on('click', '.wishlist', function(e) {
             var element = $(e.currentTarget);
             var elClass = element.attr('class');
             var id = element.attr('data-id');
@@ -372,7 +407,7 @@
             if (elClass === 'far fa-heart wishlist') {
                 $.ajax({
                     type: 'POST',
-                    url : `wishlists`,
+                    url: `wishlists`,
                     data: {
                         id_produk: id
                     },
@@ -382,7 +417,7 @@
 
                         return true;
                     },
-                    error:function(error) {
+                    error: function(error) {
                         console.log(error)
                         return false
                     }
@@ -393,7 +428,7 @@
             if (elClass === 'fas fa-heart wishlist') {
                 $.ajax({
                     type: 'DELETE',
-                    url : `wishlists/${id}`,
+                    url: `wishlists/${id}`,
                     data: {
                         id_produk: id
                     },
@@ -402,12 +437,12 @@
                         element.attr('class', 'far fa-heart wishlist');
                         return true;
                     },
-                    error:function(error) {
+                    error: function(error) {
                         console.log(error)
                         return false
                     }
                 })
             }
         })
-</script>
+    </script>
 @endpush
