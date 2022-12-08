@@ -126,7 +126,7 @@
                     @endphp
                     <div class="col mt-3">
                         <div class="card">
-                            <img src="{{ $photo }}" class="card-img-top" alt="..." style="height: 18rem">
+                            <img src="{{ $photo }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 {{-- <h5 class="card-title">{{ $auctionProduct->variety }} | {{ $auctionProduct->breeder }} | {{ $auctionProduct->bloodline }} | {{ $auctionProduct->size }}</h5> --}}
                                 <div class="cb-judul">
