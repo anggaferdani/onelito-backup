@@ -140,7 +140,7 @@
                                 $photo = url('storage') . '/' . $auctionProduct->photo->path_foto;
                             }
                         @endphp
-                        <img src="{{ $photo }}" class="card-img-top" alt="..." style="height: 310px">
+                        <img src="{{ $photo }}" class="card-img-top" alt="..." style="height: 18rem">
                         <div class="card-body">
                             <div class="cb-judu">
                                 <h5 class="card-title"> {!! Illuminate\Support\Str::limit(
@@ -183,7 +183,7 @@
                     }
                 @endphp
                 <div class="p-1">
-                    <div class="p-3 border bg-light" style="width: 200px;/* height: 200px; */">
+                    <div class="p-3 border bg-light" style="width: 200px;">
                         <a href="/login">
                             <img src="{{ $productPhoto2 }}" alt="bio media" class="card-img-top"
                                 style=" height: 166;width: 166;">
@@ -374,7 +374,7 @@
                 @endphp
                 <div class="col mt-3">
                     <div class="card">
-                        <img src="{{ $photoChampion }}" class="card-img-top" alt="..." style="height: 310px">
+                        <img src="{{ $photoChampion }}" class="card-img-top" alt="..." style="height: 18rem">
                         <div class="m-2 me-auto">
                             <h5 class="card-title">{!! Illuminate\Support\Str::limit("$championFish->nama_champion", 18) !!}</h5>
                             <p class="card-text ma">Tahun : {{ $championFish->tahun }}</p>
