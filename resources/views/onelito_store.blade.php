@@ -70,6 +70,7 @@
                 </div>
             </div>
         </nav>
+
         <div class="row gx-3">
             {{-- On screens that are 992px or less, set the display on --}}
             <div class="col-3 nav-samping">
@@ -126,13 +127,13 @@
                                 @forelse ($products as $product)
                                     @php
                                         $productPhoto = 'img/bio_media.png';
-                                        
+
                                         if ($product->photo !== null) {
                                             $productPhoto = url('storage') . '/' . $product->photo->path_foto;
                                         }
-                                        
+
                                         $wishlistClass = 'far fa-heart';
-                                        
+
                                         if ($product->wishlist !== null) {
                                             $wishlistClass = 'fas fa-heart';
                                         }
@@ -182,13 +183,13 @@
                                 @forelse ($products->where('id_kategori_produk', 2) as $fishfoodProduct)
                                     @php
                                         $productPhoto2 = 'img/uniring.jpeg';
-                                        
+
                                         if ($fishfoodProduct->photo !== null) {
                                             $productPhoto2 = url('storage') . '/' . $fishfoodProduct->photo->path_foto;
                                         }
-                                        
+
                                         $wishlistClass = 'far fa-heart';
-                                        
+
                                         if ($fishfoodProduct->wishlist !== null) {
                                             $wishlistClass = 'fas fa-heart';
                                         }
@@ -238,12 +239,12 @@
                                 @forelse ($products->where('id_kategori_produk', 1) as $fishgearProduct)
                                     @php
                                         $productPhoto3 = 'img/selang.jpg';
-                                        
+
                                         if ($fishgearProduct->photo !== null) {
                                             $productPhoto3 = url('storage') . '/' . $fishgearProduct->photo->path_foto;
                                         }
                                         $wishlistClass = 'far fa-heart';
-                                        
+
                                         if ($fishgearProduct->wishlist !== null) {
                                             $wishlistClass = 'fas fa-heart';
                                         }

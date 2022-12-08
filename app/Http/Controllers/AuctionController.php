@@ -20,7 +20,7 @@ class AuctionController extends Controller
 
         $currentAuctions = Event::with([
             'auctionProducts' => function ($q) {
-                $q->withCount('bids')->with(['photo', 'maxBid', 'event']);
+                $q->withCount('bidDetails')->with(['photo', 'maxBid', 'event']);
             }
             ])
             ->where('tgl_mulai', '<=', $now)
@@ -151,7 +151,7 @@ class AuctionController extends Controller
 
             LogBidDetail::create([
                 'id_bidding' => $logBid->id_bidding,
-                'nominal_bid' => $auctionProduct->kb,
+                'nominal_bid' => $logBid->nominal_bid,
                 'status_aktif' => 1,
             ]);
 
@@ -169,7 +169,7 @@ class AuctionController extends Controller
 
         LogBidDetail::create([
             'id_bidding' => $createBid->id_bidding,
-            'nominal_bid' => $nominalBid,
+            'nominal_bid' => $createBid->nominal_bid,
             'status_aktif' => 1,
         ]);
 
@@ -191,7 +191,13 @@ class AuctionController extends Controller
             $logBid = LogBid::where('id_peserta', $auth->id_peserta)->where('id_ikan_lelang', $idIkan)->first();
         }
 
-        $logBids = LogBid::with('member')->where('id_ikan_lelang', $idIkan)->orderBy('nominal_bid', 'desc')->limit(10)->get();
+        $logBids = LogBidDetail::with('logBid.member')
+        ->selectRaw('t_log_bidding_detail.*, DATE_FORMAT(created_at, "%e %b %H:%i:%s") as bid_time')
+        ->whereHas('logBid', function($q) use ($idIkan){
+            $q->where('id_ikan_lelang', $idIkan);
+        })->orderBy('nominal_bid', 'desc')->limit(10)->get();
+
+
         $maxBidData = $logBids->first();
 
         $maxBid = $maxBidData->nominal_bid ?? $auctionProduct->ob;
@@ -211,6 +217,7 @@ class AuctionController extends Controller
         }
 
         if ($this->request->ajax()) {
+
             return response()->json([
                 'logBid' => $logBid,
                 'autoBid' => $autoBid,
@@ -232,5 +239,10 @@ class AuctionController extends Controller
             'auctionProduct' => $auctionProduct,
             'title' => 'ONELITO KOI'
         ]);
+    }
+
+    public function bidNow($idIkan)
+    {
+        return redirect("/auction/$idIkan");
     }
 }

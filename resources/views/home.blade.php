@@ -171,13 +171,13 @@
             @forelse($hotProductStores as $hotProduct)
                 @php
                     $productPhoto2 = 'img/bio_media.png';
-                    
+
                     if ($hotProduct->photo !== null) {
                         $productPhoto2 = url('storage') . '/' . $hotProduct->photo->path_foto;
                     }
-                    
+
                     $wishlistClass = 'far fa-heart';
-                    
+
                     if ($hotProduct->wishlist !== null) {
                         $wishlistClass = 'fas fa-heart';
                     }
@@ -220,13 +220,13 @@
                 @forelse($hotProductStores as $hotProduct)
                     @php
                         $productPhoto = 'img/bio_media.png';
-                        
+
                         if ($hotProduct->photo !== null) {
                             $productPhoto = url('storage') . '/' . $hotProduct->photo->path_foto;
                         }
-                        
+
                         $wishlistClass = 'far fa-heart';
-                        
+
                         if ($hotProduct->wishlist !== null) {
                             $wishlistClass = 'fas fa-heart';
                         }
@@ -367,7 +367,7 @@
             @forelse($championFishes as $championFish)
                 @php
                     $photoChampion = 'img/koi_2.jpg';
-                    
+
                     if ($championFish->foto_ikan !== null) {
                         $photoChampion = url('storage') . '/' . $championFish->foto_ikan;
                     }

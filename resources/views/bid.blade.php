@@ -3,7 +3,7 @@
 @section('container')
     <div class="container">
         <div class="modal fade" id="exampleModal" tabindex="-1">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">History Bidding</h5>
@@ -330,6 +330,10 @@
         let addedExtraTime = "{{ $addedExtraTime }}";
         let currentEndTime = auctionProduct.event.tgl_akhir;
 
+        function thousandSeparator(x) {
+            return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+        }
+
         // if ($('#nominal_bid').length !== 0) {
         $('#nominal_bid').priceFormat({
             prefix: '',
@@ -353,9 +357,9 @@
             let kb = parseInt(auctionProduct.kb);
 
             var inputNominalBid = parseInt($('#nominal_bid').unmask());
-            var nextNominalBid = (currentMaxBid + inputNominalBid);
+            // var nextNominalBid = (currentMaxBid + inputNominalBid);
 
-            formData.set('nominal_bid', nextNominalBid)
+            formData.set('nominal_bid', inputNominalBid)
             formData.append('nominal_bid_detail', inputNominalBid)
 
             bidding(formData, url);
@@ -474,13 +478,19 @@
                         autoDetailBid()
                     }, 2000);
 
+                    let formData = new FormData(document.getElementById("autoBidForm"));
+
+                    let url = $('#autoBidForm').attr('action')
+                    let kb = parseInt(auctionProduct.kb);
+
+                    let nextNominalBid = (kb + currentMaxBid);
+
                     autoBid = parseInt($('#auto_bid').unmask());
 
-                    if (currentMaxBid >= autoBid) {
+                    if (nextNominalBid > autoBid) {
                         cancelAutoBid()
-                        return false;
+                         return false;
                     }
-
 
                     // console.log({statusAutoBid, autoBid, nominalBid})
                     if (meMaxBid === true) {
@@ -497,13 +507,6 @@
                         document.getElementById("auto_bid").disabled = false;
                         return false;
                     }
-
-                    let formData = new FormData(document.getElementById("autoBidForm"));
-
-                    let url = $('#autoBidForm').attr('action')
-                    let kb = parseInt(auctionProduct.kb);
-
-                    let nextNominalBid = (kb + currentMaxBid);
 
                     var autoBid = parseInt($('#auto_bid').unmask());
 
@@ -531,21 +534,36 @@
                     var historyBidHtml = 'Belum ada data bidding';
 
                     if (res.logBids !== null) {
-                        historyBidHtml = `<ul class="list-group">`
+                        historyBidHtml = `<table class="table table-dark table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col" class="text-danger">Nama</th>
+                                                        <th scope="col" class="text-danger">Nominal Bidding</th>
+                                                        <th scope="col" class="text-danger">Waktu</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>`
+
                         $.each(res.logBids, function(index, value) {
-                            var name = value.member.nama
-                            name = name.replace(/(.{3})(.+)(.{2})/g, function(match, start, middle,
+
+                            var name = value.log_bid.member.nama
+                            name = name.replace(/(.{2})(.+)(.{1})/g, function(match, start, middle,
                             end) {
                                 return start + "*".repeat(middle.length) + end;
                             });
 
-                            var nominal = value.nominal_bid
-                            historyBidHtml += `<li class="list-group-item d-flex justify-content-between align-items-center">
-                                            ${name}
-                                            <span class="">Rp. ${nominal}</span>
-                                        </li>`
+                            var nominal = thousandSeparator(value.nominal_bid)
+
+                            historyBidHtml += `
+                            <tr>
+                                <td>${name}</td>
+                                <td>Rp. ${nominal}</td>
+                                <td>${value.bid_time}</td>
+                            </tr>
+                           `
                         });
-                        historyBidHtml += `</ul>`
+                        historyBidHtml += `</tbody>
+                                            </table>`
                     }
 
                     // <ul class="list-group">
@@ -564,7 +582,9 @@
                     // </ul>
 
                     $('#exampleModal .modal-body').html(historyBidHtml);
-                    $('#currentPrice').html(`Rp. ${res.maxBid}`);
+
+                    var formatedMaxBid = thousandSeparator(res.maxBid)
+                    $('#currentPrice').html(`Rp. ${formatedMaxBid}`);
                 },
                 error(err) {
 
