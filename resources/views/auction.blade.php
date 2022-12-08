@@ -3,13 +3,13 @@
 @section('container')
     <style>
         /* .card {
-                width: 100%;
-                height: 100%;
-                display: flex;
-                justify-content: space-between;
-                align-items: flex-start;
-                flex-direction: column;
-            } */
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                    flex-direction: column;
+                } */
 
         @media screen and (max-width: 600px) {
             .card-body {
@@ -34,10 +34,10 @@
         }
     </style>
 
-<nav class="nav-samping navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="nav-samping navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="/">
-                <img src="{{ url('img/oneli.svg') }}" alt="ONELITO">
+            <a class="w-25 navbar-brand" href="/">
+                <img src="{{ url('img/logo-onelito.jpg') }}" alt="ONELITO" class="w-100">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,13 +65,13 @@
                 </ul>
             </div>
         </div>
-</nav>
+    </nav>
 
 
     @if ($currentAuction && $currentAuction->kategori_event === 'Event')
         @php
             $bannerImg = 'img/event.png';
-
+            
             if ($currentAuction->banner !== null) {
                 $bannerImg = url('storage') . '/' . $currentAuction->banner;
             }
@@ -93,11 +93,11 @@
 
         @php
             $auctionTitle = 'Special';
-
+            
             if ($currentAuction && $currentAuction->kategori_event === 'Event') {
                 $auctionTitle = 'Event';
             }
-
+            
         @endphp
 
         <div class="container-fluid">
@@ -117,61 +117,65 @@
                         if ($auctionProduct->photo !== null) {
                             $photo = url('storage') . '/' . $auctionProduct->photo->path_foto;
                         }
-
+                        
                         $currentMaxBid = $auctionProduct->ob;
-
+                        
                         if ($auctionProduct->maxBid !== null) {
                             $currentMaxBid = $auctionProduct->maxBid->nominal_bid;
                         }
                     @endphp
-                <div class="col mt-3">
-                    <div class="card">
-                        <img src="{{ $photo }}" class="card-img-top" alt="..." style="height: 310px">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $auctionProduct->variety }} |   {{ $auctionProduct->breeder }} | {{ $auctionProduct->bloodline }} | {{ $auctionProduct->size }}</h5>
-                            <p class="m-0">Number of bids</p>
-                            <p class="" style="color: red">{{ $auctionProduct->bid_details_count }}</p>
-                            <div class="row">
-                                <div class="col-6 p-0 px-lg-2">
-                                    <p class="m-0" style="font-size:80%">Harga saat ini</p>
-                                    <p class="m-0" style="color: red;font-size:75%">Rp. {{ number_format($currentMaxBid, 0, '.', '.') }}</p>
+                    <div class="col mt-3">
+                        <div class="card">
+                            <img src="{{ $photo }}" class="card-img-top" alt="..." style="height: 310px">
+                            <div class="card-body">
+                                {{-- <h5 class="card-title">{{ $auctionProduct->variety }} | {{ $auctionProduct->breeder }} | {{ $auctionProduct->bloodline }} | {{ $auctionProduct->size }}</h5> --}}
+                                <div class="cb-judul">
+                                    <h5 class="card-title">{!! Illuminate\Support\Str::limit("$auctionProduct->variety | $auctionProduct->breeder | $auctionProduct->bloodline | $auctionProduct->size", 55) !!}</h5>
                                 </div>
-                                <div class="col-6 p-0 px-lg-2">
+                                <p class="m-0">Number of bids</p>
+                                <p class="" style="color: red">{{ $auctionProduct->bid_details_count }}</p>
+                                <div class="row">
+                                    <div class="col-6 p-0 px-lg-2">
+                                        <p class="m-0" style="font-size:80%">Harga saat ini</p>
+                                        <p class="m-0" style="color: red;font-size:75%">Rp.
+                                            {{ number_format($currentMaxBid, 0, '.', '.') }}</p>
+                                    </div>
+                                    <div class="col-6 p-0 px-lg-2">
                                         <p class="m-0" style="text-align: end;font-size:80%">Countdown</p>
                                         <p class="m-0 countdown-label" id="{{ $auctionProduct->id_ikan }}"
                                             data-endtime="{{ $auctionProduct->event->tgl_akhir }}"
                                             data-end-extratime="{{ $auctionProduct->tgl_akhir_extra_time }}"
                                             style="text-align: end;color :red;font-size:75%;">00:00:00</p>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6 col-md-6 p-0 px-sm-2">
-                                        <a id="btn-bid-{{ $auctionProduct->id_ikan }}"
-                                            href="{{ '/auction-bid-now/' . $auctionProduct->id_ikan }}"
-                                            class="btn btn-danger w-100 d-flex justify-content-between p-1"
-                                            style="font-size: 80%">BID NOW <span><i
-                                                    class="fa-solid fa-circle-chevron-right"></i></span></a>
                                     </div>
-                                    <div class="col-6 col-md-6 pe-0 px-sm-2">
-                                        <a href="{{ '/auction/' . $auctionProduct->id_ikan }}"
-                                            class="btn btn-secondary w-100 d-flex justify-content-between px-1 p-1"
-                                            style="font-size: 80%">DETAIL <span><i
-                                                    class="fa-solid fa-circle-chevron-right"></i></span></a>
-                                    </div>
-                                    <div class="col-9 p-0">
-                                        <a target="_blank" href="{{ $auctionProduct->link_video }}"
-                                            class="btn btn-light w-100 d-flex justify-content-between">VIDEO
-                                            <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
-                                    </div>
-                                    <div class="col-3 p-0">
-                                        <button class="border-0 m-1"
-                                            style="background-color: transparent;font-size:larger; float: right"><i
-                                                class="far fa-heart"></i></button>
+                                    <div class="row">
+                                        <div class="col-6 col-md-6 p-0 px-sm-2">
+                                            <a id="btn-bid-{{ $auctionProduct->id_ikan }}"
+                                                href="{{ '/auction-bid-now/' . $auctionProduct->id_ikan }}"
+                                                class="btn btn-danger w-100 d-flex justify-content-between p-1"
+                                                style="font-size: 80%">BID NOW <span><i
+                                                        class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                        </div>
+                                        <div class="col-6 col-md-6 pe-0 px-sm-2">
+                                            <a href="{{ '/auction/' . $auctionProduct->id_ikan }}"
+                                                class="btn btn-secondary w-100 d-flex justify-content-between px-1 p-1"
+                                                style="font-size: 80%">DETAIL <span><i
+                                                        class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                        </div>
+                                        <div class="col-9 p-0">
+                                            <a target="_blank" href="{{ $auctionProduct->link_video }}"
+                                                class="btn btn-light w-100 d-flex justify-content-between">VIDEO
+                                                <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                        </div>
+                                        <div class="col-3 p-0">
+                                            <button class="border-0 m-1"
+                                                style="background-color: transparent;font-size:larger; float: right"><i
+                                                    class="far fa-heart"></i></button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 @empty
                     <img src="{{ url('img/nolelang.png') }}" class="d-block w-100 mt-5" alt="ceklis">
                 @endforelse
