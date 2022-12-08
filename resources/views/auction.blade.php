@@ -3,13 +3,13 @@
 @section('container')
     <style>
         /* .card {
-                    width: 100%;
-                    height: 100%;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: flex-start;
-                    flex-direction: column;
-                } */
+                            width: 100%;
+                            height: 100%;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: flex-start;
+                            flex-direction: column;
+                        } */
 
         @media screen and (max-width: 600px) {
             .card-body {
@@ -22,7 +22,7 @@
         }
 
         .cb-judul {
-            height: 5rem;
+            height: 3.5rem;
 
         }
 
@@ -126,11 +126,14 @@
                     @endphp
                     <div class="col mt-3">
                         <div class="card">
-                            <img src="{{ $photo }}" class="card-img-top" alt="..." style="height: 310px">
+                            <img src="{{ $photo }}" class="card-img-top" alt="..." style="height: 18rem">
                             <div class="card-body">
                                 {{-- <h5 class="card-title">{{ $auctionProduct->variety }} | {{ $auctionProduct->breeder }} | {{ $auctionProduct->bloodline }} | {{ $auctionProduct->size }}</h5> --}}
                                 <div class="cb-judul">
-                                    <h5 class="card-title">{!! Illuminate\Support\Str::limit("$auctionProduct->variety | $auctionProduct->breeder | $auctionProduct->bloodline | $auctionProduct->size", 55) !!}</h5>
+                                    <h5 class="card-title">{!! Illuminate\Support\Str::limit(
+                                        "$auctionProduct->variety | $auctionProduct->breeder | $auctionProduct->bloodline | $auctionProduct->size euifo  wiueofiw ueofiu woifywoeyfowywi",
+                                        38,
+                                    ) !!}</h5>
                                 </div>
                                 <p class="m-0">Number of bids</p>
                                 <p class="" style="color: red">{{ $auctionProduct->bid_details_count }}</p>
@@ -147,29 +150,31 @@
                                             data-end-extratime="{{ $auctionProduct->tgl_akhir_extra_time }}"
                                             style="text-align: end;color :red;font-size:75%;">00:00:00</p>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-6 col-md-6 p-0 px-sm-2">
-                                            <a id="btn-bid-{{ $auctionProduct->id_ikan }}"
-                                                href="{{ '/auction-bid-now/' . $auctionProduct->id_ikan }}"
-                                                class="btn btn-danger w-100 d-flex justify-content-between p-1"
-                                                style="font-size: 80%">BID NOW <span><i
-                                                        class="fa-solid fa-circle-chevron-right"></i></span></a>
-                                        </div>
-                                        <div class="col-6 col-md-6 pe-0 px-sm-2">
-                                            <a href="{{ '/auction/' . $auctionProduct->id_ikan }}"
-                                                class="btn btn-secondary w-100 d-flex justify-content-between px-1 p-1"
-                                                style="font-size: 80%">DETAIL <span><i
-                                                        class="fa-solid fa-circle-chevron-right"></i></span></a>
-                                        </div>
-                                        <div class="col-9 p-0">
-                                            <a target="_blank" href="{{ $auctionProduct->link_video }}"
-                                                class="btn btn-light w-100 d-flex justify-content-between">VIDEO
-                                                <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
-                                        </div>
-                                        <div class="col-3 p-0">
-                                            <button class="border-0 m-1"
-                                                style="background-color: transparent;font-size:larger; float: right"><i
-                                                    class="far fa-heart"></i></button>
+                                    <div class="col-12 p-2 px-lg-2">
+                                        <div class="row">
+                                            <div class="col-6 col-md-6 p-0 px-sm-2">
+                                                <a id="btn-bid-{{ $auctionProduct->id_ikan }}"
+                                                    href="{{ '/auction-bid-now/' . $auctionProduct->id_ikan }}"
+                                                    class="btn btn-danger w-100 d-flex justify-content-between p-1"
+                                                    style="font-size: 80%">BID NOW <span><i
+                                                            class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                            </div>
+                                            <div class="col-6 col-md-6 pe-0 px-sm-2">
+                                                <a href="{{ '/auction/' . $auctionProduct->id_ikan }}"
+                                                    class="btn btn-secondary w-100 d-flex justify-content-between px-1 p-1"
+                                                    style="font-size: 80%">DETAIL <span><i
+                                                            class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                            </div>
+                                            <div class="col-9 mt-2 px-2">
+                                                <a target="_blank" href="{{ $auctionProduct->link_video }}"
+                                                    class="btn btn-light w-100 d-flex justify-content-between">VIDEO
+                                                    <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                            </div>
+                                            <div class="col-3 ">
+                                                <button class="border-0 mt-2"
+                                                    style="background-color: transparent;font-size:larger; float: right"><i
+                                                        class="far fa-heart"></i></button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
