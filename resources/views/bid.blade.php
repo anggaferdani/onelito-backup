@@ -216,8 +216,10 @@
                     <p style="font-size: larger">{!! $auctionProduct->note !!}</p>
                     <hr>
 
-                    <p style="font-size:30px">Harga saat ini: <span id="currentPrice"
-                            class="alert-link text-danger number-separator">Rp. {{ $currentPrice }}</span></p>
+                    <p style="font-size:30px">Harga saat ini:
+                    <span class="alert-link text-danger">Rp. </span>
+                    <span id="currentPrice"
+                            class="alert-link text-danger number-separator"> {{ $currentPrice }}</span></p>
                     <hr>
 
                     <p style="font-size:25px">Kelipatan BID: <span class="alert-link text-danger">Rp.
@@ -329,6 +331,7 @@
         let currentTime = "{{ $now }}";
         let addedExtraTime = "{{ $addedExtraTime }}";
         let currentEndTime = auctionProduct.event.tgl_akhir;
+        let lastUpdateBid = @json($maxBidData)
 
         function thousandSeparator(x) {
             return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
@@ -566,25 +569,18 @@
                                             </table>`
                     }
 
-                    // <ul class="list-group">
-                    // <li class="list-group-item d-flex justify-content-between align-items-center">
-                    //     A list item
-                    //     <span class="badge bg-primary rounded-pill">14</span>
-                    // </li>
-                    // <li class="list-group-item d-flex justify-content-between align-items-center">
-                    //     A second list item
-                    //     <span class="badge bg-primary rounded-pill">2</span>
-                    // </li>
-                    // <li class="list-group-item d-flex justify-content-between align-items-center">
-                    //     A third list item
-                    //     <span class="">Rp. 1.000</span>
-                    // </li>
-                    // </ul>
-
                     $('#exampleModal .modal-body').html(historyBidHtml);
 
+                    var currentPriceHtml = $('#currentPrice').html();
                     var formatedMaxBid = thousandSeparator(res.maxBid)
-                    $('#currentPrice').html(`Rp. ${formatedMaxBid}`);
+                    $('#currentPrice').html(`${formatedMaxBid}`);
+
+                    if (currentPriceHtml !== `${formatedMaxBid}`) {
+                        addedExtraTime = res.addedExtraTime;
+                        document.getElementById("currentPrice").style.display = 'none'
+                        $('#currentPrice').slideDown();
+                    }
+
                 },
                 error(err) {
 
@@ -634,10 +630,11 @@
             // let modalRunningOutHasShown = false;
             var currTime = moment()
 
-            var end = moment(addedExtraTime);
-            var endTime = end.valueOf();
             // Update the count down every 1 second
             var x = setInterval(function() {
+                var end = moment(addedExtraTime);
+                var endTime = end.valueOf();
+
                 // Get today's date and time and extend it
                 var now = currTime.add(1, 'seconds').valueOf();
 
@@ -645,7 +642,6 @@
                 var duration = endTime - now;
 
                 // Time calculations for days, hours, minutes and seconds
-                // var days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 var hours = Math.floor((duration % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 var minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((duration % (1000 * 60)) / 1000);
@@ -667,6 +663,7 @@
                     document.getElementById("buttonNormalBid").disabled = true;
                     clearInterval(x);
                 }
+
             }, 1000);
         }
 

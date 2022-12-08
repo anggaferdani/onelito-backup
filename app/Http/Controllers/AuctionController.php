@@ -90,10 +90,14 @@ class AuctionController extends Controller
             $autoBid = $logBid->auto_bid;
         }
 
+        $maxBidData = LogBidDetail::whereHas('logBid', function($q) use ($idIkan){
+            $q->where('id_ikan_lelang', $idIkan);
+        })->orderBy('nominal_bid', 'desc')->first();
+
         Carbon::setLocale('id');
 
         $now = Carbon::now();
-        $addedExtraTime = Carbon::createFromDate($auctionProduct->event->tgl_akhir)
+        $addedExtraTime = Carbon::createFromDate($maxBidData->created_at)
             ->addMinutes($auctionProduct->extra_time ?? 0);
 
         return view('bid',[
@@ -106,6 +110,7 @@ class AuctionController extends Controller
             'auctionProduct' => $auctionProduct,
             'title' => 'auction',
             'addedExtraTime' => $addedExtraTime,
+            'maxBidData' => $maxBidData,
         ]);
     }
 
@@ -218,6 +223,9 @@ class AuctionController extends Controller
 
         if ($this->request->ajax()) {
 
+            $addedExtraTime = Carbon::createFromDate($maxBidData->created_at)
+                ->addMinutes($auctionProduct->extra_time ?? 0);
+
             return response()->json([
                 'logBid' => $logBid,
                 'autoBid' => $autoBid,
@@ -225,7 +233,9 @@ class AuctionController extends Controller
                 'idIkan' => $idIkan,
                 'meMaxBid' => $meMaxBid,
                 'logBids' => $logBids,
+                'maxBidData' => $maxBidData,
                 'auctionProduct' => $auctionProduct,
+                'addedExtraTime' => $addedExtraTime,
             ]);
         }
 
@@ -236,6 +246,7 @@ class AuctionController extends Controller
             'maxBid' => $maxBid,
             'idIkan' => $idIkan,
             'meMaxBid' => $meMaxBid,
+            'maxBidData' => $maxBidData,
             'auctionProduct' => $auctionProduct,
             'title' => 'ONELITO KOI'
         ]);
