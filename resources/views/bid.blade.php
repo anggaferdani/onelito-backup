@@ -219,7 +219,7 @@
                     <p style="font-size:30px">Harga saat ini:
                     <span class="alert-link text-danger">Rp. </span>
                     <span id="currentPrice"
-                            class="alert-link text-danger number-separator"> {{ number_format($currentPrice, 0, '.', '.') }}</span></p>
+                            class="alert-link text-danger number-separator">{{ number_format($currentPrice, 0, '.', '.') }}</span></p>
                     <hr>
 
                     <p style="font-size:25px">Kelipatan BID: <span class="alert-link text-danger">Rp.
@@ -580,7 +580,6 @@
                         document.getElementById("currentPrice").style.display = 'none'
                         $('#currentPrice').slideDown();
                     }
-
                 },
                 error(err) {
 
