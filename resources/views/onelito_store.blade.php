@@ -127,13 +127,13 @@
                                 @forelse ($products as $product)
                                     @php
                                         $productPhoto = 'img/bio_media.png';
-                                        
+
                                         if ($product->photo !== null) {
                                             $productPhoto = url('storage') . '/' . $product->photo->path_foto;
                                         }
-                                        
+
                                         $wishlistClass = 'far fa-heart';
-                                        
+
                                         if ($product->wishlist !== null) {
                                             $wishlistClass = 'fas fa-heart';
                                         }
@@ -164,13 +164,19 @@
                             <div class="btn-toolbar mb-3 justify-content-end" role="toolbar"
                                 aria-label="Toolbar with button groups">
                                 <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <button type="button" class="btn btn-danger">1</button>
+                                    <a href="{{ $products->previousPageUrl() }}"><button  type="button" class="btn btn-danger {{ $products->onFirstPage() ? 'active disabled' : '' }}"">Prev</button></a>
                                 </div>
-                                <div class="btn-group me-2" role="group" aria-label="Second group">
-                                    <button type="button" class="btn btn-danger">2</button>
-                                </div>
-                                <div class="btn-group" role="group" aria-label="Third group">
-                                    <button type="button" class="btn btn-danger">3</button>
+                                    @foreach ($products->onEachSide(0)->links()->elements as $elements)
+                                        @if (is_array($elements))
+                                            @foreach ($elements as $key => $element)
+                                                <div class="btn-group me-2" role="group" aria-label="First group">
+                                                    <a href="?page={{ $key }}"><button  type="button" class="btn btn-danger {{ (request()->page ?? 1) == $key ? 'active disabled' : '' }}"">{{ $key }}</button></a>
+                                                </div>
+                                            @endforeach
+                                        @endif
+                                    @endforeach
+                                <div class="btn-group me-2" role="group" aria-label="First group">
+                                    <a href="{{ $products->nextPageUrl() }}"><button  type="button" class="btn btn-danger {{ $products->onLastPage() ? 'active disabled' : '' }}"">Next</button></a>
                                 </div>
                             </div>
                         </div>
@@ -180,16 +186,16 @@
                                 <h5><b>Fish Food</b></h5>
                             </div>
                             <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-                                @forelse ($products->where('id_kategori_produk', 2) as $fishfoodProduct)
+                                @forelse ($fishFoodProducts as $fishfoodProduct)
                                     @php
                                         $productPhoto2 = 'img/uniring.jpeg';
-                                        
+
                                         if ($fishfoodProduct->photo !== null) {
                                             $productPhoto2 = url('storage') . '/' . $fishfoodProduct->photo->path_foto;
                                         }
-                                        
+
                                         $wishlistClass = 'far fa-heart';
-                                        
+
                                         if ($fishfoodProduct->wishlist !== null) {
                                             $wishlistClass = 'fas fa-heart';
                                         }
@@ -220,13 +226,19 @@
                             <div class="btn-toolbar mb-3 justify-content-end" role="toolbar"
                                 aria-label="Toolbar with button groups">
                                 <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <button type="button" class="btn btn-danger">1</button>
+                                    <a href="{{ $fishFoodProducts->previousPageUrl() }}"><button  type="button" class="btn btn-danger {{ $fishFoodProducts->onFirstPage() ? 'active disabled' : '' }}"">Prev</button></a>
                                 </div>
-                                <div class="btn-group me-2" role="group" aria-label="Second group">
-                                    <button type="button" class="btn btn-danger">2</button>
-                                </div>
-                                <div class="btn-group" role="group" aria-label="Third group">
-                                    <button type="button" class="btn btn-danger">3</button>
+                                    @foreach ($fishFoodProducts->onEachSide(0)->links()->elements as $elements)
+                                        @if (is_array($elements))
+                                            @foreach ($elements as $key => $element)
+                                                <div class="btn-group me-2" role="group" aria-label="First group">
+                                                    <a href="?page={{ $key }}"><button  type="button" class="btn btn-danger {{ (request()->page ?? 1) == $key ? 'active disabled' : '' }}"">{{ $key }}</button></a>
+                                                </div>
+                                            @endforeach
+                                        @endif
+                                    @endforeach
+                                <div class="btn-group me-2" role="group" aria-label="First group">
+                                    <a href="{{ $fishFoodProducts->nextPageUrl() }}"><button  type="button" class="btn btn-danger {{ $fishFoodProducts->onLastPage() ? 'active disabled' : '' }}"">Next</button></a>
                                 </div>
                             </div>
                         </div>
@@ -236,15 +248,15 @@
                             </div>
                             <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
 
-                                @forelse ($products->where('id_kategori_produk', 1) as $fishgearProduct)
+                                @forelse ($fishEquipmentProducts as $fishgearProduct)
                                     @php
                                         $productPhoto3 = 'img/selang.jpg';
-                                        
+
                                         if ($fishgearProduct->photo !== null) {
                                             $productPhoto3 = url('storage') . '/' . $fishgearProduct->photo->path_foto;
                                         }
                                         $wishlistClass = 'far fa-heart';
-                                        
+
                                         if ($fishgearProduct->wishlist !== null) {
                                             $wishlistClass = 'fas fa-heart';
                                         }
@@ -275,13 +287,19 @@
                             <div class="btn-toolbar mb-3 justify-content-end" role="toolbar"
                                 aria-label="Toolbar with button groups">
                                 <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <button type="button" class="btn btn-danger">1</button>
+                                    <a href="{{ $fishEquipmentProducts->previousPageUrl() }}"><button  type="button" class="btn btn-danger {{ $fishEquipmentProducts->onFirstPage() ? 'active disabled' : '' }}"">Prev</button></a>
                                 </div>
-                                <div class="btn-group me-2" role="group" aria-label="Second group">
-                                    <button type="button" class="btn btn-danger">2</button>
-                                </div>
-                                <div class="btn-group" role="group" aria-label="Third group">
-                                    <button type="button" class="btn btn-danger">3</button>
+                                    @foreach ($fishEquipmentProducts->onEachSide(0)->links()->elements as $elements)
+                                        @if (is_array($elements))
+                                            @foreach ($elements as $key => $element)
+                                                <div class="btn-group me-2" role="group" aria-label="First group">
+                                                    <a href="?page={{ $key }}"><button  type="button" class="btn btn-danger {{ (request()->page ?? 1) == $key ? 'active disabled' : '' }}"">{{ $key }}</button></a>
+                                                </div>
+                                            @endforeach
+                                        @endif
+                                    @endforeach
+                                <div class="btn-group me-2" role="group" aria-label="First group">
+                                    <a href="{{ $fishEquipmentProducts->nextPageUrl() }}"><button  type="button" class="btn btn-danger {{ $fishEquipmentProducts->onLastPage() ? 'active disabled' : '' }}"">Next</button></a>
                                 </div>
                             </div>
                         </div>

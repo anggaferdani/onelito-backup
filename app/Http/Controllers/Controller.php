@@ -18,4 +18,13 @@ class Controller extends BaseController
     {
         $this->request = $req;
     }
+
+    protected function perPage($default = 20)
+    {
+        $perPage = (int) $this->request->input('per_page');
+
+        // per_page max is 100. for no apparent reason
+        return $perPage > 0 && $perPage <= 100 ?
+            $perPage : $default;
+    }
 }

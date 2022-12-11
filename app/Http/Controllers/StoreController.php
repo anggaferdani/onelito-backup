@@ -23,12 +23,46 @@ class StoreController extends Controller
                 return $q->with(['category', 'photo']);
             })
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate($this->perPage());
+
+            // dd($products->previousPageUrl());
+
+        $fishFoodProducts = Product::
+            where('status_aktif', 1)
+            ->where('id_kategori_produk', 2)
+            ->when($auth !== null, function ($q) use ($auth){
+                return $q->with([
+                    'category',
+                    'photo',
+                    'wishlist' => fn($w) => $w->where('id_peserta', $auth->id_peserta)]
+                );
+            }, function ($q) {
+                return $q->with(['category', 'photo']);
+            })
+            ->orderBy('created_at', 'desc')
+            ->paginate($this->perPage());
+
+        $fishEquipmentProducts = Product::
+            where('status_aktif', 1)
+            ->where('id_kategori_produk', 1)
+            ->when($auth !== null, function ($q) use ($auth){
+                return $q->with([
+                    'category',
+                    'photo',
+                    'wishlist' => fn($w) => $w->where('id_peserta', $auth->id_peserta)]
+                );
+            }, function ($q) {
+                return $q->with(['category', 'photo']);
+            })
+            ->orderBy('created_at', 'desc')
+            ->paginate($this->perPage());
 
         return view('onelito_store',[
             'auth' => $auth,
             'products' => $products,
-            'title' => 'ONELITO KOI'
+            'fishFoodProducts' => $fishFoodProducts,
+            'fishEquipmentProducts' => $fishEquipmentProducts,
+            'title' => 'onelito_store'
         ]);
     }
 
@@ -43,7 +77,7 @@ class StoreController extends Controller
         return view('detail_onelito_store',[
             'auth' => $auth,
             'product' => $product,
-            'title' => 'ONELITO KOI'
+            'title' => 'onelito_store'
         ]);
     }
 }
