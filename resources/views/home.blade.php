@@ -135,7 +135,7 @@
                 <div class="col">
                     <div class="card">
                         @php
-                            $photo = 'img/koi.jpg';
+                            $photo = 'img/koi11.jpg';
                             if ($auctionProduct->photo !== null) {
                                 $photo = url('storage') . '/' . $auctionProduct->photo->path_foto;
                             }
@@ -171,13 +171,13 @@
             @forelse($hotProductStores as $hotProduct)
                 @php
                     $productPhoto2 = 'img/bio_media.png';
-
+                    
                     if ($hotProduct->photo !== null) {
                         $productPhoto2 = url('storage') . '/' . $hotProduct->photo->path_foto;
                     }
-
+                    
                     $wishlistClass = 'far fa-heart';
-
+                    
                     if ($hotProduct->wishlist !== null) {
                         $wishlistClass = 'fas fa-heart';
                     }
@@ -220,13 +220,13 @@
                 @forelse($hotProductStores as $hotProduct)
                     @php
                         $productPhoto = 'img/bio_media.png';
-
+                        
                         if ($hotProduct->photo !== null) {
                             $productPhoto = url('storage') . '/' . $hotProduct->photo->path_foto;
                         }
-
+                        
                         $wishlistClass = 'far fa-heart';
-
+                        
                         if ($hotProduct->wishlist !== null) {
                             $wishlistClass = 'fas fa-heart';
                         }
@@ -366,15 +366,15 @@
         <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
             @forelse($championFishes as $championFish)
                 @php
-                    $photoChampion = 'img/koi_2.jpg';
-
+                    $photoChampion = 'img/koi12.jpg';
+                    
                     if ($championFish->foto_ikan !== null) {
                         $photoChampion = url('storage') . '/' . $championFish->foto_ikan;
                     }
                 @endphp
                 <div class="col mt-3">
                     <div class="card">
-                        <img src="{{ $photoChampion }}" class="card-img-top" alt="..." style="height: 18rem">
+                        <img src="{{ $photoChampion }}" class="card-img-top" alt="...">
                         <div class="m-2 me-auto">
                             <h5 class="card-title">{!! Illuminate\Support\Str::limit("$championFish->nama_champion", 18) !!}</h5>
                             <p class="card-text ma">Tahun : {{ $championFish->tahun }}</p>
