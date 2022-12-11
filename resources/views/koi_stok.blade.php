@@ -153,15 +153,22 @@
                             </div>
                         </div> -->
             </div>
-            <div class="btn-toolbar mb-3 justify-content-end" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-toolbar mb-3 justify-content-end" role="toolbar"
+                aria-label="Toolbar with button groups">
                 <div class="btn-group me-2" role="group" aria-label="First group">
-                    <button type="button" class="btn btn-danger">1</button>
+                    <a href="{{ $fishes->previousPageUrl() }}"><button  type="button" class="btn btn-danger">Prev</button></a>
                 </div>
-                <div class="btn-group me-2" role="group" aria-label="Second group">
-                    <button type="button" class="btn btn-danger">2</button>
-                </div>
-                <div class="btn-group" role="group" aria-label="Third group">
-                    <button type="button" class="btn btn-danger">3</button>
+                    @foreach ($fishes->onEachSide(0)->links()->elements as $elements)
+                        @if (is_array($elements))
+                            @foreach ($elements as $key => $element)
+                                <div class="btn-group me-2" role="group" aria-label="First group">
+                                    <a href="?page={{ $key }}"><button  type="button" class="btn btn-danger {{ (request()->page ?? 1) == $key ? 'active disabled' : '' }}"">{{ $key }}</button></a>
+                                </div>
+                            @endforeach
+                        @endif
+                    @endforeach
+                <div class="btn-group me-2" role="group" aria-label="First group">
+                    <a href="{{ $fishes->nextPageUrl() }}"><button  type="button" class="btn btn-danger">Next</button></a>
                 </div>
             </div>
             <!-- <div class="row mb-5">

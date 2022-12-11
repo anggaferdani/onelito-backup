@@ -164,7 +164,7 @@
                             <div class="btn-toolbar mb-3 justify-content-end" role="toolbar"
                                 aria-label="Toolbar with button groups">
                                 <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <a href="{{ $products->previousPageUrl() }}"><button  type="button" class="btn btn-danger {{ $products->onFirstPage() ? 'active disabled' : '' }}"">Prev</button></a>
+                                    <a href="{{ $products->previousPageUrl() }}"><button  type="button" class="btn btn-danger ">Prev</button></a>
                                 </div>
                                     @foreach ($products->onEachSide(0)->links()->elements as $elements)
                                         @if (is_array($elements))
@@ -176,7 +176,7 @@
                                         @endif
                                     @endforeach
                                 <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <a href="{{ $products->nextPageUrl() }}"><button  type="button" class="btn btn-danger {{ $products->onLastPage() ? 'active disabled' : '' }}"">Next</button></a>
+                                    <a href="{{ $products->nextPageUrl() }}"><button  type="button" class="btn btn-danger">Next</button></a>
                                 </div>
                             </div>
                         </div>
@@ -226,7 +226,7 @@
                             <div class="btn-toolbar mb-3 justify-content-end" role="toolbar"
                                 aria-label="Toolbar with button groups">
                                 <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <a href="{{ $fishFoodProducts->previousPageUrl() }}"><button  type="button" class="btn btn-danger {{ $fishFoodProducts->onFirstPage() ? 'active disabled' : '' }}"">Prev</button></a>
+                                    <a href="{{ $fishFoodProducts->previousPageUrl() }}"><button  type="button" class="btn btn-danger ">Prev</button></a>
                                 </div>
                                     @foreach ($fishFoodProducts->onEachSide(0)->links()->elements as $elements)
                                         @if (is_array($elements))
@@ -238,7 +238,7 @@
                                         @endif
                                     @endforeach
                                 <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <a href="{{ $fishFoodProducts->nextPageUrl() }}"><button  type="button" class="btn btn-danger {{ $fishFoodProducts->onLastPage() ? 'active disabled' : '' }}"">Next</button></a>
+                                    <a href="{{ $fishFoodProducts->nextPageUrl() }}"><button  type="button" class="btn btn-danger ">Next</button></a>
                                 </div>
                             </div>
                         </div>
@@ -287,7 +287,7 @@
                             <div class="btn-toolbar mb-3 justify-content-end" role="toolbar"
                                 aria-label="Toolbar with button groups">
                                 <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <a href="{{ $fishEquipmentProducts->previousPageUrl() }}"><button  type="button" class="btn btn-danger {{ $fishEquipmentProducts->onFirstPage() ? 'active disabled' : '' }}"">Prev</button></a>
+                                    <a href="{{ $fishEquipmentProducts->previousPageUrl() }}"><button  type="button" class="btn btn-danger ">Prev</button></a>
                                 </div>
                                     @foreach ($fishEquipmentProducts->onEachSide(0)->links()->elements as $elements)
                                         @if (is_array($elements))
@@ -299,7 +299,7 @@
                                         @endif
                                     @endforeach
                                 <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <a href="{{ $fishEquipmentProducts->nextPageUrl() }}"><button  type="button" class="btn btn-danger {{ $fishEquipmentProducts->onLastPage() ? 'active disabled' : '' }}"">Next</button></a>
+                                    <a href="{{ $fishEquipmentProducts->nextPageUrl() }}"><button  type="button" class="btn btn-danger ">Next</button></a>
                                 </div>
                             </div>
                         </div>
