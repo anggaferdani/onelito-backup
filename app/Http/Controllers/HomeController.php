@@ -15,12 +15,13 @@ class HomeController extends Controller
     public function index()
     {
         $now = Carbon::now();
-        $nowAkhir = $now->subDay()->endOfDay();
+        $nowAkhir = Carbon::now()->subDay()->endOfDay();
 
         $auth = Auth::guard('member')->user();
 
-        $nextAuction = Event::with('auctionProducts.photo')->where('tgl_akhir', '>=', $now)
-            ->where('tgl_mulai', '<=', $nowAkhir)
+        $nextAuction = Event::with('auctionProducts.photo')
+            ->where('tgl_mulai', '<=', $now)
+            ->where('tgl_akhir', '>=', $nowAkhir)
             ->where('status_aktif', 1)
             ->orderBy('tgl_mulai')
             ->get();
