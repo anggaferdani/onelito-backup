@@ -125,7 +125,7 @@
                         }
                     @endphp
                     <div class="col mt-3">
-                        <div class="card">
+                    <div class="card">
                             <img src="{{ $photo }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 {{-- <h5 class="card-title">{{ $auctionProduct->variety }} | {{ $auctionProduct->breeder }} | {{ $auctionProduct->bloodline }} | {{ $auctionProduct->size }}</h5> --}}
@@ -276,7 +276,7 @@
                     var id = $(val).attr('id');
                     $(val).html(`00:00:00`);
 
-                    document.getElementById(`btn-bid-${id}`).disabled = true;
+                    // document.getElementById(`btn-bid-${id}`).disabled = true;
                     // document.getElementById("auto_bid").disabled = true;
                     // document.getElementById("buttonAutoBid").disabled = true;
                     // document.getElementById("buttonNormalBid").disabled = true;
