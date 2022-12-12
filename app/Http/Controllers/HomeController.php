@@ -15,7 +15,7 @@ class HomeController extends Controller
     public function index()
     {
         $now = Carbon::now();
-        $nowAkhir = $now->subDay()->endOfDay();
+        $nowAkhir = Carbon::now()->subDay()->endOfDay();
 
         $auth = Auth::guard('member')->user();
 
