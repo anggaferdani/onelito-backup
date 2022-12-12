@@ -61,7 +61,7 @@ class EventController extends Controller
 
         $data['create_by'] = Auth::guard('admin')->id();
         $data['update_by'] = Auth::guard('admin')->id();
-        $data['total_hadiah'] = str_replace('.', '', $data['total_hadiah']);
+        $data['total_hadiah'] = (int) str_replace('.', '', $data['total_hadiah']);
         $data['status_aktif'] = 1;
 
         $image = null;
@@ -114,7 +114,7 @@ class EventController extends Controller
     {
         $auction = Event::With('auctionProducts')->findOrFail($id);
         $data = $this->request->all();
-        $data['total_hadiah'] = str_replace('.', '', $data['total_hadiah']);
+        $data['total_hadiah'] = (int) str_replace('.', '', $data['total_hadiah']);
         $validator = Validator::make($this->request->all(), [
 
         ]);
