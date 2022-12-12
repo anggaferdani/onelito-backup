@@ -17,6 +17,7 @@ class AuctionController extends Controller
         $auth = Auth::guard('member')->user();
 
         $now = Carbon::now();
+        $nowAkhir = $now->subDay()->endOfDay();
 
         $currentAuctions = Event::with([
             'auctionProducts' => function ($q) {
@@ -24,7 +25,7 @@ class AuctionController extends Controller
             }
             ])
             ->where('tgl_mulai', '<=', $now)
-            ->where('tgl_akhir', '>=', $now)
+            ->where('tgl_akhir', '>=', $nowAkhir)
             ->where('status_aktif', 1)
             ->orderBy('tgl_mulai')
             ->orderBy('created_at', 'desc')
@@ -40,6 +41,10 @@ class AuctionController extends Controller
                 $product->tgl_akhir_extra_time = Carbon::createFromDate($product->event->tgl_akhir)
                     ->addMinutes($product->extra_time ?? 0)->toDateTimeString();
 
+                if ($product->maxBid !== null && $product->maxBid->updated_at >= $product->event->tgl_akhir) {
+                    $product->tgl_akhir_extra_time = Carbon::createFromDate($product->maxBid->updated_at)
+                        ->addMinutes($product->extra_time ?? 0)->toDateTimeString();
+                }
             }
 
             $currentAuction = $currentAuctions->first();
@@ -98,10 +103,10 @@ class AuctionController extends Controller
 
         $now = Carbon::now();
 
-        $addedExtraTime = Carbon::createFromDate($auctionProduct->tgl_akhir)
+        $addedExtraTime = Carbon::createFromDate($auctionProduct->event->tgl_akhir)
             ->addMinutes($auctionProduct->extra_time ?? 0);
 
-        if ($maxBidData !== null) {
+        if ($maxBidData !== null && $maxBidData->created_at >= $auctionProduct->event->tgl_akhir) {
             $addedExtraTime = Carbon::createFromDate($maxBidData->created_at)
                 ->addMinutes($auctionProduct->extra_time ?? 0);
         }

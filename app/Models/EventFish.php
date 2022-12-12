@@ -27,7 +27,8 @@ class EventFish extends Model
     public function bids()
     {
         return $this->hasMany(LogBid::class, 'id_ikan_lelang')->where('status_aktif', 1)
-        ->orderBy('nominal_bid', 'desc');
+        ->orderBy('nominal_bid', 'desc')
+        ->orderBy('updated_at', 'desc');
     }
 
     public function bidDetails()
@@ -40,7 +41,8 @@ class EventFish extends Model
     public function maxBid()
     {
         return $this->hasOne(LogBid::class, 'id_ikan_lelang')->where('status_aktif', 1)
-            ->orderBy('nominal_bid', 'desc');
+            ->orderBy('nominal_bid', 'desc')
+            ->orderBy('updated_at', 'desc');
     }
 
     public function winners()

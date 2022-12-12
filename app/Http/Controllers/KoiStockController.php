@@ -19,7 +19,7 @@ class KoiStockController extends Controller
         $fishes = KoiStock::
             where('status_aktif', 1)
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate($this->perPage());
 
         return view('koi_stok',[
             'auth' => $auth,
