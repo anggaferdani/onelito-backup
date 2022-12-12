@@ -19,8 +19,9 @@ class HomeController extends Controller
 
         $auth = Auth::guard('member')->user();
 
-        $nextAuction = Event::with('auctionProducts.photo')->where('tgl_akhir', '>=', $now)
-            ->where('tgl_mulai', '<=', $nowAkhir)
+        $nextAuction = Event::with('auctionProducts.photo')
+            ->where('tgl_mulai', '<=', $now)
+            ->where('tgl_akhir', '>=', $nowAkhir)
             ->where('status_aktif', 1)
             ->orderBy('tgl_mulai')
             ->get();
