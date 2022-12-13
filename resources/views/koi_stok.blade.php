@@ -153,7 +153,7 @@
                             </div>
                         </div> -->
             </div>
-            <div class="btn-toolbar mb-3 justify-content-end" role="toolbar"
+            <div class="btn-toolbar my-3 justify-content-end" role="toolbar"
                 aria-label="Toolbar with button groups">
                 <div class="btn-group me-2" role="group" aria-label="First group">
                     <a href="{{ $fishes->previousPageUrl() }}"><button  type="button" class="btn btn-danger">Prev</button></a>
