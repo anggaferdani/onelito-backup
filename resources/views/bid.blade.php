@@ -1,6 +1,15 @@
 @extends('layout.main')
 
 @section('container')
+<style>
+    @media screen and (max-width: 600px) {
+            .nav-samping {
+                display: none;
+            }
+
+        }
+</style>
+
 <nav class="nav-samping navbar navbar-expand-lg navbar-light bg-danger">
     <div class="container">
         <a class="w-25 navbar-brand" href="/">

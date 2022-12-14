@@ -145,7 +145,7 @@
                             <div class="cb-judu">
                                 <h5 class="card-title"> {!! Illuminate\Support\Str::limit(
                                     "$auctionProduct->variety | $auctionProduct->breeder | Pedigree | $auctionProduct->size | $auctionProduct->bloodline",
-                                    35,
+                                    32,
                                 ) !!}
                                 </h5>
                             </div>
