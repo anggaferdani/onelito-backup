@@ -67,7 +67,7 @@
 
                     <div class="col mt-5">
                         <div class="card">
-                            <img src="img/koi12.jpg" class="card-img-top" alt="..." style="height: 310px">
+                            <img src="img/koi12.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <div class="cb-judul">
                                     <h5 class="card-title">{!! Illuminate\Support\Str::limit(

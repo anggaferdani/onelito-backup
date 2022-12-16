@@ -268,7 +268,7 @@
                         {{ number_format($auctionProduct->kb, 0, '.', '.') }}</span></p>
                     <hr>
 
-                    <p class="m-0" style="font-size: larger">Countdown</p>
+                    <p class="m-0" style="font-size: larger">Time Live</p>
                     <p class="alert-link text-danger countdown-label" style="font-size: 30px">00 : 00 : 00</p>
 
                     <br><br>
