@@ -29,6 +29,10 @@
         .cb-jud {
             height: 2.5rem;
         }
+
+        body a {
+            text-decoration: none
+        }
     </style>
 
 
@@ -117,9 +121,22 @@
                                     45,
                                 ) !!}</h5>
                             </div>
-                            <p style="font-size: 10px" class="card-text ma">Starting Price</p>
+                            {{-- <p style="font-size: 10px" class="card-text ma">Starting Price</p>
                             <p style="color :red;font-size: 12px" class="m-0">Rp.
-                                {{ number_format($auctionProduct->ob, 0, '.', '.') }}</p>
+                                {{ number_format($auctionProduct->ob, 0, '.', '.') }}</p> --}}
+                            <p class="m-0">Number of bids</p>
+                            <p class="" style="color: red">0</p>
+                            <div class="row">
+                                <div class="col-6 p-0 px-lg-2">
+                                    <p class="m-0" style="font-size:80%">Harga saat ini</p>
+                                    <p class="m-0" style="color: red;font-size:75%">Rp 1.000.000</p>
+                                </div>
+                                <div class="col-6 p-0 px-lg-2">
+                                    <p class="m-0" style="text-align: end;font-size:80%">Live Time</p>
+                                    <p class="m-0 countdown-label" style="text-align: end;color :red;font-size:75%;">
+                                        00:00:00</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -133,26 +150,41 @@
         <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
             @forelse($auctionProducts as $auctionProduct)
                 <div class="col">
-                    <div class="card">
-                        @php
-                            $photo = 'img/koi11.jpg';
-                            if ($auctionProduct->photo !== null) {
-                                $photo = url('storage') . '/' . $auctionProduct->photo->path_foto;
-                            }
-                        @endphp
-                        <img src="{{ $photo }}" class="card-img-top" alt="..." style="height: 18rem">
-                        <div class="card-body">
-                            <div class="cb-judu">
-                                <h5 class="card-title"> {!! Illuminate\Support\Str::limit(
-                                    "$auctionProduct->variety | $auctionProduct->breeder | Pedigree | $auctionProduct->size | $auctionProduct->bloodline",
-                                    32,
-                                ) !!}
-                                </h5>
+                    <a class="text-dark" href="/auction">
+                        <div class="card">
+                            @php
+                                $photo = 'img/koi11.jpg';
+                                if ($auctionProduct->photo !== null) {
+                                    $photo = url('storage') . '/' . $auctionProduct->photo->path_foto;
+                                }
+                            @endphp
+                            <img src="{{ $photo }}" class="card-img-top" alt="..." style="height: 18rem">
+                            <div class="card-body">
+                                <div class="cb-judu">
+                                    <h5 class="card-title"> {!! Illuminate\Support\Str::limit(
+                                        "$auctionProduct->variety | $auctionProduct->breeder | Pedigree | $auctionProduct->size | $auctionProduct->bloodline",
+                                        32,
+                                    ) !!}
+                                    </h5>
+                                </div>
+                                {{-- <p class="card-text ma">Starting Price</p>
+                            <p style="color :red">Rp. {{ number_format($auctionProduct->ob, 0, '.', '.') }}</p> --}}
+                                <p class="m-0">Number of bids</p>
+                                <p class="" style="color: red">0</p>
+                                <div class="row">
+                                    <div class="col-6 p-0 px-lg-2">
+                                        <p class="m-0" style="font-size:80%">Harga saat ini</p>
+                                        <p class="m-0" style="color: red;font-size:75%">Rp 1.000.000</p>
+                                    </div>
+                                    <div class="col-6 p-0 px-lg-2">
+                                        <p class="m-0" style="text-align: end;font-size:80%">Live Time</p>
+                                        <p class="m-0 countdown-label" style="text-align: end;color :red;font-size:75%;">
+                                            00:00:00</p>
+                                    </div>
+                                </div>
                             </div>
-                            <p class="card-text ma">Starting Price</p>
-                            <p style="color :red">Rp. {{ number_format($auctionProduct->ob, 0, '.', '.') }}</p>
                         </div>
-                    </div>
+                    </a>
                 </div>
             @empty
                 <img src="{{ url('img/nolelang.png') }}" class="d-block w-100 mt-5" alt="ceklis">

@@ -52,7 +52,7 @@
                                 </div>
 
                                 <div class="col-6 p-0 px-lg-2">
-                                    <p class="m-0" style="text-align: end;font-size: 80%">Countdown</p>
+                                    <p class="m-0" style="text-align: end;font-size: 80%">Live Time</p>
                                     <p class="m-0" style="text-align: end;color :red;font-size:75%;">00:35:45</p>
                                 </div>
                             </div>

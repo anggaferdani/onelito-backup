@@ -144,7 +144,7 @@
                                             {{ number_format($currentMaxBid, 0, '.', '.') }}</p>
                                     </div>
                                     <div class="col-6 p-0 px-lg-2">
-                                        <p class="m-0" style="text-align: end;font-size:80%">Countdown</p>
+                                        <p class="m-0" style="text-align: end;font-size:80%">Live Time</p>
                                         <p class="m-0 countdown-label" id="{{ $auctionProduct->id_ikan }}"
                                             data-endtime="{{ $auctionProduct->event->tgl_akhir }}"
                                             data-end-extratime="{{ $auctionProduct->tgl_akhir_extra_time }}"
