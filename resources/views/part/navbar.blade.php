@@ -100,14 +100,14 @@
         }
     }
 
-    .atas {
+    .fix {
         position: fixed;
         z-index: 99;
         width: 100vw;
     }
 </style>
 
-<div class="atas">
+<div class="atas fix">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="w-25 navbar-brand" href="/">
@@ -144,7 +144,7 @@
     </nav>
 </div>
 
-<div class="samping">
+<div class="samping fix">
     <div id="mySidebar" class="sidebar">
         <div class="d-flex">
             <a class="navbar-brand" href="/">

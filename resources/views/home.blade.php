@@ -35,40 +35,7 @@
         }
     </style>
 
-
-    <nav class="nav-samping navbar navbar-expand-lg navbar-light bg-danger">
-        <div class="container">
-            <a class="w-25 navbar-brand" href="/">
-                <img src="{{ url('img/logo-onelito.jpg') }}" alt="ONELITO" class="w-100">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse flex-grow-0 navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link "href="/">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link "href="/auction">AUCTION</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link "href="/onelito_store">ONELITO
-                            STORE</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link "href="/koi_stok">KOI
-                            STOCK</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link "href="/login">LOGIN</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
+<br><br><br><br>
     <div id="carouselExampleControls" class="pt-2 carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner img-mh-300">
             <div class="carousel-item active">
@@ -229,11 +196,11 @@
                                 <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order
                                     Now</button>
                             </div>
-                            <div class="col-2 m-auto">
+                            <div class="col-3 m-auto">
                                 <button class="border-4 rounded" style="background-color: red;border-color:red"><i
                                         class="fa-solid fa-cart-shopping" style="color: white"></i></button>
                             </div>
-                            <div class="col-2 m-auto">
+                            <div class="col-3 m-auto">
                                 <button class="border-0" style="background-color: transparent"><i
                                         class="{{ $wishlistClass }} wishlist" data-id="{{ $hotProduct->id_produk }}"
                                         style="font-size: x-large"></i></button>
