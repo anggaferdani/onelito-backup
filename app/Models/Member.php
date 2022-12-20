@@ -56,4 +56,14 @@ class Member extends Authenticatable
     {
         return $this->hasMany(Wishlist::class, 'id_peserta');
     }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class, 'id_peserta');
+    }
+
+    public function biddings()
+    {
+        return $this->hasMany(LogBid::class, 'id_peserta');
+    }
 }

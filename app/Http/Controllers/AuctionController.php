@@ -22,7 +22,8 @@ class AuctionController extends Controller
         $currentAuctions = Event::with([
             'auctionProducts' => function ($q) {
                 $q->withCount('bidDetails')->with(['photo', 'maxBid', 'event']);
-            }
+            },
+            'auctionProducts.wishlist'
             ])
             ->where('tgl_mulai', '<=', $now)
             ->where('tgl_akhir', '>=', $nowAkhir)
