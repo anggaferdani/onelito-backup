@@ -56,4 +56,9 @@ class EventFish extends Model
         return $this->hasManyThrough(Member::class, LogBid::class, 'id_ikan_lelang', 'id_peserta')
         ->where('m_peserta.status_aktif', 1);
     }
+
+    public function wishlist()
+    {
+        return $this->morphOne(Wishlist::class, 'wishlistable', 'wishlistable_type', 'wishlistable_id');
+    }
 }

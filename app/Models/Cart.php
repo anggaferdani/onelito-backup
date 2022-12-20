@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Wishlist extends Model
+class Cart extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
 
-    protected $table = 't_wishlist';
-    protected $primaryKey = 'id_wishlist';
+    protected $table = 't_keranjang';
+    protected $primaryKey = 'id_keranjang';
 
     public const EventFish = 'EventFish';
     public const Product = 'Product';
@@ -22,13 +22,8 @@ class Wishlist extends Model
         return $this->belongsTo(Member::class, 'id_peserta');
     }
 
-    // public function product()
-    // {
-    //     return $this->belongsTo(Product::class, 'id_produk');
-    // }
-
-    public function wishlistable()
+    public function cartable()
     {
-        return $this->morphTo('wishlistable', 'wishlistable_type', 'wishlistable_id');
+        return $this->morphTo('cartable', 'cartable_type', 'cartable_id');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\AuctionWinner;
+use App\Models\Cart;
 use App\Models\Event;
 use App\Models\EventFish;
 use Illuminate\Support\Facades\Auth;
@@ -52,7 +53,17 @@ class AuctionWinnerController extends Controller
         $data['update_by'] = Auth::guard('admin')->id();
         $data['status_aktif'] = 1;
 
+        $dataCart['create_by'] = Auth::guard('admin')->id();
+        $dataCart['update_by'] = Auth::guard('admin')->id();
+        $dataCart['status_aktif'] = 1;
+
         $createWinner = AuctionWinner::create($data);
+        $createWinner->load('bidding');
+        $dataCart['id_peserta'] = $createWinner->bidding->id_peserta;
+        $dataCart['cartable_id'] = $createWinner->bidding->id_ikan_lelang;
+        $dataCart['cartable_type'] = Cart::EventFish;
+
+        Cart::create($dataCart);
 
         if($createWinner){
             return redirect()->back()->with([

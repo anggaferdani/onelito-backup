@@ -84,7 +84,7 @@
                         <div class="card-body">
                             <div class="cb-jud">
                                 <h5 class="card-title">{!! Illuminate\Support\Str::limit(
-                                    "$auctionProduct->variety | $auctionProduct->breeder | Pedigree | $auctionProduct->size | $auctionProduct->bloodline",
+                                    "$auctionProduct->variety | $auctionProduct->breeder | $auctionProduct->size | $auctionProduct->bloodline",
                                     45,
                                 ) !!}</h5>
                             </div>
@@ -170,13 +170,13 @@
             @forelse($hotProductStores as $hotProduct)
                 @php
                     $productPhoto2 = 'img/bio_media.png';
-                    
+
                     if ($hotProduct->photo !== null) {
                         $productPhoto2 = url('storage') . '/' . $hotProduct->photo->path_foto;
                     }
-                    
+
                     $wishlistClass = 'far fa-heart';
-                    
+
                     if ($hotProduct->wishlist !== null) {
                         $wishlistClass = 'fas fa-heart';
                     }
@@ -219,13 +219,13 @@
                 @forelse($hotProductStores as $hotProduct)
                     @php
                         $productPhoto = 'img/bio_media.png';
-                        
+
                         if ($hotProduct->photo !== null) {
                             $productPhoto = url('storage') . '/' . $hotProduct->photo->path_foto;
                         }
-                        
+
                         $wishlistClass = 'far fa-heart';
-                        
+
                         if ($hotProduct->wishlist !== null) {
                             $wishlistClass = 'fas fa-heart';
                         }
@@ -366,7 +366,7 @@
             @forelse($championFishes as $championFish)
                 @php
                     $photoChampion = 'img/koi12.jpg';
-                    
+
                     if ($championFish->foto_ikan !== null) {
                         $photoChampion = url('storage') . '/' . $championFish->foto_ikan;
                     }

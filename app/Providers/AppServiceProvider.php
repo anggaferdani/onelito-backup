@@ -2,6 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Cart;
+use App\Models\EventFish;
+use App\Models\Product;
+use App\Models\Wishlist;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,5 +32,19 @@ class AppServiceProvider extends ServiceProvider
         if (env('APP_ENV', 'production') !== 'local') {
             $url->forceScheme('https');
         }
+
+        $this->bootMorph();
+
+    }
+
+    public function bootMorph()
+    {
+        Relation::morphMap([
+            Wishlist::Product => Product::class,
+            Wishlist::EventFish => EventFish::class,
+
+            Cart::Product => Product::class,
+            Cart::EventFish => EventFish::class,
+        ]);
     }
 }

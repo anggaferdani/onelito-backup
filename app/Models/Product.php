@@ -33,6 +33,6 @@ class Product extends Model
     // only use with auth
     public function wishlist()
     {
-        return $this->hasOne(Wishlist::class, 'id_produk');
+        return $this->morphOne(Wishlist::class, 'wishlistable', 'wishlistable_type', 'wishlistable_id');
     }
 }

@@ -265,92 +265,92 @@
                                                 </label>
                                             </div>
                                             <hr class="float-sm-end text-center" style="width: 98%;">
-                                            <div class="container">
-                                                <div class="container d-flex p-0 my-3">
-                                                    <input class="form-check-input mr-3 my-auto" type="checkbox"
-                                                        value="" id="flexCheckDefault">
-                                                    <div class="card mr-3">
-                                                        <a href="/detail_onelito_store"><img src="img/bio_media.png"
-                                                                class="card-img-top"
-                                                                style="height: 10vh; width: 5vw; object-fit: cover;"
-                                                                alt="..."></a>
+                                            @forelse($carts as $cart)
+                                                @php
+
+                                                    $cartPhoto = url('img/uniring.jpeg');
+                                                    $cartable = $cart->wishlistable;
+
+                                                    if ($cart->cartable_type === 'EventFish') {
+                                                        $cartPhoto = url('img/koi11.jpg');
+                                                    }
+
+                                                    if ($cart->cartable->photo !== null) {
+                                                        $cartPhoto = url('storage') . '/' . $cart->cartable->photo->path_foto;
+                                                    }
+                                                @endphp
+
+                                                @if($cart->cartable_type === 'EventFish')
+                                                    <div class="container">
+                                                        <div class="container d-flex p-0 my-3">
+                                                            <input class="form-check-input mr-3 my-auto" type="checkbox"
+                                                                value="" id="flexCheckDefault">
+                                                            <div class="card mr-3">
+                                                                <a href="#"><img src="{{ $cartPhoto }}"
+                                                                        class="card-img-top"
+                                                                        style="height: 10vh; width: 5vw; object-fit: cover;"
+                                                                        alt="..."></a>
+                                                            </div>
+                                                            <div>
+                                                                <p class="m-0">Bio Tube Bacteria
+                                                                    House
+                                                                    Media Filter</p>
+                                                                <p class="m-0"><b>Rp. {{ number_format($cart->price, 0, '.', '.') }}</b></p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="container d-flex p-0 my-3 justify-content-between">
+                                                            <p class="my-auto text-danger">Tulis Catatan</p>
+                                                        </div>
                                                     </div>
-                                                    <div>
-                                                        <p class="m-0">Bio Tube Bacteria
-                                                            House
-                                                            Media Filter</p>
-                                                        <p class="m-0"><b>Rp. 1.300.000</b></p>
-                                                    </div>
-                                                </div>
-                                                <div class="container d-flex p-0 my-3 justify-content-between">
-                                                    <p class="my-auto text-danger">Tulis Catatan</p>
-                                                    <p class="my-auto text-center">
-                                                        Pindahkan ke Wishlist |
-                                                    </p>
-                                                    <button class="border-0" style="background-color: transparent"><i
-                                                            class="fa-regular fa-trash-can"></i></button>
-                                                    <div class="btn-group" role="group"
-                                                        aria-label="Basic outlined example">
-                                                        <button type="button" id="subtract"
-                                                            class="border-0 btn-light mr-2"
-                                                            style="background-color:tranparent">
-                                                            <i class="fa-sharp fa-solid fa-circle-minus text-black-50"
-                                                                style="font-size: larger"></i>
-                                                        </button>
-                                                        <button type="button" id="output"
-                                                            class="btn btn-light">1</button>
-                                                        <button id="add" type="button"
-                                                            class=" border-0 btn-light ml-2">
-                                                            <i class="fa-solid fa-circle-plus text-danger"
-                                                                style="font-size: larger"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr class="float-sm-end text-center mb-3" style="width: 98%;">
-                                            <div class="container">
-                                                <div class="container d-flex p-0 my-3">
-                                                    <input class="form-check-input mr-3 my-auto" type="checkbox"
-                                                        value="" id="flexCheckDefault">
-                                                    <div class="card mr-3">
-                                                        <a href="/detail_onelito_store"><img src="img/bio_media.png"
-                                                                class="card-img-top"
-                                                                style="height: 10vh; width: 5vw; object-fit: cover;"
-                                                                alt="..."></a>
-                                                    </div>
-                                                    <div>
-                                                        <p class="m-0">Bio Tube Bacteria
-                                                            House
-                                                            Media Filter</p>
-                                                        <p class="m-0"><b>Rp. 1.300.000</b></p>
-                                                    </div>
-                                                </div>
-                                                <div class="container d-flex p-0 my-3 justify-content-between">
-                                                    <p class="my-auto text-danger">Tulis Catatan</p>
-                                                    <p class="my-auto text-center">
-                                                        Pindahkan ke Wishlist |
-                                                    </p>
-                                                    <button class="border-0" style="background-color: transparent"><i
-                                                            class="fa-regular fa-trash-can"></i></button>
-                                                    <div class="btn-group" role="group"
-                                                        aria-label="Basic outlined example">
-                                                        <button type="button" id="subtract"
-                                                            class="border-0 btn-light mr-2"
-                                                            style="background-color:tranparent">
-                                                            <i class="fa-sharp fa-solid fa-circle-minus text-black-50"
-                                                                style="font-size: larger"></i>
-                                                        </button>
-                                                        <button type="button" id="output"
-                                                            class="btn btn-light">1</button>
-                                                        <button id="add" type="button"
-                                                            class=" border-0 btn-light ml-2">
-                                                            <i class="fa-solid fa-circle-plus text-danger"
-                                                                style="font-size: larger"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr class="float-sm-end text-center mb-3" style="width: 98%;">
+                                                    <hr class="float-sm-end text-center mb-3" style="width: 98%;">
+                                                @endif
+                                                @if($cart->cartable_type === 'Product')
+                                                        <div class="container">
+                                                            <div class="container d-flex p-0 my-3">
+                                                                <input class="form-check-input mr-3 my-auto" type="checkbox"
+                                                                    value="" id="flexCheckDefault">
+                                                                <div class="card mr-3">
+                                                                    <a href="/detail_onelito_store"><img src="img/bio_media.png"
+                                                                            class="card-img-top"
+                                                                            style="height: 10vh; width: 5vw; object-fit: cover;"
+                                                                            alt="..."></a>
+                                                                </div>
+                                                                <div>
+                                                                    <p class="m-0">Bio Tube Bacteria
+                                                                        House
+                                                                        Media Filter</p>
+                                                                    <p class="m-0"><b>Rp. 1.300.000</b></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="container d-flex p-0 my-3 justify-content-between">
+                                                                <p class="my-auto text-danger">Tulis Catatan</p>
+                                                                <p class="my-auto text-center">
+                                                                    Pindahkan ke Wishlist |
+                                                                </p>
+                                                                <button class="border-0" style="background-color: transparent"><i
+                                                                        class="fa-regular fa-trash-can"></i></button>
+                                                                <div class="btn-group" role="group"
+                                                                    aria-label="Basic outlined example">
+                                                                    <button type="button" id="subtract"
+                                                                        class="border-0 btn-light mr-2"
+                                                                        style="background-color:tranparent">
+                                                                        <i class="fa-sharp fa-solid fa-circle-minus text-black-50"
+                                                                            style="font-size: larger"></i>
+                                                                    </button>
+                                                                    <button type="button" id="output"
+                                                                        class="btn btn-light">1</button>
+                                                                    <button id="add" type="button"
+                                                                        class=" border-0 btn-light ml-2">
+                                                                        <i class="fa-solid fa-circle-plus text-danger"
+                                                                            style="font-size: larger"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <hr class="float-sm-end text-center mb-3" style="width: 98%;">
+                                                @endif
+                                            @empty
+                                            @endforelse
                                         </div>
                                         <div class="col-lg-4 w-auto">
                                             <div class="card w-100">
@@ -394,27 +394,59 @@
                             <div class="container overflow-hidden p-0">
                                 <div class="card">
                                     <div class="row m-4">
-                                        <h4>2 <span>Barang</span></h4>
+                                        <h4>{{ count($wishlists) ?? '' }} <span>Barang</span></h4>
                                         @forelse($wishlists as $wishlist)
                                             @php
+
                                                 $wishlistPhoto = url('img/uniring.jpeg');
-                                                
-                                                if ($wishlist->product->photo !== null) {
-                                                    $wishlistPhoto = url('storage') . '/' . $wishlist->product->photo->path_foto;
+                                                $wishlistable = $wishlist->wishlistable;
+
+                                                if ($wishlist->wishlistable_type === 'EventFish') {
+                                                    $wishlistPhoto = url('img/koi11.jpg');
+                                                    $currentMaxBid = $wishlistable->ob;
+
+                                                    if ($wishlistable->maxBid !== null) {
+                                                        $currentMaxBid = $wishlistable->maxBid->nominal_bid;
+                                                    }
+                                                }
+
+                                                if ($wishlist->wishlistable->photo !== null) {
+                                                    $wishlistPhoto = url('storage') . '/' . $wishlist->wishlistable->photo->path_foto;
                                                 }
                                             @endphp
+
+                                            @if($wishlist->wishlistable_type === 'EventFish')
                                             <div class="col-3 border m-1">
-                                                <img src="{{ $wishlistPhoto }}" alt="uniring" class="card-img-top"
-                                                    height="170">
-                                                <p>{{ $wishlist->product->merek_produk }}
-                                                    {{ $wishlist->product->nama_produk }}</p>
-                                                <p><b>Rp.
-                                                        {{ number_format($wishlist->product->harga, 0, '.', '.') }}</b>
-                                                </p>
-                                                <button class="mb-3 text-danger "
-                                                    style="background-color: transparent;font-size:small;border-color:red"><i
-                                                        class="fa-solid fa-plus"></i> <span>Keranjang</span></button>
-                                            </div>
+                                                    <a href="{{ '/auction-bid-now/' . $wishlistable->id_ikan }}">
+                                                        <img src="{{ $wishlistPhoto }}" class="card-img-top" alt="...">
+                                                        <div class="card-body">
+                                                            <div class="cb-jud">
+                                                                <h5 class="card-title">{!! Illuminate\Support\Str::limit(
+                                                                    "$wishlistable->variety | $wishlistable->breeder | $wishlistable->size | $wishlistable->bloodline",
+                                                                    45,
+                                                                ) !!}</h5>
+                                                            </div>
+                                                            <p style="font-size: 10px" class="card-text ma">Harga saat ini</p>
+                                                            <p style="color :red;font-size: 12px" class="m-0">Rp.
+                                                                {{ number_format($currentMaxBid, 0, '.', '.') }}</p>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            @endif
+                                            @if($wishlist->wishlistable_type === 'Product')
+                                                <div class="col-3 border m-1">
+                                                    <img src="{{ $wishlistPhoto }}" alt="uniring" class="card-img-top"
+                                                        height="170">
+                                                    <p>{{ $wishlist->wishlistable->merek_produk }}
+                                                        {{ $wishlist->wishlistable->nama_produk }}</p>
+                                                    <p><b>Rp.
+                                                            {{ number_format($wishlist->wishlistable->harga, 0, '.', '.') }}</b>
+                                                    </p>
+                                                    <button class="mb-3 text-danger "
+                                                        style="background-color: transparent;font-size:small;border-color:red"><i
+                                                            class="fa-solid fa-plus"></i> <span>Keranjang</span></button>
+                                                </div>
+                                            @endif
                                         @empty
                                         @endforelse
                                     </div>

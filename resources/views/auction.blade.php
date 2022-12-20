@@ -90,6 +90,12 @@
                         if ($auctionProduct->maxBid !== null) {
                             $currentMaxBid = $auctionProduct->maxBid->nominal_bid;
                         }
+
+                        $wishlistClass = 'far fa-heart';
+
+                        if ($auctionProduct->wishlist !== null) {
+                            $wishlistClass = 'fas fa-heart';
+                        }
                     @endphp
                     <div class="col mt-3">
                     <div class="card">
@@ -140,7 +146,8 @@
                                             <div class="col-3 ">
                                                 <button class="border-0 mt-2"
                                                     style="background-color: transparent;font-size:larger; float: right"><i
-                                                        class="far fa-heart"></i></button>
+                                                        data-id="{{ $auctionProduct->id_ikan }}"
+                                                        class="{{$wishlistClass}} wishlist"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -158,6 +165,12 @@
 @push('scripts')
     <script src="{{ asset('library/moment/min/moment.min.js') }}"></script>
     <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         let currentTime = "{{ $now }}";
         let timerLabels = document.getElementsByClassName('countdown-label');
 
@@ -251,5 +264,51 @@
                 }
             }, 1000);
         }
+
+        $(document).on('click', '.wishlist', function(e) {
+            var element = $(e.currentTarget);
+            var elClass = element.attr('class');
+            var id = element.attr('data-id');
+
+            if (elClass === 'far fa-heart wishlist') {
+                $.ajax({
+                    type: 'POST',
+                    url: `wishlists`,
+                    data: {
+                        id_ikan_lelang: id
+                    },
+                    dataType: "json",
+                    success: function(res) {
+                        element.attr('class', 'fas fa-heart wishlist');
+
+                        return true;
+                    },
+                    error: function(error) {
+                        console.log(error)
+                        return false
+                    }
+
+                })
+            }
+
+            if (elClass === 'fas fa-heart wishlist') {
+                $.ajax({
+                    type: 'DELETE',
+                    url: `wishlists/${id}`,
+                    data: {
+                        id_ikan_lelang: id
+                    },
+                    dataType: "json",
+                    success: function(res) {
+                        element.attr('class', 'far fa-heart wishlist');
+                        return true;
+                    },
+                    error: function(error) {
+                        console.log(error)
+                        return false
+                    }
+                })
+            }
+        })
     </script>
 @endpush
