@@ -125,7 +125,7 @@
                                     $photo = url('storage') . '/' . $auctionProduct->photo->path_foto;
                                 }
                             @endphp
-                            <img src="{{ $photo }}" class="card-img-top" alt="..." style="height: 18rem">
+                            <img src="{{ $photo }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <div class="cb-judu">
                                     <h5 class="card-title"> {!! Illuminate\Support\Str::limit(
