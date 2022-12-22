@@ -171,7 +171,7 @@
 
     <div id="main" class="d-flex">
         <button class="openbtn" onclick="openNav()">&#9776;</button>
-        <h2 class="title my-0 mx-auto">{{ $title }}</h2>
+        <h2 class="title my-0 mx-auto" style="text-transform: capitalize">{{ $title }}</h2>
 
         <a class="nav-link {{ $title === 'login' ? 'active text-danger' : '' }}"href="/profil2"><i
                 class="fa-solid btn-light fa-circle-user" style="font-size: x-large"></i></a>
