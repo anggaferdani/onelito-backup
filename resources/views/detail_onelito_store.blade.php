@@ -24,7 +24,7 @@
             </style>
             @php
                 $imgUrl = 'img/bio_media.png';
-                
+
                 if ($product->photo !== null) {
                     $imgUrl = 'storage/' . $product->photo->path_foto;
                 }
@@ -89,7 +89,7 @@
                     </div>
                     <div class="col">
                         <p style="font-size: 35px">{{ "$product->merek_produk $product->nama_produk" }}</p>
-                        <h2>Rp {{ $product->harga }}</h2>
+                        <h2>Rp {{ number_format($product->harga, 0, '.', '.') }}</h2>
                         <hr>
                         <p class="alert-link text-danger">Detail</p>
                         <p>{{ $product->deskripsi }}</p>
@@ -112,7 +112,7 @@
                                         <h6 class="my-md-2 text-muted">Subtotal</h6>
                                     </div>
                                     <div class="col">
-                                        <p>Rp 1.300.000</p>
+                                        <p id="total_price">Rp {{ number_format($product->harga, 0, '.', '.') }}</p>
                                     </div>
                                 </div>
                                 <button type="button" class="btn btn-success w-100 justify-content-between mb-xl-2">Order
@@ -120,6 +120,7 @@
                                 <div class="row gx-5">
                                     <div class="col">
                                         <button type="button"
+                                            id="addcart"
                                             class="btn btn-success w-100 justify-content-between text-success"
                                             style="background-color: white">Add Cart</button>
                                     </div>
@@ -137,15 +138,31 @@
         </div>
         <br><br>
     </div>
-
+@endsection
+@push('scripts')
     <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         let add = document.querySelector("#add");
+        let output = Number(document.querySelector("#output").innerText);
+
+        let productId = Number('{{ $product->id_produk }}');
+        let originPrice = Number('{{ $product->harga }}');
+
+        // output * originPrice
+        let totalPrice = Number('{{ $product->harga }}');
 
         add.addEventListener("click", function() {
             let output = document.querySelector("#output");
             let result = Number(output.innerText) + 1;
+            var priceTotal = originPrice * result;
 
             output.innerText = result;
+            document.querySelector("#total_price").innerText = "Rp "+thousandSeparator(priceTotal);
         });
 
         let kurang = document.querySelector("#subtract");
@@ -154,11 +171,43 @@
             let output = document.querySelector("#output");
             let result = Number(output.innerText) - 1;
 
-            if (result < 0) {
-                result = 0
+            if (result < 1) {
+                result = 1
             }
 
+            var priceTotal = originPrice * result;
             output.innerText = result;
+            document.querySelector("#total_price").innerText = "Rp "+thousandSeparator(priceTotal);
+
         });
+
+        $(document).on('click', '#addcart', function(e) {
+            var button = $(this);
+            $(this).attr('disabled', true)
+            var output = document.querySelector("#output");
+            $.ajax({
+                type: 'POST',
+                url: `/carts`,
+                data: {
+                    jumlah: Number(output.innerText),
+                    cartable_id: productId,
+                    cartable_type: 'Product',
+                },
+                dataType: "json",
+                complete: function(res) {
+                    document.location = '/profil?section=cart'
+                    // element.attr('class', 'fas fa-heart wishlist');
+                    button.removeAttr('disabled')
+                },
+                error: function(error) {
+                    console.log(error)
+                    return false
+                }
+            })
+        });
+
+        function thousandSeparator(x) {
+            return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+        }
     </script>
-@endsection
+@endpush

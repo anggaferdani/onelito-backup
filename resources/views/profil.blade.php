@@ -209,8 +209,11 @@
                     </div>
                 </div>
                 <div class="col-md-9">
+                    @php
+                        $request = Request::input('section', null)
+                    @endphp
                     <div class="tab-content" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="v-pills-home2" role="tabpanel"
+                        <div class="tab-pane fade {{ $request === null ? 'show active' : '' }}" id="v-pills-home2" role="tabpanel"
                             aria-labelledby="v-pills-home-tab">
                             <div class="container mt-3 my-3">
                                 <h5><i class="fa-solid fa-user"></i> <b>Profile</b></h5>
@@ -248,7 +251,7 @@
                             </div>
                         </div>
 
-                        <div class="tab-pane fade" id="v-pills-profile2" role="tabpanel"
+                        <div class="tab-pane fade {{ $request === 'cart' ? 'show active' : '' }}" id="v-pills-profile2" role="tabpanel"
                             aria-labelledby="v-pills-profile-tab">
                             <div class="container mt-3 my-3">
                                 <h5><i class="fa-solid fa-cart-shopping"></i> <b>Shopping cart</b></h5>
@@ -269,7 +272,7 @@
                                                 @php
 
                                                     $cartPhoto = url('img/uniring.jpeg');
-                                                    $cartable = $cart->wishlistable;
+                                                    $cartable = $cart->cartable;
 
                                                     if ($cart->cartable_type === 'EventFish') {
                                                         $cartPhoto = url('img/koi11.jpg');
@@ -277,6 +280,10 @@
 
                                                     if ($cart->cartable->photo !== null) {
                                                         $cartPhoto = url('storage') . '/' . $cart->cartable->photo->path_foto;
+                                                    }
+
+                                                    if ($cart->cartable_type === 'Product') {
+                                                        $cartPrice = $cartable->harga * $cart->jumlah;
                                                     }
                                                 @endphp
 
@@ -292,9 +299,10 @@
                                                                         alt="..."></a>
                                                             </div>
                                                             <div>
-                                                                <p class="m-0">Bio Tube Bacteria
-                                                                    House
-                                                                    Media Filter</p>
+                                                                <p class="m-0">{!! Illuminate\Support\Str::limit(
+                                        "$cartable->variety | $cartable->breeder | $cartable->bloodline | $cartable->size",
+                                        64,
+                                    ) !!}</p>
                                                                 <p class="m-0"><b>Rp. {{ number_format($cart->price, 0, '.', '.') }}</b></p>
                                                             </div>
                                                         </div>
@@ -310,16 +318,14 @@
                                                                 <input class="form-check-input mr-3 my-auto" type="checkbox"
                                                                     value="" id="flexCheckDefault">
                                                                 <div class="card mr-3">
-                                                                    <a href="/detail_onelito_store"><img src="img/bio_media.png"
+                                                                    <a href="/detail_onelito_store"><img src="{{ $cartPhoto }}"
                                                                             class="card-img-top"
                                                                             style="height: 10vh; width: 5vw; object-fit: cover;"
                                                                             alt="..."></a>
                                                                 </div>
                                                                 <div>
-                                                                    <p class="m-0">Bio Tube Bacteria
-                                                                        House
-                                                                        Media Filter</p>
-                                                                    <p class="m-0"><b>Rp. 1.300.000</b></p>
+                                                                    <p class="m-0">{{ $cartable->nama_produk}}</p>
+                                                                    <p class="m-0"><b>Rp. {{ number_format($cartPrice, 0, '.', '.') }}</b></p>
                                                                 </div>
                                                             </div>
                                                             <div class="container d-flex p-0 my-3 justify-content-between">
@@ -338,7 +344,7 @@
                                                                             style="font-size: larger"></i>
                                                                     </button>
                                                                     <button type="button" id="output"
-                                                                        class="btn btn-light">1</button>
+                                                                        class="btn btn-light">{{ $cart->jumlah }}</button>
                                                                     <button id="add" type="button"
                                                                         class=" border-0 btn-light ml-2">
                                                                         <i class="fa-solid fa-circle-plus text-danger"
@@ -386,7 +392,7 @@
                             </div>
                         </div>
 
-                        <div class="tab-pane fade" id="v-pills-messages2" role="tabpanel"
+                        <div class="tab-pane fade {{ $request === 'wishlist' ? 'show active' : '' }}" id="v-pills-messages2" role="tabpanel"
                             aria-labelledby="v-pills-messages-tab">
                             <div class="container mt-3 my-3">
                                 <h5><i class="fa-regular fa-heart"></i> <b>Wishlist</b></h5>
@@ -454,7 +460,7 @@
                             </div>
                         </div>
 
-                        <div class="tab-pane fade" id="v-pills-settings2" role="tabpanel"
+                        <div class="tab-pane fade {{ $request === 'purchase' ? 'show active' : '' }}" id="v-pills-settings2" role="tabpanel"
                             aria-labelledby="v-pills-settings-tab">
                             <div class="container mt-3 my-3">
                                 <h5><i class="fa-solid fa-bag-shopping"></i> <b>Purchase history</b></h5>
@@ -597,8 +603,8 @@
             let output = document.querySelector("#output");
             let result = Number(output.innerText) - 1;
 
-            if (result < 0) {
-                result = 0
+            if (result < 1) {
+                result = 1
             }
 
             output.innerText = result;

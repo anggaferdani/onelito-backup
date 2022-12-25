@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin;
 use App\Http\Controllers\AuctionController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ChampionFishController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KoiStockController;
@@ -68,6 +69,7 @@ Route::get('/auction/{idIkan}/detail', [AuctionController::class, 'detail'])->na
 
 // MEMBER
 Route::group(['middleware' => 'auth:member'], function () {
+    Route::resource('/carts', CartController::class);
     Route::get('/auction-bid-now/{idIkan}', [AuctionController::class, 'bidNow'])->name('auction.bid_now');
     Route::get('/profil', [ProfileController::class, 'index'])->name('profile.index');
     Route::POST('/auction/{idIkan}', [AuctionController::class, 'bidProcess'])->name('auction.bid_process');
