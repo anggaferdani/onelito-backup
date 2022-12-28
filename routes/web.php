@@ -74,6 +74,7 @@ Route::group(['middleware' => 'auth:member'], function () {
     Route::get('/profil', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/shoppingcart', [ProfileController::class, 'shopcart'])->name('profile.shopcart');
     Route::get('/wishlist', [ProfileController::class, 'wishlist'])->name('profile.wishlist');
+    Route::get('/purchase', [ProfileController::class, 'purchase'])->name('profile.purchase');
     Route::POST('/auction/{idIkan}', [AuctionController::class, 'bidProcess'])->name('auction.bid_process');
     Route::resource('/wishlists', WishlistController::class);
 
@@ -263,23 +264,23 @@ Route::get('/event_auction', function () {
 //     ]);
 // });
 
-Route::get('/profil2', function () {
-    return view('profil2',[
-        "title" => "Profil"
-    ]);
-});
+// Route::get('/profil2', function () {
+//     return view('profil2',[
+//         "title" => "Profil"
+//     ]);
+// });
 
-Route::get('/wishlist', function () {
-    return view('wishlist',[
-        "title" => "wishlist"
-    ]);
-});
+// Route::get('/wishlist', function () {
+//     return view('wishlist',[
+//         "title" => "wishlist"
+//     ]);
+// });
 
-Route::get('/purchase', function () {
-    return view('purchase',[
-        "title" => "purchase"
-    ]);
-});
+// Route::get('/purchase', function () {
+//     return view('purchase',[
+//         "title" => "purchase"
+//     ]);
+// });
 
 Route::get('/transaksi', function () {
     return view('transaksi',[

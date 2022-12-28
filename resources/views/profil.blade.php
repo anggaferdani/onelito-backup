@@ -117,6 +117,7 @@
             </div>
 
             <div style="margin-top: 17vh; margin-bottom: 10vh">
+                @if($title === 'profil')
                 <div class="container my-3 text-center">
                     <h5><i class="fa-solid fa-user"></i> <strong>Profile</strong></h5>
                 </div>
@@ -147,6 +148,9 @@
                         </div>
                     </div>
                 </div>
+                @else
+                    @yield('container')
+                @endif
             </div>
         </div>
     </div>

@@ -12,170 +12,81 @@
             </label>
         </div>
 
-        <div class="container">
-            <div class="container d-flex p-0 my-3">
-                <input class="form-check-input mr-3 my-auto" type="checkbox" value="" id="flexCheckDefault">
-                <div class="card mr-3">
-                    <a href="/detail_onelito_store"><img src="img/bio_media.png" class="card-img-top"
-                            style="height: 10vh; width: 25vw; object-fit: cover;" alt="..."></a>
-                </div>
-                <div>
-                    <p class="m-0">Bio Tube Bacteria
-                        House
-                        Media Filter</p>
-                    <p class="m-0"><b>Rp. 1.300.000</b></p>
-                </div>
-            </div>
-            <div class="container d-flex p-0 my-3 justify-content-between">
-                <p class="my-auto text-danger">Tulis Catatan</p>
-                <p class="my-auto text-center">
-                    Pindahkan ke Wishlist |
-                </p>
-                <button class="border-0" style="background-color: transparent"><i
-                        class="fa-regular fa-trash-can"></i></button>
-                <div class="btn-group" role="group" aria-label="Basic outlined example">
-                    <button type="button" class="border-0 btn-light mr-2" style="background-color:tranparent">
-                        <i class="fa-sharp fa-solid fa-circle-minus text-black-50" style="font-size: larger"></i>
-                    </button>
-                    <h1> 1 </h1>
-                    <button type="button" class=" border-0 btn-light ml-2">
-                        <i class="fa-solid fa-circle-plus text-danger" style="font-size: larger"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="container">
-            <div class="container d-flex p-0 my-3">
-                <input class="form-check-input mr-3 my-auto" type="checkbox" value="" id="flexCheckDefault">
-                <div class="card mr-3">
-                    <a href="/detail_onelito_store"><img src="img/uniring.jpeg" class="card-img-top"
-                            style="height: 10vh; width: 25vw; object-fit: cover;" alt="..."></a>
-                </div>
-                <div>
-                    <p class="m-0">Uniring rubber hose
-                        /selang aerasi</p>
-                    <p class="m-0"><b>Rp. 580.000</b></p>
-                </div>
-            </div>
-            <div class="container d-flex p-0 my-3 justify-content-between">
-                <p class="my-auto text-danger">Tulis Catatan</p>
-                <p class="my-auto text-center">
-                    Pindahkan ke Wishlist |
-                </p>
-                <button class="border-0" style="background-color: transparent"><i
-                        class="fa-regular fa-trash-can"></i></button>
-                <div class="btn-group" role="group" aria-label="Basic outlined example">
-                    <button type="button" class="border-0 btn-light mr-2" style="background-color:tranparent">
-                        <i class="fa-sharp fa-solid fa-circle-minus text-black-50" style="font-size: larger"></i>
-                    </button>
-                    <h1> 1 </h1>
-                    <button type="button" class=" border-0 btn-light ml-2">
-                        <i class="fa-solid fa-circle-plus text-danger" style="font-size: larger"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="container">
-            <div class="container d-flex p-0 my-3">
-                <input class="form-check-input mr-3 my-auto" type="checkbox" value="" id="flexCheckDefault">
-                <div class="card mr-3">
-                    <a href="/detail_onelito_store"><img src="img/bio_media.png" class="card-img-top"
-                            style="height: 10vh; width: 25vw; object-fit: cover;" alt="..."></a>
-                </div>
-                <div>
-                    <p class="m-0">Bio Tube Bacteria
-                        House
-                        Media Filter</p>
-                    <p class="m-0"><b>Rp. 1.300.000</b></p>
-                </div>
-            </div>
-            <div class="container d-flex p-0 my-3 justify-content-between">
-                <p class="my-auto text-danger">Tulis Catatan</p>
-                <p class="my-auto text-center">
-                    Pindahkan ke Wishlist |
-                </p>
-                <button class="border-0" style="background-color: transparent"><i
-                        class="fa-regular fa-trash-can"></i></button>
-                <div class="btn-group" role="group" aria-label="Basic outlined example">
-                    <button type="button" class="border-0 btn-light mr-2" style="background-color:tranparent">
-                        <i class="fa-sharp fa-solid fa-circle-minus text-black-50" style="font-size: larger"></i>
-                    </button>
-                    <h1> 1 </h1>
-                    <button type="button" class=" border-0 btn-light ml-2">
-                        <i class="fa-solid fa-circle-plus text-danger" style="font-size: larger"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="container">
-            <div class="container d-flex p-0 my-3">
-                <input class="form-check-input mr-3 my-auto" type="checkbox" value="" id="flexCheckDefault">
-                <div class="card mr-3">
-                    <a href="/detail_onelito_store"><img src="img/uniring.jpeg" class="card-img-top"
-                            style="height: 10vh; width: 25vw; object-fit: cover;" alt="..."></a>
-                </div>
-                <div>
-                    <p class="m-0">Uniring rubber hose
-                        /selang aerasi</p>
-                    <p class="m-0"><b>Rp. 580.000</b></p>
-                </div>
-            </div>
-            <div class="container d-flex p-0 my-3 justify-content-between">
-                <p class="my-auto text-danger">Tulis Catatan</p>
-                <p class="my-auto text-center">
-                    Pindahkan ke Wishlist |
-                </p>
-                <button class="border-0" style="background-color: transparent"><i
-                        class="fa-regular fa-trash-can"></i></button>
-                <div class="btn-group" role="group" aria-label="Basic outlined example">
-                    <button type="button" class="border-0 btn-light mr-2" style="background-color:tranparent">
-                        <i class="fa-sharp fa-solid fa-circle-minus text-black-50" style="font-size: larger"></i>
-                    </button>
-                    <h1> 1 </h1>
-                    <button type="button" class=" border-0 btn-light ml-2">
-                        <i class="fa-solid fa-circle-plus text-danger" style="font-size: larger"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="container">
-            <div class="container d-flex p-0 my-3">
-                <input class="form-check-input mr-3 my-auto" type="checkbox" value="" id="flexCheckDefault">
-                <div class="card mr-3">
-                    <a href="/detail_onelito_store"><img src="img/bio_media.png" class="card-img-top"
-                            style="height: 10vh; width: 25vw; object-fit: cover;" alt="..."></a>
-                </div>
-                <div>
-                    <p class="m-0">Bio Tube Bacteria
-                        House
-                        Media Filter</p>
-                    <p class="m-0"><b>Rp. 1.300.000</b></p>
-                </div>
-            </div>
-            <div class="container d-flex p-0 my-3 justify-content-between">
-                <p class="my-auto text-danger">Tulis Catatan</p>
-                <p class="my-auto text-center">
-                    Pindahkan ke Wishlist |
-                </p>
-                <button class="border-0" style="background-color: transparent"><i
-                        class="fa-regular fa-trash-can"></i></button>
-                <div class="btn-group" role="group" aria-label="Basic outlined example">
-                    <button type="button" id="subtract" class="border-0 btn-light mr-2" style="background-color:tranparent">
-                        <i class="fa-sharp fa-solid fa-circle-minus text-black-50" style="font-size: larger"></i>
-                    </button>
-                    <h1 id="output"> 1 </h1>
-                    <button type="button" id="add" class=" border-0 btn-light ml-2">
-                        <i class="fa-solid fa-circle-plus text-danger" style="font-size: larger"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+        @forelse($carts as $cart)
+            @php
 
+                $cartPhoto = url('img/uniring.jpeg');
+                $cartable = $cart->cartable;
 
+                if ($cart->cartable_type === 'EventFish') {
+                    $cartPhoto = url('img/koi11.jpg');
+                }
+
+                if ($cart->cartable->photo !== null) {
+                    $cartPhoto = url('storage') . '/' . $cart->cartable->photo->path_foto;
+                }
+
+                if ($cart->cartable_type === 'Product') {
+                    $cartPrice = $cartable->harga * $cart->jumlah;
+                }
+            @endphp
+            @if($cart->cartable_type === 'EventFish')
+                <div class="container">
+                    <div class="container d-flex p-0 my-3">
+                        <input class="form-check-input mr-3 my-auto" type="checkbox" value="" id="flexCheckDefault">
+                        <div class="card mr-3">
+                            <a href="/detail_onelito_store"><img src="{{ $cartPhoto }}" class="card-img-top"
+                                    style="height: 10vh; width: 25vw; object-fit: cover;" alt="..."></a>
+                        </div>
+                        <div>
+                        <p class="m-0">{!! Illuminate\Support\Str::limit(
+                                        "$cartable->variety | $cartable->breeder | $cartable->bloodline | $cartable->size",
+                                        64,
+                                    ) !!}</p>
+                        <p class="m-0"><b>Rp. {{ number_format($cart->price, 0, '.', '.') }}</b></p>
+                        </div>
+                    </div>
+                    <div class="container d-flex p-0 my-3 justify-content-between">
+                        <p class="my-auto text-danger">Tulis Catatan</p>
+                    </div>
+                </div>
+                <hr>
+            @endif
+            @if($cart->cartable_type === 'Product')
+                <div class="container">
+                    <div class="container d-flex p-0 my-3">
+                        <input class="form-check-input mr-3 my-auto" type="checkbox" value="" id="flexCheckDefault">
+                        <div class="card mr-3">
+                            <a href="/detail_onelito_store"><img src="{{ $cartPhoto }}" class="card-img-top"
+                                    style="height: 10vh; width: 25vw; object-fit: cover;" alt="..."></a>
+                        </div>
+                        <div>
+                        <p class="m-0">{{ $cartable->nama_produk}}</p>
+                        <p class="m-0"><b>Rp. {{ number_format($cartPrice, 0, '.', '.') }}</b></p>
+                        </div>
+                    </div>
+                    <div class="container d-flex p-0 my-3 justify-content-between">
+                        <p class="my-auto text-danger">Tulis Catatan</p>
+                        <p class="my-auto text-center">
+                            Pindahkan ke Wishlist |
+                        </p>
+                        <button class="border-0" style="background-color: transparent"><i
+                                class="fa-regular fa-trash-can"></i></button>
+                        <div class="btn-group" role="group" aria-label="Basic outlined example">
+                            <button type="button" class="border-0 btn-light mr-2" style="background-color:tranparent">
+                                <i class="fa-sharp fa-solid fa-circle-minus text-black-50" style="font-size: larger"></i>
+                            </button>
+                            <h1> {{ $cart->jumlah }} </h1>
+                            <button type="button" class=" border-0 btn-light ml-2">
+                                <i class="fa-solid fa-circle-plus text-danger" style="font-size: larger"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            @endif
+        @empty
+        @endforelse
         <div class="container border-top fixed-bottom d-flex p-3 justify-content-between bg-white">
             <div class="my-auto">
                 <h5 class="">Total Harga</h5>
