@@ -53,4 +53,47 @@ class ProfileController extends Controller
             'carts' => $carts,
         ]);
     }
+
+    public function shopcart()
+    {
+        $auth = Auth::guard('member')->user();
+
+        $carts = $auth->carts()
+        ->with(['cartable' => function (MorphTo $morphTo) {
+            $morphTo->morphWith([
+                Product::class => ['photo'],
+                EventFish::class => ['photo'],
+            ]);
+        }])->get();
+
+        $wishlists = $auth->wishlists()
+        ->with(['wishlistable' => function (MorphTo $morphTo) {
+            $morphTo->morphWith([
+                Product::class => ['photo'],
+                EventFish::class => ['photo', 'maxBid'],
+            ]);
+        }])->get();
+
+        $cartFishes = $carts->where('cartable_type', Cart::EventFish);
+
+        if ($cartFishes->count() > 0) {
+            $biddings = $auth->biddings()->whereIn('id_ikan_lelang', $cartFishes->pluck('cartable_id'))->get()
+            ->mapWithKeys(fn($q) => [$q['id_ikan_lelang']  => $q]);
+
+            foreach ($carts as $cart) {
+                if (!array_key_exists($cart->cartable_id, $biddings->toArray())) {
+                    continue;
+                }
+
+                $cart->price = $biddings[$cart->cartable_id]->nominal_bid;
+            }
+        }
+
+        return view('shoppingcart',[
+            'auth' => $auth,
+            'title' => 'profil',
+            'carts' => $carts,
+            'wishlists' => $wishlists,
+        ]);
+    }
 }

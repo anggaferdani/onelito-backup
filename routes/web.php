@@ -72,6 +72,8 @@ Route::group(['middleware' => 'auth:member'], function () {
     Route::resource('/carts', CartController::class);
     Route::get('/auction-bid-now/{idIkan}', [AuctionController::class, 'bidNow'])->name('auction.bid_now');
     Route::get('/profil', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/shoppingcart', [ProfileController::class, 'shopcart'])->name('profile.shopcart');
+    Route::get('/wishlist', [ProfileController::class, 'wishlist'])->name('profile.wishlist');
     Route::POST('/auction/{idIkan}', [AuctionController::class, 'bidProcess'])->name('auction.bid_process');
     Route::resource('/wishlists', WishlistController::class);
 
@@ -255,11 +257,11 @@ Route::get('/event_auction', function () {
 //     ]);
 // });
 
-Route::get('/shoppingcart', function () {
-    return view('shoppingcart',[
-        "title" => "Shopping Cart"
-    ]);
-});
+// Route::get('/shoppingcart', function () {
+//     return view('shoppingcart',[
+//         "title" => "Shopping Cart"
+//     ]);
+// });
 
 Route::get('/profil2', function () {
     return view('profil2',[
