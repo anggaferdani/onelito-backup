@@ -96,13 +96,13 @@
                                 @forelse ($products as $product)
                                     @php
                                         $productPhoto = 'img/bio_media.png';
-                                        
+
                                         if ($product->photo !== null) {
                                             $productPhoto = url('storage') . '/' . $product->photo->path_foto;
                                         }
-                                        
+
                                         $wishlistClass = 'far fa-heart';
-                                        
+
                                         if ($product->wishlist !== null) {
                                             $wishlistClass = 'fas fa-heart';
                                         }
@@ -116,7 +116,7 @@
                                                 <div class="cb-judul">
                                                     <p>{!! Illuminate\Support\Str::limit("$product->merek_produk $product->nama_produk", 25) !!}</p>
                                                 </div>
-                                                <p><b>Rp. {{ $product->harga }}</b></p>
+                                                <p><b>Rp. {{ number_format($product->harga, 0, '.', '.') }}</b></p>
                                             </div>
                                             {{-- <div class="col px-2 mb-2" style="text-align: end">
                                                 <button class="border rounded-1 text-black-50"
@@ -183,13 +183,13 @@
                                 @forelse ($fishFoodProducts as $fishfoodProduct)
                                     @php
                                         $productPhoto2 = 'img/uniring.jpeg';
-                                        
+
                                         if ($fishfoodProduct->photo !== null) {
                                             $productPhoto2 = url('storage') . '/' . $fishfoodProduct->photo->path_foto;
                                         }
-                                        
+
                                         $wishlistClass = 'far fa-heart';
-                                        
+
                                         if ($fishfoodProduct->wishlist !== null) {
                                             $wishlistClass = 'fas fa-heart';
                                         }
@@ -203,7 +203,8 @@
                                                 <div class="cb-judul">
                                                     <p>{!! Illuminate\Support\Str::limit("$fishfoodProduct->merek_produk $fishfoodProduct->nama_produk", 25) !!}</p>
                                                 </div>
-                                                <p><b>Rp. {{ $fishfoodProduct->harga }}</b></p>
+                                                <p><b>Rp {{ number_format($fishfoodProduct->harga, 0, '.', '.') }}</b></p>
+
                                             </div>
                                             {{-- <div class="col px-2 mb-2" style="text-align: end">
                                                 <button class="border rounded-1 text-black-50"
@@ -270,12 +271,12 @@
                                 @forelse ($fishEquipmentProducts as $fishgearProduct)
                                     @php
                                         $productPhoto3 = 'img/selang.jpg';
-                                        
+
                                         if ($fishgearProduct->photo !== null) {
                                             $productPhoto3 = url('storage') . '/' . $fishgearProduct->photo->path_foto;
                                         }
                                         $wishlistClass = 'far fa-heart';
-                                        
+
                                         if ($fishgearProduct->wishlist !== null) {
                                             $wishlistClass = 'fas fa-heart';
                                         }
@@ -289,7 +290,8 @@
                                                 <div class="cb-judul">
                                                     <p>{!! Illuminate\Support\Str::limit("$fishgearProduct->merek_produk $fishgearProduct->nama_produk", 25) !!}</p>
                                                 </div>
-                                                <p><b>Rp. {{ $fishgearProduct->harga }}</b></p>
+                                                <p><b>Rp {{ number_format($fishgearProduct->harga, 0, '.', '.') }}</b></p>
+
                                             </div>
                                             {{-- <div class="col px-2 mb-2" style="text-align: end">
                                                 <button class="border rounded-1 text-black-50"

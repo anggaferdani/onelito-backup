@@ -47,4 +47,29 @@ class CartController extends Controller
             ],500);
         }
     }
+
+    public function update($id)
+    {
+        $data = $this->request->only(['total_price', 'jumlah', 'cartable_id', 'cartable_type']);
+        $cart = Cart::findOrFail($id);
+        $cart->jumlah = $data['jumlah'];
+
+        $cart->save();
+
+        return response()->json([
+            'success' => true,
+        ],200);
+    }
+
+    public function destroy($id)
+    {
+        $cart = Cart::findOrFail($id);
+        $cart->status_aktif = 0;
+
+        $cart->save();
+
+        return response()->json([
+            'success' => true,
+        ],200);
+    }
 }

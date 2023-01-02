@@ -5,6 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -264,8 +265,8 @@
                                 <div class="card">
                                     <div class="row">
                                         <div class="col-lg-8 px-3 py-3">
-                                            <div class="container py-3">
-                                                <input class="form-check-input" style="font-size:large"
+                                            <div class="container d-flex py-3" style="">
+                                                <input class="form-check-input mr-3 my-auto cart-check-all" style="font-size:large;"
                                                     type="checkbox" value="" id="Pilih Semua">
                                                 <label class="form-check-label" for="Pilih Semua">
                                                     Pilih Semua
@@ -287,14 +288,16 @@
                                                     }
 
                                                     if ($cart->cartable_type === 'Product') {
-                                                        $cartPrice = $cartable->harga * $cart->jumlah;
+                                                        $cartPrice = $cartable->harga;
                                                     }
                                                 @endphp
 
                                                 @if($cart->cartable_type === 'EventFish')
                                                     <div class="container">
                                                         <div class="container d-flex p-0 my-3">
-                                                            <input class="form-check-input mr-3 my-auto" type="checkbox"
+                                                            <input class="form-check-input mr-3 my-auto cart-check"  type="checkbox"
+                                                                data-price="{{ $cart->price }}"
+                                                                data-type="eventfish"
                                                                 value="" id="flexCheckDefault">
                                                             <div class="card mr-3">
                                                                 <a href="#"><img src="{{ $cartPhoto }}"
@@ -311,7 +314,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="container d-flex p-0 my-3 justify-content-between">
-                                                            <p class="my-auto text-danger">Tulis Catatan</p>
+                                                            <!-- <p class="my-auto text-danger">Tulis Catatan</p> -->
                                                         </div>
                                                     </div>
                                                     <hr class="float-sm-end text-center mb-3" style="width: 98%;">
@@ -319,7 +322,10 @@
                                                 @if($cart->cartable_type === 'Product')
                                                         <div class="container">
                                                             <div class="container d-flex p-0 my-3">
-                                                                <input class="form-check-input mr-3 my-auto" type="checkbox"
+                                                                <input class="form-check-input mr-3 my-auto cart-check" type="checkbox"
+                                                                    data-price="{{ $cartPrice }}"
+                                                                    data-id="{{$cart->id_keranjang}}"
+                                                                    data-type="product"
                                                                     value="" id="flexCheckDefault">
                                                                 <div class="card mr-3">
                                                                     <a href="/detail_onelito_store"><img src="{{ $cartPhoto }}"
@@ -328,12 +334,12 @@
                                                                             alt="..."></a>
                                                                 </div>
                                                                 <div>
-                                                                    <p class="m-0">{{ $cartable->nama_produk}}</p>
+                                                                    <p class="m-0">{!! Illuminate\Support\Str::limit("$cartable->merek_produk $cartable->nama_produk", 75) !!}</p>
                                                                     <p class="m-0"><b>Rp. {{ number_format($cartPrice, 0, '.', '.') }}</b></p>
                                                                 </div>
                                                             </div>
                                                             <div class="container d-flex p-0 my-3 justify-content-between">
-                                                                <p class="my-auto text-danger">Tulis Catatan</p>
+                                                                <!-- <p class="my-auto text-danger">Tulis Catatan</p> -->
                                                                 <p class="my-auto text-center">
                                                                     Pindahkan ke Wishlist |
                                                                 </p>
@@ -342,14 +348,17 @@
                                                                 <div class="btn-group" role="group"
                                                                     aria-label="Basic outlined example">
                                                                     <button type="button" id="subtract"
+                                                                        onclick="manageProduct(this)"
                                                                         class="border-0 btn-light mr-2"
                                                                         style="background-color:tranparent">
                                                                         <i class="fa-sharp fa-solid fa-circle-minus text-black-50"
                                                                             style="font-size: larger"></i>
                                                                     </button>
                                                                     <button type="button" id="output"
-                                                                        class="btn btn-light">{{ $cart->jumlah }}</button>
+                                                                        data-id="{{ $cart->id_keranjang }}"
+                                                                        class="btn btn-light outputproduct outputproduct-{{$cart->id_keranjang}}">{{ $cart->jumlah }}</button>
                                                                     <button id="add" type="button"
+                                                                        onclick="manageProduct(this)"
                                                                         class=" border-0 btn-light ml-2">
                                                                         <i class="fa-solid fa-circle-plus text-danger"
                                                                             style="font-size: larger"></i>
@@ -362,32 +371,33 @@
                                             @empty
                                             @endforelse
                                         </div>
-                                        <div class="col-lg-4 w-auto">
-                                            <div class="card w-100">
+                                        <div class="col-lg-4 p-4">
+                                            <div class="card">
                                                 <div class="card-body ">
                                                     <h5 class="card-title mb-3">Ringkasan belanja</h5>
                                                     <div class="row">
-                                                        <div class="col-9">
-                                                            <h6 class="card-subtitle text-muted">Total Harga (0 barang)
+                                                        <div class="col-12">
+                                                            <h6 class="card-subtitle text-muted">Total Barang (<span class="total-item">0</span> barang)
                                                             </h6>
                                                         </div>
-                                                        <div class="col-3">
-                                                            <h6 class="card-subtitle text-muted text-end">Rp0</h6>
-                                                        </div>
+                                                        <!-- <div class="col-3"> -->
+                                                            <!-- <h6 class="card-subtitle text-muted text-end">Rp <span class="total-price">0</span></h6> -->
+                                                        <!-- </div> -->
                                                     </div>
                                                     <hr>
+                                                    <br>
                                                     <div class="row">
                                                         <div class="col">
                                                             <h6 class="card-subtitle">Total harga</h6>
                                                         </div>
                                                         <div class="col">
-                                                            <h6 class="card-subtitle text-muted text-end">Rp0</h6>
+                                                            <h6 class="card-subtitle text-muted text-end">Rp <span class="total-price">0</span></h6>
                                                         </div>
                                                     </div>
                                                     <br>
-                                                    <a class="btn btn-secondary w-100 justify-content-between "
-                                                        href="/transaksiweb">Pesan
-                                                        Sekarang (0)</a>
+                                                    <a class="transaction btn btn-secondary w-100 justify-content-between "
+                                                        href="#">Pesan
+                                                        Sekarang (<span class="total-item">0</span>)</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -591,28 +601,211 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
+    <script src="{{ asset('library/jquery/dist/jquery.min.js') }}"></script>
+
     <script>
-        let add = document.querySelector("#add");
-
-        add.addEventListener("click", function() {
-            let output = document.querySelector("#output");
-            let result = Number(output.innerText) + 1;
-
-            output.innerText = result;
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
         });
+        function manageProduct(e) {
+            var elem = $(e);
+            var idElem = elem.attr('id');
 
-        let kurang = document.querySelector("#subtract");
+            var output = elem.closest('.btn-group').find('.outputproduct')[0]
 
-        kurang.addEventListener("click", function() {
-            let output = document.querySelector("#output");
+            if (idElem === "add") {
+                add(output);
+                return true;
+            }
+
+            substract(output);
+        }
+
+        function substract(output)
+        {
             let result = Number(output.innerText) - 1;
+            var id = output.getAttribute('data-id')
+            var boxes = document.getElementsByTagName("input");
+            var totalPrice = 0;
+            var items = 0;
 
             if (result < 1) {
                 result = 1
             }
 
-            output.innerText = result;
+            $.ajax({
+                type: 'PATCH',
+                url: `/carts/`+id,
+                data: {
+                    jumlah: Number(result),
+                },
+                dataType: "json",
+                success: function(res) {
+                    output.innerText = result;
+
+                    checkProduct()
+                },
+                error: function(error) {
+                    console.log(error)
+                    return false
+                }
+            })
+        }
+
+        function add(output)
+        {
+            var boxes = document.getElementsByTagName("input");
+            var totalPrice = 0;
+            var items = 0;
+
+            let result = Number(output.innerText) + 1;
+            var id = output.getAttribute('data-id')
+            $.ajax({
+                type: 'PATCH',
+                url: `/carts/`+id,
+                data: {
+                    jumlah: Number(result),
+                },
+                dataType: "json",
+                success: function(res) {
+                    output.innerText = result;
+
+                    checkProduct()
+                },
+                error: function(error) {
+                    console.log(error)
+                    return false
+                }
+            })
+        }
+        $("body").on("click",".cart-check", function (o) {
+            console.log('clicked');
+            checkProduct()
         });
+
+        $("body").on("click",".cart-check-all", function (o) {
+            var boxes = document.getElementsByTagName("input");
+            var totalPrice = 0;
+            var items = 0;
+            var transaction = $('.transaction')
+            var transClasses =  transaction.attr('class').split(' ');
+
+
+            for (var x = 0; x < boxes.length; x++) {
+                var obj = boxes[x];
+
+                if (obj.type == "checkbox") {
+                    if (obj.name != "check")
+                        obj.checked = o.target.checked;
+
+                    if (obj.checked){
+                        var price = Number(obj.getAttribute('data-price'));
+                        var id = Number(obj.getAttribute('data-id'));
+                        var type = obj.getAttribute('data-type');
+
+                        if (type === 'eventfish') {
+                            items += 1
+                        }
+
+                        if (type === 'product') {
+                            var output = $('.outputproduct-'+id)[0].innerText
+                            items += Number(output)
+                            price = price * Number(output)
+                        }
+
+                        totalPrice += price;
+                    }
+                }
+            }
+
+            var elemTotalItem = $('.total-item')
+            var elemTotalPrice = $('.total-price')
+
+            elemTotalItem[0].innerText = items
+            elemTotalItem[1].innerText = items
+
+            totalPrice = thousandSeparator(totalPrice);
+
+            elemTotalPrice[0].innerText = totalPrice
+
+
+            if (transClasses.includes('btn-secondary') === true)
+            {
+                transaction.attr('href', '/transaksiweb')
+                transaction.removeClass('btn-secondary');
+                transaction.addClass('btn-danger');
+            }
+
+            if (transClasses.includes('btn-danger') === true)
+            {
+                transaction.attr('href', '#')
+                transaction.removeClass('btn-danger');
+                transaction.addClass('btn-secondary');
+            }
+
+        });
+
+        function checkProduct()
+        {
+            var boxes = document.getElementsByTagName("input");
+            var totalPrice = 0;
+            var items = 0;
+            var transaction = $('.transaction')
+
+            for (var x = 0; x < boxes.length; x++) {
+                var obj = boxes[x];
+
+                if (obj.type == "checkbox") {
+                        if (obj.checked){
+                            var price = Number(obj.getAttribute('data-price'));
+                            var id = Number(obj.getAttribute('data-id'));
+                            var type = obj.getAttribute('data-type');
+
+                            if (type === 'eventfish') {
+                                items += 1
+                            }
+
+                            if (type === 'product') {
+                                var outputNumber = $('.outputproduct-'+id)[0].innerText
+                                items += Number(outputNumber)
+                                price = price * Number(outputNumber)
+                            }
+
+                            totalPrice += price;
+                        }
+                    }
+            }
+
+            var elemTotalItem = $('.total-item')
+            var elemTotalPrice = $('.total-price')
+
+            elemTotalItem[0].innerText = items
+            elemTotalItem[1].innerText = items
+
+            totalPrice = thousandSeparator(totalPrice);
+
+            elemTotalPrice[0].innerText = totalPrice
+
+            if (items > 0)
+            {
+                transaction.attr('href', '/transaksiweb')
+                transaction.removeClass('btn-secondary');
+                transaction.addClass('btn-danger');
+            }
+
+            if (items === 0)
+            {
+                transaction.attr('href', '#')
+                transaction.removeClass('btn-danger');
+                transaction.addClass('btn-secondary');
+            }
+        }
+
+        function thousandSeparator(x) {
+            return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+        }
     </script>
 
 </body>

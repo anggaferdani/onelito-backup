@@ -14,7 +14,6 @@
 
         @forelse($carts as $cart)
             @php
-
                 $cartPhoto = url('img/uniring.jpeg');
                 $cartable = $cart->cartable;
 
@@ -90,7 +89,7 @@
         <div class="container border-top fixed-bottom d-flex p-3 justify-content-between bg-white">
             <div class="my-auto">
                 <h5 class="">Total Harga</h5>
-                <h5 class="font-bold">Rp. 0</h5>
+                <h5 class="font-bold pricetotal">Rp. 0</h5>
             </div>
             <a class="btn btn-secondary w-25" href="/transaksi" role="button">Pesan
                 Sekarang</a>
