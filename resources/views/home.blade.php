@@ -35,7 +35,7 @@
         }
     </style>
 
-<br><br><br><br>
+    <br><br><br><br>
     <div id="carouselExampleControls" class="pt-2 carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner img-mh-300">
             <div class="carousel-item active">
@@ -170,13 +170,13 @@
             @forelse($hotProductStores as $hotProduct)
                 @php
                     $productPhoto2 = 'img/bio_media.png';
-
+                    
                     if ($hotProduct->photo !== null) {
                         $productPhoto2 = url('storage') . '/' . $hotProduct->photo->path_foto;
                     }
-
+                    
                     $wishlistClass = 'far fa-heart';
-
+                    
                     if ($hotProduct->wishlist !== null) {
                         $wishlistClass = 'fas fa-heart';
                     }
@@ -197,7 +197,8 @@
                                     Now</button>
                             </div>
                             <div class="col-3 m-auto">
-                                <button class="border-4 rounded" style="background-color: red;border-color:red"><i
+                                <button class="rounded"
+                                    style="background-color: red;border-color:red; outline: none; border: none;"><i
                                         class="fa-solid fa-cart-shopping" style="color: white"></i></button>
                             </div>
                             <div class="col-3 m-auto">
@@ -219,13 +220,13 @@
                 @forelse($hotProductStores as $hotProduct)
                     @php
                         $productPhoto = 'img/bio_media.png';
-
+                        
                         if ($hotProduct->photo !== null) {
                             $productPhoto = url('storage') . '/' . $hotProduct->photo->path_foto;
                         }
-
+                        
                         $wishlistClass = 'far fa-heart';
-
+                        
                         if ($hotProduct->wishlist !== null) {
                             $wishlistClass = 'fas fa-heart';
                         }
@@ -244,7 +245,8 @@
                                         Now</button>
                                 </div>
                                 <div class="col-md-3 m-auto">
-                                    <button class="border-4 rounded" style="background-color: red;border-color:red"><i
+                                    <button class="rounded"
+                                        style="background-color: red;border-color:red; outline: none; border: none;"><i
                                             class="fa-solid fa-cart-shopping" style="color: white"></i></button>
                                 </div>
                                 <div class="col-md-3 m-auto">
@@ -366,7 +368,7 @@
             @forelse($championFishes as $championFish)
                 @php
                     $photoChampion = 'img/koi12.jpg';
-
+                    
                     if ($championFish->foto_ikan !== null) {
                         $photoChampion = url('storage') . '/' . $championFish->foto_ikan;
                     }

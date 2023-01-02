@@ -96,13 +96,13 @@
                                 @forelse ($products as $product)
                                     @php
                                         $productPhoto = 'img/bio_media.png';
-
+                                        
                                         if ($product->photo !== null) {
                                             $productPhoto = url('storage') . '/' . $product->photo->path_foto;
                                         }
-
+                                        
                                         $wishlistClass = 'far fa-heart';
-
+                                        
                                         if ($product->wishlist !== null) {
                                             $wishlistClass = 'fas fa-heart';
                                         }
@@ -118,12 +118,34 @@
                                                 </div>
                                                 <p><b>Rp. {{ $product->harga }}</b></p>
                                             </div>
-                                            <div class="col px-2 mb-2" style="text-align: end">
+                                            {{-- <div class="col px-2 mb-2" style="text-align: end">
                                                 <button class="border rounded-1 text-black-50"
                                                     style="background-color: transparent;font-size:small"><i
                                                         data-id="{{ $product->id_produk }}"
                                                         class="{{ $wishlistClass }} wishlist produk-{{ $product->id_produk }}"></i>
                                                     <span>Wishlist</span></button>
+                                            </div> --}}
+                                            <div class="mb-1 mx-auto">
+                                                <button class="border-0 btn-success rounded-2"
+                                                    style="background-color:#188518;">Order
+                                                    Now</button>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col-8 text-center">
+                                                        <button class="border rounded-1 text-black-50"
+                                                            style="background-color: transparent;font-size:small"><i
+                                                                data-id="{{ $product->id_produk }}"
+                                                                class="{{ $wishlistClass }} wishlist produk-{{ $product->id_produk }}"></i>
+                                                            <span>Wishlist</span></button>
+                                                    </div>
+                                                    <div class="col-4 mb-1">
+                                                        <button class="rounded"
+                                                            style="background-color: red;border-color:red; outline: none; border: none;"><i
+                                                                class="fa-solid fa-cart-shopping"
+                                                                style="color: white"></i></button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -133,19 +155,22 @@
                             <div class="btn-toolbar my-3 justify-content-end" role="toolbar"
                                 aria-label="Toolbar with button groups">
                                 <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <a href="{{ $products->previousPageUrl() }}"><button  type="button" class="btn btn-danger ">Prev</button></a>
+                                    <a href="{{ $products->previousPageUrl() }}"><button type="button"
+                                            class="btn btn-danger ">Prev</button></a>
                                 </div>
-                                    @foreach ($products->onEachSide(0)->links()->elements as $elements)
-                                        @if (is_array($elements))
-                                            @foreach ($elements as $key => $element)
-                                                <div class="btn-group me-2" role="group" aria-label="First group">
-                                                    <a href="?page={{ $key }}"><button  type="button" class="btn btn-danger {{ (request()->page ?? 1) == $key ? 'active disabled' : '' }}"">{{ $key }}</button></a>
-                                                </div>
-                                            @endforeach
-                                        @endif
-                                    @endforeach
+                                @foreach ($products->onEachSide(0)->links()->elements as $elements)
+                                    @if (is_array($elements))
+                                        @foreach ($elements as $key => $element)
+                                            <div class="btn-group me-2" role="group" aria-label="First group">
+                                                <a href="?page={{ $key }}"><button type="button"
+                                                        class="btn btn-danger {{ (request()->page ?? 1) == $key ? 'active disabled' : '' }}"">{{ $key }}</button></a>
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                @endforeach
                                 <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <a href="{{ $products->nextPageUrl() }}"><button  type="button" class="btn btn-danger">Next</button></a>
+                                    <a href="{{ $products->nextPageUrl() }}"><button type="button"
+                                            class="btn btn-danger">Next</button></a>
                                 </div>
                             </div>
                         </div>
@@ -158,13 +183,13 @@
                                 @forelse ($fishFoodProducts as $fishfoodProduct)
                                     @php
                                         $productPhoto2 = 'img/uniring.jpeg';
-
+                                        
                                         if ($fishfoodProduct->photo !== null) {
                                             $productPhoto2 = url('storage') . '/' . $fishfoodProduct->photo->path_foto;
                                         }
-
+                                        
                                         $wishlistClass = 'far fa-heart';
-
+                                        
                                         if ($fishfoodProduct->wishlist !== null) {
                                             $wishlistClass = 'fas fa-heart';
                                         }
@@ -180,12 +205,34 @@
                                                 </div>
                                                 <p><b>Rp. {{ $fishfoodProduct->harga }}</b></p>
                                             </div>
-                                            <div class="col px-2 mb-2" style="text-align: end">
+                                            {{-- <div class="col px-2 mb-2" style="text-align: end">
                                                 <button class="border rounded-1 text-black-50"
                                                     style="background-color: transparent;font-size:small"><i
                                                         data-id="{{ $fishfoodProduct->id_produk }}"
                                                         class="{{ $wishlistClass }} wishlist produk-{{ $fishfoodProduct->id_produk }}"></i>
                                                     <span>Wishlist</span></button>
+                                            </div> --}}
+                                            <div class="mb-1 mx-auto">
+                                                <button class="border-0 btn-success rounded-2"
+                                                    style="background-color:#188518;">Order
+                                                    Now</button>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col-8 text-center">
+                                                        <button class="border rounded-1 text-black-50"
+                                                            style="background-color: transparent;font-size:small"><i
+                                                                data-id="{{ $product->id_produk }}"
+                                                                class="{{ $wishlistClass }} wishlist produk-{{ $product->id_produk }}"></i>
+                                                            <span>Wishlist</span></button>
+                                                    </div>
+                                                    <div class="col-4 mb-1">
+                                                        <button class="rounded"
+                                                            style="background-color: red;border-color:red; outline: none; border: none;"><i
+                                                                class="fa-solid fa-cart-shopping"
+                                                                style="color: white"></i></button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -195,19 +242,22 @@
                             <div class="btn-toolbar my-3 justify-content-end" role="toolbar"
                                 aria-label="Toolbar with button groups">
                                 <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <a href="{{ $fishFoodProducts->previousPageUrl() }}"><button  type="button" class="btn btn-danger ">Prev</button></a>
+                                    <a href="{{ $fishFoodProducts->previousPageUrl() }}"><button type="button"
+                                            class="btn btn-danger ">Prev</button></a>
                                 </div>
-                                    @foreach ($fishFoodProducts->onEachSide(0)->links()->elements as $elements)
-                                        @if (is_array($elements))
-                                            @foreach ($elements as $key => $element)
-                                                <div class="btn-group me-2" role="group" aria-label="First group">
-                                                    <a href="?page={{ $key }}"><button  type="button" class="btn btn-danger {{ (request()->page ?? 1) == $key ? 'active disabled' : '' }}"">{{ $key }}</button></a>
-                                                </div>
-                                            @endforeach
-                                        @endif
-                                    @endforeach
+                                @foreach ($fishFoodProducts->onEachSide(0)->links()->elements as $elements)
+                                    @if (is_array($elements))
+                                        @foreach ($elements as $key => $element)
+                                            <div class="btn-group me-2" role="group" aria-label="First group">
+                                                <a href="?page={{ $key }}"><button type="button"
+                                                        class="btn btn-danger {{ (request()->page ?? 1) == $key ? 'active disabled' : '' }}"">{{ $key }}</button></a>
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                @endforeach
                                 <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <a href="{{ $fishFoodProducts->nextPageUrl() }}"><button  type="button" class="btn btn-danger ">Next</button></a>
+                                    <a href="{{ $fishFoodProducts->nextPageUrl() }}"><button type="button"
+                                            class="btn btn-danger ">Next</button></a>
                                 </div>
                             </div>
                         </div>
@@ -220,12 +270,12 @@
                                 @forelse ($fishEquipmentProducts as $fishgearProduct)
                                     @php
                                         $productPhoto3 = 'img/selang.jpg';
-
+                                        
                                         if ($fishgearProduct->photo !== null) {
                                             $productPhoto3 = url('storage') . '/' . $fishgearProduct->photo->path_foto;
                                         }
                                         $wishlistClass = 'far fa-heart';
-
+                                        
                                         if ($fishgearProduct->wishlist !== null) {
                                             $wishlistClass = 'fas fa-heart';
                                         }
@@ -241,12 +291,34 @@
                                                 </div>
                                                 <p><b>Rp. {{ $fishgearProduct->harga }}</b></p>
                                             </div>
-                                            <div class="col px-2 mb-2" style="text-align: end">
+                                            {{-- <div class="col px-2 mb-2" style="text-align: end">
                                                 <button class="border rounded-1 text-black-50"
                                                     style="background-color: transparent;font-size:small"><i
                                                         data-id="{{ $fishgearProduct->id_produk }}"
                                                         class="{{ $wishlistClass }} wishlist produk-{{ $fishgearProduct->id_produk }}"></i>
                                                     <span>Wishlist</span></button>
+                                            </div> --}}
+                                            <div class="mb-1 mx-auto">
+                                                <button class="border-0 btn-success rounded-2"
+                                                    style="background-color:#188518;">Order
+                                                    Now</button>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col-8 text-center">
+                                                        <button class="border rounded-1 text-black-50"
+                                                            style="background-color: transparent;font-size:small"><i
+                                                                data-id="{{ $product->id_produk }}"
+                                                                class="{{ $wishlistClass }} wishlist produk-{{ $product->id_produk }}"></i>
+                                                            <span>Wishlist</span></button>
+                                                    </div>
+                                                    <div class="col-4 mb-1">
+                                                        <button class="rounded"
+                                                            style="background-color: red;border-color:red; outline: none; border: none;"><i
+                                                                class="fa-solid fa-cart-shopping"
+                                                                style="color: white"></i></button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -256,19 +328,22 @@
                             <div class="btn-toolbar my-3 justify-content-end" role="toolbar"
                                 aria-label="Toolbar with button groups">
                                 <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <a href="{{ $fishEquipmentProducts->previousPageUrl() }}"><button  type="button" class="btn btn-danger ">Prev</button></a>
+                                    <a href="{{ $fishEquipmentProducts->previousPageUrl() }}"><button type="button"
+                                            class="btn btn-danger ">Prev</button></a>
                                 </div>
-                                    @foreach ($fishEquipmentProducts->onEachSide(0)->links()->elements as $elements)
-                                        @if (is_array($elements))
-                                            @foreach ($elements as $key => $element)
-                                                <div class="btn-group me-2" role="group" aria-label="First group">
-                                                    <a href="?page={{ $key }}"><button  type="button" class="btn btn-danger {{ (request()->page ?? 1) == $key ? 'active disabled' : '' }}"">{{ $key }}</button></a>
-                                                </div>
-                                            @endforeach
-                                        @endif
-                                    @endforeach
+                                @foreach ($fishEquipmentProducts->onEachSide(0)->links()->elements as $elements)
+                                    @if (is_array($elements))
+                                        @foreach ($elements as $key => $element)
+                                            <div class="btn-group me-2" role="group" aria-label="First group">
+                                                <a href="?page={{ $key }}"><button type="button"
+                                                        class="btn btn-danger {{ (request()->page ?? 1) == $key ? 'active disabled' : '' }}"">{{ $key }}</button></a>
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                @endforeach
                                 <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <a href="{{ $fishEquipmentProducts->nextPageUrl() }}"><button  type="button" class="btn btn-danger ">Next</button></a>
+                                    <a href="{{ $fishEquipmentProducts->nextPageUrl() }}"><button type="button"
+                                            class="btn btn-danger ">Next</button></a>
                                 </div>
                             </div>
                         </div>
