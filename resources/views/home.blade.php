@@ -66,45 +66,52 @@
         <!-- <img src="{{ url('img/nolelang.png') }}" class="d-block w-100 mt-5" alt="ceklis"> -->
     </div>
 
-    @php
-        $auctionProducts = $nextAuction->pluck('auctionProducts')->flatten();
-    @endphp
     <div class="container nav-atas">
         <div class="row">
             @forelse($auctionProducts as $auctionProduct)
+                @php
+                    $photo = 'img/koi11.jpg';
+                    if ($auctionProduct->photo !== null) {
+                        $photo = url('storage') . '/' . $auctionProduct->photo->path_foto;
+                    }
+
+                    $currentMaxBid = $auctionProduct->ob;
+
+                    if ($auctionProduct->maxBid !== null) {
+                        $currentMaxBid = $auctionProduct->maxBid->nominal_bid;
+                    }
+                @endphp
                 <div class="col-6 col-lg-3 mt-3">
                     <div class="card">
-                        @php
-                            $photo = 'img/koi11.jpg';
-                            if ($auctionProduct->photo !== null) {
-                                $photo = url('storage') . '/' . $auctionProduct->photo->path_foto;
-                            }
-                        @endphp
-                        <img src="{{ $photo }}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <div class="cb-jud">
-                                <h5 class="card-title">{!! Illuminate\Support\Str::limit(
-                                    "$auctionProduct->variety | $auctionProduct->breeder | $auctionProduct->size | $auctionProduct->bloodline",
-                                    45,
-                                ) !!}</h5>
-                            </div>
-                            {{-- <p style="font-size: 10px" class="card-text ma">Starting Price</p>
-                            <p style="color :red;font-size: 12px" class="m-0">Rp.
-                                {{ number_format($auctionProduct->ob, 0, '.', '.') }}</p> --}}
-                            <p class="m-0">Number of bids</p>
-                            <p class="" style="color: red">0</p>
-                            <div class="row">
-                                <div class="col-6 p-0 px-lg-2">
-                                    <p class="m-0" style="font-size:80%">Harga saat ini</p>
-                                    <p class="m-0" style="color: red;font-size:75%">Rp 1.000.000</p>
+                        <a class="text-dark" href="/auction/{{ $auctionProduct->id_ikan }}">
+                            <img src="{{ $photo }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <div class="cb-jud">
+                                    <h5 class="card-title">{!! Illuminate\Support\Str::limit(
+                                        "$auctionProduct->variety | $auctionProduct->breeder | $auctionProduct->size | $auctionProduct->bloodline",
+                                        45,
+                                    ) !!}</h5>
                                 </div>
-                                <div class="col-6 p-0 px-lg-2">
-                                    <p class="m-0" style="text-align: end;font-size:80%">Live Time</p>
-                                    <p class="m-0 countdown-label" style="text-align: end;color :red;font-size:75%;">
-                                        00:00:00</p>
+                                {{-- <p style="font-size: 10px" class="card-text ma">Starting Price</p>
+                                <p style="color :red;font-size: 12px" class="m-0">Rp.
+                                    {{ number_format($auctionProduct->ob, 0, '.', '.') }}</p> --}}
+                                <p class="m-0">Number of bids</p>
+                                <p class="" style="color: red">{{ $auctionProduct->bid_details_count }}</p>
+                                <div class="row">
+                                    <div class="col-6 p-0 px-lg-2">
+                                        <p class="m-0" style="font-size:80%">Harga saat ini</p>
+                                        <p class="m-0" style="color: red;font-size:75%">Rp {{ number_format($currentMaxBid, 0, '.', '.') }}</p>
+                                    </div>
+                                    <div class="col-6 p-0 px-lg-2">
+                                        <p class="m-0" style="text-align: end;font-size:80%">Live Time</p>
+                                        <p class="m-0 countdown-label" id="atas-{{ $auctionProduct->id_ikan }}"
+                                            data-endtime="{{ $auctionProduct->event->tgl_akhir }}"
+                                            data-end-extratime="{{ $auctionProduct->tgl_akhir_extra_time }}"
+                                            style="text-align: end;color :red;font-size:75%;">00:00:00</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             @empty
@@ -116,8 +123,20 @@
     <div class="container nav-samping">
         <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
             @forelse($auctionProducts as $auctionProduct)
+                @php
+                    $photo = 'img/koi11.jpg';
+                    if ($auctionProduct->photo !== null) {
+                        $photo = url('storage') . '/' . $auctionProduct->photo->path_foto;
+                    }
+
+                    $currentMaxBid = $auctionProduct->ob;
+
+                    if ($auctionProduct->maxBid !== null) {
+                        $currentMaxBid = $auctionProduct->maxBid->nominal_bid;
+                    }
+                @endphp
                 <div class="col">
-                    <a class="text-dark" href="/auction">
+                    <a class="text-dark" href="/auction/{{ $auctionProduct->id_ikan }}">
                         <div class="card">
                             @php
                                 $photo = 'img/koi11.jpg';
@@ -137,16 +156,18 @@
                                 {{-- <p class="card-text ma">Starting Price</p>
                             <p style="color :red">Rp. {{ number_format($auctionProduct->ob, 0, '.', '.') }}</p> --}}
                                 <p class="m-0">Number of bids</p>
-                                <p class="" style="color: red">0</p>
+                                <p class="" style="color: red">{{ $auctionProduct->bid_details_count }}</p>
                                 <div class="row">
                                     <div class="col-6 p-0 px-lg-2">
                                         <p class="m-0" style="font-size:80%">Harga saat ini</p>
-                                        <p class="m-0" style="color: red;font-size:75%">Rp 1.000.000</p>
+                                        <p class="m-0" style="color: red;font-size:75%">Rp {{ number_format($currentMaxBid, 0, '.', '.') }}</p>
                                     </div>
                                     <div class="col-6 p-0 px-lg-2">
                                         <p class="m-0" style="text-align: end;font-size:80%">Live Time</p>
-                                        <p class="m-0 countdown-label" style="text-align: end;color :red;font-size:75%;">
-                                            00:00:00</p>
+                                        <p class="m-0 countdown-label" id="bawah-{{ $auctionProduct->id_ikan }}"
+                                            data-endtime="{{ $auctionProduct->event->tgl_akhir }}"
+                                            data-end-extratime="{{ $auctionProduct->tgl_akhir_extra_time }}"
+                                            style="text-align: end;color :red;font-size:75%;">00:00:00</p>
                                     </div>
                                 </div>
                             </div>
@@ -170,13 +191,13 @@
             @forelse($hotProductStores as $hotProduct)
                 @php
                     $productPhoto2 = 'img/bio_media.png';
-                    
+
                     if ($hotProduct->photo !== null) {
                         $productPhoto2 = url('storage') . '/' . $hotProduct->photo->path_foto;
                     }
-                    
+
                     $wishlistClass = 'far fa-heart';
-                    
+
                     if ($hotProduct->wishlist !== null) {
                         $wishlistClass = 'fas fa-heart';
                     }
@@ -220,13 +241,13 @@
                 @forelse($hotProductStores as $hotProduct)
                     @php
                         $productPhoto = 'img/bio_media.png';
-                        
+
                         if ($hotProduct->photo !== null) {
                             $productPhoto = url('storage') . '/' . $hotProduct->photo->path_foto;
                         }
-                        
+
                         $wishlistClass = 'far fa-heart';
-                        
+
                         if ($hotProduct->wishlist !== null) {
                             $wishlistClass = 'fas fa-heart';
                         }
@@ -368,7 +389,7 @@
             @forelse($championFishes as $championFish)
                 @php
                     $photoChampion = 'img/koi12.jpg';
-                    
+
                     if ($championFish->foto_ikan !== null) {
                         $photoChampion = url('storage') . '/' . $championFish->foto_ikan;
                     }
@@ -393,12 +414,103 @@
     </div>
 @endsection
 @push('scripts')
+    <script src="{{ asset('library/moment/min/moment.min.js') }}"></script>
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        let currentTime = "{{ $now }}";
+        let timerLabels = document.getElementsByClassName('countdown-label');
+
+        function allTimer() {
+            $.each(timerLabels, function(prefix, val) {
+                var addedExtraTime = $(val).attr('data-end-extratime');
+                var currentEndTime = $(val).attr('data-endtime');
+
+                startTimer(addedExtraTime, currentEndTime, val)
+            })
+        }
+
+        allTimer()
+
+        function startTimer(addedExtraTime, currentEndTime, val) {
+            var currTime = moment()
+            var end = moment(currentEndTime);
+            var endTime = end.valueOf();
+
+            // Update the count down every 1 second
+            var x = setInterval(function() {
+                // Get today's date and time and extend it
+                var now = currTime.add(1, 'seconds').valueOf();
+
+                // Find the distance between now and the count down date
+                var duration = endTime - now;
+
+                // Time calculations for days, hours, minutes and seconds
+                var days = Math.floor(duration / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((duration % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                hours = hours + (days * 60);
+                var minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((duration % (1000 * 60)) / 1000);
+
+                // Display the result in the element with id="timer"
+                const hourString = `${hours < 10 ? '0' : ''}${hours}`;
+                const minuteString = `${minutes < 10 ? '0' : ''}${minutes}`;
+                const secondString = `${seconds < 10 ? '0' : ''}${seconds}`;
+                const timerString = `${hourString}:${minuteString}:${secondString}`;
+                $(val).html(timerString);
+
+                // If the count down is finished, finish the exam
+                if (duration < 0) {
+                    $(val).html(`00:00:00`);
+
+                    clearInterval(x);
+                    startExtraTimer(addedExtraTime, val);
+                }
+            }, 1000);
+        }
+
+        function startExtraTimer(addedExtraTime, val) {
+            var currTime = moment()
+
+            var end = moment(addedExtraTime);
+            var endTime = end.valueOf();
+            // Update the count down every 1 second
+            var x = setInterval(function() {
+                // Get today's date and time and extend it
+                var now = currTime.add(1, 'seconds').valueOf();
+
+                // Find the distance between now and the count down date
+                var duration = endTime - now;
+                // duration = 0;
+
+                // console.log($(val))
+
+                // Time calculations for days, hours, minutes and seconds
+                // var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((duration % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((duration % (1000 * 60)) / 1000);
+
+                // Display the result in the element with id="timer"
+                const hourString = `${hours < 10 ? '0' : ''}${hours}`;
+                const minuteString = `${minutes < 10 ? '0' : ''}${minutes}`;
+                const secondString = `${seconds < 10 ? '0' : ''}${seconds}`;
+                const timerString = `${hourString}:${minuteString}:${secondString}`;
+                $(val).html(timerString);
+
+                // If the count down is finished, finish the exam
+                if (duration < 0) {
+                    var id = $(val).attr('id');
+                    $(val).html(`00:00:00`);
+
+                    clearInterval(x);
+                }
+            }, 1000);
+        }
 
         $(document).on('click', '.wishlist', function(e) {
             var element = $(e.currentTarget);
