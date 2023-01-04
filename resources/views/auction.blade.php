@@ -105,7 +105,7 @@
                                 <div class="cb-judul">
                                     <h5 class="card-title">{!! Illuminate\Support\Str::limit(
                                         "$auctionProduct->variety | $auctionProduct->breeder | $auctionProduct->bloodline | $auctionProduct->size",
-                                        32,
+                                        30,
                                     ) !!}</h5>
                                 </div>
                                 <p class="m-0">Number of bids</p>
