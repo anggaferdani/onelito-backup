@@ -241,7 +241,8 @@ class AuctionController extends Controller
             $maxBid = $nominalBid > $maxBid ? $nominalBid : $maxBid;
             $autoBid = $logBid->auto_bid;
 
-            if ($maxBidData->id_bidding === $logBid->id_bidding) {
+            if ($maxBidData->id_bidding === $logBid->id_bidding
+            && $maxBidData->id_bidding === $logBid->id_bidding) {
                 $meMaxBid = true;
             }
         }
