@@ -19,12 +19,21 @@ class AuctionController extends Controller
         $now = Carbon::now();
         $nowAkhir = Carbon::now()->subDay()->endOfDay();
 
-        $currentAuctions = Event::with([
-            'auctionProducts' => function ($q) {
-                $q->withCount('bidDetails')->with(['photo', 'maxBid', 'event']);
-            },
-            'auctionProducts.wishlist' => fn($w) => $w->where('id_peserta', $auth->id_peserta)
-            ])
+        $currentAuctions = Event::
+            when($auth !== null, function ($q) use ($auth){
+                $q->with([
+                    'auctionProducts' => function ($q) {
+                        $q->withCount('bidDetails')->with(['photo', 'maxBid', 'event']);
+                    },
+                    'auctionProducts.wishlist' => fn($w) => $w->where('id_peserta', $auth->id_peserta)
+                ]);
+            }, function ($q) {
+                $q->with([
+                    'auctionProducts' => function ($q) {
+                        $q->withCount('bidDetails')->with(['photo', 'maxBid', 'event']);
+                    },
+                ]);
+            })
             ->where('tgl_mulai', '<=', $now)
             ->where('tgl_akhir', '>=', $nowAkhir)
             ->where('status_aktif', 1)
@@ -32,8 +41,12 @@ class AuctionController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
+
         $currentProducts = $currentAuctions->pluck('auctionProducts')
         ->flatten(1);
+
+        // dd($currentProducts);
+
 
         $currentAuction = null;
 
