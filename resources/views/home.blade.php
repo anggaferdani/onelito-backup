@@ -83,7 +83,7 @@
                 @endphp
                 <div class="col-6 col-lg-3 mt-3">
                     <div class="card">
-                        <a class="text-dark" href="/auction/{{ $auctionProduct->id_ikan }}">
+                        <a class="text-dark" href="/auction/">
                             <img src="{{ $photo }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <div class="cb-jud">
@@ -136,7 +136,7 @@
                     }
                 @endphp
                 <div class="col">
-                    <a class="text-dark" href="/auction/{{ $auctionProduct->id_ikan }}">
+                    <a class="text-dark" href="/auction/">
                         <div class="card">
                             @php
                                 $photo = 'img/koi11.jpg';
