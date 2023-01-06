@@ -8,6 +8,11 @@
             }
 
         }
+
+    .swal2-cancel {
+        margin-right: 10px;
+    }
+
 </style>
 
 <br><br><br><br>
@@ -62,98 +67,6 @@
             }
         </style>
 
-        <!-- <div class="res">
-            <div class="row">
-                <div class="col-6">
-                    @php
-                        $imgUrl = 'img/koi11.jpg';
-
-                        if ($auctionProduct->photo) {
-                            $imgUrl = 'storage/' . $auctionProduct->photo->path_foto;
-                        }
-                    @endphp
-                    <div class="">
-                        <img src="{{ url($imgUrl) }}" class="card-img-top" alt="...">
-                        <br><br>
-                    </div>
-                    <div class="card-body p-0">
-                        <a target="_blank" href="{{ $auctionProduct->link_video }}" class="btn btn-danger w-100 d-flex justify-content-between"
-                            style="font-size:larger">VIDEO <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
-                    </div>
-                </div>
-                <div class="col-6 ps-0">
-                    <p class="m-0" style="font-size: 11px">Auction Detail</p>
-                    <hr class="m-0">
-                    <h3 style="font-size: 12px">
-                        <table>
-                        <tr>
-                            <td>Variety</td>
-                            <td>: {{ $auctionProduct->variety }}</td>
-                        </tr>
-                        <tr>
-                            <td>Breeder</td>
-                            <td>: {{ $auctionProduct->breeder }}</td>
-                        </tr>
-                        <tr>
-                            <td>Bloodline</td>
-                            <td>: {{ $auctionProduct->bloodline }}</td>
-                        </tr>
-                        <tr>
-                            <td>Sex</td>
-                            <td>: {{ $auctionProduct->sex }}</td>
-                        </tr>
-                        <tr>
-                            <td>DOB</td>
-                            <td>: {{ $auctionProduct->dob }}</td>
-                        </tr>
-                        <tr>
-                            <td>Size</td>
-                            <td>: {{ $auctionProduct->size }}</td>
-                        </tr>
-                        </table>
-                    </h3>
-
-                    <hr class="m-0">
-
-                    <p class="m-0" style="font-size: 11px">Note :</p>
-                    <p style="font-size: 10px">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum,
-                        voluptas! Porro suscipit obcaecati eius quia qui dolorem harum ipsam, illo laudantium officiis
-                        maiores commodi aliquid fugiat, laboriosam ipsa similique blanditiis.</p>
-
-                    <hr class="m-0">
-
-                    @php
-                        $currentPrice = $auctionProduct->ob;
-
-                        $currentPrice = $maxBid > $currentPrice ? $maxBid : $currentPrice;
-                    @endphp
-
-                    <p class="m-0" style="font-size:11px">Harga saat ini: <span class="alert-link text-danger"
-                            style="font-size:12px">Rp {{ $currentPrice }}</span></p>
-
-                    <hr class="m-0">
-
-                    <p style="font-size:10px" class="m-0">Kelipatan BID: <span class="alert-link text-danger"
-                            style="font-size: 11px">Rp. {{ $auctionProduct->kb }}</span></p>
-
-                    <hr class="m-0">
-
-                    <p class="m-0 mt-2" style="font-size: 13px">Countdown</p>
-                    <p class="alert-link text-danger" style="font-size: 16px">00 : 35 : 45</p>
-                </div>
-
-                <div class="input-group input-group-sm mb-3 mt-5">
-                    <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-sm" placeholder="Nominal BID">
-                    <span class="bg-danger input-group-text text-white" id="inputGroup-sizing-sm">BID AUCTION</span>
-                </div>
-                <div class="input-group input-group-sm mb-3">
-                    <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-sm" placeholder="Nominal Max Auto BID">
-                    <span class="bg-danger input-group-text text-white" id="inputGroup-sizing-sm">AUTO BID</span>
-                </div>
-            </div>
-        </div> -->
         <div class="web">
             <div class="row gx-5">
                 <div class="col-6 col-md-4">
@@ -264,54 +177,58 @@
                     @endauth
                 </div>
 
-                <div class="row m-1">
-                    <div class="col-md-4">
-                    </div>
-                    @auth('member')
-                        <div class="col-12 col-md-8 no-gutters">
-                            <form method="POST" id="normalBidForm" action="/auction/{{ $idIkan }}" class="row">
-                                @csrf
-                                <div class="col-7 col-md-9" style="padding-right:0px">
-                                    <!-- <input type="text" id="nominal_bid2" name="nominal_bid2" value="{{ $logBid->nominal_bid ?? '' }}" class="form-control number-separator" id="exampleFormControlInput1" placeholder="Nominal BID"> -->
-                                    <input type="text" id="nominal_bid" name="nominal_bid" value="" required
-                                        class="form-control number-separator" id="exampleFormControlInput1"
-                                        placeholder="Nominal BID">
-                                </div>
-                                <div class="col-5 col-md-3" style="padding-left:0px; max-height: 38px">
-                                    <button id="buttonNormalBid" type="submit"
-                                        class="btn btn-danger w-100 justify-content-between">BID AUCTION</button>
-                                    <button hidden onclick="cancelAutoBid()" id="buttonCancelAutoBid" type="button"
-                                        class="btn btn-danger mb-3 w-100 justify-content-between">CANCEL AUTO BID</button>
-                                </div>
-                            </form>
+                @if($addedExtraTime >= $now)
+                    <div class="row m-1">
+                        <div class="col-md-4">
                         </div>
-                    @endauth
-                </div>
-
-                <div class="row m-1">
-                    <div class="col-md-4 no-gutters">
-                    </div>
-                    @auth('member')
-                        <div class="col-12 col-md-8 no-gutters">
-                            <form method="POST" id="autoBidForm" action="/auction/{{ $idIkan }}" class="row">
-                                <div class="col-7 col-md-9" style="padding-right:0px">
-                                    <!-- <input type="text" id="auto_bid2" name="auto_bid2" class="form-control" value="{{ $logBid->auto_bid ?? '' }}" id="exampleFormControlInput1" placeholder="Nominal Max Auto BID"> -->
-                                    <input type="text" id="auto_bid" name="auto_bid" class="form-control"
-                                        value="" id="exampleFormControlInput1" placeholder="Nominal Max Auto BID">
-                                </div>
-                                <div class="col-5 col-md-3" style="padding-left:0px">
-                                    <button type="submit" id="buttonAutoBid"
-                                        class="btn btn-danger w-100 justify-content-between">
-                                        AUTO BID
-                                    </button>
-                                </div>
-                            </form>
-
-                            <div class="alert alert-danger bid alert-dismissible fade mb-0 mt-1" role="alert">
+                        @auth('member')
+                            <div class="col-12 col-md-8 no-gutters">
+                                <form method="POST" id="normalBidForm" action="/auction/{{ $idIkan }}" class="row">
+                                    @csrf
+                                    <div class="col-7 col-md-9" style="padding-right:0px">
+                                        <!-- <input type="text" id="nominal_bid2" name="nominal_bid2" value="{{ $logBid->nominal_bid ?? '' }}" class="form-control number-separator" id="exampleFormControlInput1" placeholder="Nominal BID"> -->
+                                        <input type="text" id="nominal_bid" name="nominal_bid" value="" required
+                                            class="form-control number-separator" id="exampleFormControlInput1"
+                                            placeholder="Nominal BID">
+                                    </div>
+                                    <div class="col-5 col-md-3" style="padding-left:0px; max-height: 38px">
+                                        <button id="buttonNormalBidSubmit" type="submit" hidden class="d-none"></button>
+                                        <button id="buttonNormalBid" type="button"
+                                            onclick="clickyakin()"
+                                            class="btn btn-danger w-100 justify-content-between">BID AUCTION</button>
+                                        <button hidden onclick="cancelAutoBid()" id="buttonCancelAutoBid" type="button"
+                                            class="btn btn-danger mb-3 w-100 justify-content-between">CANCEL AUTO BID</button>
+                                    </div>
+                                </form>
                             </div>
+                        @endauth
+                    </div>
+
+                    <div class="row m-1">
+                        <div class="col-md-4 no-gutters">
                         </div>
-                    @endauth
-                </div>
+                        @auth('member')
+                            <div class="col-12 col-md-8 no-gutters">
+                                <form method="POST" id="autoBidForm" action="/auction/{{ $idIkan }}" class="row">
+                                    <div class="col-7 col-md-9" style="padding-right:0px">
+                                        <!-- <input type="text" id="auto_bid2" name="auto_bid2" class="form-control" value="{{ $logBid->auto_bid ?? '' }}" id="exampleFormControlInput1" placeholder="Nominal Max Auto BID"> -->
+                                        <input type="text" id="auto_bid" name="auto_bid" class="form-control"
+                                            value="" id="exampleFormControlInput1" placeholder="Nominal Max Auto BID">
+                                    </div>
+                                    <div class="col-5 col-md-3" style="padding-left:0px">
+                                        <button type="submit" id="buttonAutoBid"
+                                            class="btn btn-danger w-100 justify-content-between">
+                                            AUTO BID
+                                        </button>
+                                    </div>
+                                </form>
+
+                                <div class="alert alert-danger bid alert-dismissible fade mb-0 mt-1" role="alert">
+                                </div>
+                            </div>
+                        @endauth
+                    </div>
+                @endif
             </div>
         </div>
 
@@ -320,6 +237,7 @@
 @endsection
 
 @push('scripts')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('library/moment/min/moment.min.js') }}"></script>
     <script src="{{ asset('/js/price-separator.min.js') }}"></script>
     <script type="text/javascript">
@@ -343,6 +261,45 @@
         let addedExtraTime = "{{ $addedExtraTime }}";
         let currentEndTime = auctionProduct.event.tgl_akhir;
         let lastUpdateBid = @json($maxBidData)
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+
+        function clickyakin() {
+            var nominal = $('#nominal_bid').val();
+
+            swalWithBootstrapButtons.fire({
+                title: 'apa anda yakin?',
+                text: `Bid Rp. ${nominal}`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $("#buttonNormalBidSubmit").click();
+
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Batal',
+                        'Bid anda dibatalkan',
+                        'error'
+                    )
+
+                    $('#nominal_bid').val('')
+                }
+            })
+        }
+
 
         function thousandSeparator(x) {
             // return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
@@ -370,6 +327,7 @@
         });
         // }
 
+        // function normalBidFormSubmit(e) {
         $('#normalBidForm').submit(function(e) {
             e.preventDefault();
             let formData = new FormData(this);
@@ -377,7 +335,6 @@
             let kb = parseInt(auctionProduct.kb);
 
             var inputNominalBid = parseInt($('#nominal_bid').unmask());
-            // var nextNominalBid = (currentMaxBid + inputNominalBid);
 
             if (inputNominalBid <= currentMaxBid) {
                 $('.alert.bid').html(`Nominal bid tidak boleh dibawah harga saat ini`);
@@ -469,6 +426,11 @@
                 success: function(res) {
                     $('#nominal_bid').val('')
                     nominalBid = formData.get('nominal_bid');
+                    swalWithBootstrapButtons.fire(
+                        'Berhasil',
+                        'Bid sukses',
+                        'success'
+                    )
                     // autoBid = parseInt($('#auto_bid').val());
 
                     // if (nominalBid > currentMaxBid) {

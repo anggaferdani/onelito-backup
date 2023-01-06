@@ -198,7 +198,7 @@
 
                     $wishlistClass = 'far fa-heart';
 
-                    if (array_key_exists('wishlist', $hotProduct->toArray())) {
+                    if (array_key_exists('wishlist', $hotProduct->toArray()) && $hotProduct->wishlist !== null) {
                         $wishlistClass = 'fas fa-heart';
                     }
                 @endphp
@@ -248,7 +248,7 @@
 
                         $wishlistClass = 'far fa-heart';
 
-                        if (array_key_exists('wishlist', $hotProduct->toArray())) {
+                        if (array_key_exists('wishlist', $hotProduct->toArray()) && $hotProduct->wishlist !== null) {
                             $wishlistClass = 'fas fa-heart';
                         }
                     @endphp

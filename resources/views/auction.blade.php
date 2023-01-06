@@ -93,7 +93,7 @@
 
                         $wishlistClass = 'far fa-heart';
 
-                        if (array_key_exists('wishlist', $auctionProduct->toArray())) {
+                        if (array_key_exists('wishlist', $auctionProduct->toArray()) && $auctionProduct->wishlist !== null) {
                             $wishlistClass = 'fas fa-heart';
                         }
                     @endphp

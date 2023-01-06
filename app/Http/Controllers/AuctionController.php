@@ -41,14 +41,8 @@ class AuctionController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-
         $currentProducts = $currentAuctions->pluck('auctionProducts')
         ->flatten(1);
-
-        // dd($currentProducts);
-
-
-        $currentAuction = null;
 
         if (count($currentProducts) > 0) {
             foreach ($currentProducts as $product) {
@@ -111,7 +105,9 @@ class AuctionController extends Controller
 
         $maxBidData = LogBidDetail::whereHas('logBid', function($q) use ($idIkan){
             $q->where('id_ikan_lelang', $idIkan);
-        })->orderBy('nominal_bid', 'desc')->first();
+        })
+        ->with('logBid')
+        ->orderBy('nominal_bid', 'desc')->first();
 
         Carbon::setLocale('id');
 
@@ -120,8 +116,8 @@ class AuctionController extends Controller
         $addedExtraTime = Carbon::createFromDate($auctionProduct->event->tgl_akhir)
             ->addMinutes($auctionProduct->extra_time ?? 0);
 
-        if ($maxBidData !== null && $maxBidData->created_at >= $auctionProduct->event->tgl_akhir) {
-            $addedExtraTime = Carbon::createFromDate($maxBidData->created_at)
+        if ($maxBidData !== null && $maxBidData->logBid->updated_at >= $auctionProduct->event->tgl_akhir) {
+            $addedExtraTime = Carbon::createFromDate($maxBidData->logBid->updated_at)
                 ->addMinutes($auctionProduct->extra_time ?? 0);
         }
 
@@ -136,6 +132,7 @@ class AuctionController extends Controller
             'title' => 'auction',
             'addedExtraTime' => $addedExtraTime,
             'maxBidData' => $maxBidData,
+            'currentPrice' => $maxBid,
         ]);
     }
 

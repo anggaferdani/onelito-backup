@@ -103,7 +103,7 @@
 
                                         $wishlistClass = 'far fa-heart';
 
-                                        if (array_key_exists('wishlist', $product->toArray())) {
+                                        if (array_key_exists('wishlist', $product->toArray()) && $product->wishlist !== null) {
                                             $wishlistClass = 'fas fa-heart';
                                         }
                                     @endphp
@@ -190,7 +190,7 @@
 
                                         $wishlistClass = 'far fa-heart';
 
-                                        if (array_key_exists('wishlist', $fishfoodProduct->toArray())) {
+                                        if (array_key_exists('wishlist', $fishfoodProduct->toArray()) && $fishfoodProduct->wishlist !== null) {
                                             $wishlistClass = 'fas fa-heart';
                                         }
                                     @endphp
@@ -277,7 +277,7 @@
                                         }
                                         $wishlistClass = 'far fa-heart';
 
-                                        if (array_key_exists('wishlist', $fishgearProduct->toArray())) {
+                                        if (array_key_exists('wishlist', $fishgearProduct->toArray()) && $fishgearProduct->wishlist !== null) {
                                             $wishlistClass = 'fas fa-heart';
                                         }
                                     @endphp
