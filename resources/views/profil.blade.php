@@ -57,6 +57,10 @@
                 font-size: 10px !important;
             }
         }
+
+        .cb-judul {
+            height: 3.5rem;
+        }
     </style>
 </head>
 
@@ -118,37 +122,37 @@
             </div>
 
             <div style="margin-top: 17vh; margin-bottom: 10vh">
-                @if($title === 'profil')
-                <div class="container my-3 text-center">
-                    <h5><i class="fa-solid fa-user"></i> <strong>Profile</strong></h5>
-                </div>
-                <div class="container p-0">
-                    <img src="img/foto.png" class="card-img-top px-5" alt="image">
-                    <div class="container text-center">
-                        <button type="button" class="btn btn-light btn-sm">
-                            <a href="#" class="border btn btn-light" style="width: 68vw">
-                                Change photo</a>
-                        </button>
+                @if ($title === 'profil')
+                    <div class="container my-3 text-center">
+                        <h5><i class="fa-solid fa-user"></i> <strong>Profile</strong></h5>
                     </div>
-                    <div class="">
-                        <div class="mb-3">
-                            <p class="m-0">Name:</p>
-                            <p><b>{{ $auth->nama }}</b></p>
+                    <div class="container p-0">
+                        <img src="img/foto.png" class="card-img-top px-5" alt="image">
+                        <div class="container text-center">
+                            <button type="button" class="btn btn-light btn-sm">
+                                <a href="#" class="border btn btn-light" style="width: 68vw">
+                                    Change photo</a>
+                            </button>
                         </div>
-                        <div class="mb-3">
-                            <p class="m-0">Email:</p>
-                            <p><b>{{ $auth->email }}</b></p>
-                        </div>
-                        <div class="mb-3">
-                            <p class="m-0">Phone number:</p>
-                            <p><b>{{ $auth->no_hp }}</b></p>
-                        </div>
-                        <div class="mb-3">
-                            <p class="m-0">Address:</p>
-                            <p><b>{{ $auth->alamat }}</b></p>
+                        <div class="">
+                            <div class="mb-3">
+                                <p class="m-0">Name:</p>
+                                <p><b>{{ $auth->nama }}</b></p>
+                            </div>
+                            <div class="mb-3">
+                                <p class="m-0">Email:</p>
+                                <p><b>{{ $auth->email }}</b></p>
+                            </div>
+                            <div class="mb-3">
+                                <p class="m-0">Phone number:</p>
+                                <p><b>{{ $auth->no_hp }}</b></p>
+                            </div>
+                            <div class="mb-3">
+                                <p class="m-0">Address:</p>
+                                <p><b>{{ $auth->alamat }}</b></p>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @else
                     @yield('container')
                 @endif
@@ -215,11 +219,11 @@
                 </div>
                 <div class="col-md-9">
                     @php
-                        $request = Request::input('section', null)
+                        $request = Request::input('section', null);
                     @endphp
                     <div class="tab-content" id="v-pills-tabContent">
-                        <div class="tab-pane fade {{ $request === null ? 'show active' : '' }}" id="v-pills-home2" role="tabpanel"
-                            aria-labelledby="v-pills-home-tab">
+                        <div class="tab-pane fade {{ $request === null ? 'show active' : '' }}" id="v-pills-home2"
+                            role="tabpanel" aria-labelledby="v-pills-home-tab">
                             <div class="container mt-3 my-3">
                                 <h5><i class="fa-solid fa-user"></i> <b>Profile</b></h5>
                             </div>
@@ -256,8 +260,8 @@
                             </div>
                         </div>
 
-                        <div class="tab-pane fade {{ $request === 'cart' ? 'show active' : '' }}" id="v-pills-profile2" role="tabpanel"
-                            aria-labelledby="v-pills-profile-tab">
+                        <div class="tab-pane fade {{ $request === 'cart' ? 'show active' : '' }}"
+                            id="v-pills-profile2" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                             <div class="container mt-3 my-3">
                                 <h5><i class="fa-solid fa-cart-shopping"></i> <b>Shopping cart</b></h5>
                             </div>
@@ -266,8 +270,9 @@
                                     <div class="row">
                                         <div class="col-lg-8 px-3 py-3">
                                             <div class="container d-flex py-3" style="">
-                                                <input class="form-check-input mr-3 my-auto cart-check-all" style="font-size:large;"
-                                                    type="checkbox" value="" id="Pilih Semua">
+                                                <input class="form-check-input mr-3 my-auto cart-check-all"
+                                                    style="font-size:large;" type="checkbox" value=""
+                                                    id="Pilih Semua">
                                                 <label class="form-check-label" for="Pilih Semua">
                                                     Pilih Semua
                                                 </label>
@@ -275,30 +280,30 @@
                                             <hr class="float-sm-end text-center" style="width: 98%;">
                                             @forelse($carts as $cart)
                                                 @php
-
+                                                    
                                                     $cartPhoto = url('img/uniring.jpeg');
                                                     $cartable = $cart->cartable;
-
+                                                    
                                                     if ($cart->cartable_type === 'EventFish') {
                                                         $cartPhoto = url('img/koi11.jpg');
                                                     }
-
+                                                    
                                                     if ($cart->cartable->photo !== null) {
                                                         $cartPhoto = url('storage') . '/' . $cart->cartable->photo->path_foto;
                                                     }
-
+                                                    
                                                     if ($cart->cartable_type === 'Product') {
                                                         $cartPrice = $cartable->harga;
                                                     }
                                                 @endphp
 
-                                                @if($cart->cartable_type === 'EventFish')
+                                                @if ($cart->cartable_type === 'EventFish')
                                                     <div class="container">
                                                         <div class="container d-flex p-0 my-3">
-                                                            <input class="form-check-input mr-3 my-auto cart-check"  type="checkbox"
-                                                                data-price="{{ $cart->price }}"
-                                                                data-type="eventfish"
-                                                                value="" id="flexCheckDefault">
+                                                            <input class="form-check-input mr-3 my-auto cart-check"
+                                                                type="checkbox" data-price="{{ $cart->price }}"
+                                                                data-type="eventfish" value=""
+                                                                id="flexCheckDefault">
                                                             <div class="card mr-3">
                                                                 <a href="#"><img src="{{ $cartPhoto }}"
                                                                         class="card-img-top"
@@ -307,10 +312,12 @@
                                                             </div>
                                                             <div>
                                                                 <p class="m-0">{!! Illuminate\Support\Str::limit(
-                                        "$cartable->variety | $cartable->breeder | $cartable->bloodline | $cartable->size",
-                                        64,
-                                    ) !!}</p>
-                                                                <p class="m-0"><b>Rp. {{ number_format($cart->price, 0, '.', '.') }}</b></p>
+                                                                    "$cartable->variety | $cartable->breeder | $cartable->bloodline | $cartable->size",
+                                                                    64,
+                                                                ) !!}</p>
+                                                                <p class="m-0"><b>Rp.
+                                                                        {{ number_format($cart->price, 0, '.', '.') }}</b>
+                                                                </p>
                                                             </div>
                                                         </div>
                                                         <div class="container d-flex p-0 my-3 justify-content-between">
@@ -319,53 +326,57 @@
                                                     </div>
                                                     <hr class="float-sm-end text-center mb-3" style="width: 98%;">
                                                 @endif
-                                                @if($cart->cartable_type === 'Product')
-                                                        <div class="container">
-                                                            <div class="container d-flex p-0 my-3">
-                                                                <input class="form-check-input mr-3 my-auto cart-check" type="checkbox"
-                                                                    data-price="{{ $cartPrice }}"
-                                                                    data-id="{{$cart->id_keranjang}}"
-                                                                    data-type="product"
-                                                                    value="" id="flexCheckDefault">
-                                                                <div class="card mr-3">
-                                                                    <a href="/detail_onelito_store"><img src="{{ $cartPhoto }}"
-                                                                            class="card-img-top"
-                                                                            style="height: 10vh; width: 5vw; object-fit: cover;"
-                                                                            alt="..."></a>
-                                                                </div>
-                                                                <div>
-                                                                    <p class="m-0">{!! Illuminate\Support\Str::limit("$cartable->merek_produk $cartable->nama_produk", 75) !!}</p>
-                                                                    <p class="m-0"><b>Rp. {{ number_format($cartPrice, 0, '.', '.') }}</b></p>
-                                                                </div>
+                                                @if ($cart->cartable_type === 'Product')
+                                                    <div class="container">
+                                                        <div class="container d-flex p-0 my-3">
+                                                            <input class="form-check-input mr-3 my-auto cart-check"
+                                                                type="checkbox" data-price="{{ $cartPrice }}"
+                                                                data-id="{{ $cart->id_keranjang }}"
+                                                                data-type="product" value=""
+                                                                id="flexCheckDefault">
+                                                            <div class="card mr-3">
+                                                                <a href="/detail_onelito_store"><img
+                                                                        src="{{ $cartPhoto }}"
+                                                                        class="card-img-top"
+                                                                        style="height: 10vh; width: 5vw; object-fit: cover;"
+                                                                        alt="..."></a>
                                                             </div>
-                                                            <div class="container d-flex p-0 my-3 justify-content-between">
-                                                                <!-- <p class="my-auto text-danger">Tulis Catatan</p> -->
-                                                                <p class="my-auto text-center">
-                                                                    Pindahkan ke Wishlist |
+                                                            <div>
+                                                                <p class="m-0">{!! Illuminate\Support\Str::limit("$cartable->merek_produk $cartable->nama_produk", 75) !!}</p>
+                                                                <p class="m-0"><b>Rp.
+                                                                        {{ number_format($cartPrice, 0, '.', '.') }}</b>
                                                                 </p>
-                                                                <button class="border-0" style="background-color: transparent"><i
-                                                                        class="fa-regular fa-trash-can"></i></button>
-                                                                <div class="btn-group" role="group"
-                                                                    aria-label="Basic outlined example">
-                                                                    <button type="button" id="subtract"
-                                                                        onclick="manageProduct(this)"
-                                                                        class="border-0 btn-light mr-2"
-                                                                        style="background-color:tranparent">
-                                                                        <i class="fa-sharp fa-solid fa-circle-minus text-black-50"
-                                                                            style="font-size: larger"></i>
-                                                                    </button>
-                                                                    <button type="button" id="output"
-                                                                        data-id="{{ $cart->id_keranjang }}"
-                                                                        class="btn btn-light outputproduct outputproduct-{{$cart->id_keranjang}}">{{ $cart->jumlah }}</button>
-                                                                    <button id="add" type="button"
-                                                                        onclick="manageProduct(this)"
-                                                                        class=" border-0 btn-light ml-2">
-                                                                        <i class="fa-solid fa-circle-plus text-danger"
-                                                                            style="font-size: larger"></i>
-                                                                    </button>
-                                                                </div>
                                                             </div>
                                                         </div>
+                                                        <div class="container d-flex p-0 my-3 justify-content-between">
+                                                            <!-- <p class="my-auto text-danger">Tulis Catatan</p> -->
+                                                            <p class="my-auto text-center">
+                                                                Pindahkan ke Wishlist |
+                                                            </p>
+                                                            <button class="border-0"
+                                                                style="background-color: transparent"><i
+                                                                    class="fa-regular fa-trash-can"></i></button>
+                                                            <div class="btn-group" role="group"
+                                                                aria-label="Basic outlined example">
+                                                                <button type="button" id="subtract"
+                                                                    onclick="manageProduct(this)"
+                                                                    class="border-0 btn-light mr-2"
+                                                                    style="background-color:tranparent">
+                                                                    <i class="fa-sharp fa-solid fa-circle-minus text-black-50"
+                                                                        style="font-size: larger"></i>
+                                                                </button>
+                                                                <button type="button" id="output"
+                                                                    data-id="{{ $cart->id_keranjang }}"
+                                                                    class="btn btn-light outputproduct outputproduct-{{ $cart->id_keranjang }}">{{ $cart->jumlah }}</button>
+                                                                <button id="add" type="button"
+                                                                    onclick="manageProduct(this)"
+                                                                    class=" border-0 btn-light ml-2">
+                                                                    <i class="fa-solid fa-circle-plus text-danger"
+                                                                        style="font-size: larger"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <hr class="float-sm-end text-center mb-3" style="width: 98%;">
                                                 @endif
                                             @empty
@@ -377,11 +388,12 @@
                                                     <h5 class="card-title mb-3">Ringkasan belanja</h5>
                                                     <div class="row">
                                                         <div class="col-12">
-                                                            <h6 class="card-subtitle text-muted">Total Barang (<span class="total-item">0</span> barang)
+                                                            <h6 class="card-subtitle text-muted">Total Barang (<span
+                                                                    class="total-item">0</span> barang)
                                                             </h6>
                                                         </div>
                                                         <!-- <div class="col-3"> -->
-                                                            <!-- <h6 class="card-subtitle text-muted text-end">Rp <span class="total-price">0</span></h6> -->
+                                                        <!-- <h6 class="card-subtitle text-muted text-end">Rp <span class="total-price">0</span></h6> -->
                                                         <!-- </div> -->
                                                     </div>
                                                     <hr>
@@ -391,7 +403,8 @@
                                                             <h6 class="card-subtitle">Total harga</h6>
                                                         </div>
                                                         <div class="col">
-                                                            <h6 class="card-subtitle text-muted text-end">Rp <span class="total-price">0</span></h6>
+                                                            <h6 class="card-subtitle text-muted text-end">Rp <span
+                                                                    class="total-price">0</span></h6>
                                                         </div>
                                                     </div>
                                                     <br>
@@ -406,65 +419,86 @@
                             </div>
                         </div>
 
-                        <div class="tab-pane fade {{ $request === 'wishlist' ? 'show active' : '' }}" id="v-pills-messages2" role="tabpanel"
-                            aria-labelledby="v-pills-messages-tab">
+                        <div class="tab-pane fade {{ $request === 'wishlist' ? 'show active' : '' }}"
+                            id="v-pills-messages2" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                             <div class="container mt-3 my-3">
                                 <h5><i class="fa-regular fa-heart"></i> <b>Wishlist</b></h5>
                             </div>
                             <div class="container overflow-hidden p-0">
                                 <div class="card">
                                     <div class="row m-4">
-                                        <h4>{{ count($wishlists) ?? '' }} <span>Barang</span></h4>
+                                        <h4 class="mb-1">{{ count($wishlists) ?? '' }} <span>Barang</span></h4>
                                         @forelse($wishlists as $wishlist)
                                             @php
-
+                                                
                                                 $wishlistPhoto = url('img/uniring.jpeg');
                                                 $wishlistable = $wishlist->wishlistable;
-
+                                                
                                                 if ($wishlist->wishlistable_type === 'EventFish') {
                                                     $wishlistPhoto = url('img/koi11.jpg');
                                                     $currentMaxBid = $wishlistable->ob;
-
+                                                
                                                     if ($wishlistable->maxBid !== null) {
                                                         $currentMaxBid = $wishlistable->maxBid->nominal_bid;
                                                     }
                                                 }
-
+                                                
                                                 if ($wishlist->wishlistable->photo !== null) {
                                                     $wishlistPhoto = url('storage') . '/' . $wishlist->wishlistable->photo->path_foto;
                                                 }
                                             @endphp
 
-                                            @if($wishlist->wishlistable_type === 'EventFish')
-                                            <div class="col-3 border m-1">
-                                                    <a href="{{ '/auction-bid-now/' . $wishlistable->id_ikan }}">
-                                                        <img src="{{ $wishlistPhoto }}" class="card-img-top" alt="...">
-                                                        <div class="card-body">
-                                                            <div class="cb-jud">
-                                                                <h5 class="card-title">{!! Illuminate\Support\Str::limit(
-                                                                    "$wishlistable->variety | $wishlistable->breeder | $wishlistable->size | $wishlistable->bloodline",
-                                                                    45,
-                                                                ) !!}</h5>
+                                            @if ($wishlist->wishlistable_type === 'EventFish')
+                                                <div class="col-3">
+                                                    <div class="border">
+                                                        <a href="{{ '/auction-bid-now/' . $wishlistable->id_ikan }}">
+                                                            <img src="{{ $wishlistPhoto }}" class="card-img-top"
+                                                                alt="...">
+                                                            <div class="card-body">
+                                                                <div class="cb-judul">
+                                                                    <h5 class="card-title">{!! Illuminate\Support\Str::limit(
+                                                                        "$wishlistable->variety | $wishlistable->breeder | $wishlistable->size | $wishlistable->bloodline",
+                                                                        45,
+                                                                    ) !!}</h5>
+                                                                </div>
+                                                                <p style="font-size: 10px" class="card-text ma">Harga
+                                                                    saat ini</p>
+                                                                <p style="color :red;font-size: 12px" class="m-0">
+                                                                    Rp.
+                                                                    {{ number_format($currentMaxBid, 0, '.', '.') }}
+                                                                </p>
                                                             </div>
-                                                            <p style="font-size: 10px" class="card-text ma">Harga saat ini</p>
-                                                            <p style="color :red;font-size: 12px" class="m-0">Rp.
-                                                                {{ number_format($currentMaxBid, 0, '.', '.') }}</p>
-                                                        </div>
-                                                    </a>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             @endif
-                                            @if($wishlist->wishlistable_type === 'Product')
-                                                <div class="col-3 border m-1">
-                                                    <img src="{{ $wishlistPhoto }}" alt="uniring" class="card-img-top"
-                                                        height="170">
-                                                    <p>{{ $wishlist->wishlistable->merek_produk }}
-                                                        {{ $wishlist->wishlistable->nama_produk }}</p>
-                                                    <p><b>Rp.
-                                                            {{ number_format($wishlist->wishlistable->harga, 0, '.', '.') }}</b>
-                                                    </p>
-                                                    <button class="mb-3 text-danger "
-                                                        style="background-color: transparent;font-size:small;border-color:red"><i
-                                                            class="fa-solid fa-plus"></i> <span>Keranjang</span></button>
+                                            @if ($wishlist->wishlistable_type === 'Product')
+                                                <div class="col-3">
+                                                    <div class="border">
+                                                        <img src="{{ $wishlistPhoto }}" alt="uniring"
+                                                            class="card-img-top"
+                                                            style="max-width: 200px;
+                                                    min-width: 200px;
+                                                    max-height: 170px;
+                                                    min-height: 170px;">
+                                                        <div class="px-1">
+                                                            <div class="cb-judul">
+                                                                <p>{!! Illuminate\Support\Str::limit(
+                                                                    $wishlist->wishlistable->merek_produk . ' ' . $wishlist->wishlistable->nama_produk,
+                                                                    100,
+                                                                ) !!}
+                                                                </p>
+                                                            </div>
+                                                            <p><b>Rp.
+                                                                    {{ number_format($wishlist->wishlistable->harga, 0, '.', '.') }}</b>
+                                                            </p>
+                                                            <button class="mb-3 text-danger "
+                                                                style="background-color: transparent;font-size:small;border-color:red"><i
+                                                                    class="fa-solid fa-plus"></i>
+                                                                <span>Keranjang</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             @endif
                                         @empty
@@ -474,8 +508,8 @@
                             </div>
                         </div>
 
-                        <div class="tab-pane fade {{ $request === 'purchase' ? 'show active' : '' }}" id="v-pills-settings2" role="tabpanel"
-                            aria-labelledby="v-pills-settings-tab">
+                        <div class="tab-pane fade {{ $request === 'purchase' ? 'show active' : '' }}"
+                            id="v-pills-settings2" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                             <div class="container mt-3 my-3">
                                 <h5><i class="fa-solid fa-bag-shopping"></i> <b>Purchase history</b></h5>
                             </div>
@@ -609,6 +643,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
         function manageProduct(e) {
             var elem = $(e);
             var idElem = elem.attr('id');
@@ -623,8 +658,7 @@
             substract(output);
         }
 
-        function substract(output)
-        {
+        function substract(output) {
             let result = Number(output.innerText) - 1;
             var id = output.getAttribute('data-id')
             var boxes = document.getElementsByTagName("input");
@@ -637,7 +671,7 @@
 
             $.ajax({
                 type: 'PATCH',
-                url: `/carts/`+id,
+                url: `/carts/` + id,
                 data: {
                     jumlah: Number(result),
                 },
@@ -654,8 +688,7 @@
             })
         }
 
-        function add(output)
-        {
+        function add(output) {
             var boxes = document.getElementsByTagName("input");
             var totalPrice = 0;
             var items = 0;
@@ -664,7 +697,7 @@
             var id = output.getAttribute('data-id')
             $.ajax({
                 type: 'PATCH',
-                url: `/carts/`+id,
+                url: `/carts/` + id,
                 data: {
                     jumlah: Number(result),
                 },
@@ -680,17 +713,17 @@
                 }
             })
         }
-        $("body").on("click",".cart-check", function (o) {
+        $("body").on("click", ".cart-check", function(o) {
             console.log('clicked');
             checkProduct()
         });
 
-        $("body").on("click",".cart-check-all", function (o) {
+        $("body").on("click", ".cart-check-all", function(o) {
             var boxes = document.getElementsByTagName("input");
             var totalPrice = 0;
             var items = 0;
             var transaction = $('.transaction')
-            var transClasses =  transaction.attr('class').split(' ');
+            var transClasses = transaction.attr('class').split(' ');
 
 
             for (var x = 0; x < boxes.length; x++) {
@@ -700,7 +733,7 @@
                     if (obj.name != "check")
                         obj.checked = o.target.checked;
 
-                    if (obj.checked){
+                    if (obj.checked) {
                         var price = Number(obj.getAttribute('data-price'));
                         var id = Number(obj.getAttribute('data-id'));
                         var type = obj.getAttribute('data-type');
@@ -710,7 +743,7 @@
                         }
 
                         if (type === 'product') {
-                            var output = $('.outputproduct-'+id)[0].innerText
+                            var output = $('.outputproduct-' + id)[0].innerText
                             items += Number(output)
                             price = price * Number(output)
                         }
@@ -731,15 +764,13 @@
             elemTotalPrice[0].innerText = totalPrice
 
 
-            if (transClasses.includes('btn-secondary') === true)
-            {
+            if (transClasses.includes('btn-secondary') === true) {
                 transaction.attr('href', '/transaksiweb')
                 transaction.removeClass('btn-secondary');
                 transaction.addClass('btn-danger');
             }
 
-            if (transClasses.includes('btn-danger') === true)
-            {
+            if (transClasses.includes('btn-danger') === true) {
                 transaction.attr('href', '#')
                 transaction.removeClass('btn-danger');
                 transaction.addClass('btn-secondary');
@@ -747,8 +778,7 @@
 
         });
 
-        function checkProduct()
-        {
+        function checkProduct() {
             var boxes = document.getElementsByTagName("input");
             var totalPrice = 0;
             var items = 0;
@@ -758,24 +788,24 @@
                 var obj = boxes[x];
 
                 if (obj.type == "checkbox") {
-                        if (obj.checked){
-                            var price = Number(obj.getAttribute('data-price'));
-                            var id = Number(obj.getAttribute('data-id'));
-                            var type = obj.getAttribute('data-type');
+                    if (obj.checked) {
+                        var price = Number(obj.getAttribute('data-price'));
+                        var id = Number(obj.getAttribute('data-id'));
+                        var type = obj.getAttribute('data-type');
 
-                            if (type === 'eventfish') {
-                                items += 1
-                            }
-
-                            if (type === 'product') {
-                                var outputNumber = $('.outputproduct-'+id)[0].innerText
-                                items += Number(outputNumber)
-                                price = price * Number(outputNumber)
-                            }
-
-                            totalPrice += price;
+                        if (type === 'eventfish') {
+                            items += 1
                         }
+
+                        if (type === 'product') {
+                            var outputNumber = $('.outputproduct-' + id)[0].innerText
+                            items += Number(outputNumber)
+                            price = price * Number(outputNumber)
+                        }
+
+                        totalPrice += price;
                     }
+                }
             }
 
             var elemTotalItem = $('.total-item')
@@ -788,15 +818,13 @@
 
             elemTotalPrice[0].innerText = totalPrice
 
-            if (items > 0)
-            {
+            if (items > 0) {
                 transaction.attr('href', '/transaksiweb')
                 transaction.removeClass('btn-secondary');
                 transaction.addClass('btn-danger');
             }
 
-            if (items === 0)
-            {
+            if (items === 0) {
                 transaction.attr('href', '#')
                 transaction.removeClass('btn-danger');
                 transaction.addClass('btn-secondary');
@@ -805,9 +833,9 @@
 
         function thousandSeparator(x) {
             // return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
-            var	reverse = x.toString().split('').reverse().join(''),
-            ribuan 	= reverse.match(/\d{1,3}/g);
-            ribuan	= ribuan.join('.').split('').reverse().join('');
+            var reverse = x.toString().split('').reverse().join(''),
+                ribuan = reverse.match(/\d{1,3}/g);
+            ribuan = ribuan.join('.').split('').reverse().join('');
 
             return ribuan
         }
