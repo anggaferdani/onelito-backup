@@ -204,7 +204,7 @@
                         @endauth
                     </div>
 
-                    <div class="row m-1">
+                    <div class="row m-1 d-none">
                         <div class="col-md-4 no-gutters">
                         </div>
                         @auth('member')
