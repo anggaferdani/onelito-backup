@@ -449,7 +449,7 @@
                                             @endphp
 
                                             @if ($wishlist->wishlistable_type === 'EventFish')
-                                                <div class="col-3">
+                                                <div class="col-3 mb-2">
                                                     <div class="border">
                                                         <a href="{{ '/auction-bid-now/' . $wishlistable->id_ikan }}">
                                                             <img src="{{ $wishlistPhoto }}" class="card-img-top"
@@ -473,7 +473,7 @@
                                                 </div>
                                             @endif
                                             @if ($wishlist->wishlistable_type === 'Product')
-                                                <div class="col-3">
+                                                <div class="col-3 mb-2">
                                                     <div class="border">
                                                         <img src="{{ $wishlistPhoto }}" alt="uniring"
                                                             class="card-img-top"
