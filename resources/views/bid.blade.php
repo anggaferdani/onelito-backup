@@ -200,6 +200,8 @@
                                             class="btn btn-danger mb-3 w-100 justify-content-between">CANCEL AUTO BID</button>
                                     </div>
                                 </form>
+                                <div class="alert alert-danger bid alert-dismissible fade mb-0 mt-3" role="alert">
+                                </div>
                             </div>
                         @endauth
                     </div>
@@ -222,9 +224,6 @@
                                         </button>
                                     </div>
                                 </form>
-
-                                <div class="alert alert-danger bid alert-dismissible fade mb-0 mt-1" role="alert">
-                                </div>
                             </div>
                         @endauth
                     </div>
