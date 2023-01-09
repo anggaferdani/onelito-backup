@@ -7,6 +7,7 @@ use App\Models\AuctionWinner;
 use App\Models\Cart;
 use App\Models\Event;
 use App\Models\EventFish;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
@@ -15,6 +16,52 @@ class AuctionWinnerController extends Controller
 {
     public function index()
     {
+        Carbon::setLocale('id');
+        $now = Carbon::now();
+        $nowAkhir = Carbon::now()->subDay()->endOfDay();
+
+        $auctionProducts = EventFish::
+        doesntHave('winners')
+        ->with(['bids.member', 'maxBid'])
+        ->where('status_aktif', 1)->get()
+        ->mapWithKeys(fn($a) => [$a->id_ikan => $a]);
+
+        // $currentAuctionsFinised = Event::with(['auctionProducts'=> function ($q) {
+        //     $q->with(['maxBid']);
+        // }])
+        // ->where('tgl_mulai', '<=', $now)
+        // ->whereIn('id_bidding', $auctionProducts->pluck('bids.id_bidding'))
+        // ->where('tgl_akhir', '<=', $nowAkhir)
+        // ->where('status_aktif', 1)
+        // ->get();
+
+        // $currentProductsFinised = $auctionProducts->pluck('auctionProducts')
+        // ->flatten(1);
+
+
+        $fishInWinner = AuctionWinner::whereIn('id_bidding', $auctionProducts->pluck('maxBid.id_bidding'))
+            ->get()
+            ->mapWithKeys(fn($q)=>[$q->id_bidding => $q]);
+
+        foreach ($auctionProducts as $cProduct) {
+            if ($cProduct->maxBid === null) {
+                continue;
+            }
+
+            $dateDiff = Carbon::parse($now, 'id')->diffInMinutes($cProduct->maxBid->updated_at);
+
+            if ($dateDiff < $cProduct->extra_time || array_key_exists($cProduct->maxBid->id_bidding, $fishInWinner->toArray())) {
+                continue;
+            }
+
+            $data['id_bidding'] = $cProduct->maxBid->id_bidding;
+            $data['create_by'] = Auth::guard('admin')->id();
+            $data['update_by'] = Auth::guard('admin')->id();
+            $data['status_aktif'] = 1;
+
+            AuctionWinner::create($data);
+        }
+
         if ($this->request->ajax()) {
             $winners = AuctionWinner::query()
                 ->with(['bidding.member.city', 'bidding.eventFish'])
@@ -28,16 +75,10 @@ class AuctionWinnerController extends Controller
 
                 return "Rp.$number";
             })
-            ->addColumn('action','admin.pages.auction-winner.dt-action')
-            ->rawColumns(['action'])
+            // ->addColumn('action','admin.pages.auction-winner.dt-action')
+            // ->rawColumns(['action'])
             ->make(true);
         }
-
-        $auctionProducts = EventFish::
-        doesntHave('winners')
-        ->with('bids.member')
-        ->where('status_aktif', 1)->get()
-        ->mapWithKeys(fn($a) => [$a->id_ikan => $a]);
 
         return view('admin.pages.auction-winner.index')->with([
             'type_menu' => 'manage-auction-winner',

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Cart;
 use App\Models\EventFish;
+use App\Models\OrderDetail;
 use App\Models\Product;
 use App\Models\Wishlist;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -45,6 +46,9 @@ class AppServiceProvider extends ServiceProvider
 
             Cart::Product => Product::class,
             Cart::EventFish => EventFish::class,
+
+            OrderDetail::Product => Product::class,
+            OrderDetail::EventFish => EventFish::class,
         ]);
     }
 }

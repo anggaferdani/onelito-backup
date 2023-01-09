@@ -6,7 +6,7 @@
     </div>
     <div class="container">
         <div class="container border-top border-bottom py-3">
-            <input class="form-check-input" style="font-size:large" type="checkbox" value="" id="Pilih Semua">
+            <input class="form-check-input my-auto cart-check-mobile-all checkbox-mobile" style="font-size:large" type="checkbox" value="" id="Pilih Semua">
             <label class="form-check-label" for="Pilih Semua">
                 Pilih Semua
             </label>
@@ -14,6 +14,7 @@
 
         @forelse($carts as $cart)
             @php
+
                 $cartPhoto = url('img/uniring.jpeg');
                 $cartable = $cart->cartable;
 
@@ -26,13 +27,18 @@
                 }
 
                 if ($cart->cartable_type === 'Product') {
-                    $cartPrice = $cartable->harga * $cart->jumlah;
+                    $cartPrice = $cartable->harga;
                 }
             @endphp
             @if($cart->cartable_type === 'EventFish')
                 <div class="container">
                     <div class="container d-flex p-0 my-3">
-                        <input class="form-check-input mr-3 my-auto" type="checkbox" value="" id="flexCheckDefault">
+                        <input class="form-check-input mr-3 my-auto cart-check-mobile checkbox-mobile" type="checkbox" value=""
+                        data-price="{{ $cart->price }}"
+                        data-id="{{ $cart->id_keranjang }}"
+                        data-cartableid="{{ $cart->cartable_id }}"
+                        data-type="eventfish" value=""
+                        id="flexCheckDefault">
                         <div class="card mr-3">
                             <a href="/detail_onelito_store"><img src="{{ $cartPhoto }}" class="card-img-top"
                                     style="height: 10vh; width: 25vw; object-fit: cover;" alt="..."></a>
@@ -46,7 +52,7 @@
                         </div>
                     </div>
                     <div class="container d-flex p-0 my-3 justify-content-between">
-                        <p class="my-auto text-danger">Tulis Catatan</p>
+                        <!-- <p class="my-auto text-danger">Tulis Catatan</p> -->
                     </div>
                 </div>
                 <hr>
@@ -54,7 +60,12 @@
             @if($cart->cartable_type === 'Product')
                 <div class="container">
                     <div class="container d-flex p-0 my-3">
-                        <input class="form-check-input mr-3 my-auto" type="checkbox" value="" id="flexCheckDefault">
+                        <input class="form-check-input mr-3 my-auto cart-check-mobile checkbox-mobile" type="checkbox" value=""
+                        data-price="{{ $cartPrice }}"
+                        data-id="{{ $cart->id_keranjang }}"
+                        data-cartableid="{{ $cart->cartable_id }}"
+                        data-type="product"
+                        id="flexCheckDefault">
                         <div class="card mr-3">
                             <a href="/detail_onelito_store"><img src="{{ $cartPhoto }}" class="card-img-top"
                                     style="height: 10vh; width: 25vw; object-fit: cover;" alt="..."></a>
@@ -89,35 +100,10 @@
         <div class="container border-top fixed-bottom d-flex p-3 justify-content-between bg-white">
             <div class="my-auto">
                 <h5 class="">Total Harga</h5>
-                <h5 class="font-bold pricetotal">Rp. 0</h5>
+                <h5 class="font-bold pricetotal">Rp. <span class="total-price">0</span></h5>
             </div>
-            <a class="btn btn-secondary w-25" href="/transaksi" role="button">Pesan
+            <a class="transaction btn btn-secondary w-25" href="#" role="button">Pesan
                 Sekarang</a>
         </div>
     </div>
-
-
-    <script>
-        let add = document.querySelector("#add");
-
-        add.addEventListener("click", function() {
-            let output = document.querySelector("#output");
-            let result = Number(output.innerText) + 1;
-
-            output.innerText = result;
-        });
-
-        let kurang = document.querySelector("#subtract");
-
-        kurang.addEventListener("click", function() {
-            let output = document.querySelector("#output");
-            let result = Number(output.innerText) - 1;
-
-            if (result < 0) {
-                result = 0
-            }
-
-            output.innerText = result;
-        });
-    </script>
 @endsection

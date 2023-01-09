@@ -19,7 +19,7 @@ title="Edit">
 </button>
 
 
-<button class="btn btn-sm btn-danger mb-2"
+<!-- <button class="btn btn-sm btn-danger mb-2"
     id="btn-delete"
     data-url="{{ url('admin/orders/'. $model->id_order) }}"
     data-id="{{ $model->id_order }}"
@@ -28,7 +28,7 @@ title="Edit">
     title="Hapus Data Pembelian">
 
     <i class="fa fa-trash"></i>
-</button>
+</button> -->
 
 <script>
 $(function () {

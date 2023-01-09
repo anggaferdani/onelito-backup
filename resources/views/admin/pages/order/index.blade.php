@@ -137,9 +137,7 @@
                                 <tbody>
                                     <tr>
                                         <th data-width="40">#</th>
-                                        <th class="">Ketegori</th>
-                                        <th>Merek</th>
-                                        <th class="">Nama</th>
+                                        <th class="">Item</th>
                                         <th class="">Harga</th>
                                         <th class="">Jumlah</th>
                                         <th class="">Total</th>
@@ -147,15 +145,25 @@
                     let no = 1;
                     res.details.forEach(detail => {
                         sumTotal += detail.total;
-                        detailTable += `<tr>
+                        if (detail.productable_type === 'EventFish') {
+                            detailTable += `<tr>
                                         <th data-width="40">${no}</th>
-                                        <th class="">${detail.product.category.kategori_produk}</th>
-                                        <th>${detail.product.merek_produk}</th>
-                                        <th class="">${detail.product.nama_produk}</th>
-                                        <th class="">${detail.product.harga}</th>
+                                        <th class="">Ikan Lelang No. ${detail.productable.no_ikan}</th>
+                                        <th class="">Rp. ${detail.total}</th>
                                         <th class="">${detail.jumlah_produk}</th>
                                         <th class="">Rp. ${detail.total}</th>
                                     </tr>`
+                        }
+
+                        if (detail.productable_type === 'Product') {
+                            detailTable += `<tr>
+                                        <th data-width="40">${no}</th>
+                                        <th class="">${detail.productable.merek_produk} ${detail.productable.nama_produk} </th>
+                                        <th class="">${detail.productable.harga}</th>
+                                        <th class="">${detail.jumlah_produk}</th>
+                                        <th class="">Rp. ${detail.total}</th>
+                                    </tr>`
+                        }
                         no++;
                     });
 

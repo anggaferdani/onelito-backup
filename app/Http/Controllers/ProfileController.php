@@ -49,7 +49,14 @@ class ProfileController extends Controller
 
         $wishlists = $products->merge($wishEventFish);
 
-        $currentAuctionsFinised = $currentAuctions->where('tgl_akhir', '<=', $now);
+        $currentAuctionsFinised = Event::with(['auctionProducts'=> function ($q) {
+            $q->with(['maxBid']);
+        }])
+        ->where('tgl_mulai', '<=', $now)
+        ->where('tgl_akhir', '<=', $nowAkhir)
+        ->where('status_aktif', 1)
+        ->get();
+
         $currentProductsFinised = $currentAuctionsFinised->pluck('auctionProducts')
         ->flatten(1);
 
@@ -89,7 +96,9 @@ class ProfileController extends Controller
                 Product::class => ['photo'],
                 EventFish::class => ['photo'],
             ]);
-        }])->get();
+        }])
+        ->where('status_aktif', 1)
+        ->get();
 
         $cartFishes = $carts->where('cartable_type', Cart::EventFish);
 
@@ -118,16 +127,19 @@ class ProfileController extends Controller
     {
         $auth = Auth::guard('member')->user();
 
+        Carbon::setLocale('id');
         $now = Carbon::now();
         $nowAkhir = Carbon::now()->subDay()->endOfDay();
 
-        $currentAuctions = Event::with(['auctionProducts'])
-            ->where('tgl_mulai', '<=', $now)
-            ->where('tgl_akhir', '>=', $nowAkhir)
-            ->where('status_aktif', 1)
-            ->orderBy('tgl_mulai')
-            ->orderBy('created_at', 'desc')
-            ->get();
+        $currentAuctions = Event::with(['auctionProducts'=> function ($q) {
+            $q->with(['maxBid']);
+        }])
+        ->where('tgl_mulai', '<=', $now)
+        ->where('tgl_akhir', '>=', $nowAkhir)
+        ->where('status_aktif', 1)
+        ->orderBy('tgl_mulai')
+        ->orderBy('created_at', 'desc')
+        ->get();
 
         $currentProducts = $currentAuctions->pluck('auctionProducts')
         ->flatten(1);
@@ -146,13 +158,56 @@ class ProfileController extends Controller
 
         $wishlists = $products->merge($wishEventFish);
 
+        $currentAuctionsFinised = Event::with(['auctionProducts'=> function ($q) {
+            $q->with(['maxBid']);
+        }])
+        ->where('tgl_mulai', '<=', $now)
+        ->where('tgl_akhir', '<=', $nowAkhir)
+        ->where('status_aktif', 1)
+        ->get();
+
+        $currentProductsFinised = $currentAuctionsFinised->pluck('auctionProducts')
+        ->flatten(1);
+
+        $fishInCart = Cart::whereIn('cartable_id', $currentProductsFinised->pluck('id_ikan'))
+            ->where('cartable_type', Cart::EventFish)
+            ->get()
+            ->mapWithKeys(fn($q)=>[$q->cartable_id => $q]);
+
+        foreach ($currentProductsFinised as $cProduct) {
+            if ($cProduct->maxBid === null) {
+                continue;
+            }
+
+            if ($cProduct->maxBid->id_peserta !== $auth->id_peserta) {
+                continue;
+            }
+
+            $dateDiff = Carbon::parse($now, 'id')->diffInMinutes($cProduct->maxBid->updated_at);
+
+            if ($dateDiff < $cProduct->extra_time || array_key_exists($cProduct->id_ikan, $fishInCart->toArray())) {
+                continue;
+            }
+
+            $dataCart['status_aktif'] = 1;
+
+            $dataCart['id_peserta'] = $auth->id_peserta;
+            $dataCart['cartable_id'] = $cProduct->id_ikan;
+            $dataCart['jumlah'] = 1;
+            $dataCart['cartable_type'] = Cart::EventFish;
+
+            Cart::create($dataCart);
+        }
+
         $carts = $auth->carts()
         ->with(['cartable' => function (MorphTo $morphTo) {
             $morphTo->morphWith([
                 Product::class => ['photo'],
                 EventFish::class => ['photo'],
             ]);
-        }])->get();
+        }])
+        ->where('status_aktif', 1)
+        ->get();
 
         $cartFishes = $carts->where('cartable_type', Cart::EventFish);
 

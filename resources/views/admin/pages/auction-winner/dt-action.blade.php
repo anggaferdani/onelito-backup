@@ -19,7 +19,7 @@ title="Edit">
 </button> -->
 
 
-<button class="btn btn-sm btn-danger mb-2"
+<!-- <button class="btn btn-sm btn-danger mb-2"
     id="btn-delete"
     data-url="{{ url('admin/auction-winners/'. $model->id_pemenang_lelang) }}"
     data-id="{{ $model->id_pemenang_lelang }}"
@@ -28,7 +28,7 @@ title="Edit">
     title="Hapus Pemenang Lelang">
 
     <i class="fa fa-trash"></i>
-</button>
+</button> -->
 
 <script>
 $(function () {

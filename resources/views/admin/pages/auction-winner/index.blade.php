@@ -36,10 +36,10 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                            <button class="btn btn-primary mb-3"
+                            <!-- <button class="btn btn-primary mb-3"
                             data-toggle="modal"
                             data-target="#modalCreate"
-                            ><i class="fa fa-plus"></i> Tambah Pemenang Lelang</button>
+                            ><i class="fa fa-plus"></i> Tambah Pemenang Lelang</button> -->
 
                                 <div class="table-responsive">
                                     <table class="table-striped table"
@@ -54,7 +54,7 @@
                                                 <th>Alamat</th>
                                                 <th>Tinggal</th>
                                                 <th>Nominal Bid</th>
-                                                <th>Action</th>
+                                                <!-- <th>Action</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -129,7 +129,7 @@
                     { data : 'bidding.member.alamat'},
                     { data : 'bidding.member.city.city_name', defaultContent: ''},
                     { data : 'bidding.nominal_bid'},
-                    { data : 'action' , orderable : false,searchable :false},
+                    // { data : 'action' , orderable : false,searchable :false},
                 ]
             });
 

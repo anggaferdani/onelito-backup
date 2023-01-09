@@ -70,6 +70,7 @@ Route::get('/auction/{idIkan}/detail', [AuctionController::class, 'detail'])->na
 // MEMBER
 Route::group(['middleware' => 'auth:member'], function () {
     Route::resource('/carts', CartController::class);
+    Route::POST('/carts-order', [CartController::class, 'order']);
     Route::get('/auction-bid-now/{idIkan}', [AuctionController::class, 'bidNow'])->name('auction.bid_now');
     Route::get('/profil', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/shoppingcart', [ProfileController::class, 'shopcart'])->name('profile.shopcart');

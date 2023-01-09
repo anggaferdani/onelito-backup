@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Order;
+use App\Models\OrderDetail;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
@@ -67,6 +70,43 @@ class CartController extends Controller
         $cart->status_aktif = 0;
 
         $cart->save();
+
+        return response()->json([
+            'success' => true,
+        ],200);
+    }
+
+    public function order()
+    {
+        $auth = Auth::guard('member')->user();
+        $data = $this->request->all();
+        $now = Carbon::now();
+
+        $dataOrder['no_order'] = $now->format('Ymd');
+        $dataOrder['tanggal'] = $now;
+        $dataOrder['status'] = 'Menunggu Dikirim';
+        $dataOrder['total'] = $data['total'];
+        $dataOrder['status_aktif'] = 1;
+
+        $order = Order::create($dataOrder);
+        $order->no_order = $order->no_order.$order->id_order;
+        $order->save();
+
+        Cart::whereIn('id_keranjang', collect($data['data_order'])->pluck('id_keranjang'))->update([
+            'status_aktif' => 0,
+        ]);
+
+        foreach ($data['data_order'] as $dOrder) {
+            OrderDetail::create([
+                'status_aktif' => 1,
+                'total' => $dOrder['price'],
+                'id_order' => $order->id_order,
+                'id_peserta' => $auth->id_peserta,
+                'jumlah_produk' => $dOrder['total_produk'],
+                'productable_id' => $dOrder['id'],
+                'productable_type' => $dOrder['type'],
+            ]);
+        }
 
         return response()->json([
             'success' => true,

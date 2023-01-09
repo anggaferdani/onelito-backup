@@ -14,6 +14,9 @@ class OrderDetail extends Model
     protected $table = 't_order_detail';
     protected $primaryKey = 'id_order_detail';
 
+    public const EventFish = 'EventFish';
+    public const Product = 'Product';
+
     public function member()
     {
         return $this->belongsTo(Member::class, 'id_peserta');
@@ -28,5 +31,14 @@ class OrderDetail extends Model
     {
         return $this->belongsTo(Order::class, 'id_order');
 
+    }
+
+    public function productable()
+    {
+        return $this->morphTo('productable', 'productable_type', 'productable_id')
+        ->morphWith([
+            Product::class => ['photo', 'category'],
+            EventFish::class => ['photo'],
+        ]);
     }
 }

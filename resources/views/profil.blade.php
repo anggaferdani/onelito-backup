@@ -61,6 +61,18 @@
         .cb-judul {
             height: 3.5rem;
         }
+
+        .swal2-cancel {
+            margin-right: 10px;
+        }
+
+        .swal2-cancel {
+            background-color: #dc3545;
+        }
+
+        .swal2-confirm {
+            background-color: #198754;
+        }
     </style>
 </head>
 
@@ -280,18 +292,18 @@
                                             <hr class="float-sm-end text-center" style="width: 98%;">
                                             @forelse($carts as $cart)
                                                 @php
-                                                    
+
                                                     $cartPhoto = url('img/uniring.jpeg');
                                                     $cartable = $cart->cartable;
-                                                    
+
                                                     if ($cart->cartable_type === 'EventFish') {
                                                         $cartPhoto = url('img/koi11.jpg');
                                                     }
-                                                    
+
                                                     if ($cart->cartable->photo !== null) {
                                                         $cartPhoto = url('storage') . '/' . $cart->cartable->photo->path_foto;
                                                     }
-                                                    
+
                                                     if ($cart->cartable_type === 'Product') {
                                                         $cartPrice = $cartable->harga;
                                                     }
@@ -302,6 +314,8 @@
                                                         <div class="container d-flex p-0 my-3">
                                                             <input class="form-check-input mr-3 my-auto cart-check"
                                                                 type="checkbox" data-price="{{ $cart->price }}"
+                                                                data-id="{{ $cart->id_keranjang }}"
+                                                                data-cartableid="{{ $cart->cartable_id }}"
                                                                 data-type="eventfish" value=""
                                                                 id="flexCheckDefault">
                                                             <div class="card mr-3">
@@ -330,9 +344,12 @@
                                                     <div class="container">
                                                         <div class="container d-flex p-0 my-3">
                                                             <input class="form-check-input mr-3 my-auto cart-check"
-                                                                type="checkbox" data-price="{{ $cartPrice }}"
+                                                                type="checkbox"
+                                                                data-price="{{ $cartPrice }}"
                                                                 data-id="{{ $cart->id_keranjang }}"
-                                                                data-type="product" value=""
+                                                                data-cartableid="{{ $cart->cartable_id }}"
+                                                                data-type="product"
+                                                                value=""
                                                                 id="flexCheckDefault">
                                                             <div class="card mr-3">
                                                                 <a href="/detail_onelito_store"><img
@@ -408,7 +425,7 @@
                                                         </div>
                                                     </div>
                                                     <br>
-                                                    <a class="transaction btn btn-secondary w-100 justify-content-between "
+                                                    <a onclick="" class="transaction btn btn-secondary w-100 justify-content-between "
                                                         href="#">Pesan
                                                         Sekarang (<span class="total-item">0</span>)</a>
                                                 </div>
@@ -430,19 +447,19 @@
                                         <h4 class="mb-1">{{ count($wishlists) ?? '' }} <span>Barang</span></h4>
                                         @forelse($wishlists as $wishlist)
                                             @php
-                                                
+
                                                 $wishlistPhoto = url('img/uniring.jpeg');
                                                 $wishlistable = $wishlist->wishlistable;
-                                                
+
                                                 if ($wishlist->wishlistable_type === 'EventFish') {
                                                     $wishlistPhoto = url('img/koi11.jpg');
                                                     $currentMaxBid = $wishlistable->ob;
-                                                
+
                                                     if ($wishlistable->maxBid !== null) {
                                                         $currentMaxBid = $wishlistable->maxBid->nominal_bid;
                                                     }
                                                 }
-                                                
+
                                                 if ($wishlist->wishlistable->photo !== null) {
                                                     $wishlistPhoto = url('storage') . '/' . $wishlist->wishlistable->photo->path_foto;
                                                 }
@@ -636,6 +653,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <script src="{{ asset('library/jquery/dist/jquery.min.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         $.ajaxSetup({
@@ -643,6 +661,126 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+
+        function orderNow() {
+            var nominal = $('.total-price')[0].innerText
+
+            swalWithBootstrapButtons.fire({
+                title: 'apa anda yakin?',
+                text: `Total harga Rp. ${nominal}`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    orderNowProcess();
+
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Batal',
+                        'Pesanan dibatalkan',
+                        'error'
+                    )
+                }
+            })
+        }
+
+        function orderNowProcess()
+        {
+            var boxes = document.getElementsByTagName("input");
+            var totalPrice = 0;
+            var items = 0;
+            var transaction = $('.transaction')
+            var dataOrder = []
+
+            for (var x = 0; x < boxes.length; x++) {
+                var obj = boxes[x]
+                var orderItem = {}
+
+                if (obj.type == "checkbox") {
+                    if (obj.checked) {
+                        var price = Number(obj.getAttribute('data-price'));
+                        var id = Number(obj.getAttribute('data-id'));
+                        var type = obj.getAttribute('data-type');
+
+                        orderItem.id = Number(obj.getAttribute('data-cartableid'));
+                        orderItem.id_keranjang = id;
+                        orderItem.price = price;
+
+
+                        if (type === 'eventfish') {
+                            items += 1
+                            orderItem.type = 'EventFish';
+                            orderItem.total_produk = 1;
+                        }
+
+                        if (type === 'product') {
+                            var outputNumber = $('.outputproduct-' + id)[0].innerText
+                            items += Number(outputNumber)
+                            price = price * Number(outputNumber)
+                            orderItem.price = price * Number(outputNumber)
+                            orderItem.type = 'Product';
+                            orderItem.total_produk = Number(outputNumber);
+                        }
+
+                        totalPrice += price;
+
+                        if (x !== 0) {
+                            dataOrder.push(orderItem);
+                        }
+                    }
+                }
+            }
+
+
+            $.ajax({
+                type: 'POST',
+                url: `/carts-order`,
+                data: {
+                    data_order: dataOrder,
+                    total: totalPrice,
+                    item: items,
+                },
+                dataType: "json",
+                success: function(res) {
+                    swalWithBootstrapButtons.fire({
+                        title: 'Pesanan',
+                        text: `Pesanan akan segera diproses oleh admin`,
+                        icon: 'success',
+                        showCancelButton: false,
+                        confirmButtonText: 'Ya',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        } else if (
+                            /* Read more about handling dismissals below */
+                            result.dismiss === Swal.DismissReason.cancel
+                        ) {
+
+                        }
+                    })
+
+                },
+                error: function(error) {
+                    // console.log(error)
+                    return false
+                }
+            })
+        }
 
         function manageProduct(e) {
             var elem = $(e);
@@ -714,7 +852,6 @@
             })
         }
         $("body").on("click", ".cart-check", function(o) {
-            console.log('clicked');
             checkProduct()
         });
 
@@ -764,14 +901,78 @@
             elemTotalPrice[0].innerText = totalPrice
 
 
-            if (transClasses.includes('btn-secondary') === true) {
-                transaction.attr('href', '/transaksiweb')
+            if (items > 0) {
+                transaction.attr('onclick', 'orderNow()')
                 transaction.removeClass('btn-secondary');
                 transaction.addClass('btn-danger');
             }
 
-            if (transClasses.includes('btn-danger') === true) {
-                transaction.attr('href', '#')
+            if (items === 0) {
+                transaction.attr('onclick', '')
+                transaction.removeClass('btn-danger');
+                transaction.addClass('btn-secondary');
+            }
+
+        });
+
+        $("body").on("click", ".cart-check-mobile", function(o) {
+            checkProduct()
+        });
+
+        $("body").on("click", ".cart-check-mobile-all", function(o) {
+            var boxes = document.getElementsByClassName("checkbox-mobile");
+            var totalPrice = 0;
+            var items = 0;
+            var transaction = $('.transaction')
+            var transClasses = transaction.attr('class').split(' ');
+
+
+            for (var x = 0; x < boxes.length; x++) {
+                var obj = boxes[x];
+
+                if (obj.type == "checkbox") {
+                    if (obj.name != "check")
+                        obj.checked = o.target.checked;
+
+                    if (obj.checked) {
+                        var price = Number(obj.getAttribute('data-price'));
+                        var id = Number(obj.getAttribute('data-id'));
+                        var type = obj.getAttribute('data-type');
+
+                        if (type === 'eventfish') {
+                            items += 1
+                        }
+
+                        if (type === 'product') {
+                            var output = $('.outputproduct-' + id)[0].innerText
+                            items += Number(output)
+                            price = price * Number(output)
+                        }
+
+                        totalPrice += price;
+                    }
+                }
+            }
+
+            var elemTotalItem = $('.total-item')
+            var elemTotalPrice = $('.total-price')
+
+            elemTotalItem[0].innerText = items
+            elemTotalItem[1].innerText = items
+
+            totalPrice = thousandSeparator(totalPrice);
+
+            elemTotalPrice[0].innerText = totalPrice
+
+
+            if (items > 0) {
+                transaction.attr('onclick', 'orderNow()')
+                transaction.removeClass('btn-secondary');
+                transaction.addClass('btn-danger');
+            }
+
+            if (items === 0) {
+                transaction.attr('onclick', '')
                 transaction.removeClass('btn-danger');
                 transaction.addClass('btn-secondary');
             }
@@ -819,13 +1020,13 @@
             elemTotalPrice[0].innerText = totalPrice
 
             if (items > 0) {
-                transaction.attr('href', '/transaksiweb')
+                transaction.attr('onclick', 'orderNow()')
                 transaction.removeClass('btn-secondary');
                 transaction.addClass('btn-danger');
             }
 
             if (items === 0) {
-                transaction.attr('href', '#')
+                transaction.attr('onclick', '#')
                 transaction.removeClass('btn-danger');
                 transaction.addClass('btn-secondary');
             }

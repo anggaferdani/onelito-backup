@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
@@ -15,7 +16,7 @@ class OrderController extends Controller
         if ($this->request->ajax()) {
             $orders = Order::query()
                 ->select('t_order.*')
-                ->with(['details', 'latestDetail.member'])
+                ->with(['details.productable', 'latestDetail.member', 'latestDetail.productable'])
                 ->where('t_order.status_aktif', 1)
                 ->orderBy('t_order.created_at', 'desc');
 
@@ -32,7 +33,10 @@ class OrderController extends Controller
 
     public function show($id)
     {
-        $order = Order::with(['details.product.category', 'latestDetail.member'])->findOrFail($id);
+        $order = Order::with([
+        'details.productable',
+        'latestDetail.member'
+        ])->findOrFail($id);
 
         if($order){
             return response()->json($order);

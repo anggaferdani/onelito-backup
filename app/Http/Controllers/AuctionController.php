@@ -44,6 +44,8 @@ class AuctionController extends Controller
         $currentProducts = $currentAuctions->pluck('auctionProducts')
         ->flatten(1);
 
+        $currentAuction = null;
+
         if (count($currentProducts) > 0) {
             foreach ($currentProducts as $product) {
                 $product->tgl_akhir_extra_time = Carbon::createFromDate($product->event->tgl_akhir)
@@ -64,7 +66,7 @@ class AuctionController extends Controller
 
         return view('auction',[
             'auth' => $auth,
-            'currentAuction' => $currentAuction,
+            'currentAuction' => $currentAuction ,
             'auctionProducts' => $currentProducts,
             'now' => $now,
             'title' => 'auction'
