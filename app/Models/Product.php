@@ -26,7 +26,7 @@ class Product extends Model
 
     public function orderDetails()
     {
-        return $this->hasMany(OrderDetail::class, 'id_produk')
+        return $this->hasMany(OrderDetail::class, 'productable_id')
             ->whereHas('order', fn($q) => $q->where('status_aktif', 1));
     }
 
