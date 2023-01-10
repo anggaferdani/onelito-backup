@@ -49,23 +49,33 @@ class ProfileController extends Controller
 
         $wishlists = $products->merge($wishEventFish);
 
-        $currentAuctionsFinised = Event::with(['auctionProducts'=> function ($q) {
-            $q->with(['maxBid']);
-        }])
-        ->where('tgl_mulai', '<=', $now)
-        ->where('tgl_akhir', '<=', $nowAkhir)
-        ->where('status_aktif', 1)
-        ->get();
+        // $currentAuctionsFinised = Event::with(['auctionProducts'=> function ($q) {
+        //     $q->with(['maxBid']);
+        // }])
+        // ->where('tgl_mulai', '<=', $now)
+        // ->where('tgl_akhir', '<=', $now)
+        // ->where('status_aktif', 1)
+        // ->get();
 
-        $currentProductsFinised = $currentAuctionsFinised->pluck('auctionProducts')
-        ->flatten(1);
+        // $currentProductsFinised = $currentAuctionsFinised->pluck('auctionProducts')
+        // ->flatten(1);
 
-        $fishInCart = Cart::whereIn('cartable_id', $currentProductsFinised->pluck('id_ikan'))
+        $auctionProducts = EventFish::
+        doesntHave('cartable')
+        ->whereHas('event', function($q) use ($now){
+            $q->where('tgl_akhir', '<', $now);
+        })
+        ->whereNotNull('id_event')
+        ->with(['maxBid', 'event'])
+        ->where('status_aktif', 1)->get()
+        ->mapWithKeys(fn($a) => [$a->id_ikan => $a]);
+
+        $fishInCart = Cart::whereIn('cartable_id', $auctionProducts->pluck('id_ikan'))
             ->where('cartable_type', Cart::EventFish)
             ->get()
             ->mapWithKeys(fn($q)=>[$q->cartable_id => $q]);
 
-        foreach ($currentProductsFinised as $cProduct) {
+        foreach ($auctionProducts as $cProduct) {
             if ($cProduct->maxBid === null) {
                 continue;
             }
@@ -75,6 +85,12 @@ class ProfileController extends Controller
             }
 
             $dateDiff = Carbon::parse($now, 'id')->diffInMinutes($cProduct->maxBid->updated_at);
+
+            $dateEventEnd = Carbon::parse($cProduct->event->tgl_akhir)->addMinutes($cProduct->extra_time);
+
+            if ($now < $dateEventEnd) {
+                continue;
+            }
 
             if ($dateDiff < $cProduct->extra_time || array_key_exists($cProduct->id_ikan, $fishInCart->toArray())) {
                 continue;
@@ -158,23 +174,33 @@ class ProfileController extends Controller
 
         $wishlists = $products->merge($wishEventFish);
 
-        $currentAuctionsFinised = Event::with(['auctionProducts'=> function ($q) {
-            $q->with(['maxBid']);
-        }])
-        ->where('tgl_mulai', '<=', $now)
-        ->where('tgl_akhir', '<=', $nowAkhir)
-        ->where('status_aktif', 1)
-        ->get();
+        // $currentAuctionsFinised = Event::with(['auctionProducts'=> function ($q) {
+        //     $q->with(['maxBid']);
+        // }])
+        // ->where('tgl_mulai', '<=', $now)
+        // ->where('tgl_akhir', '<=', $nowAkhir)
+        // ->where('status_aktif', 1)
+        // ->get();
 
-        $currentProductsFinised = $currentAuctionsFinised->pluck('auctionProducts')
-        ->flatten(1);
+        // $currentProductsFinised = $currentAuctionsFinised->pluck('auctionProducts')
+        // ->flatten(1);
 
-        $fishInCart = Cart::whereIn('cartable_id', $currentProductsFinised->pluck('id_ikan'))
+        $auctionProducts = EventFish::
+        doesntHave('cartable')
+        ->whereHas('event', function($q) use ($now){
+            $q->where('tgl_akhir', '<', $now);
+        })
+        ->whereNotNull('id_event')
+        ->with(['maxBid', 'event'])
+        ->where('status_aktif', 1)->get()
+        ->mapWithKeys(fn($a) => [$a->id_ikan => $a]);
+
+        $fishInCart = Cart::whereIn('cartable_id', $auctionProducts->pluck('id_ikan'))
             ->where('cartable_type', Cart::EventFish)
             ->get()
             ->mapWithKeys(fn($q)=>[$q->cartable_id => $q]);
 
-        foreach ($currentProductsFinised as $cProduct) {
+        foreach ($auctionProducts as $cProduct) {
             if ($cProduct->maxBid === null) {
                 continue;
             }
@@ -184,6 +210,12 @@ class ProfileController extends Controller
             }
 
             $dateDiff = Carbon::parse($now, 'id')->diffInMinutes($cProduct->maxBid->updated_at);
+
+            $dateEventEnd = Carbon::parse($cProduct->event->tgl_akhir)->addMinutes($cProduct->extra_time);
+
+            if ($now < $dateEventEnd) {
+                continue;
+            }
 
             if ($dateDiff < $cProduct->extra_time || array_key_exists($cProduct->id_ikan, $fishInCart->toArray())) {
                 continue;

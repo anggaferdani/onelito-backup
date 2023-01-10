@@ -148,7 +148,7 @@ class AuctionController extends Controller
 
         $auctionProduct = EventFish::with(['photo', 'event'])->findOrFail($idIkan);
 
-        $modKb = $nominalBidDetail % $auctionProduct->kb === 0;
+        $modKb = ($nominalBidDetail + $auctionProduct->ob) % $auctionProduct->kb === 0;
 
         if ($autoBid !== null) {
             $modAutoKb = $autoBid % $auctionProduct->kb === 0;

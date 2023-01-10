@@ -18,49 +18,6 @@ class AuctionWinnerController extends Controller
     {
         Carbon::setLocale('id');
         $now = Carbon::now();
-        $nowAkhir = Carbon::now()->subDay()->endOfDay();
-
-        $auctionProducts = EventFish::
-        doesntHave('winners')
-        ->with(['bids.member', 'maxBid'])
-        ->where('status_aktif', 1)->get()
-        ->mapWithKeys(fn($a) => [$a->id_ikan => $a]);
-
-        // $currentAuctionsFinised = Event::with(['auctionProducts'=> function ($q) {
-        //     $q->with(['maxBid']);
-        // }])
-        // ->where('tgl_mulai', '<=', $now)
-        // ->whereIn('id_bidding', $auctionProducts->pluck('bids.id_bidding'))
-        // ->where('tgl_akhir', '<=', $nowAkhir)
-        // ->where('status_aktif', 1)
-        // ->get();
-
-        // $currentProductsFinised = $auctionProducts->pluck('auctionProducts')
-        // ->flatten(1);
-
-
-        $fishInWinner = AuctionWinner::whereIn('id_bidding', $auctionProducts->pluck('maxBid.id_bidding'))
-            ->get()
-            ->mapWithKeys(fn($q)=>[$q->id_bidding => $q]);
-
-        foreach ($auctionProducts as $cProduct) {
-            if ($cProduct->maxBid === null) {
-                continue;
-            }
-
-            $dateDiff = Carbon::parse($now, 'id')->diffInMinutes($cProduct->maxBid->updated_at);
-
-            if ($dateDiff < $cProduct->extra_time || array_key_exists($cProduct->maxBid->id_bidding, $fishInWinner->toArray())) {
-                continue;
-            }
-
-            $data['id_bidding'] = $cProduct->maxBid->id_bidding;
-            $data['create_by'] = Auth::guard('admin')->id();
-            $data['update_by'] = Auth::guard('admin')->id();
-            $data['status_aktif'] = 1;
-
-            AuctionWinner::create($data);
-        }
 
         if ($this->request->ajax()) {
             $winners = AuctionWinner::query()
@@ -78,6 +35,44 @@ class AuctionWinnerController extends Controller
             // ->addColumn('action','admin.pages.auction-winner.dt-action')
             // ->rawColumns(['action'])
             ->make(true);
+        }
+
+        $auctionProducts = EventFish::
+        doesntHave('winners')
+        ->whereHas('event', function($q) use ($now){
+            $q->where('tgl_akhir', '<', $now);
+        })
+        ->with(['bids.member', 'maxBid', 'event'])
+        ->where('status_aktif', 1)->get()
+        ->mapWithKeys(fn($a) => [$a->id_ikan => $a]);
+
+        $fishInWinner = AuctionWinner::whereIn('id_bidding', $auctionProducts->pluck('maxBid.id_bidding'))
+            ->get()
+            ->mapWithKeys(fn($q)=>[$q->id_bidding => $q]);
+
+        foreach ($auctionProducts as $cProduct) {
+            if ($cProduct->maxBid === null) {
+                continue;
+            }
+
+            $dateDiff = Carbon::parse($now, 'id')->diffInMinutes($cProduct->maxBid->updated_at);
+
+            $dateEventEnd = Carbon::parse($cProduct->event->tgl_akhir)->addMinutes($cProduct->extra_time);
+
+            if ($now < $dateEventEnd) {
+                continue;
+            }
+
+            if ($dateDiff < $cProduct->extra_time || array_key_exists($cProduct->maxBid->id_bidding, $fishInWinner->toArray())) {
+                continue;
+            }
+
+            $data['id_bidding'] = $cProduct->maxBid->id_bidding;
+            $data['create_by'] = Auth::guard('admin')->id();
+            $data['update_by'] = Auth::guard('admin')->id();
+            $data['status_aktif'] = 1;
+
+            AuctionWinner::create($data);
         }
 
         return view('admin.pages.auction-winner.index')->with([
