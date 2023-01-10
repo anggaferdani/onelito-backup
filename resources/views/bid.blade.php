@@ -273,8 +273,9 @@
             var nominal = $('#nominal_bid').val();
 
             swalWithBootstrapButtons.fire({
-                title: 'apa anda yakin?',
-                text: `Bid Rp. ${nominal}`,
+                title: `Apakah anda benar ingin 
+                Bidding Rp. ${nominal} ?`,
+                text: ``,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Ya',
