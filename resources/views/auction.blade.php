@@ -34,7 +34,7 @@
         }
     </style>
 
-<br><br><br><br>
+<br><br><br><br><br>
     @if ($currentAuction && $currentAuction->kategori_event === 'Event')
         @php
             $bannerImg = 'img/event.png';
