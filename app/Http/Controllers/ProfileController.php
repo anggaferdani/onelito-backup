@@ -66,7 +66,7 @@ class ProfileController extends Controller
             $q->where('tgl_akhir', '<', $now);
         })
         ->whereNotNull('id_event')
-        ->with(['maxBid'])
+        ->with(['maxBid', 'event'])
         ->where('status_aktif', 1)->get()
         ->mapWithKeys(fn($a) => [$a->id_ikan => $a]);
 
@@ -85,6 +85,12 @@ class ProfileController extends Controller
             }
 
             $dateDiff = Carbon::parse($now, 'id')->diffInMinutes($cProduct->maxBid->updated_at);
+
+            $dateEventEnd = Carbon::parse($cProduct->event->tgl_akhir)->addMinutes($cProduct->extra_time);
+
+            if ($now < $dateEventEnd) {
+                continue;
+            }
 
             if ($dateDiff < $cProduct->extra_time || array_key_exists($cProduct->id_ikan, $fishInCart->toArray())) {
                 continue;
@@ -185,7 +191,7 @@ class ProfileController extends Controller
             $q->where('tgl_akhir', '<', $now);
         })
         ->whereNotNull('id_event')
-        ->with(['maxBid'])
+        ->with(['maxBid', 'event'])
         ->where('status_aktif', 1)->get()
         ->mapWithKeys(fn($a) => [$a->id_ikan => $a]);
 
@@ -204,6 +210,12 @@ class ProfileController extends Controller
             }
 
             $dateDiff = Carbon::parse($now, 'id')->diffInMinutes($cProduct->maxBid->updated_at);
+
+            $dateEventEnd = Carbon::parse($cProduct->event->tgl_akhir)->addMinutes($cProduct->extra_time);
+
+            if ($now < $dateEventEnd) {
+                continue;
+            }
 
             if ($dateDiff < $cProduct->extra_time || array_key_exists($cProduct->id_ikan, $fishInCart->toArray())) {
                 continue;

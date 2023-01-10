@@ -18,7 +18,6 @@ class AuctionWinnerController extends Controller
     {
         Carbon::setLocale('id');
         $now = Carbon::now();
-        $nowAkhir = Carbon::now()->subDay()->endOfDay();
 
         if ($this->request->ajax()) {
             $winners = AuctionWinner::query()
@@ -43,7 +42,7 @@ class AuctionWinnerController extends Controller
         ->whereHas('event', function($q) use ($now){
             $q->where('tgl_akhir', '<', $now);
         })
-        ->with(['bids.member', 'maxBid'])
+        ->with(['bids.member', 'maxBid', 'event'])
         ->where('status_aktif', 1)->get()
         ->mapWithKeys(fn($a) => [$a->id_ikan => $a]);
 
@@ -57,6 +56,12 @@ class AuctionWinnerController extends Controller
             }
 
             $dateDiff = Carbon::parse($now, 'id')->diffInMinutes($cProduct->maxBid->updated_at);
+
+            $dateEventEnd = Carbon::parse($cProduct->event->tgl_akhir)->addMinutes($cProduct->extra_time);
+
+            if ($now < $dateEventEnd) {
+                continue;
+            }
 
             if ($dateDiff < $cProduct->extra_time || array_key_exists($cProduct->maxBid->id_bidding, $fishInWinner->toArray())) {
                 continue;
