@@ -40,7 +40,7 @@
                         data-type="eventfish" value=""
                         id="flexCheckDefault">
                         <div class="card mr-3">
-                            <a href="/detail_onelito_store"><img src="{{ $cartPhoto }}" class="card-img-top"
+                            <a href="/auction/{{$cart->cartable_id}}"><img src="{{ $cartPhoto }}" class="card-img-top"
                                     style="height: 10vh; width: 25vw; object-fit: cover;" alt="..."></a>
                         </div>
                         <div>

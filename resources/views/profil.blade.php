@@ -319,7 +319,7 @@
                                                                 data-type="eventfish" value=""
                                                                 id="flexCheckDefault">
                                                             <div class="card mr-3">
-                                                                <a href="#"><img src="{{ $cartPhoto }}"
+                                                                <a href="/auction/{{$cart->cartable_id}}"><img src="{{ $cartPhoto }}"
                                                                         class="card-img-top"
                                                                         style="height: 10vh; width: 5vw; object-fit: cover;"
                                                                         alt="..."></a>
