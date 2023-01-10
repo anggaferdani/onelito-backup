@@ -20,24 +20,32 @@ class AuctionWinnerController extends Controller
         $now = Carbon::now();
         $nowAkhir = Carbon::now()->subDay()->endOfDay();
 
+        if ($this->request->ajax()) {
+            $winners = AuctionWinner::query()
+                ->with(['bidding.member.city', 'bidding.eventFish'])
+                ->where('status_aktif', 1)
+                ->orderBy('created_at', 'desc');
+
+            return DataTables::of($winners)
+            ->addIndexColumn()
+            ->editColumn('bidding.nominal_bid', function ($data) {
+                $number = number_format( $data->bidding->nominal_bid , 0 , '.' , '.' );
+
+                return "Rp.$number";
+            })
+            // ->addColumn('action','admin.pages.auction-winner.dt-action')
+            // ->rawColumns(['action'])
+            ->make(true);
+        }
+
         $auctionProducts = EventFish::
         doesntHave('winners')
+        ->whereHas('event', function($q) use ($now){
+            $q->where('tgl_akhir', '<', $now);
+        })
         ->with(['bids.member', 'maxBid'])
         ->where('status_aktif', 1)->get()
         ->mapWithKeys(fn($a) => [$a->id_ikan => $a]);
-
-        // $currentAuctionsFinised = Event::with(['auctionProducts'=> function ($q) {
-        //     $q->with(['maxBid']);
-        // }])
-        // ->where('tgl_mulai', '<=', $now)
-        // ->whereIn('id_bidding', $auctionProducts->pluck('bids.id_bidding'))
-        // ->where('tgl_akhir', '<=', $nowAkhir)
-        // ->where('status_aktif', 1)
-        // ->get();
-
-        // $currentProductsFinised = $auctionProducts->pluck('auctionProducts')
-        // ->flatten(1);
-
 
         $fishInWinner = AuctionWinner::whereIn('id_bidding', $auctionProducts->pluck('maxBid.id_bidding'))
             ->get()
@@ -60,24 +68,6 @@ class AuctionWinnerController extends Controller
             $data['status_aktif'] = 1;
 
             AuctionWinner::create($data);
-        }
-
-        if ($this->request->ajax()) {
-            $winners = AuctionWinner::query()
-                ->with(['bidding.member.city', 'bidding.eventFish'])
-                ->where('status_aktif', 1)
-                ->orderBy('created_at', 'desc');
-
-            return DataTables::of($winners)
-            ->addIndexColumn()
-            ->editColumn('bidding.nominal_bid', function ($data) {
-                $number = number_format( $data->bidding->nominal_bid , 0 , '.' , '.' );
-
-                return "Rp.$number";
-            })
-            // ->addColumn('action','admin.pages.auction-winner.dt-action')
-            // ->rawColumns(['action'])
-            ->make(true);
         }
 
         return view('admin.pages.auction-winner.index')->with([

@@ -62,6 +62,9 @@ class ProfileController extends Controller
 
         $auctionProducts = EventFish::
         doesntHave('cartable')
+        ->whereHas('event', function($q) use ($now){
+            $q->where('tgl_akhir', '<', $now);
+        })
         ->whereNotNull('id_event')
         ->with(['maxBid'])
         ->where('status_aktif', 1)->get()
@@ -178,6 +181,9 @@ class ProfileController extends Controller
 
         $auctionProducts = EventFish::
         doesntHave('cartable')
+        ->whereHas('event', function($q) use ($now){
+            $q->where('tgl_akhir', '<', $now);
+        })
         ->whereNotNull('id_event')
         ->with(['maxBid'])
         ->where('status_aktif', 1)->get()
