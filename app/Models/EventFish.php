@@ -61,4 +61,9 @@ class EventFish extends Model
     {
         return $this->morphOne(Wishlist::class, 'wishlistable', 'wishlistable_type', 'wishlistable_id');
     }
+
+    public function cartable()
+    {
+        return $this->morphOne(Cart::class, 'cartable', 'cartable_type', 'cartable_id');
+    }
 }
