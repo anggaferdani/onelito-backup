@@ -242,7 +242,7 @@
                 <div class="modal-content">
                     <br><br>
                     <div class="modal-body">
-                        <center><img src="{{ url('img/Frame_reg.png') }}" alt="ceklis">
+                        <center><img src="{{ url('img/frame_reg.png') }}" alt="ceklis">
                             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                                 Registration Successful
                             </h3>
