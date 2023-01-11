@@ -149,8 +149,11 @@
                     <p style="font-size:25px">Kelipatan BID: <span class="alert-link text-danger">Rp.
                         {{ number_format($auctionProduct->kb, 0, '.', '.') }}</span></p>
                     <hr>
-
-                    <p class="m-0" style="font-size: larger">Time Live</p>
+                    <div class="row d-flex">
+                        <p class="m-0" style="font-size: larger">Time Live &nbsp;
+                        <span id="countdown-extra" class="m-0 text-danger d-none">Extra Time</span>
+                    </p>
+                    </div>
                     <p class="alert-link text-danger countdown-label" style="font-size: 30px">00 : 00 : 00</p>
 
                     <br><br>
@@ -273,7 +276,7 @@
             var nominal = $('#nominal_bid').val();
 
             swalWithBootstrapButtons.fire({
-                title: `Apakah anda benar ingin 
+                title: `Apakah anda benar ingin
                 Bidding Rp. ${nominal} ?`,
                 text: ``,
                 icon: 'warning',
@@ -644,6 +647,10 @@
                 $('.countdown-label').html(timerString);
 
                 // If the count down is finished, finish the exam
+                // var id = $(val).attr('id');
+                // $(`#countdown-title-${id}`).html(`Extra Time`);
+
+                $('#countdown-extra').removeClass('d-none');
                 if (duration < 0) {
                     $('.countdown-label').html(`00 : 00 : 00`);
 

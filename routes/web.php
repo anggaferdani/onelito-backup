@@ -46,7 +46,7 @@ Route::get('/admin-login', function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
-
+Route::get('/login', [AuthenticationController::class, 'loginPage'])->name('login');
 Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 Route::get('/registrasi', [AuthenticationController::class, 'registration'])->name('registration');
 Route::post('/register', [AuthenticationController::class, 'register'])->name('register');
@@ -106,6 +106,7 @@ Route::group(['middleware' => 'auth:member'], function () {
 });
 
 Route::group(['prefix' => 'authentications'], function () {
+    Route::get('/', [AuthenticationController::class, 'loginPage']);
     Route::post('/', [AuthenticationController::class, 'login'])->name('login.post');
 
     Route::group(['prefix' => 'admin'], function () {
@@ -182,11 +183,11 @@ Route::get('/detail_koistok', function () {
 //     ]);
 // });
 
-Route::get('/login', function () {
-    return view('login',[
-        "title" => "login"
-    ]);
-})->name('login');
+// Route::get('/login', function () {
+//     return view('login',[
+//         "title" => "login"
+//     ]);
+// })->name('login');
 
 // Route::get('/registrasi', function () {
 //     return view('registrasi',[
