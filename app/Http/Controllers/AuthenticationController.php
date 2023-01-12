@@ -10,6 +10,10 @@ class AuthenticationController extends Controller
 {
     public function login()
     {
+        if (Auth::guard('member')->check()) {
+            return redirect()->intended('/');
+        }
+
         $credentials = $this->request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -125,5 +129,16 @@ class AuthenticationController extends Controller
         $this->request->session()->regenerateToken();
 
         return redirect('/admin-login');
+    }
+
+    public function loginPage()
+    {
+        if (Auth::guard('member')->check()) {
+            return redirect()->intended('/');
+        }
+
+        return view('login',[
+            "title" => "login"
+        ]);
     }
 }

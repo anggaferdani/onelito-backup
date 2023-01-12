@@ -11,6 +11,11 @@
                             flex-direction: column;
                         } */
 
+        .bottom-banner {
+            margin-top: -6%;
+        }
+
+
         @media screen and (max-width: 600px) {
             .card-body {
                 min-height: 217px;
@@ -18,6 +23,18 @@
 
             .card-title {
                 min-height: 26px;
+            }
+
+            .bottom-banner {
+                margin-top: inherit;
+            }
+
+            .banner {
+                height: 150px;
+            }
+
+            .bottom-banner .card {
+                max-height: 55px;
             }
         }
 
@@ -44,7 +61,28 @@
             }
         @endphp
         <div class="container-fluid p-0 mb-3">
-            <img src="{{ $bannerImg }}" class="w-100" alt="...">
+            <img src="{{ $bannerImg }}" class="w-100 banner" alt="...">
+            <div class="row justify-content-center bottom-banner">
+                <div class="col-sm-5 col-md-2">
+                    <div class="card">
+                        <div class="card-body p-2 text-center">
+                            <p class="m-0" style="font-size: small">CURRENT TOTAL BID</p>
+                            <h3 class="m-0 text-danger">{{ $currentTotalBid }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-5 col-md-2">
+                    <div class="card">
+                        <div class="card-body p-2 text-center">
+                            <p class="m-0" style="font-size: small">CURRENT TOTAL PRIZE</p>
+                            <h3 class="m-0 text-danger">{{ number_format($currentTotalPrize, 0, '.', '.') }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
             <br>
         </div>
     @endif
@@ -117,7 +155,7 @@
                                             {{ number_format($currentMaxBid, 0, '.', '.') }}</p>
                                     </div>
                                     <div class="col-6 p-0 px-lg-2">
-                                        <p class="m-0" style="text-align: end;font-size:80%">Live Time</p>
+                                        <p class="m-0" id="countdown-title-{{ $auctionProduct->id_ikan }}" style="text-align: end;font-size:80%">Live Time</p>
                                         <p class="m-0 countdown-label" id="{{ $auctionProduct->id_ikan }}"
                                             data-endtime="{{ $auctionProduct->event->tgl_akhir }}"
                                             data-end-extratime="{{ $auctionProduct->tgl_akhir_extra_time }}"
@@ -250,10 +288,12 @@
                 const secondString = `${seconds < 10 ? '0' : ''}${seconds}`;
                 const timerString = `${hourString}:${minuteString}:${secondString}`;
                 $(val).html(timerString);
+                var id = $(val).attr('id');
+                $(`#countdown-title-${id}`).html(`Extra Time`);
+
 
                 // If the count down is finished, finish the exam
                 if (duration < 0) {
-                    var id = $(val).attr('id');
                     $(val).html(`00:00:00`);
 
                     // document.getElementById(`btn-bid-${id}`).disabled = true;

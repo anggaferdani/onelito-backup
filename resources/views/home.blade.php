@@ -103,8 +103,8 @@
                                         <p class="m-0" style="color: red;font-size:75%">Rp {{ number_format($currentMaxBid, 0, '.', '.') }}</p>
                                     </div>
                                     <div class="col-6 p-0 px-lg-2">
-                                        <p class="m-0" style="text-align: end;font-size:80%">Live Time</p>
-                                        <p class="m-0 countdown-label" id="atas-{{ $auctionProduct->id_ikan }}"
+                                        <p class="m-0 countdown-title-{{ $auctionProduct->id_ikan }}" style="text-align: end;font-size:80%">Live Time</p>
+                                        <p class="m-0 countdown-label" data-id="{{ $auctionProduct->id_ikan }}" id="atas-{{ $auctionProduct->id_ikan }}"
                                             data-endtime="{{ $auctionProduct->event->tgl_akhir }}"
                                             data-end-extratime="{{ $auctionProduct->tgl_akhir_extra_time }}"
                                             style="text-align: end;color :red;font-size:75%;">00:00:00</p>
@@ -163,8 +163,8 @@
                                         <p class="m-0" style="color: red;font-size:75%">Rp {{ number_format($currentMaxBid, 0, '.', '.') }}</p>
                                     </div>
                                     <div class="col-6 p-0 px-lg-2">
-                                        <p class="m-0" style="text-align: end;font-size:80%">Live Time</p>
-                                        <p class="m-0 countdown-label" id="bawah-{{ $auctionProduct->id_ikan }}"
+                                        <p class="m-0 countdown-title-{{ $auctionProduct->id_ikan }}" style="text-align: end;font-size:80%">Live Time</p>
+                                        <p class="m-0 countdown-label" data-id="{{ $auctionProduct->id_ikan }}" id="bawah-{{ $auctionProduct->id_ikan }}"
                                             data-endtime="{{ $auctionProduct->event->tgl_akhir }}"
                                             data-end-extratime="{{ $auctionProduct->tgl_akhir_extra_time }}"
                                             style="text-align: end;color :red;font-size:75%;">00:00:00</p>
@@ -501,6 +501,9 @@
                 const secondString = `${seconds < 10 ? '0' : ''}${seconds}`;
                 const timerString = `${hourString}:${minuteString}:${secondString}`;
                 $(val).html(timerString);
+
+                var id = $(val).attr('data-id');
+                $(`.countdown-title-${id}`).html(`Extra Time`);
 
                 // If the count down is finished, finish the exam
                 if (duration < 0) {
