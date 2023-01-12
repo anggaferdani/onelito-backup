@@ -192,7 +192,7 @@
                                             <div class="col-2 p-0">
                                                 <i class="fa-solid fa-circle-user" style="font-size: xxx-large"></i>
                                             </div>
-                                            <div class="col-10">
+                                            <div class="col-10 p-0 ps-2">
                                                 <h4 class="m-0 ms-lg-3 text-md-start">{{ $auth->nama }}</h4>
                                                 <p class="m-0 ms-lg-3 text-md-start">{{ $auth->email }}</p>
                                             </div>
