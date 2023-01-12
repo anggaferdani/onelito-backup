@@ -12,7 +12,7 @@
                         } */
 
         .bottom-banner {
-            margin-top: -6%;
+            margin-top: -5.3%;
         }
 
 
