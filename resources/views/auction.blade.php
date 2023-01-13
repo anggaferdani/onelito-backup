@@ -18,7 +18,7 @@
 
         .bottom {
             position: absolute;
-            margin-top: 18.2%;
+            margin-top: 19.5%;
             width: 99%;
             
         }
@@ -104,16 +104,16 @@
                         <div class="col-2">
                             <div class="card">
                                 <div class="card-body p-2 text-center">
-                                    <p class="m-0" style="font-size: small">CURRENT TOTAL BID</p>
-                                    <h3 class="m-0 text-danger">{{ number_format($currentTotalBid, 0, '.', '.') }}</h3>
+                                    <p class="m-0" style="font-size: xx-small">CURRENT TOTAL BID</p>
+                                    <h5 class="m-0 text-danger">{{ number_format($currentTotalBid, 0, '.', '.') }}</h5>
                                 </div>
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="card">
                                 <div class="card-body p-2 text-center">
-                                    <p class="m-0" style="font-size: small">CURRENT TOTAL PRIZE</p>
-                                    <h3 class="m-0 text-danger">{{ number_format($currentAuction->total_hadiah, 0, '.', '.') }}</h3>
+                                    <p class="m-0" style="font-size: xx-small">CURRENT TOTAL PRIZE</p>
+                                    <h5 class="m-0 text-danger">{{ number_format($currentAuction->total_hadiah, 0, '.', '.') }}</h5>
                                 </div>
                             </div>
                         </div>
