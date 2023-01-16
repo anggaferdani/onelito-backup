@@ -98,11 +98,11 @@
                                 <p class="m-0">Number of bids</p>
                                 <p class="" style="color: red">{{ $auctionProduct->bid_details_count }}</p>
                                 <div class="row">
-                                    <div class="col-6 p-0 px-lg-2">
+                                    <div class="col-6 p-0 ps-lg-1">
                                         <p class="m-0" style="font-size:80%">Harga saat ini</p>
                                         <p class="m-0" style="color: red;font-size:75%">Rp {{ number_format($currentMaxBid, 0, '.', '.') }}</p>
                                     </div>
-                                    <div class="col-6 p-0 px-lg-2">
+                                    <div class="col-6 p-0 pe-lg-1">
                                         <p class="m-0 countdown-title-{{ $auctionProduct->id_ikan }}" style="text-align: end;font-size:80%">Live Time</p>
                                         <p class="m-0 countdown-label" data-id="{{ $auctionProduct->id_ikan }}" id="atas-{{ $auctionProduct->id_ikan }}"
                                             data-endtime="{{ $auctionProduct->event->tgl_akhir }}"
@@ -158,11 +158,11 @@
                                 <p class="m-0">Number of bids</p>
                                 <p class="" style="color: red">{{ $auctionProduct->bid_details_count }}</p>
                                 <div class="row">
-                                    <div class="col-6 p-0 px-lg-2">
+                                    <div class="col-6 p-0 ps-lg-1">
                                         <p class="m-0" style="font-size:80%">Harga saat ini</p>
                                         <p class="m-0" style="color: red;font-size:75%">Rp {{ number_format($currentMaxBid, 0, '.', '.') }}</p>
                                     </div>
-                                    <div class="col-6 p-0 px-lg-2">
+                                    <div class="col-6 p-0 pe-lg-1">
                                         <p class="m-0 countdown-title-{{ $auctionProduct->id_ikan }}" style="text-align: end;font-size:80%">Live Time</p>
                                         <p class="m-0 countdown-label" data-id="{{ $auctionProduct->id_ikan }}" id="bawah-{{ $auctionProduct->id_ikan }}"
                                             data-endtime="{{ $auctionProduct->event->tgl_akhir }}"

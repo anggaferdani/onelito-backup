@@ -28,6 +28,8 @@
         }
     </style>
 
+    <br><br><br><br>
+
     <div class="container-fluid p-0 web">
         <div class="row w-100 m-0">
             <div class="col-12">
@@ -59,7 +61,7 @@
         <img src="img/event.png" class="w-100" alt="...">
         <div class="row justify-content-center">
             <div class="col">
-                <div class="card">
+                <div class="card mt-2">
                     <div class="card-body p-2 text-center">
                         <p class="m-0" >CURRENT TOTAL BID</p>
                         <h3 class="m-0 text-danger">1.978.007.000</h3>
@@ -67,7 +69,7 @@
                 </div>
             </div>
             <div class="col">
-                <div class="card">
+                <div class="card mt-2">
                     <div class="card-body p-2 text-center">
                         <p class="m-0" >CURRENT TOTAL PRIZE</p>
                         <h3 class="m-0 text-danger">978.007.000</h3>
