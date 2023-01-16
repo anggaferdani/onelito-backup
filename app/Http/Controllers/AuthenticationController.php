@@ -2,16 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EmailVerification;
 use App\Models\Member;
 use App\Models\Province;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Mail;
 
 class AuthenticationController extends Controller
 {
     public function login()
     {
         if (Auth::guard('member')->check()) {
-            return redirect()->intended('/');
+            $user = Auth::guard('member')->user();
+
+            if ($user->status_aktif === 1) {
+                return redirect()->intended('/');
+            }
+
+            Auth::guard('member')->logout();
+
+            $this->request->session()->invalidate();
+
+            $this->request->session()->regenerateToken();
+
+            return redirect('login')->withErrors([
+                'email' => 'Akun anda tidak aktif',
+            ]);
         }
 
         $credentials = $this->request->validate([
@@ -20,9 +38,24 @@ class AuthenticationController extends Controller
         ]);
 
         if (Auth::guard('member')->attempt($credentials)) {
-            $this->request->session()->regenerate();
+            $user = Auth::guard('member')->user();
 
-            return redirect()->intended('/');
+            if ($user->status_aktif === 1) {
+
+                $this->request->session()->regenerate();
+
+                return redirect()->intended('/');
+            }
+
+            Auth::guard('member')->logout();
+
+            $this->request->session()->invalidate();
+
+            $this->request->session()->regenerateToken();
+
+            return redirect('login')->withErrors([
+                'email' => 'Akun anda tidak aktif',
+            ])->onlyInput('email');
         }
 
         return back()->withErrors([
@@ -77,7 +110,15 @@ class AuthenticationController extends Controller
             'kecamatan',
             'kelurahan',
         ]);
-        $data['status_aktif'] = 1;
+
+        if (Member::where('email', $data['email'])->exists()) {
+            return redirect()->back()->with([
+                'success' => false,
+                'message' => 'Email sudah digunakan'
+            ],500);
+        }
+
+        $data['status_aktif'] = 0;
 
         $firstName = $name[0];
         $lastName = $name[1];
@@ -87,6 +128,8 @@ class AuthenticationController extends Controller
         $data['nama_belakang'] = $lastName;
 
         $createMember = Member::create($data);
+
+        Mail::to($data['email'])->send(new EmailVerification($data['email']));
 
         if($createMember){
             return redirect()->back()->with([
@@ -140,5 +183,33 @@ class AuthenticationController extends Controller
         return view('login',[
             "title" => "login"
         ]);
+    }
+    public function emailVerification()
+    {
+        $token = $this->request->click;
+
+        try {
+            $data = Crypt::decrypt($token);
+            if($data) {
+                $user = Member::where('email', $data['email'])
+                    ->where('id_peserta', $data['id'])->first();
+
+                if(!$user) {
+                    return response()->json(['message' => 'User Not Found']);
+                }
+
+                $user->email_verified_at = Carbon::now();
+                $user->save();
+
+                session()->flash('message','Your Email Successfully Verified',);
+
+                return redirect('login')->with([
+                    'message' => 'Your Email Successfully Verified',
+                ]);
+            }
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }

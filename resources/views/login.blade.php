@@ -57,6 +57,15 @@
                             <label for="passowrd" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 left-1">Password</label>
                         </div>
                         <br>
+                        @if (Session::has('message'))
+                            <div class="alert alert-success" role="alert">
+                                <h4 class="alert-heading">{{ Session::get('message') }}</h4>
+                                <p>Akun Anda saat ini sedang dalam tahap peninjauan terlebih dahulu.</p>
+                                <hr>
+                                <p class="mb-0">Mohon menunggu email notifikasi selanjutnya apabila proses registrasi telah berhasil.</p>
+                            </div>
+                        @endif
+
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -66,6 +75,8 @@
                                 </ul>
                             </div>
                         @endif
+
+
                         <br><br><br>
 
                 <center class="my-5">
@@ -106,6 +117,14 @@
                             <label for="passowrd" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-3 left-1">Password</label>
                         </div>
                         <br>
+                        @if (Session::has('message'))
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">{{ Session::get('message') }}</h4>
+                            <p>Akun Anda saat ini sedang dalam tahap peninjauan terlebih dahulu.</p>
+                            <hr>
+                            <p class="mb-0">Mohon menunggu email notifikasi selanjutnya apabila proses registrasi telah berhasil.</p>
+                        </div>
+                        @endif
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>

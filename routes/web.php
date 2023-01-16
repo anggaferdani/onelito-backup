@@ -12,7 +12,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\WishlistController;
+use App\Mail\EmailVerification;
 use Illuminate\Routing\Route as RoutingRoute;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +40,14 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/send-email', function () {
+    $email = 'rifqizzz6@gmail.com';
+
+    Mail::to($email)->send(new EmailVerification($email));
+
+    return response()->json('sended');
+});
+
 Route::get('/admin-login', function () {
     return view('admin.pages.auth-login',[
         "title" => "home"
@@ -45,6 +55,7 @@ Route::get('/admin-login', function () {
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/ls/click', [AuthenticationController::class, 'emailVerification'])->name('email.verification');
 
 Route::get('/login', [AuthenticationController::class, 'loginPage'])->name('login');
 Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
