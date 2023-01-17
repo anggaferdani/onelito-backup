@@ -55,6 +55,13 @@
                     <label for="edit_kode_pos">Kode Pos</label>
                     <input  type="text" id="edit_kode_pos" class="form-control" name="edit_kode_pos" placeholder="">
                 </div>
+                <div class="form-group">
+                    <label for="edit_status_aktif">Status Aktif</label>
+                    <select name="edit_status_aktif" id="edit_status_aktif" required class="form-control select2">
+                        <option value="1">Aktif</option>
+                        <option value="0">Tidak Aktif</option>
+                    </select>
+                </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn" data-dismiss="modal">Tutup</button>

@@ -14,9 +14,22 @@ class MemberController extends Controller
     public function index()
     {
         if ($this->request->ajax()) {
+            $filterStatusEmail = $this->request->input('filter_status_email', 'all');
+            $filterStatusAktif = $this->request->input('filter_status_aktif', 'all');
+
             $members = Member::query()
-                ->with(['province', 'city', 'district', 'subdistrict'])
-                ->where('status_aktif', 1);
+                ->when($filterStatusAktif !== 'all', function ($q) use ($filterStatusAktif) {
+                    $q->where('status_aktif', $filterStatusAktif);
+                })
+                ->when($filterStatusEmail !== 'all', function ($q) use ($filterStatusEmail) {
+                    if ($filterStatusEmail === 'verified') {
+                        $q->whereNotNull('email_verified_at');
+                    } else {
+                        $q->whereNull('email_verified_at');
+                    }
+                })
+                ->orderBy('created_at', 'desc')
+                ->with(['province', 'city', 'district', 'subdistrict']);
 
             return DataTables::of($members)
             ->addIndexColumn()
@@ -48,6 +61,20 @@ class MemberController extends Controller
                 }
 
                 return $data->subdistrict->subdis_name;
+            })
+            ->editColumn('email_verified_at', function ($data) {
+                if ($data->email_verified_at !== null) {
+                    return "Sudah verifikasi";
+                }
+
+                return "Belum verifikasi";
+            })
+            ->editColumn('status_aktif', function ($data) {
+                if ($data->status_aktif === 1) {
+                    return "Aktif";
+                }
+
+                return "Tidak Aktif";
             })
             ->rawColumns(['action'])
             ->make(true);

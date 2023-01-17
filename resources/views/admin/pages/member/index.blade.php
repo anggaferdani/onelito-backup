@@ -35,10 +35,28 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                            <button class="btn btn-primary mb-3"
+                            <button class="btn btn-primary mb-2"
                             data-toggle="modal"
                             data-target="#modalCreate"
                             ><i class="fa fa-plus"></i> Tambah Member</button>
+
+                            <div class="row col-3 mb-2">
+                                <label for="filter_status_email">Filter Status Email</label>
+                                <select name="filter_status_email" id="filter_status_email" class="form-control select2">
+                                    <option value="all">Semua</option>
+                                    <option value="verified">Sudah Verifikasi</option>
+                                    <option value="not_verified">Belum Verifikasi</option>
+                                </select>
+                            </div>
+
+                            <div class="row col-3 mb-2">
+                                <label for="filter_status_aktif">Filter Status Aktif</label>
+                                <select name="filter_status_aktif" id="filter_status_aktif" class="form-control select2">
+                                    <option value="all">Semua</option>
+                                    <option value="1">Aktif</option>
+                                    <option value="0">Tidak Aktif</option>
+                                </select>
+                            </div>
 
                                 <div class="table-responsive">
                                     <table class="table-striped table"
@@ -53,7 +71,8 @@
                                                 <th>No. hp</th>
                                                 <th>Alamat</th>
                                                 <th>Provinsi</th>
-                                                <!-- <th>Kecamatan</th> -->
+                                                <th>Email Verified</th>
+                                                <th>Status Aktif</th>
                                                 <!-- <th>Kelurahan</th> -->
                                                 <th>Kota</th>
                                                 <th>Action</th>
@@ -232,7 +251,7 @@
         ajaxChained('#edit_kota','#edit_kecamatan','districts?city_id=');
         ajaxChained('#edit_kecamatan','#edit_kelurahan','subdistricts?dis_id=');
 
-            $('#table-1').DataTable({
+       var table = $('#table-1').DataTable({
                 // dom: 'Bfrtip',
                 lengthMenu: [
                     [ 10, 25, 50, -1 ],
@@ -252,7 +271,8 @@
                 ajax : {
                 url : '{{ url("admin/members") }}',
                 data : function(d) {
-                    // d.jenis_task = $('#filter_jenis_task').val()
+                    d.filter_status_email = $('#filter_status_email').val()
+                    d.filter_status_aktif = $('#filter_status_aktif').val()
                 }
                 },
                 columns : [
@@ -262,13 +282,25 @@
                     { data : 'no_hp'},
                     { data : 'alamat' , orderable : false,searchable :false},
                     { data : 'province.prov_name', orderable : false,searchable :false},
+                    { data : 'email_verified_at', orderable: false, searchable :false},
+                    { data : 'status_aktif', orderable: false, searchable :false},
                     // { data : 'kecamatan' , orderable : false,searchable :false},
                     // { data : 'kelurahan' , orderable : false,searchable :false},
                     { data : 'city.city_name' , orderable : false,searchable :false},
                     { data : 'action' , orderable : false,searchable :false},
                 ]
             });
+
+            $('#filter_status_email').change(function() {
+                table.draw();
+            });
+
+            $('#filter_status_aktif').change(function() {
+                table.draw();
+            });
         });
+
+
 
         $(document).on('click','button#btn-show',function() {
             let id = $(this).data('id');
@@ -358,7 +390,10 @@
                     if (res.kelurahan !== null) {
                         $('#edit_kelurahan').val(res.kelurahan).trigger('change')
                     }
+
                     $('#edit_kode_pos').val(res.kode_pos)
+                    $('#edit_status_aktif').val(res.status_aktif).trigger('change')
+
                 },
                 error:function(error) {
                     console.log(error)
@@ -380,7 +415,8 @@
                 kota: formData.get('edit_kota'),
                 kecamatan: formData.get('edit_kecamatan'),
                 kelurahan: formData.get('edit_kelurahan'),
-                kode_pos: formData.get('edit_kode_pos')
+                kode_pos: formData.get('edit_kode_pos'),
+                status_aktif: formData.get('edit_status_aktif')
             }
 
             $.ajax({
