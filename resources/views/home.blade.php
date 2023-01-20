@@ -40,14 +40,14 @@
         <div class="carousel-inner img-mh-300">
             <div class="carousel-item active">
                 <div class="container-fluit" style="background-color:red;">
-                    <img src="img/Frame.png" class="d-block w-100" alt="Frame">
+                    <img src="img/banner1.png" class="d-block w-100" alt="Frame">
                 </div>
             </div>
-            <div class="carousel-item">
+            {{-- <div class="carousel-item">
                 <div class="container-fluit" style="background-color:red;">
                     <img src="img/Frame.png" class="d-block w-100" alt="Frame">
                 </div>
-            </div>
+            </div> --}}
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -63,7 +63,7 @@
         {{-- <h5><b>Auction</b></h5> --}}
 
         {{-- <img src="{{ url('img/nolelang.png') }}" class="d-block w-100" alt="ceklis"> --}}
-        <!-- <img src="{{ url('img/nolelang.png') }}" class="d-block w-100 mt-5" alt="ceklis"> -->
+        <!-- <img src="{{ url('img/lelang.png') }}" class="d-block w-100 mt-5" alt="ceklis"> -->
     </div>
 
     <div class="container nav-atas">
@@ -74,9 +74,9 @@
                     if ($auctionProduct->photo !== null) {
                         $photo = url('storage') . '/' . $auctionProduct->photo->path_foto;
                     }
-
+                    
                     $currentMaxBid = $auctionProduct->ob;
-
+                    
                     if ($auctionProduct->maxBid !== null) {
                         $currentMaxBid = $auctionProduct->maxBid->nominal_bid;
                     }
@@ -100,11 +100,14 @@
                                 <div class="row">
                                     <div class="col-6 p-0 ps-lg-1">
                                         <p class="m-0" style="font-size:80%">Harga saat ini</p>
-                                        <p class="m-0" style="color: red;font-size:75%">Rp {{ number_format($currentMaxBid, 0, '.', '.') }}</p>
+                                        <p class="m-0" style="color: red;font-size:75%">Rp
+                                            {{ number_format($currentMaxBid, 0, '.', '.') }}</p>
                                     </div>
                                     <div class="col-6 p-0 pe-lg-1">
-                                        <p class="m-0 countdown-title-{{ $auctionProduct->id_ikan }}" style="text-align: end;font-size:80%">Live Time</p>
-                                        <p class="m-0 countdown-label" data-id="{{ $auctionProduct->id_ikan }}" id="atas-{{ $auctionProduct->id_ikan }}"
+                                        <p class="m-0 countdown-title-{{ $auctionProduct->id_ikan }}"
+                                            style="text-align: end;font-size:80%">Live Time</p>
+                                        <p class="m-0 countdown-label" data-id="{{ $auctionProduct->id_ikan }}"
+                                            id="atas-{{ $auctionProduct->id_ikan }}"
                                             data-endtime="{{ $auctionProduct->event->tgl_akhir }}"
                                             data-end-extratime="{{ $auctionProduct->tgl_akhir_extra_time }}"
                                             style="text-align: end;color :red;font-size:75%;">00:00:00</p>
@@ -115,7 +118,7 @@
                     </div>
                 </div>
             @empty
-                <img src="{{ url('img/nolelang.png') }}" class="d-block w-100 mt-5" alt="ceklis">
+                <img src="{{ url('img/lelang.png') }}" class="d-block w-100 mt-5" alt="ceklis">
             @endforelse
         </div>
     </div>
@@ -128,9 +131,9 @@
                     if ($auctionProduct->photo !== null) {
                         $photo = url('storage') . '/' . $auctionProduct->photo->path_foto;
                     }
-
+                    
                     $currentMaxBid = $auctionProduct->ob;
-
+                    
                     if ($auctionProduct->maxBid !== null) {
                         $currentMaxBid = $auctionProduct->maxBid->nominal_bid;
                     }
@@ -160,11 +163,14 @@
                                 <div class="row">
                                     <div class="col-6 p-0 ps-lg-1">
                                         <p class="m-0" style="font-size:80%">Harga saat ini</p>
-                                        <p class="m-0" style="color: red;font-size:75%">Rp {{ number_format($currentMaxBid, 0, '.', '.') }}</p>
+                                        <p class="m-0" style="color: red;font-size:75%">Rp
+                                            {{ number_format($currentMaxBid, 0, '.', '.') }}</p>
                                     </div>
                                     <div class="col-6 p-0 pe-lg-1">
-                                        <p class="m-0 countdown-title-{{ $auctionProduct->id_ikan }}" style="text-align: end;font-size:80%">Live Time</p>
-                                        <p class="m-0 countdown-label" data-id="{{ $auctionProduct->id_ikan }}" id="bawah-{{ $auctionProduct->id_ikan }}"
+                                        <p class="m-0 countdown-title-{{ $auctionProduct->id_ikan }}"
+                                            style="text-align: end;font-size:80%">Live Time</p>
+                                        <p class="m-0 countdown-label" data-id="{{ $auctionProduct->id_ikan }}"
+                                            id="bawah-{{ $auctionProduct->id_ikan }}"
                                             data-endtime="{{ $auctionProduct->event->tgl_akhir }}"
                                             data-end-extratime="{{ $auctionProduct->tgl_akhir_extra_time }}"
                                             style="text-align: end;color :red;font-size:75%;">00:00:00</p>
@@ -175,7 +181,7 @@
                     </a>
                 </div>
             @empty
-                <img src="{{ url('img/nolelang.png') }}" class="d-block w-100 mt-5" alt="ceklis">
+                <img src="{{ url('img/lelang.png') }}" class="d-block w-100 mt-5" alt="ceklis">
             @endforelse
         </div>
     </div>
@@ -191,13 +197,13 @@
             @forelse($hotProductStores as $hotProduct)
                 @php
                     $productPhoto2 = 'img/bio_media.png';
-
+                    
                     if ($hotProduct->photo !== null) {
                         $productPhoto2 = url('storage') . '/' . $hotProduct->photo->path_foto;
                     }
-
+                    
                     $wishlistClass = 'far fa-heart';
-
+                    
                     if (array_key_exists('wishlist', $hotProduct->toArray()) && $hotProduct->wishlist !== null) {
                         $wishlistClass = 'fas fa-heart';
                     }
@@ -241,13 +247,13 @@
                 @forelse($hotProductStores as $hotProduct)
                     @php
                         $productPhoto = 'img/bio_media.png';
-
+                        
                         if ($hotProduct->photo !== null) {
                             $productPhoto = url('storage') . '/' . $hotProduct->photo->path_foto;
                         }
-
+                        
                         $wishlistClass = 'far fa-heart';
-
+                        
                         if (array_key_exists('wishlist', $hotProduct->toArray()) && $hotProduct->wishlist !== null) {
                             $wishlistClass = 'fas fa-heart';
                         }
@@ -309,36 +315,26 @@
 
     <div class="container">
         <div class="justify-content-around row">
-            <div class="border col-lg-2 col-9 mt-4">
+            <div class="col-lg-2 col-9 mt-4">
                 <div class="">
-                    <p class="style text-center"><i class="fa-solid fa-envelope" style="color: red"></i></p>
-                    <p class="style text-center"><b>Email</b></p>
-                    <p class="style text-center">onelito.koi@gmail.com</p>
+                    <a href="mailto:onelito.koi@gmail.com"><img src="{{ url('img/email.png') }}" alt="email"></a>
                 </div>
             </div>
-            <div class="border col-lg-2 col-9 mt-4">
+            <div class="col-lg-2 col-9 mt-4">
                 <div class="">
-                    <p class="style text-center"><i class="fa-solid fa-bag-shopping" style="color: red"></i></p>
-                    <p class="style text-center"><b>Tokopedia</b></p>
-                    <a href="https://www.tokopedia.com/onelitokoi">
-                        <p class="style text-center">onelitokoi</p>
-                    </a>
+                    <a href="https://www.tokopedia.com/onelitokoi" target="_blank"><img
+                            src="{{ url('img/tokped.png') }}" alt="tokped"></a>
                 </div>
             </div>
-            <div class="border col-lg-2 col-9 mt-4">
+            <div class="col-lg-2 col-9 mt-4">
                 <div class="">
-                    <p class="style text-center"><i class="fas fa-map-marker-alt" style="color: red"></i></p>
-                    <p class="style text-center"><b>Address</b></p>
-                    <p class="style text-center">Jl. Tandon Ciater D No. 50, BSD, Ciater, Serpong, Tangerang selatan Banten
-                        15310</p>
+                    <a href="https://www.google.com/maps/place/Onelito+Koi/@-6.3258102,106.6893418,17z/data=!3m1!4b1!4m5!3m4!1s0x2e69fb6e6c391ec5:0x724a9e4e6c80aaed!8m2!3d-6.3258155!4d106.6915305" target="_blank"><img src="{{ url('img/alamat.png') }}" alt="alamat"></a>
                 </div>
             </div>
-            <div class="border col-lg-2 col-9 mt-4">
+            <div class="col-lg-2 col-9 mt-4">
                 <div class="">
-                    <p class="style text-center"><i class="fas fa-phone" style="color: red"></i></p>
-                    <p class="style text-center"><b>Contact Us</b></p>
-                    <p class="style text-center">0811-972-857</p>
-                    <p class="style text-center">0811-972-857</p>
+                    <a href="https://api.whatsapp.com/send?phone=62811972857&text=Halo%20saya%20ingin%20bertanya%20mengenai%20*Onelito%20Koi*"
+                        target="_blank"><img src="{{ url('img/wa.png') }}" alt="wa"></a>
                 </div>
             </div>
         </div>
@@ -389,7 +385,7 @@
             @forelse($championFishes as $championFish)
                 @php
                     $photoChampion = 'img/koi12.jpg';
-
+                    
                     if ($championFish->foto_ikan !== null) {
                         $photoChampion = url('storage') . '/' . $championFish->foto_ikan;
                     }

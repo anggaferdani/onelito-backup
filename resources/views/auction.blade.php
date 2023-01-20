@@ -4,23 +4,23 @@
     <style>
         /* On screens that are 992px or less, set the background color to blue */
         @media screen and (min-width: 601px) {
-                .res {
-                    display: none
-                }
+            .res {
+                display: none
             }
+        }
 
-            /* On screens that are 600px or less, set the background color to olive */
-            @media screen and (max-width: 600px) {
-                .web {
-                    display: none;
-                }
+        /* On screens that are 600px or less, set the background color to olive */
+        @media screen and (max-width: 600px) {
+            .web {
+                display: none;
             }
+        }
 
         .bottom {
             position: absolute;
             margin-top: 19.5%;
             width: 99%;
-            
+
         }
 
         .bottom-banner {
@@ -63,11 +63,11 @@
         }
     </style>
 
-<br><br><br><br><br>
+    <br><br><br><br><br>
     @if ($currentAuction && $currentAuction->kategori_event === 'Event')
         @php
             $bannerImg = 'img/event.png';
-
+            
             if ($currentAuction->banner !== null) {
                 $bannerImg = url('storage') . '/' . $currentAuction->banner;
             }
@@ -113,7 +113,8 @@
                             <div class="card">
                                 <div class="card-body p-2 text-center">
                                     <p class="m-0" style="font-size: xx-small">CURRENT TOTAL PRIZE</p>
-                                    <h5 class="m-0 text-danger">{{ number_format($currentAuction->total_hadiah, 0, '.', '.') }}</h5>
+                                    <h5 class="m-0 text-danger">
+                                        {{ number_format($currentAuction->total_hadiah, 0, '.', '.') }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -127,7 +128,7 @@
                 <div class="col">
                     <div class="card mt-2">
                         <div class="p-2 text-center">
-                            <p class="m-0" >CURRENT TOTAL BID</p>
+                            <p class="m-0">CURRENT TOTAL BID</p>
                             <h3 class="m-0 text-danger">{{ number_format($currentTotalBid, 0, '.', '.') }}</h3>
                         </div>
                     </div>
@@ -135,7 +136,7 @@
                 <div class="col">
                     <div class="card mt-2">
                         <div class="p-2 text-center">
-                            <p class="m-0" >CURRENT TOTAL PRIZE</p>
+                            <p class="m-0">CURRENT TOTAL PRIZE</p>
                             <h3 class="m-0 text-danger">{{ number_format($currentAuction->total_hadiah, 0, '.', '.') }}</h3>
                         </div>
                     </div>
@@ -144,7 +145,7 @@
         </div>
 
 
-            <br>
+        <br>
         </div>
     @endif
     <div class="container">
@@ -159,11 +160,11 @@
 
         @php
             $auctionTitle = 'Special';
-
+            
             if ($currentAuction && $currentAuction->kategori_event === 'Event') {
                 $auctionTitle = 'Event';
             }
-
+            
         @endphp
 
         <div class="container-fluid">
@@ -183,21 +184,21 @@
                         if ($auctionProduct->photo !== null) {
                             $photo = url('storage') . '/' . $auctionProduct->photo->path_foto;
                         }
-
+                        
                         $currentMaxBid = $auctionProduct->ob;
-
+                        
                         if ($auctionProduct->maxBid !== null) {
                             $currentMaxBid = $auctionProduct->maxBid->nominal_bid;
                         }
-
+                        
                         $wishlistClass = 'far fa-heart';
-
+                        
                         if (array_key_exists('wishlist', $auctionProduct->toArray()) && $auctionProduct->wishlist !== null) {
                             $wishlistClass = 'fas fa-heart';
                         }
                     @endphp
                     <div class="col mt-3">
-                    <div class="card">
+                        <div class="card">
                             <img src="{{ $photo }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 {{-- <h5 class="card-title">{{ $auctionProduct->variety }} | {{ $auctionProduct->breeder }} | {{ $auctionProduct->bloodline }} | {{ $auctionProduct->size }}</h5> --}}
@@ -216,7 +217,8 @@
                                             {{ number_format($currentMaxBid, 0, '.', '.') }}</p>
                                     </div>
                                     <div class="col-6 p-0 pe-lg-1">
-                                        <p class="m-0" id="countdown-title-{{ $auctionProduct->id_ikan }}" style="text-align: end;font-size:80%">Live Time</p>
+                                        <p class="m-0" id="countdown-title-{{ $auctionProduct->id_ikan }}"
+                                            style="text-align: end;font-size:80%">Live Time</p>
                                         <p class="m-0 countdown-label" id="{{ $auctionProduct->id_ikan }}"
                                             data-endtime="{{ $auctionProduct->event->tgl_akhir }}"
                                             data-end-extratime="{{ $auctionProduct->tgl_akhir_extra_time }}"
@@ -246,7 +248,7 @@
                                                 <button class="border-0 mt-2"
                                                     style="background-color: transparent;font-size:larger; float: right"><i
                                                         data-id="{{ $auctionProduct->id_ikan }}"
-                                                        class="{{$wishlistClass}} wishlist"></i></button>
+                                                        class="{{ $wishlistClass }} wishlist"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -255,7 +257,7 @@
                         </div>
                     </div>
                 @empty
-                    <img src="{{ url('img/nolelang.png') }}" class="d-block w-100 mt-5" alt="ceklis">
+                    <img src="{{ url('img/lelang.png') }}" class="d-block w-100 mt-5" alt="ceklis">
                 @endforelse
             </div>
         </div>

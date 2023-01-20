@@ -109,17 +109,17 @@
                 </div>
                 <div class="">
                     <a class="nav-link active text-white" aria-current="page"
-                        href="https://www.instagram.com/onelitokoi.id/?hl=id">
+                        href="https://www.instagram.com/onelitokoi.id/?hl=id" target="_blank">
                         <i class="fa-brands fa-instagram"></i>
                         @onelitokoi.id</a>
                 </div>
                 <div class="">
-                    <a class="nav-link active text-white" aria-current="page" href="#"><i
+                    <a class="nav-link active text-white" aria-current="page" href="https://www.facebook.com/profile.php?id=100089107055034&_rdc=1&_rdr" target="_blank"><i
                             class="fa-brands fa-facebook"></i> @Onelito koi</a>
                 </div>
                 <div class="">
                     <a class="nav-link active text-white" aria-current="page"
-                        href="https://www.youtube.com/channel/UCbhkQaiMUPUVQWw5KBLT0Bw"><i
+                        href="https://www.youtube.com/channel/UCbhkQaiMUPUVQWw5KBLT0Bw" target="_blank"><i
                             class="fa-brands fa-youtube"></i> Onelito koi</a>
                 </div>
             </div>
@@ -129,7 +129,7 @@
                 </div>
                 <div class="">
                     <a class="nav-link active text-white" aria-current="page"
-                        href="https://www.tokopedia.com/onelitokoi?source=universe&st=product"><i class="fa-solid fa-bag-shopping"></i> Tokopedia</a>
+                        href="https://www.tokopedia.com/onelitokoi?source=universe&st=product" target="_blank"><i class="fa-solid fa-bag-shopping"></i> Tokopedia</a>
                 </div>
             </div>
         </div>
