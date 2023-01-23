@@ -41,7 +41,7 @@ height = 31hv">
                         <a
                             class="nav-link {{ $title === 'auction' ? 'active text-danger' : '' }}"href="/auction">AUCTION</a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a
                             class="nav-link {{ $title === 'onelito_store' ? 'active text-danger' : '' }}"href="/onelito_store">ONELITO
                             STORE</a>
@@ -49,7 +49,7 @@ height = 31hv">
                     <li class="nav-item">
                         <a class="nav-link {{ $title === 'koi_stok' ? 'active text-danger' : '' }}"href="/koi_stok">KOI
                             STOCK</a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link {{ $title === 'login' ? 'active text-danger' : '' }}"href="/profil"><i
                                 class="fa-solid fa-circle-user" style="font-size: x-large"></i></a>

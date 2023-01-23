@@ -192,7 +192,7 @@
 
 
 
-    <div class="container nav-atas">
+    {{-- <div class="container nav-atas">
         <div class="d-flex overflow-scroll">
             @forelse($hotProductStores as $hotProduct)
                 @php
@@ -288,9 +288,9 @@
                 @endforelse
             </div>
         </div>
-    </div>
+    </div> --}}
 
-    <div class="container mt-5 text-center">
+    {{-- <div class="container mt-5 text-center">
         <h3>ONELITO <span style="color:red;">KOI</span></h3>
         <br>
     </div>
@@ -305,6 +305,16 @@
         <p class="text-center mb-5">Volutpat risus accumsan feugiat in et id egestas. Sed morbi tristique nunc arcu.
             Lobortis tortor in lectus tellus non, pretium viverra. Nibh mattis condimentum consectetur ut facilisi fermentum
             mattis aliquam. </p>
+    </div> --}}
+
+
+    <div class="container mt-5 text-center">
+        <h3>ONELITO <span style="color:red;">KOI</span></h3>
+        <br>
+    </div>
+    <div class="container">
+        <p class="text-center" style="font-size:4rem;font-weight:400;">-- Make Hobbyist Happy --</p>
+        <p class="text-center">Since 2021</p>
     </div>
 
 
@@ -312,8 +322,60 @@
 
 
 
-
+    {{-- web --}}
     <div class="container">
+        <div class="justify-content-lg-around justify-content-center row">
+            <div class="col-lg-2 col-12 mt-4">
+                <div class="">
+                    <a href="mailto:onelito.koi@gmail.com"><img src="{{ url('img/email.png') }}" alt="email"></a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-12 mt-4">
+                <div class="">
+                    <a href="https://www.tokopedia.com/onelitokoi" target="_blank"><img src="{{ url('img/tokped.png') }}"
+                            alt="tokped"></a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-12 mt-4">
+                <div class="">
+                    <a href="https://www.google.com/maps/place/Onelito+Koi/@-6.3258102,106.6893418,17z/data=!3m1!4b1!4m5!3m4!1s0x2e69fb6e6c391ec5:0x724a9e4e6c80aaed!8m2!3d-6.3258155!4d106.6915305"
+                        target="_blank"><img src="{{ url('img/alamat.png') }}" alt="alamat"></a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-12 mt-4">
+                <div class="">
+                    <a href="https://api.whatsapp.com/send?phone=62811972857&text=Halo%20saya%20ingin%20bertanya%20mengenai%20*Onelito%20Koi*"
+                        target="_blank"><img src="{{ url('img/wa.png') }}" alt="wa"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- responsive --}}
+    {{-- <div class="container nav-atas">
+        <div class="justify-content-lg-around justify-content-center row">
+            <div class="col-lg-2 col-12 mt-4">
+                <a href="mailto:onelito.koi@gmail.com"><img src="{{ url('img/email.png') }}" alt="email"></a>
+            </div>
+            <div class="col-lg-2 col-12 mt-4">
+                <a href="https://www.tokopedia.com/onelitokoi" target="_blank"><img
+                    src="{{ url('img/tokped.png') }}" alt="tokped"></a>
+            </div>
+            <div class="col-lg-2 col-12 mt-4">
+                <a href="https://www.google.com/maps/place/Onelito+Koi/@-6.3258102,106.6893418,17z/data=!3m1!4b1!4m5!3m4!1s0x2e69fb6e6c391ec5:0x724a9e4e6c80aaed!8m2!3d-6.3258155!4d106.6915305" target="_blank"><img src="{{ url('img/alamat.png') }}" alt="alamat"></a>
+            </div>
+            <div class="col-lg-2 col-12 mt-4">
+                <div class="">
+                    <a href="https://api.whatsapp.com/send?phone=62811972857&text=Halo%20saya%20ingin%20bertanya%20mengenai%20*Onelito%20Koi*"
+                        target="_blank"><img src="{{ url('img/wa.png') }}" alt="wa"></a>
+                </div>
+            </div>
+        </div>
+    </div> --}}
+
+
+
+
+    {{-- <div class="container">
         <div class="justify-content-around row">
             <div class="col-lg-2 col-9 mt-4">
                 <div class="">
@@ -338,49 +400,15 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    {{-- <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-12 mt-4">
-                <div class="card">
-                    <p class="style text-center"><i class="fa-solid fa-envelope" style="color: red"></i></p>
-                    <p class="style text-center"><b>Email</b></p>
-                    <p class="style text-center">onelito.koi@gmail.com</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-12 mt-4">
-                <div class="card">
-                    <p class="style text-center"><i class="fa-solid fa-bag-shopping" style="color: red"></i></p>
-                    <p class="style text-center"><b>Tokopedia</b></p>
-                    <a href="https://www.tokopedia.com/onelitokoi">
-                        <p class="style text-center">onelitokoi</p>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-12 mt-4">
-                <div class="card">
-                    <p class="style text-center"><i class="fas fa-map-marker-alt" style="color: red"></i></p>
-                    <p class="style text-center"><b>Address</b></p>
-                    <p class="style text-center">Jl. Tandon Ciater D No. 50, BSD, Ciater, Serpong, Tangerang selatan Banten 15310</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-12 mt-4">
-                <div class="card">
-                    <p class="style text-center"><i class="fas fa-phone" style="color: red"></i></p>
-                    <p class="style text-center"><b>Contact Us</b></p>
-                    <p class="style text-center">0811-972-857</p>
-                    <p class="style text-center">0811-972-857</p>
-                </div>
-            </div>
-        </div>
     </div> --}}
+
+    
 
     <div class="container-fluit m-5">
         {{-- <img src="img/gc.png" alt="gc" class="w-100"> --}}
     </div>
 
-    <div class="container">
+    {{-- <div class="container">
         <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
             @forelse($championFishes as $championFish)
                 @php
@@ -407,7 +435,7 @@
 
     <div class="container my-5">
         <a href="/detail_koichampion" style="color: red">Lihat lebih Banyak >></a>
-    </div>
+    </div> --}}
 @endsection
 @push('scripts')
     <script src="{{ asset('library/moment/min/moment.min.js') }}"></script>

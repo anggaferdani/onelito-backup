@@ -54,7 +54,7 @@
 <body>
     <div class="container w-75">
         <div style="position: absolute">
-            <a href="/" class="text-dark float-start" style="text-decoration: blink"><i
+            <a href="/login" class="text-dark float-start" style="text-decoration: blink"><i
                     class="fa-solid fa-arrow-left text dark"></i> Back to main page</a>
         </div>
         <center><img src="img/oneli.svg" alt="ONELITO" class="my-5 pt-10"></center>
