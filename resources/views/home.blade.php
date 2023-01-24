@@ -290,23 +290,6 @@
         </div>
     </div> --}}
 
-    {{-- <div class="container mt-5 text-center">
-        <h3>ONELITO <span style="color:red;">KOI</span></h3>
-        <br>
-    </div>
-    <div class="container">
-        <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dictum a tellus tortor vulputate
-            sodales. Et scelerisque a, rutrum elit. Quam nulla tortor nunc lacus. Odio sit id sollicitudin nibh orci sed
-            egestas. Diam, sit mi, et pharetra in ut augue tristique quis. Diam sed dapibus adipiscing nulla amet et aliquet
-            auctor</p>
-        <p class="text-center"> Dolor, in et, cursus id felis sit lacus. In tristique nullam sed magna proin lacinia amet.
-            Viverra sed lectus eu nam.Justo, leo massa enim, et felis aenean.</p>
-
-        <p class="text-center mb-5">Volutpat risus accumsan feugiat in et id egestas. Sed morbi tristique nunc arcu.
-            Lobortis tortor in lectus tellus non, pretium viverra. Nibh mattis condimentum consectetur ut facilisi fermentum
-            mattis aliquam. </p>
-    </div> --}}
-
 
     <div class="container mt-5 text-center">
         <h3>ONELITO <span style="color:red;">KOI</span></h3>
@@ -322,27 +305,50 @@
 
 
 
-    {{-- web --}}
-    <div class="container">
+    {{-- responsive--}}
+    {{-- <div class="container nav-atas">
         <div class="justify-content-lg-around justify-content-center row">
-            <div class="col-lg-2 col-12 mt-4">
-                <div class="">
-                    <a href="mailto:onelito.koi@gmail.com"><img src="{{ url('img/email.png') }}" alt="email"></a>
+            <center>
+                <div class="col-lg-2 col-12 mt-4">
+                    <div class="">
+                        <a href="mailto:onelito.koi@gmail.com"><img src="{{ url('img/email.png') }}" alt="email"></a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-2 col-12 mt-4">
-                <div class="">
-                    <a href="https://www.tokopedia.com/onelitokoi" target="_blank"><img src="{{ url('img/tokped.png') }}"
-                            alt="tokped"></a>
+                <div class="col-lg-2 col-12 mt-4">
+                    <div class="">
+                        <a href="https://www.tokopedia.com/onelitokoi" target="_blank"><img src="{{ url('img/tokped.png') }}"
+                                alt="tokped"></a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-2 col-12 mt-4">
-                <div class="">
-                    <a href="https://www.google.com/maps/place/Onelito+Koi/@-6.3258102,106.6893418,17z/data=!3m1!4b1!4m5!3m4!1s0x2e69fb6e6c391ec5:0x724a9e4e6c80aaed!8m2!3d-6.3258155!4d106.6915305"
-                        target="_blank"><img src="{{ url('img/alamat.png') }}" alt="alamat"></a>
+                <div class="col-lg-2 col-12 mt-4">
+                    <div class="">
+                        <a href="https://www.google.com/maps/place/Onelito+Koi/@-6.3258102,106.6893418,17z/data=!3m1!4b1!4m5!3m4!1s0x2e69fb6e6c391ec5:0x724a9e4e6c80aaed!8m2!3d-6.3258155!4d106.6915305"
+                            target="_blank"><img src="{{ url('img/alamat.png') }}" alt="alamat"></a>
+                    </div>
                 </div>
+                <div class="col-lg-2 col-12 mt-4">
+                    <div class="">
+                        <a href="https://api.whatsapp.com/send?phone=62811972857&text=Halo%20saya%20ingin%20bertanya%20mengenai%20*Onelito%20Koi*"
+                            target="_blank"><img src="{{ url('img/wa.png') }}" alt="wa"></a>
+                    </div>
+                </div>
+            </center>
+        </div>
+    </div> --}}
+    {{-- web --}}   
+    <div class="container">
+        <div class="row" style="display: flex; justify-content: space-between">
+            <div class="col-lg-2 col-12 mt-4 col-md-6" style="display: flex; justify-content: center">
+                <a href="mailto:onelito.koi@gmail.com"><img src="{{ url('img/email.png') }}" alt="email"></a>
             </div>
-            <div class="col-lg-2 col-12 mt-4">
+            <div class="col-lg-2 col-12 mt-4 col-md-6" style="display: flex; justify-content: center">
+                <a href="https://www.tokopedia.com/onelitokoi" target="_blank"><img
+                    src="{{ url('img/tokped.png') }}" alt="tokped"></a>
+            </div>
+            <div class="col-lg-2 col-12 mt-4 col-md-6" style="display: flex; justify-content: center">
+                <a href="https://www.google.com/maps/place/Onelito+Koi/@-6.3258102,106.6893418,17z/data=!3m1!4b1!4m5!3m4!1s0x2e69fb6e6c391ec5:0x724a9e4e6c80aaed!8m2!3d-6.3258155!4d106.6915305" target="_blank"><img src="{{ url('img/alamat.png') }}" alt="alamat"></a>
+            </div>
+            <div class="col-lg-2 col-12 mt-4 col-md-6" style="display: flex; justify-content: center">
                 <div class="">
                     <a href="https://api.whatsapp.com/send?phone=62811972857&text=Halo%20saya%20ingin%20bertanya%20mengenai%20*Onelito%20Koi*"
                         target="_blank"><img src="{{ url('img/wa.png') }}" alt="wa"></a>
@@ -350,27 +356,6 @@
             </div>
         </div>
     </div>
-    {{-- responsive --}}
-    {{-- <div class="container nav-atas">
-        <div class="justify-content-lg-around justify-content-center row">
-            <div class="col-lg-2 col-12 mt-4">
-                <a href="mailto:onelito.koi@gmail.com"><img src="{{ url('img/email.png') }}" alt="email"></a>
-            </div>
-            <div class="col-lg-2 col-12 mt-4">
-                <a href="https://www.tokopedia.com/onelitokoi" target="_blank"><img
-                    src="{{ url('img/tokped.png') }}" alt="tokped"></a>
-            </div>
-            <div class="col-lg-2 col-12 mt-4">
-                <a href="https://www.google.com/maps/place/Onelito+Koi/@-6.3258102,106.6893418,17z/data=!3m1!4b1!4m5!3m4!1s0x2e69fb6e6c391ec5:0x724a9e4e6c80aaed!8m2!3d-6.3258155!4d106.6915305" target="_blank"><img src="{{ url('img/alamat.png') }}" alt="alamat"></a>
-            </div>
-            <div class="col-lg-2 col-12 mt-4">
-                <div class="">
-                    <a href="https://api.whatsapp.com/send?phone=62811972857&text=Halo%20saya%20ingin%20bertanya%20mengenai%20*Onelito%20Koi*"
-                        target="_blank"><img src="{{ url('img/wa.png') }}" alt="wa"></a>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 
 
 
