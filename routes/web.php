@@ -80,6 +80,7 @@ Route::get('/auction/{idIkan}/detail', [AuctionController::class, 'detail'])->na
 
 // MEMBER
 Route::group(['middleware' => 'auth:member'], function () {
+    Route::POST('/change-password', [AuthenticationController::class, 'changePassword']);
     Route::resource('/carts', CartController::class);
     Route::POST('/carts-order', [CartController::class, 'order']);
     Route::get('/auction-bid-now/{idIkan}', [AuctionController::class, 'bidNow'])->name('auction.bid_now');
@@ -187,6 +188,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
 Route::get('/detail_koistok', function () {
     return view('detail_koistok',[
         "title" => "koi_stok"
+    ]);
+});
+
+Route::get('/change-password', function () {
+    return view('change-password',[
+        "title" => "change_password"
     ]);
 });
 

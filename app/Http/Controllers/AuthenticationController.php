@@ -212,4 +212,17 @@ class AuthenticationController extends Controller
             throw $th;
         }
     }
+
+    public function changePassword()
+    {
+        $this->request->validate([
+            'password' => 'required|confirmed',
+        ]);
+
+        $member = Member::findOrFail(Auth::guard('member')->user()->id_peserta);
+        $member->password = $this->request->password;
+        $member->save();
+
+        return back()->with("status", "Password changed successfully!");
+    }
 }

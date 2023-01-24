@@ -92,6 +92,7 @@
                 display: none;
             }
         }
+
     </style>
 
     <div class="res">
@@ -223,7 +224,12 @@
                             </div>
                         </div>
                     </div>
-                    <br><br>
+                    <div class="nav card mt-3 mb-2 nav-pills">
+                        <a class="btn btn-danger w-100 justify-content-between" role="button"
+                            id="v-pills-password-tab"
+                            href="/profil?section=change-password"
+                            style="font-size: x-large">Ganti Password</a>
+                    </div>
                     <div class="card p-0">
                         <a class="btn btn-danger w-100 justify-content-between" href="/logout" role="button"
                             style="font-size: x-large">Log Out</a>
@@ -579,6 +585,36 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="tab-pane fade {{ $request === 'change-password' ? 'show active' : '' }}"
+                            id="v-pills-password" role="tabpanel" aria-labelledby="v-pills-password-tab">
+                            <div class="container mt-3 my-3">
+                                <h5><i class="fa-solid fa-key"></i> <b>Change Password</b></h5>
+                            </div>
+                            <div class="container overflow-hidden p-0">
+                                <div class="card">
+                                </div>
+                                <div class="row p-5">
+                                    <form class="form" method="POST" action="/change-password" role="form" autocomplete="off">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label for="password">New Password</label>
+                                                <input type="password" name="password" class="form-control" id="password" required="">
+                                            </div>
+                                            <div class="form-group mt-3">
+                                                <label for="password_confirm">Confirm Password</label>
+                                                <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" required="">
+                                            </div>
+                                            <div class="form-group mt-3">
+                                                <!-- <button type="submit" class="btn btn-success btn-lg float-right">Save</button> -->
+                                                <button type="submit"
+                                                class="btn btn-danger w-100 justify-content-between"
+                                                style="background-color:#dc3545"
+                                                role="button">Save</button>
+                                            </div>
+                                    </form>
+                                </div>
                         </div>
 
                         {{-- <div class="pageContent" id="transaksi">
