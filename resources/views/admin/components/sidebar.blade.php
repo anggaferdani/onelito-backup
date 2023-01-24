@@ -29,21 +29,25 @@
                 <a class="nav-link"
                     href="{{ url('admin/auctions') }}"><i class="fas fa-calendar-days"></i> <span>Auction</span></a>
             </li>
+            <li class="nav-item {{ $type_menu === 'current-auction' ? 'active' : '' }}">
+                <a class="nav-link"
+                    href="{{ url('admin/current-auctions') }}"><i class="fas fa-calendar-days"></i> <span>Current Auction</span></a>
+            </li>
             <li class="nav-item {{ $type_menu === 'manage-member' ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ url('admin/members') }}"><i class="fas fa-users"></i> <span>Peserta</span></a>
+                    href="{{ url('admin/members') }}"><i class="fas fa-users"></i> <span>Member</span></a>
             </li>
             <li class="nav-item {{ $type_menu === 'manage-auction-winner' ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ url('admin/auction-winners') }}"><i class="fas fa-user"></i> <span>Pemenang</span></a>
+                    href="{{ url('admin/auction-winners') }}"><i class="fas fa-user"></i> <span>Pemenang Lelang</span></a>
             </li>
             <li class="nav-item {{ $type_menu === 'manage-order' ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ url('admin/orders') }}"><i class="fas fa-store"></i> <span>Pembelian Store</span></a>
+                    href="{{ url('admin/orders') }}"><i class="fas fa-store"></i> <span>Onelito Store</span></a>
             </li>
             <li class="nav-item {{ $type_menu === 'manage-fish' ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ url('admin/fishes') }}"><i class="fas fa-fish"></i> <span>Fish</span></a>
+                    href="{{ url('admin/fishes') }}"><i class="fas fa-fish"></i> <span>Koi Stock</span></a>
             </li>
             <li class="nav-item {{ $type_menu === 'manage-champion-fish' ? 'active' : '' }}">
                 <a class="nav-link"
