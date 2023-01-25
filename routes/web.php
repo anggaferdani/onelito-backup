@@ -88,9 +88,15 @@ Route::group(['middleware' => 'auth:member'], function () {
     Route::get('/shoppingcart', [ProfileController::class, 'shopcart'])->name('profile.shopcart');
     Route::get('/wishlist', [ProfileController::class, 'wishlist'])->name('profile.wishlist');
     Route::get('/purchase', [ProfileController::class, 'purchase'])->name('profile.purchase');
+    Route::get('/ganti_password', [ProfileController::class, 'ganti_password'])->name('profile.ganti_password');
     Route::POST('/auction/{idIkan}', [AuctionController::class, 'bidProcess'])->name('auction.bid_process');
     Route::resource('/wishlists', WishlistController::class);
 
+    // Route::get('/gnti_password', function () {
+    //     return view('ganti_password',[
+    //         "title" => "ganti_password"
+    //     ]);
+    // });
 
     Route::get('/bid', function () {
         return view('bid',[

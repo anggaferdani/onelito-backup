@@ -160,7 +160,7 @@
         <a class="nav-link {{ $title === 'koi_stok' ? 'active text-danger' : '' }}"href="/koi_stok">KOI STOCK</a> --}}
 
         <div class="px-4">
-            <a style="margin-top: 23rem" class="btn btn-danger fs-6 text-center text-white" href="/login"
+            <a style="margin-top: 1rem" class="btn btn-danger fs-6 text-center text-white" href="/logout"
                 role="button" style="font-size: x-large">
                 <span style="margin-left: -2rem;">Log Out</span>
             </a>

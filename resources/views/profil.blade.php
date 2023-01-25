@@ -92,7 +92,6 @@
                 display: none;
             }
         }
-
     </style>
 
     <div class="res">
@@ -115,7 +114,7 @@
                     </div>
                 </div>
                 <div class="container overflow-scroll">
-                    <div class="d-flex" style="width: 92vw">
+                    <div class="d-flex" style="width: 123vw">
                         <a href="#" style="font-size: 11px" class="btn btn-outline-secondary rounded-pill mr-2 ">
                             <i class='bx bx-menu-alt-left'></i>
                             Filter</a>
@@ -129,7 +128,8 @@
                         <a href="/purchase" style="font-size: 11px"
                             class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'purchase' ? 'active' : '' }}">Purchase
                             history</a>
-
+                        <a href="/ganti_password" style="font-size: 11px"
+                            class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'purchase' ? 'active' : '' }}">Ganti password</a>
                     </div>
                 </div>
             </div>
@@ -226,8 +226,7 @@
                     </div>
                     <div class="nav card mt-3 mb-2 nav-pills">
                         <a class="btn btn-danger w-100 justify-content-between" role="button"
-                            id="v-pills-password-tab"
-                            href="/profil?section=change-password"
+                            id="v-pills-password-tab" href="/profil?section=change-password"
                             style="font-size: x-large">Ganti Password</a>
                     </div>
                     <div class="card p-0">
@@ -298,18 +297,18 @@
                                             <hr class="float-sm-end text-center" style="width: 98%;">
                                             @forelse($carts as $cart)
                                                 @php
-
+                                                    
                                                     $cartPhoto = url('img/uniring.jpeg');
                                                     $cartable = $cart->cartable;
-
+                                                    
                                                     if ($cart->cartable_type === 'EventFish') {
                                                         $cartPhoto = url('img/koi11.jpg');
                                                     }
-
+                                                    
                                                     if ($cart->cartable->photo !== null) {
                                                         $cartPhoto = url('storage') . '/' . $cart->cartable->photo->path_foto;
                                                     }
-
+                                                    
                                                     if ($cart->cartable_type === 'Product') {
                                                         $cartPrice = $cartable->harga;
                                                     }
@@ -325,7 +324,8 @@
                                                                 data-type="eventfish" value=""
                                                                 id="flexCheckDefault">
                                                             <div class="card mr-3">
-                                                                <a href="/auction/{{$cart->cartable_id}}"><img src="{{ $cartPhoto }}"
+                                                                <a href="/auction/{{ $cart->cartable_id }}"><img
+                                                                        src="{{ $cartPhoto }}"
                                                                         class="card-img-top"
                                                                         style="height: 10vh; width: 5vw; object-fit: cover;"
                                                                         alt="..."></a>
@@ -350,12 +350,10 @@
                                                     <div class="container">
                                                         <div class="container d-flex p-0 my-3">
                                                             <input class="form-check-input mr-3 my-auto cart-check"
-                                                                type="checkbox"
-                                                                data-price="{{ $cartPrice }}"
+                                                                type="checkbox" data-price="{{ $cartPrice }}"
                                                                 data-id="{{ $cart->id_keranjang }}"
                                                                 data-cartableid="{{ $cart->cartable_id }}"
-                                                                data-type="product"
-                                                                value=""
+                                                                data-type="product" value=""
                                                                 id="flexCheckDefault">
                                                             <div class="card mr-3">
                                                                 <a href="/detail_onelito_store"><img
@@ -431,7 +429,8 @@
                                                         </div>
                                                     </div>
                                                     <br>
-                                                    <a onclick="" class="transaction btn btn-secondary w-100 justify-content-between "
+                                                    <a onclick=""
+                                                        class="transaction btn btn-secondary w-100 justify-content-between "
                                                         href="#">Pesan
                                                         Sekarang (<span class="total-item">0</span>)</a>
                                                 </div>
@@ -453,19 +452,19 @@
                                         <h4 class="mb-1">{{ count($wishlists) ?? '' }} <span>Barang</span></h4>
                                         @forelse($wishlists as $wishlist)
                                             @php
-
+                                                
                                                 $wishlistPhoto = url('img/uniring.jpeg');
                                                 $wishlistable = $wishlist->wishlistable;
-
+                                                
                                                 if ($wishlist->wishlistable_type === 'EventFish') {
                                                     $wishlistPhoto = url('img/koi11.jpg');
                                                     $currentMaxBid = $wishlistable->ob;
-
+                                                
                                                     if ($wishlistable->maxBid !== null) {
                                                         $currentMaxBid = $wishlistable->maxBid->nominal_bid;
                                                     }
                                                 }
-
+                                                
                                                 if ($wishlist->wishlistable->photo !== null) {
                                                     $wishlistPhoto = url('storage') . '/' . $wishlist->wishlistable->photo->path_foto;
                                                 }
@@ -596,25 +595,28 @@
                                 <div class="card">
                                 </div>
                                 <div class="row p-5">
-                                    <form class="form" method="POST" action="/change-password" role="form" autocomplete="off">
-                                            @csrf
-                                            <div class="form-group">
-                                                <label for="password">New Password</label>
-                                                <input type="password" name="password" class="form-control" id="password" required="">
-                                            </div>
-                                            <div class="form-group mt-3">
-                                                <label for="password_confirm">Confirm Password</label>
-                                                <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" required="">
-                                            </div>
-                                            <div class="form-group mt-3">
-                                                <!-- <button type="submit" class="btn btn-success btn-lg float-right">Save</button> -->
-                                                <button type="submit"
+                                    <form class="form" method="POST" action="/change-password" role="form"
+                                        autocomplete="off">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label for="password">New Password</label>
+                                            <input type="password" name="password" class="form-control"
+                                                id="password" required="">
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <label for="password_confirm">Confirm Password</label>
+                                            <input type="password" name="password_confirmation" class="form-control"
+                                                id="password_confirmation" required="">
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <!-- <button type="submit" class="btn btn-success btn-lg float-right">Save</button> -->
+                                            <button type="submit"
                                                 class="btn btn-danger w-100 justify-content-between"
-                                                style="background-color:#dc3545"
-                                                role="button">Save</button>
-                                            </div>
+                                                style="background-color:#dc3545" role="button">Save</button>
+                                        </div>
                                     </form>
                                 </div>
+                            </div>
                         </div>
 
                         {{-- <div class="pageContent" id="transaksi">
@@ -734,8 +736,7 @@
             })
         }
 
-        function orderNowProcess()
-        {
+        function orderNowProcess() {
             var boxes = document.getElementsByTagName("input");
             var totalPrice = 0;
             var items = 0;
