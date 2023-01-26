@@ -88,7 +88,7 @@ Route::group(['middleware' => 'auth:member'], function () {
     Route::get('/shoppingcart', [ProfileController::class, 'shopcart'])->name('profile.shopcart');
     Route::get('/wishlist', [ProfileController::class, 'wishlist'])->name('profile.wishlist');
     Route::get('/purchase', [ProfileController::class, 'purchase'])->name('profile.purchase');
-    Route::get('/ganti_password', [ProfileController::class, 'ganti_password'])->name('profile.ganti_password');
+    Route::get('/ganti_password', [ProfileController::class, 'viewChangePassword'])->name('profile.view_change_password');
     Route::POST('/auction/{idIkan}', [AuctionController::class, 'bidProcess'])->name('auction.bid_process');
     Route::resource('/wishlists', WishlistController::class);
 

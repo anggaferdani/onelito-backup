@@ -1,6 +1,6 @@
 @extends('profil')
 
-@section
+@section('container')
 <div class="container mt-3 my-3">
     <h5><i class="fa-solid fa-key"></i> <b>Change Password</b></h5>
 </div>

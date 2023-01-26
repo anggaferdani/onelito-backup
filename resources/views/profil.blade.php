@@ -109,7 +109,7 @@
                             </div>
                         </a>
                         <div class="ml-auto" style="font-size: 22px">
-                            <a href="/"><i class='bx bx-x-circle text-danger' style="font-size: x-large"></i></a>
+                            <a href="/logout"><i class='bx bx-x-circle text-danger' style="font-size: x-large"></i></a>
                         </div>
                     </div>
                 </div>
@@ -297,18 +297,18 @@
                                             <hr class="float-sm-end text-center" style="width: 98%;">
                                             @forelse($carts as $cart)
                                                 @php
-                                                    
+
                                                     $cartPhoto = url('img/uniring.jpeg');
                                                     $cartable = $cart->cartable;
-                                                    
+
                                                     if ($cart->cartable_type === 'EventFish') {
                                                         $cartPhoto = url('img/koi11.jpg');
                                                     }
-                                                    
+
                                                     if ($cart->cartable->photo !== null) {
                                                         $cartPhoto = url('storage') . '/' . $cart->cartable->photo->path_foto;
                                                     }
-                                                    
+
                                                     if ($cart->cartable_type === 'Product') {
                                                         $cartPrice = $cartable->harga;
                                                     }
@@ -452,19 +452,19 @@
                                         <h4 class="mb-1">{{ count($wishlists) ?? '' }} <span>Barang</span></h4>
                                         @forelse($wishlists as $wishlist)
                                             @php
-                                                
+
                                                 $wishlistPhoto = url('img/uniring.jpeg');
                                                 $wishlistable = $wishlist->wishlistable;
-                                                
+
                                                 if ($wishlist->wishlistable_type === 'EventFish') {
                                                     $wishlistPhoto = url('img/koi11.jpg');
                                                     $currentMaxBid = $wishlistable->ob;
-                                                
+
                                                     if ($wishlistable->maxBid !== null) {
                                                         $currentMaxBid = $wishlistable->maxBid->nominal_bid;
                                                     }
                                                 }
-                                                
+
                                                 if ($wishlist->wishlistable->photo !== null) {
                                                     $wishlistPhoto = url('storage') . '/' . $wishlist->wishlistable->photo->path_foto;
                                                 }
