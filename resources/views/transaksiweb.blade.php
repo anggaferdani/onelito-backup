@@ -101,14 +101,14 @@
                         <a href="#" style="font-size: 11px" class="btn btn-outline-secondary rounded-pill mr-2 ">
                             <i class='bx bx-menu-alt-left'></i>
                             Filter</a>
-                        <a href="/shoppingcart" style="font-size: 11px"
+                        <a href="/profil?section=cart" style="font-size: 11px"
                             class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'Shopping Cart' ? 'active' : '' }}">Shopping
                             cart</a>
 
-                        <a href="/wishlist" style="font-size: 11px"
+                        <a href="/profil?section=wishlist" style="font-size: 11px"
                             class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'wishlist' ? 'active' : '' }}">WishList</a>
 
-                        <a href="/purchase" style="font-size: 11px"
+                        <a href="/profil?section=purchase" style="font-size: 11px"
                             class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'purchase' ? 'active' : '' }}">Purchase
                             history</a>
 
@@ -150,30 +150,28 @@
                                     </button>
                                     <br>
                                     <h5>Filter</h5>
-                                    <button class="nav-link bg-tranparent text-body p-2 text-lg-start"
-                                        style="background-color: white;font-size:larger" id="v-pills-profile-tab"
-                                        data-bs-toggle="pill" data-bs-target="#v-pills-profile2" type="button"
-                                        role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                                    <a href="/profil?section=cart" class="nav-link bg-tranparent text-body p-2 text-lg-start"
+                                        style="background-color: white;font-size:larger">
                                         Shopping cart
-                                    </button>
-                                    <button class="nav-link text-body p-2 text-lg-start"
-                                        style="background-color: white;font-size:larger" id="v-pills-messages-tab"
-                                        data-bs-toggle="pill" data-bs-target="#v-pills-messages2" type="button"
-                                        role="tab" aria-controls="v-pills-messages" aria-selected="false">
+                                    </a>
+                                    <a href="/profil?section=wishlist" class="nav-link text-body p-2 text-lg-start"
+                                        style="background-color: white;font-size:larger">
                                         WishList
-                                    </button>
-                                    <button class="nav-link text-body p-2 text-lg-start"
-                                        style="background-color: white;font-size:larger" id="v-pills-settings-tab"
-                                        data-bs-toggle="pill" data-bs-target="#v-pills-settings2" type="button"
-                                        role="tab" aria-controls="v-pills-settings" aria-selected="false">
+                                    </a>
+                                    <a href="/profil?section=purchase" class="nav-link text-body p-2 text-lg-start"
+                                        style="background-color: white;font-size:larger">
                                         Purchase history
-                                    </button>
+                                    </a>
                                     <br>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <br><br>
+                    <div class="nav card mt-3 mb-2 nav-pills">
+                        <a class="btn btn-danger w-100 justify-content-between" role="button"
+                            id="v-pills-password-tab" href="/profil?section=change-password"
+                            style="font-size: x-large">Ganti Password</a>
+                    </div>
                     <div class="card p-0">
                         <a class="btn btn-danger w-100 justify-content-between" href="/login" role="button"
                             style="font-size: x-large">Log Out</a>
@@ -199,7 +197,7 @@
                             </div>
                             <div class="card">
                                 <div class="card-body">
-                                    <div>
+                                    <!-- <div>
                                         <p>Batas Pembayaran</p>
                                         <div class="row">
                                             <div class="col-8">
@@ -209,7 +207,7 @@
                                                 <h4>23:54:20</h4>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <br>
                                     <hr>
                                     <hr>
@@ -219,7 +217,7 @@
                                     <h4 class="card-subtitle mb-2">(Nama Pemilik Rekening)</h4>
                                     <div class="card ">
                                         <h4 class="d-flex m-2 justify-content-between">
-                                            <img src="img/groupbca.png" alt="bca" class="w-20">
+                                            <img src="{{ url('img/groupbca.png') }}" alt="bca" class="w-20">
                                             <span style="font-weight: bold">789987687899</span>
                                         </h4>
                                     </div>
@@ -233,7 +231,7 @@
                                     <h4 class="card-subtitle mb-2 mt-2">Jumlah yang harus ditranfer</h4>
                                     <div class="card ">
                                         <h4 class="d-flex m-2" style="font-weight: bold">
-                                            Rp. 1.880.000
+                                            Rp. {{ number_format($order->total, 0, '.', '.') }}
                                         </h4>
                                     </div>
 

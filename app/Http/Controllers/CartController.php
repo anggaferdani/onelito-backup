@@ -76,6 +76,23 @@ class CartController extends Controller
         ],200);
     }
 
+    public function show($id)
+    {
+        $auth = Auth::guard('member')->user();
+
+        $order = Order::find($id);
+
+        if ($order === null) {
+            return redirect('/profil');
+        }
+
+        return view('transaksiweb',[
+            'auth' => $auth,
+            'order' => $order,
+            'title' => 'Cart',
+        ]);
+    }
+
     public function order()
     {
         $auth = Auth::guard('member')->user();
@@ -110,6 +127,7 @@ class CartController extends Controller
 
         return response()->json([
             'success' => true,
+            'id' => $order->id_order,
         ],200);
     }
 }

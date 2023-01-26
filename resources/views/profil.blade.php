@@ -793,23 +793,24 @@
                 },
                 dataType: "json",
                 success: function(res) {
-                    swalWithBootstrapButtons.fire({
-                        title: 'Pesanan',
-                        text: `Pesanan akan segera diproses oleh admin`,
-                        icon: 'success',
-                        showCancelButton: false,
-                        confirmButtonText: 'Ya',
-                        reverseButtons: true
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            location.reload();
-                        } else if (
-                            /* Read more about handling dismissals below */
-                            result.dismiss === Swal.DismissReason.cancel
-                        ) {
+                    location.href = `/carts/${res.id}`;
+                    // swalWithBootstrapButtons.fire({
+                    //     title: 'Pesanan',
+                    //     text: `Pesanan akan segera diproses oleh admin`,
+                    //     icon: 'success',
+                    //     showCancelButton: false,
+                    //     confirmButtonText: 'Ya',
+                    //     reverseButtons: true
+                    // }).then((result) => {
+                    //     if (result.isConfirmed) {
+                    //         location.reload();
+                    //     } else if (
+                    //         /* Read more about handling dismissals below */
+                    //         result.dismiss === Swal.DismissReason.cancel
+                    //     ) {
 
-                        }
-                    })
+                    //     }
+                    // })
 
                 },
                 error: function(error) {
@@ -939,7 +940,7 @@
 
 
             if (items > 0) {
-                transaction.attr('onclick', 'orderNow()')
+                transaction.attr('onclick', 'orderNowProcess()')
                 transaction.removeClass('btn-secondary');
                 transaction.addClass('btn-danger');
             }
@@ -1003,7 +1004,7 @@
 
 
             if (items > 0) {
-                transaction.attr('onclick', 'orderNow()')
+                transaction.attr('onclick', 'orderNowProcess()')
                 transaction.removeClass('btn-secondary');
                 transaction.addClass('btn-danger');
             }
@@ -1057,7 +1058,7 @@
             elemTotalPrice[0].innerText = totalPrice
 
             if (items > 0) {
-                transaction.attr('onclick', 'orderNow()')
+                transaction.attr('onclick', 'orderNowProcess()')
                 transaction.removeClass('btn-secondary');
                 transaction.addClass('btn-danger');
             }
