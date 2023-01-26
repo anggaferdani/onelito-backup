@@ -18,4 +18,15 @@ class AuctionWinner extends Model
     {
         return $this->belongsTo(LogBid::class, 'id_bidding');
     }
+
+    // relation avaible for join
+    public function member()
+    {
+        return $this->belongsTo(Member::class, 'id_peserta');
+    }
+
+    public function event()
+    {
+        return $this->belongsTo(Event::class, 'id_event');
+    }
 }

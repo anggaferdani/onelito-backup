@@ -1,13 +1,13 @@
-<!-- <button class="btn btn-sm btn-secondary mb-2"
-data-url="{{ url('admin/auction-winners/'. $model->id_pemenang_lelang) }}"
-data-id="{{ $model->id_pemenang_lelang }}"
+<button class="btn btn-sm btn-secondary mb-2"
+data-peserta="{{ $model->id_peserta }}"
+data-event="{{ $model->id_event }}"
 id="btn-show"
 data-toggle="tooltip"
 data-placement="top"
 title="Lihat Detail">
     <i class="fa fa-eye"></i>
 </button>
-
+<!--
 <button class="btn btn-sm btn-warning mb-2"
 data-url="{{ url('admin/auction-winners/'. $model->id_pemenang_lelang) }}"
 data-id="{{ $model->id_pemenang_lelang }}"

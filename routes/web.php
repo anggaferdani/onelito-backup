@@ -139,6 +139,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('/charts/sum-product-sold', [Admin\DashboardController::class, 'productSoldChart']);
     Route::get('/charts/sum-nominal-product-sold', [Admin\DashboardController::class, 'productSoldNominalChart']);
     Route::get('/charts/sum-auction-participant', [Admin\DashboardController::class, 'auctionParticipantChart']);
+    Route::get('/auction-winners-info', [Admin\AuctionWinnerController::class, 'info'])->name('admin.auction_winner.info');
+
 
     Route::resource('admins', Admin\AdminController::class);
 

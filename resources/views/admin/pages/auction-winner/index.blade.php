@@ -50,11 +50,13 @@
                                                     #
                                                 </th>
                                                 <th>Pemenang</th>
-                                                <th>Ikan</th>
+                                                <!-- <th>Ikan</th> -->
                                                 <th>Alamat</th>
                                                 <th>Tinggal</th>
-                                                <th>Nominal Bid</th>
-                                                <!-- <th>Action</th> -->
+                                                <th>Kategori Event</th>
+                                                <th>Tgl. Mulai</th>
+                                                <th>Tgl. Akhir</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -101,6 +103,15 @@
         let auctionProducts = @json($auctionProducts)
 
         $(document).ready(function() {
+            function thousandSeparator(x) {
+                // return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+                var	reverse = x.toString().split('').reverse().join(''),
+                ribuan 	= reverse.match(/\d{1,3}/g);
+                ribuan	= ribuan.join('.').split('').reverse().join('');
+
+                return ribuan
+            }
+
             $('#table-1').DataTable({
                 lengthMenu: [
                     [ 10, 25, 50, -1 ],
@@ -124,23 +135,15 @@
                 },
                 columns : [
                     { data : 'DT_RowIndex' , orderable : false,searchable :false},
-                    { data : 'bidding.member.nama' },
-                    { data : 'bidding.event_fish.no_ikan' },
-                    { data : 'bidding.member.alamat'},
-                    { data : 'bidding.member.city.city_name', defaultContent: ''},
-                    { data : 'bidding.nominal_bid'},
-                    // { data : 'action' , orderable : false,searchable :false},
+                    { data : 'member.nama' },
+                    { data : 'member.alamat'},
+                    { data : 'member.city.city_name', defaultContent: ''},
+                    { data : 'event.kategori_event'},
+                    { data : 'event.tgl_mulai'},
+                    { data : 'event.tgl_akhir'},
+                    { data : 'action' , orderable : false,searchable :false},
                 ]
             });
-
-            function thousandSeparator(x) {
-                // return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
-                var	reverse = x.toString().split('').reverse().join(''),
-                ribuan 	= reverse.match(/\d{1,3}/g);
-                ribuan	= ribuan.join('.').split('').reverse().join('');
-
-                return ribuan
-            }
 
             $(document).on('change','select#auction_product',function() {
                 console.log('clicked');
@@ -158,26 +161,56 @@
                     data: data
                 })
             })
-        });
 
-        $(document).on('click','button#btn-show',function() {
-            let id = $(this).data('id');
-            let dataUrl = $(this).data('url');
+            $(document).on('click','button#btn-show',function() {
+            let idEvent = $(this).data('event');
+            let idPeserta = $(this).data('peserta');
+            // let dataUrl = $(this).data('url');
             $.ajax({
                 type: 'GET',
-                url : `auction-winners/${id}`,
+                url : `auction-winners-info?id_peserta=${idPeserta}&id_event=${idEvent}`,
                 dataType: "json",
                 success: function(res) {
-                    $('#modalShow').modal('show');
-                    $('#show_nama_champion').val(res.nama_champion)
-                    $('#show_tahun').val(res.tahun)
-                    $('#show_size').val(res.size)
+                    let sumTotal = 0;
+                    let detailTable = `
+                                <tbody>
+                                    <tr>
+                                        <th data-width="40">#</th>
+                                        <th class="">Item</th>
+                                        <th class="">Total</th>
+                                    </tr>`;
+                    let no = 1;
+                    res.details.forEach(detail => {
+                        sumTotal += detail.bidding.nominal_bid;
+                        var numberTotal = thousandSeparator(detail.bidding.nominal_bid);
+                        detailTable += `<tr>
+                                    <th data-width="40">${no}</th>
+                                    <th class="">Ikan Lelang No. ${detail.bidding.event_fish.no_ikan}</th>
+                                    <th class="">Rp. ${numberTotal}</th>
+                                </tr>`
+                        no++;
+                    });
+                    var city = '';
+                    var prov = '';
 
-                    $('#show_foto').attr('src', ``)
-
-                    if (res.foto_ikan) {
-                        $('#show_foto').attr('src', `/storage/${res.foto_ikan}`)
+                    if (res.member.city !== null) {
+                        city = res.member.city.city_name;
                     }
+
+                    if (res.member.province !== null) {
+                        prov = res.member.province.prov_name;
+                    }
+
+                    detailTable += `</tbody>`
+                    sumTotal = thousandSeparator(sumTotal);
+                    $('#send_to').html(`
+                    ${res.member.nama}<br>
+                    ${res.member.alamat}<br>
+                    ${city}, ${prov}
+                    `)
+                    $('#table_detail').html(detailTable)
+                    $('#total').html(`Rp. ${sumTotal}`)
+                    $('#modalShow').modal('show');
                 },
                 error:function(error) {
                     console.log(error)
@@ -185,6 +218,7 @@
 
             })
         })
+        });
 
         $(document).on('click','button#btn-edit',function() {
             let id = $(this).data('id');

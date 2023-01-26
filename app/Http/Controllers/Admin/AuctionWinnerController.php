@@ -7,6 +7,8 @@ use App\Models\AuctionWinner;
 use App\Models\Cart;
 use App\Models\Event;
 use App\Models\EventFish;
+use App\Models\Member;
+use App\Models\OrderDetail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -19,21 +21,49 @@ class AuctionWinnerController extends Controller
         Carbon::setLocale('id');
         $now = Carbon::now();
 
+        // $winners = AuctionWinner::query()
+        //         ->select('t_pemenang_lelang.*', 't_log_bidding.id_ikan_lelang as id_ikan_lelang', 'm_ikan_lelang.id_event as id_event',
+        //         't_log_bidding.id_peserta as id_peserta'
+        //         )
+        //         ->join('t_log_bidding', 't_pemenang_lelang.id_bidding', '=', 't_log_bidding.id_bidding')
+        //         ->join('m_ikan_lelang', 't_log_bidding.id_ikan_lelang', '=', 'm_ikan_lelang.id_ikan')
+        //         ->distinct('id_peserta', 'id_event')
+        //         ->with(['bidding.member.city', 'bidding.eventFish'])
+        //         ->where('t_pemenang_lelang.status_aktif', 1)
+        //         ->orderBy('t_pemenang_lelang.created_at', 'desc');
+                // ->get();
+
+        // dd($winners);
+
         if ($this->request->ajax()) {
+            // $winners = AuctionWinner::query()
+            //     ->join('t_log_bidding', 't_pemenang_lelang.id_bidding', '=', 't_log_bidding.id_bidding')
+            //     ->with(['bidding.member.city', 'bidding.eventFish'])
+            //     ->where('status_aktif', 1)
+            //     ->orderBy('created_at', 'desc');
+
             $winners = AuctionWinner::query()
-                ->with(['bidding.member.city', 'bidding.eventFish'])
-                ->where('status_aktif', 1)
-                ->orderBy('created_at', 'desc');
+                ->select(
+                    'm_ikan_lelang.id_event as id_event',
+                't_log_bidding.id_peserta as id_peserta'
+                )
+                ->join('t_log_bidding', 't_pemenang_lelang.id_bidding', '=', 't_log_bidding.id_bidding')
+                ->join('m_ikan_lelang', 't_log_bidding.id_ikan_lelang', '=', 'm_ikan_lelang.id_ikan')
+                // ->with(['bidding.member.city', 'bidding.eventFish'])
+                ->with(['member.city', 'event'])
+                ->where('t_pemenang_lelang.status_aktif', 1)
+                ->groupBy('id_peserta', 'id_event')
+                ->orderBy('t_pemenang_lelang.created_at', 'desc')->get();
 
             return DataTables::of($winners)
             ->addIndexColumn()
-            ->editColumn('bidding.nominal_bid', function ($data) {
-                $number = number_format( $data->bidding->nominal_bid , 0 , '.' , '.' );
+            // ->editColumn('bidding.nominal_bid', function ($data) {
+            //     $number = number_format( $data->bidding->nominal_bid , 0 , '.' , '.' );
 
-                return "Rp.$number";
-            })
-            // ->addColumn('action','admin.pages.auction-winner.dt-action')
-            // ->rawColumns(['action'])
+            //     return "Rp.$number";
+            // })
+            ->addColumn('action','admin.pages.auction-winner.dt-action')
+            ->rawColumns(['action'])
             ->make(true);
         }
 
@@ -183,5 +213,26 @@ class AuctionWinnerController extends Controller
         return response()->json([
             'success' => true,
         ],200);
+    }
+
+    public function info()
+    {
+        $idPeserta = $this->request->id_peserta;
+        $idEvent = $this->request->id_event;
+
+        $orderDetail = AuctionWinner::whereHas('bidding', function($q) use($idPeserta, $idEvent){
+            $q->where('id_peserta', $idPeserta)
+                ->whereHas('eventFish', fn($q2) => $q2->where('id_event', $idEvent))
+            ;
+        })
+        ->with('bidding.eventFish')
+        ->get();
+
+        $member = Member::with(['city', 'province'])->findOrFail($idPeserta);
+
+        return response()->json([
+            'details' => $orderDetail,
+            'member' => $member,
+        ]);
     }
 }
