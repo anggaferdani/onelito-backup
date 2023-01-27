@@ -159,7 +159,11 @@
         {{-- <a class="nav-link {{ $title === 'onelito_store' ? 'active text-danger' : '' }}"href="/onelito_store">ONELITO STORE</a>
         <a class="nav-link {{ $title === 'koi_stok' ? 'active text-danger' : '' }}"href="/koi_stok">KOI STOCK</a> --}}
 
-        <div class="px-4">
+        <div class="px-4" style="position: absolute;
+        padding-right: 1.5rem!important;
+        padding-left: 1.5rem!important;
+        width: 100%;
+        bottom: 2.5rem;">
             <a style="margin-top: 1rem" class="btn btn-danger fs-6 text-center text-white" href="/logout"
                 role="button" style="font-size: x-large">
                 <span style="margin-left: -2rem;">Log Out</span>
