@@ -116,7 +116,7 @@
                             </div>
                         </a>
                         <div class="ml-auto" style="font-size: 22px">
-                            <a href="/logout"><i class='bx bx-x-circle text-danger' style="font-size: x-large"></i></a>
+                            <a href="/"><i class='bx bx-x-circle text-danger' style="font-size: x-large"></i></a>
                         </div>
                     </div>
                 </div>
@@ -132,9 +132,9 @@
                         <a href="/wishlist" style="font-size: 11px"
                             class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'wishlist' ? 'active' : '' }}">WishList</a>
 
-                        <a href="/purchase" style="font-size: 11px"
+                        {{-- <a href="/purchase" style="font-size: 11px"
                             class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'purchase' ? 'active' : '' }}">Purchase
-                            history</a>
+                            history</a> --}}
                         <a href="/ganti_password" style="font-size: 11px"
                             class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'purchase' ? 'active' : '' }}">Ganti password</a>
                     </div>
@@ -230,12 +230,12 @@
                                         role="tab" aria-controls="v-pills-messages" aria-selected="false">
                                         WishList
                                     </button>
-                                    <button class="nav-link text-body p-2 text-lg-start"
+                                    {{-- <button class="nav-link text-body p-2 text-lg-start"
                                         style="background-color: white;font-size:larger" id="v-pills-settings-tab"
                                         data-bs-toggle="pill" data-bs-target="#v-pills-settings2" type="button"
                                         role="tab" aria-controls="v-pills-settings" aria-selected="false">
                                         Purchase history
-                                    </button>
+                                    </button> --}}
                                     <br>
                                 </div>
                             </div>
