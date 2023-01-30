@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Event;
 use App\Models\EventFish;
 use App\Models\Member;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Wishlist;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -132,11 +133,20 @@ class ProfileController extends Controller
             }
         }
 
+        $orders = $auth->orders()->with(['productable' => function (MorphTo $morphTo) {
+            $morphTo->morphWith([
+                Product::class => ['photo'],
+                EventFish::class => ['photo'],
+            ]);
+        }])
+        ->where('status_aktif', 1)->get();
+
         return view('profil',[
             'auth' => $auth,
             'title' => 'profil',
             'wishlists' => $wishlists,
             'carts' => $carts,
+            'orders' => $orders,
         ]);
     }
 
@@ -257,11 +267,20 @@ class ProfileController extends Controller
             }
         }
 
+        $orders = $auth->orders()->with(['productable' => function (MorphTo $morphTo) {
+            $morphTo->morphWith([
+                Product::class => ['photo'],
+                EventFish::class => ['photo'],
+            ]);
+        }])
+        ->where('status_aktif', 1)->get();
+
         return view('shoppingcart',[
             'auth' => $auth,
             'title' => 'Shopping Cart',
             'carts' => $carts,
             'wishlists' => $wishlists,
+            'orders' => $orders
         ]);
     }
 
@@ -320,11 +339,20 @@ class ProfileController extends Controller
             }
         }
 
+        $orders = $auth->orders()->with(['productable' => function (MorphTo $morphTo) {
+            $morphTo->morphWith([
+                Product::class => ['photo'],
+                EventFish::class => ['photo'],
+            ]);
+        }])
+        ->where('status_aktif', 1)->get();
+
         return view('wishlist',[
             'auth' => $auth,
             'title' => 'wishlist',
             'carts' => $carts,
             'wishlists' => $wishlists,
+            'orders' => $orders
         ]);
     }
 
@@ -383,11 +411,20 @@ class ProfileController extends Controller
             }
         }
 
+        $orders = $auth->orders()->with(['productable' => function (MorphTo $morphTo) {
+            $morphTo->morphWith([
+                Product::class => ['photo'],
+                EventFish::class => ['photo'],
+            ]);
+        }])
+        ->where('status_aktif', 1)->get();
+
         return view('purchase',[
             'auth' => $auth,
             'title' => 'purchase',
             'carts' => $carts,
             'wishlists' => $wishlists,
+            'orders' => $orders,
         ]);
     }
 
@@ -497,11 +534,20 @@ class ProfileController extends Controller
             }
         }
 
+        $orders = $auth->orders()->with(['productable' => function (MorphTo $morphTo) {
+            $morphTo->morphWith([
+                Product::class => ['photo'],
+                EventFish::class => ['photo'],
+            ]);
+        }])
+        ->where('status_aktif', 1)->get();
+
         return view('ganti_password',[
             'auth' => $auth,
             'title' => 'Change Password',
             'carts' => $carts,
             'wishlists' => $wishlists,
+            'orders' => $orders,
         ]);
     }
 

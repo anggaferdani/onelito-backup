@@ -66,4 +66,9 @@ class Member extends Authenticatable
     {
         return $this->hasMany(LogBid::class, 'id_peserta');
     }
+
+    public function orders()
+    {
+        return $this->hasMany(OrderDetail::class, 'id_peserta');
+    }
 }

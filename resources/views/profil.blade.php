@@ -73,6 +73,10 @@
         .swal2-confirm {
             background-color: #198754;
         }
+
+        .purchase-item {
+            height: 14rem;
+        }
     </style>
 </head>
 
@@ -94,6 +98,8 @@
         }
     </style>
     @php
+        $auth = Auth::guard('member')->user();
+
         $request = Request::input('section', null);
         $imgProfile = url('img/foto.png');
 
@@ -132,9 +138,9 @@
                         <a href="/wishlist" style="font-size: 11px"
                             class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'wishlist' ? 'active' : '' }}">WishList</a>
 
-                        {{-- <a href="/purchase" style="font-size: 11px"
+                        <a href="/purchase" style="font-size: 11px"
                             class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'purchase' ? 'active' : '' }}">Purchase
-                            history</a> --}}
+                            history</a>
                         <a href="/ganti_password" style="font-size: 11px"
                             class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'purchase' ? 'active' : '' }}">Ganti password</a>
                     </div>
@@ -230,12 +236,12 @@
                                         role="tab" aria-controls="v-pills-messages" aria-selected="false">
                                         WishList
                                     </button>
-                                    {{-- <button class="nav-link text-body p-2 text-lg-start"
+                                    <button class="nav-link text-body p-2 text-lg-start"
                                         style="background-color: white;font-size:larger" id="v-pills-settings-tab"
                                         data-bs-toggle="pill" data-bs-target="#v-pills-settings2" type="button"
                                         role="tab" aria-controls="v-pills-settings" aria-selected="false">
                                         Purchase history
-                                    </button> --}}
+                                    </button>
                                     <br>
                                 </div>
                             </div>
@@ -554,49 +560,56 @@
                             <div class="container overflow-hidden p-0">
                                 <div class="card">
                                     <div class="row m-4">
+
+                                    @forelse($orders as $order)
+                                            @php
+
+                                                $orderPhoto = url('img/bio_media.png');
+                                                $productable = $order->productable;
+
+                                                if ($order->productable_type === 'EventFish') {
+                                                    $wishlistPhoto = url('img/koi11.jpg');
+                                                }
+
+                                                if ($productable->photo !== null) {
+                                                    $orderPhoto = url('storage') . '/' . $productable->photo->path_foto;
+                                                }
+                                            @endphp
+
+                                        @if($order->productable_type === 'EventFish')
                                         <div class=" col-3">
                                             <div class="card p-1">
-                                                <a href="/detail_onelito_store">
-                                                    <img src="img/bio_media.png" alt="bio media"
-                                                        class="card-img-top w-100">
-                                                </a>
-                                                <p>Bio Tube Bacteria House Media Filter</p>
-                                                <p><b>Rp. 1.300.000</b></p>
+                                                <!-- <a href="/detail_onelito_store"> -->
+                                                    <img src="{{ $orderPhoto }}" alt=""
+                                                        class="card-img-top purchase-item w-100">
+                                                <!-- </a> -->
+                                                <p>{!! Illuminate\Support\Str::limit(
+                                                                        "$productable->variety | $productable->breeder | $productable->size | $productable->bloodline",
+                                                                        25,
+                                                                    ) !!}</p>
+                                                <p><b>Rp.{{ number_format($order->total, 0, '.', '.') }}</b></p>
                                             </div>
                                         </div>
-                                        <div class="col-3 ">
-                                            <div class="card p-1">
-                                                <a href="#">
-                                                    <img src="img/uniring.jpeg" alt="uniring"
-                                                        class="card-img-top w-100">
-                                                </a>
-                                                <p>Uniring rubber hose /
-                                                    selang aerasi</p>
-                                                <p><b>Rp. 580.000</b></p>
-                                            </div>
-                                        </div>
+                                        @endif
+
+                                        @if($order->productable_type === 'Product')
                                         <div class=" col-3">
                                             <div class="card p-1">
-                                                <a href="#">
-                                                    <img src="img/Matala.jpg" alt="matala"
-                                                        class="card-img-top w-100">
-                                                </a>
-                                                <p>Matala Abu Media Filter
-                                                    Mekanik</p>
-                                                <p><b>Rp. 974.000</b></p>
+                                                <!-- <a href="/detail_onelito_store"> -->
+                                                <img src="{{ $orderPhoto }}" alt="bio media"
+                                                        class="card-img-top purchase-item w-100">
+                                                <!-- </a> -->
+                                                <p>{!! Illuminate\Support\Str::limit(
+                                                                    $productable->merek_produk . ' ' . $productable->nama_produk,
+                                                                    25,
+                                                                ) !!}
+                                                                </p>
+                                                <p><b>Rp.{{ number_format($order->total, 0, '.', '.') }}</b></p>
                                             </div>
                                         </div>
-                                        <div class="col-3 ">
-                                            <div class="card p-1">
-                                                <a href="#">
-                                                    <img src="img/bak_ukur.jpg" alt="bak_ukur"
-                                                        class="card-img-top w-100">
-                                                </a>
-                                                <p>Mistar ukur koi / penggaris ukur koi /
-                                                    bak ukur</p>
-                                                <p><b>Rp. 600.000</b></p>
-                                            </div>
-                                        </div>
+                                        @endif
+                                    @empty
+                                    @endforelse
                                     </div>
                                 </div>
                             </div>
