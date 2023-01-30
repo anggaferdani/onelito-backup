@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Event;
 use App\Models\EventFish;
+use App\Models\Member;
 use App\Models\Product;
 use App\Models\Wishlist;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -502,5 +503,27 @@ class ProfileController extends Controller
             'carts' => $carts,
             'wishlists' => $wishlists,
         ]);
+    }
+
+    public function changeProfile()
+    {
+        $this->request->validate([
+            'foto' => 'required',
+        ]);
+
+        $member = Member::findOrFail(Auth::guard('member')->user()->id_peserta);
+
+        $image = $member->profile_pic;
+        if($this->request->hasFile('foto')){
+            $image = $this->request->file('foto')->store(
+                "foto_profile/$member->id_peserta",'public'
+            );
+        }
+
+        $member->profile_pic = $image;
+        $member->save();
+
+        return response()
+        ->json("Profile picture changed successfully!");
     }
 }

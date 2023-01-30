@@ -106,7 +106,14 @@
         width: 100vw;
     }
 </style>
+@php
+    $auth = Auth::guard('member')->user();
+    $imgProfile = url('img/foto.png');
 
+    if ($auth->profile_pic !== null) {
+        $imgProfile = url('storage/'.$auth->profile_pic);
+    }
+@endphp
 <div class="atas fix">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -135,9 +142,12 @@
                         <a class="nav-link {{ $title === 'koi_stok' ? 'active text-danger' : '' }}"href="/koi_stok">KOI
                             STOCK</a>
                     </li> --}}
+
                     <li class="nav-item">
-                        <a class="nav-link {{ $title === 'login' ? 'active text-danger' : '' }}"href="/profil"><i
-                                class="fa-solid fa-circle-user" style="font-size: x-large"></i></a>
+                        <a class="nav-link {{ $title === 'login' ? 'active text-danger' : '' }}"href="/profil">
+                            <!-- <i class="fa-solid fa-circle-user" style="font-size: x-large"></i> -->
+                            <img src="{{ $imgProfile }}" style="width:24px;height:24px;border-radius:50%;max-width:unset">
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -172,8 +182,9 @@
         <button class="openbtn" onclick="openNav()">&#9776;</button>
         <h2 class="title my-0 mx-auto" style="text-transform: capitalize">{{ $title }}</h2>
 
-        <a class="nav-link {{ $title === 'login' ? 'active text-danger' : '' }}"href="/profil"><i
-                class="fa-solid btn-light fa-circle-user" style="font-size: x-large"></i></a>
+        <a class="nav-link {{ $title === 'login' ? 'active text-danger' : '' }}"href="/profil">
+        <img src="{{ $imgProfile }}" style="width:24px;height:24px;border-radius:50%;max-width:unset">
+            </a>
     </div>
 </div>
 <script>

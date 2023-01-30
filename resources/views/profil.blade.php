@@ -93,7 +93,14 @@
             }
         }
     </style>
+    @php
+        $request = Request::input('section', null);
+        $imgProfile = url('img/foto.png');
 
+        if ($auth->profile_pic !== null) {
+            $imgProfile = url('storage/'.$auth->profile_pic);
+        }
+    @endphp
     <div class="res">
         <div class="container-fluid py-3">
             <div class="fixed-top p-4 bg-white">
@@ -136,15 +143,22 @@
 
             <div style="margin-top: 17vh; margin-bottom: 10vh">
                 @if ($title === 'profil')
+                    @php
+                        $imgProfile = url('img/foto.png');
+
+                        if ($auth->profile_pic !== null) {
+                            $imgProfile = url('storage/'.$auth->profile_pic);
+                        }
+                    @endphp
                     <div class="container my-3 text-center">
                         <h5><i class="fa-solid fa-user"></i> <strong>Profile</strong></h5>
                     </div>
                     <div class="container p-0">
-                        <img src="img/foto.png" class="card-img-top px-5" alt="image">
+                        <img src="{{ $imgProfile }}" style="width:351px;height:255px" class="card-img-top px-5" alt="image">
                         <div class="container text-center">
                             <button type="button" class="btn btn-light btn-sm">
-                                <a href="#" class="border btn btn-light" style="width: 68vw">
-                                    Change photo</a>
+                                <button onclick="uploadProfile()" class="border btn btn-light" style="width: 68vw">
+                                    Change photo</button>
                             </button>
                         </div>
                         <div class="">
@@ -190,8 +204,11 @@
                                         data-bs-target="#v-pills-home2" type="button" role="tab"
                                         aria-controls="v-pills-home2" aria-selected="true">
                                         <div class="row">
-                                            <div class="col-2 p-0">
-                                                <i class="fa-solid fa-circle-user" style="font-size: xxx-large"></i>
+                                            <div class="col-2">
+                                                <!-- <i class="fa-solid fa-circle-user" style="font-size: xxx-large">
+                                                </i> -->
+                                                <img src="{{ $imgProfile }}" style="width:48px;height:48px;border-radius:50%;max-width:unset">
+
                                             </div>
                                             <div class="col-10 p-0 ps-2">
                                                 <h4 class="m-0 ms-lg-3 text-md-start">{{ $auth->nama }}</h4>
@@ -235,9 +252,6 @@
                     </div>
                 </div>
                 <div class="col-md-9">
-                    @php
-                        $request = Request::input('section', null);
-                    @endphp
                     <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade {{ $request === null ? 'show active' : '' }}" id="v-pills-home2"
                             role="tabpanel" aria-labelledby="v-pills-home-tab">
@@ -250,12 +264,14 @@
                                         <div class="col-4">
                                             <div class="p-2 border bg-light m-4">
 
-                                                <img src="img/foto.png" class="card-img-top" alt="image">
+                                                <img src="{{ $imgProfile }}" style="width:235px;height:235px" class="card-img-top" alt="image">
                                                 <div class="card-body">
-                                                    <a href="#"
-                                                        class="border btn btn-light w-100 justify-content-between"><b>
+                                                    <button onclick="uploadProfile()"
+                                                        class="border btn btn-light w-100 justify-content-between">
+                                                        <b>
                                                             <center>Change photo</center>
-                                                        </b></a>
+                                                        </b></button>
+                                                    <Input class="uploadProfileInput d-none" type="file" name="profile_pic" id="newProfilePhoto" accept="image/*" style="opacity: 0;" />
                                                 </div>
 
                                             </div>
@@ -1078,6 +1094,32 @@
 
             return ribuan
         }
+
+        function uploadProfile()
+        {
+            $("input#newProfilePhoto").trigger('click');
+        }
+
+        $(document).on("change", ".uploadProfileInput", function () {
+            var myFormData = new FormData();
+            myFormData.append('foto', $('.uploadProfileInput')[0].files[0]);
+
+            $.ajax({
+                type: 'POST',
+                url: `/change-profile`,
+                processData: false, // important
+                contentType: false, // important
+                dataType : 'json',
+                data: myFormData,
+                success: function(res) {
+                    location.reload()
+                },
+                error: function(error) {
+                    // console.log(error)
+                    return false
+                }
+            })
+        });
     </script>
 
 </body>

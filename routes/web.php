@@ -81,6 +81,7 @@ Route::get('/auction/{idIkan}/detail', [AuctionController::class, 'detail'])->na
 // MEMBER
 Route::group(['middleware' => 'auth:member'], function () {
     Route::POST('/change-password', [AuthenticationController::class, 'changePassword']);
+    Route::POST('/change-profile', [ProfileController::class, 'changeProfile']);
     Route::resource('/carts', CartController::class);
     Route::POST('/carts-order', [CartController::class, 'order']);
     Route::get('/auction-bid-now/{idIkan}', [AuctionController::class, 'bidNow'])->name('auction.bid_now');
