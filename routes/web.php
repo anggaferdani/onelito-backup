@@ -162,6 +162,18 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::resource('orders', Admin\OrderController::class);
 
     Route::resource('auction-winners', Admin\AuctionWinnerController::class);
+
+    Route::group(['prefix' => 'bot'], function () {
+        Route::resource('member', Admin\Bot\MemberController::class)->names([
+            'index' => 'bot-member.index',
+            'store' => 'bot-member.store',
+            'show' => 'bot-member.show',
+            'create' => 'bot-member.create',
+            'destroy' => 'bot-member.destroy',
+            'edit' => 'bot-member.edit',
+            'update' => 'bot-member.update',
+        ]);
+    });
 });
 
 // Route::get('/auction', function () {

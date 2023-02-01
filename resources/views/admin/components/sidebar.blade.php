@@ -53,5 +53,18 @@
                 <a class="nav-link"
                     href="{{ url('admin/champion-fishes') }}"><i class="fas fa-fish"></i> <span>Champion Koi</span></a>
             </li>
+            <li class="menu-header">Lelang Bot</li>
+            <li class="nav-item {{ $type_menu === 'bot-member' ? 'active' : '' }}">
+                <a class="nav-link"
+                    href="{{ url('admin/bot/member') }}"><i class="fas fa-users"></i> <span>Data Member</span></a>
+            </li>
+            <li class="nav-item {{ $type_menu === 'bot-user' ? 'active' : '' }}">
+                <a class="nav-link"
+                    href="{{ url('admin/bot/user') }}"><i class="fas fa-users"></i> <span>Data User</span></a>
+            </li>
+            <li class="nav-item {{ $type_menu === 'bot-winner' ? 'active' : '' }}">
+                <a class="nav-link"
+                    href="{{ url('admin/bot/winner') }}"><i class="fas fa-users"></i> <span>Pemenang Lelang</span></a>
+            </li>
     </aside>
 </div>
