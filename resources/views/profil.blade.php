@@ -720,6 +720,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <script src="{{ asset('library/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('library/compressorjs/dist/compressor.min.js') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
@@ -1112,25 +1113,48 @@
             $("input#newProfilePhoto").trigger('click');
         }
 
-        $(document).on("change", ".uploadProfileInput", function () {
-            var myFormData = new FormData();
-            myFormData.append('foto', $('.uploadProfileInput')[0].files[0]);
+        $(document).on("change", ".uploadProfileInput", function (e) {
+            const file = e.target.files[0];
 
-            $.ajax({
-                type: 'POST',
-                url: `/change-profile`,
-                processData: false, // important
-                contentType: false, // important
-                dataType : 'json',
-                data: myFormData,
-                success: function(res) {
-                    location.reload()
-                },
-                error: function(error) {
-                    // console.log(error)
-                    return false
-                }
-            })
+            if (!file) {
+            return;
+            }
+
+            new Compressor(file, {
+            quality: 0.6,
+            convertSize: 900000,
+
+            // The compression process is asynchronous,
+            // which means you have to access the `result` in the `success` hook function.
+            success(result) {
+                // const formData = new FormData();
+                const myFormData = new FormData();
+
+                // The third parameter is required for server
+                myFormData.append('foto', result, result.name);
+
+                // myFormData.append('foto', $('.uploadProfileInput')[0].files[0]);
+
+                $.ajax({
+                    type: 'POST',
+                    url: `/change-profile`,
+                    processData: false, // important
+                    contentType: false, // important
+                    dataType : 'json',
+                    data: myFormData,
+                    success: function(res) {
+                        location.reload()
+                    },
+                    error: function(error) {
+                        // console.log(error)
+                        return false
+                    }
+                })
+            },
+            error(err) {
+                console.log(err.message);
+            },
+            });
         });
     </script>
 
