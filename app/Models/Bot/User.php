@@ -11,6 +11,7 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     use Notifiable, HasRoles, SoftDeletes;
+    protected $connection = 'mysql_bot';
 
     /**
      * The attributes that are mass assignable.

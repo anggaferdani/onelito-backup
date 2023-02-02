@@ -173,6 +173,28 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
             'edit' => 'bot-member.edit',
             'update' => 'bot-member.update',
         ]);
+
+        Route::resource('user', Admin\Bot\UserController::class)->names([
+            'index' => 'bot-users.index',
+            'store' => 'bot-users.store',
+            'show' => 'bot-users.show',
+            'create' => 'bot-users.create',
+            'destroy' => 'bot-users.destroy',
+            'edit' => 'bot-users.edit',
+            'update' => 'bot-users.update',
+        ]);
+
+        Route::resource('winner', Admin\Bot\PemenangLelangController::class)->names([
+            'index' => 'bot-pemenang-lelang.index',
+            'create' => 'bot-pemenang-lelang.create',
+            'destroy' => 'bot-pemenang-lelang.destroy',
+            'edit' => 'bot-pemenang-lelang.edit',
+            'update' => 'bot-pemenang-lelang.update',
+        ]);
+
+        Route::get('data-lelang/{start_time}', [Admin\Bot\PemenangLelangController::class, 'data_lelang'])->name('data_lelang');
+        Route::post('pemenang-lelang/set/{id}', [Admin\Bot\PemenangLelangController::class, 'store'])->name('bot-pemenang-lelang.store');
+        Route::get('invoice/export/{id}', [Admin\Bot\PemenangLelangController::class, 'export'])->name('export');
     });
 });
 

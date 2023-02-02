@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Admin')
+@section('title', 'Admin User')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -33,10 +33,10 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Data Member</h1>
+                <h1>Data User</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item">Data Member</div>
+                    <div class="breadcrumb-item">Data User</div>
                 </div>
             </div>
 
@@ -46,45 +46,38 @@
                         <div class="card">
                             <div class="card-body">
 
-                            <a href="{{ route('bot-member.create') }}" class="btn btn-sm btn-primary">Tambah Member</a>
+                            <a href="{{ route('bot-users.create') }}" class="btn btn-sm btn-primary">Tambah User</a>
 
                                 <div class="table-responsive">
-                                    <table class="table-striped table"
-                                        id="table">
-                                        <thead>
-                                <tr>
-                                    <th width=20>No.</th>
-                                    <th>Nama Lengkap</th>
-                                    <th>Kota</th>
-                                    <th>Alamat</th>
-                                    <th>No. Hp</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($items as $item)
-                                    <tr>
-                                        <td class="text-center">{{ $loop->iteration }}</td>
-                                        <td>{{ $item->full_name }}</td>
-                                        <td>{{ $item->kota_tinggal }}</td>
-                                        <td>{{ $item->alamat_tinggal }}</td>
-                                        <td>{{ $item->no_telp }}</td>
-                                        <td>
-                                            <a href="{{ route('bot-member.show', $item->user_id) }}"
-                                                class="btn btn-sm btn-warning">Detail</a>
-                                            <a href="{{ route('bot-member.edit', $item->user_id) }}"
-                                                class="btn btn-sm btn-info">Edit</a>
-                                            {{-- <form action="{{ route('bot-member.destroy', $item->user_id) }}" method="post"
-                                        class="d-inline">
-                                        @csrf
-                                        @method('delete')
-                                        <button class="btn btn-sm btn-danger">Hapus</button>
-                                    </form> --}}
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                                    </table>
+                                <table class="table table-bordered" id="table">
+                                    <thead>
+                                        <tr>
+                                            <th width=20>No.</th>
+                                            <th>Nama</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($items as $item)
+                                        <tr>
+                                            <td class="text-center">{{ $loop->iteration }}</td>
+                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->email }}</td>
+                                            <td>{{ $item->roles->pluck('name')->first() }}</td>
+                                            <td>
+                                                <a href="{{ route('bot-users.edit', $item->id) }}" class="btn btn-sm btn-info">Edit</a>
+                                                <form action="{{ route('bot-users.destroy', $item->id) }}" method="post" class="d-inline">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button class="btn btn-sm btn-danger">Hapus</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
                                 </div>
                             </div>
                         </div>
@@ -120,29 +113,9 @@
     <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
 
     <script>
-        $(document).ready(function() {
-            $('#table').DataTable({
-                dom: 'Bfrtip',
-                responsive: true,
-                buttons: [
-                    'pageLength', 'csv', 'pdf', 'print',
-                    {
-                        extend: 'excelHtml5',
-                        title: 'Data Member - ' + Date.now(),
-                        autoFilter: true,
-                        sheetName: 'Data Member - ' + Date.now(),
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6, 7],
-                            modifier: {
-                                page: 'all',
-                                search: 'applied',
-                                order: 'applied',
-                            }
-                        },
-                    }
-                ]
-            });
-        });
+    $(document).ready(function() {
+        $('#table').DataTable();
+    } );
     </script>
 
 

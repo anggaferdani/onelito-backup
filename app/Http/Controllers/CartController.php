@@ -114,6 +114,11 @@ class CartController extends Controller
         ]);
 
         foreach ($data['data_order'] as $dOrder) {
+
+            if ($dOrder['id'] === 0) {
+                continue;
+            }
+
             OrderDetail::create([
                 'status_aktif' => 1,
                 'total' => $dOrder['price'],

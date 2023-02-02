@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\Bot;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bot\Member;
-use App\Bot\User;
+use App\Models\Bot\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
