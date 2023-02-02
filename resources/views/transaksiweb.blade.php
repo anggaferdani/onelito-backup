@@ -76,7 +76,16 @@
             }
         }
     </style>
+    @php
+        $auth = Auth::guard('member')->user();
 
+        $request = Request::input('section', null);
+        $imgProfile = url('img/foto.png');
+
+        if ($auth->profile_pic !== null) {
+            $imgProfile = url('storage/'.$auth->profile_pic);
+        }
+    @endphp
     <div class="res">
         <div class="container-fluid py-3">
             <div class="fixed-top p-4 bg-white">
@@ -84,10 +93,11 @@
                     <div class="d-flex">
                         <a href="/profil2" class="{{ $title === 'profil2' ? 'active' : '' }}">
                             <div class="d-flex">
-                                <i class="fa-solid fa-circle-user mr-4" style="font-size: xx-large"></i>
+                                <!-- <i class="fa-solid fa-circle-user mr-4" style="font-size: xx-large"></i> -->
+                                <img src="{{ $imgProfile }}" class="mr-4" style="width:32px;height:32px;border-radius:50%;max-width:unset">
                                 <div>
-                                    <h4 style="font-size: 15px" class="text-start">JOHN DOE</h4>
-                                    <p style="font-size: 12px" class="text-start">johndoe@gmail.com</p>
+                                    <h4 style="font-size: 15px" class="text-start">{{ $auth->nama }}</h4>
+                                    <p style="font-size: 12px" class="text-start">{{ $auth->email }}</p>
                                 </div>
                             </div>
                         </a>
@@ -117,7 +127,52 @@
             </div>
 
             <div style="margin-top: 17vh; margin-bottom: 10vh">
-                @yield('container')
+            <div class="card">
+                                <div class="card-body">
+                                    <!-- <div>
+                                        <p>Batas Pembayaran</p>
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <h4 style="font-weight: bold">Minggu, 27 Mar 2022 01 : 47 WIB</h4>
+                                            </div>
+                                            <div class="col-4 text-danger" style="text-align:end; font-weight:bold ">
+                                                <h4>23:54:20</h4>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <br>
+                                    <hr>
+                                    <hr>
+                                    <hr>
+                                    <br>
+                                    <h4 class="card-title mb-3">Transfer Ke No.Rekening</h4>
+                                    <h4 class="card-subtitle mb-2">(Nama Pemilik Rekening)</h4>
+                                    <div class="card ">
+                                        <h4 class="d-flex m-2 justify-content-between">
+                                            <img src="{{ url('img/groupbca.png') }}" alt="bca" class="w-20">
+                                            <span style="font-weight: bold">789987687899</span>
+                                        </h4>
+                                    </div>
+                                    <div class="text-danger mt-2" style="text-align:end">
+                                        <h4>Salin</h4>
+                                    </div>
+                                    <hr class="mt-2">
+                                    <hr>
+                                    <hr>
+                                    <br>
+                                    <h4 class="card-subtitle mb-2 mt-2">Jumlah yang harus ditranfer</h4>
+                                    <div class="card ">
+                                        <h4 class="d-flex m-2" style="font-weight: bold">
+                                            Rp. {{ number_format($order->total, 0, '.', '.') }}
+                                        </h4>
+                                    </div>
+
+                                    <div class="text-danger mt-2" style="text-align:end">
+                                        <h4>Salin</h4>
+                                    </div>
+                                </div>
+                            </div>
+
             </div>
         </div>
     </div>
@@ -140,11 +195,11 @@
                                         aria-controls="v-pills-home2" aria-selected="true">
                                         <div class="row">
                                             <div class="col-2 p-0">
-                                                <i class="fa-solid fa-circle-user" style="font-size: xxx-large"></i>
+                                                <img src="{{ $imgProfile }}" style="width:48px;height:48px;border-radius:50%;max-width:unset">
                                             </div>
                                             <div class="col-10">
-                                                <h4 class="m-0 ms-lg-3 text-md-start">JOHN DOE</h4>
-                                                <p class="m-0 ms-lg-3 text-md-start">johndoe@gmail.com</p>
+                                                <h4 class="m-0 ms-lg-3 text-md-start">{{ $auth->nama }}</h4>
+                                                <p class="m-0 ms-lg-3 text-md-start">{{ $auth->email }}</p>
                                             </div>
                                         </div>
                                     </button>

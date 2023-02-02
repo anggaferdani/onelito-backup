@@ -102,7 +102,7 @@
                 <h5 class="">Total Harga</h5>
                 <h5 class="font-bold pricetotal">Rp. <span class="total-price">0</span></h5>
             </div>
-            <a class="transaction btn btn-secondary w-25" href="#" role="button">Pesan
+            <a class="transaction btn btn-secondary w-25" onclick="orderNowProcess()" href="#" role="button">Pesan
                 Sekarang</a>
         </div>
     </div>

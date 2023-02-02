@@ -929,7 +929,6 @@
             var transaction = $('.transaction')
             var transClasses = transaction.attr('class').split(' ');
 
-
             for (var x = 0; x < boxes.length; x++) {
                 var obj = boxes[x];
 

@@ -71,7 +71,7 @@
             <td colspan=4 rowspan=3 align="left" valign=middle>
                 <font face="Verdana" size=4><br>
                     {{-- <img src="{{ asset('/img/picture1.png') }}" width=28 height=63 margin=82> --}}
-                    <img src="https://onelitokoi.id/img/picture1.png" width=28 height=63 margin=82>
+                    <!-- <img src="https://onelitokoi.id/img/picture1.png" width=28 height=63 margin=82> -->
                 </font>
             </td>
         </tr>

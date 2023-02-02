@@ -114,8 +114,7 @@ class CartController extends Controller
         ]);
 
         foreach ($data['data_order'] as $dOrder) {
-
-            if ($dOrder['id'] === 0) {
+            if ($dOrder['id'] === "0") {
                 continue;
             }
 
