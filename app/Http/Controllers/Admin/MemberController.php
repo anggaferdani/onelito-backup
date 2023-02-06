@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\EmailUserActivated;
+use App\Mail\EmailVerification;
 use App\Models\Member;
 use App\Models\Province;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -130,6 +133,7 @@ class MemberController extends Controller
     public function update($id)
     {
         $member = Member::findOrFail($id);
+        $statusAktif = $member->status_aktif;
         $data = $this->request->all();
         $validator = Validator::make($this->request->all(), [
             'email' => 'required|email',
@@ -144,6 +148,10 @@ class MemberController extends Controller
         $updateMember = $member->update($data);
 
         if($updateMember){
+            if ($statusAktif === 0 && $data['status_aktif'] === "1") {
+                Mail::to($member->email)->send(new EmailUserActivated($member->email));
+            }
+
             return response()->json([
                 'success' => true,
                 'message' => [
