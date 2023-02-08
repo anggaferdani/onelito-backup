@@ -80,6 +80,7 @@ Route::get('/auction/{idIkan}/detail', [AuctionController::class, 'detail'])->na
 
 // MEMBER
 Route::group(['middleware' => 'auth:member'], function () {
+    Route::GET('/wishlistlog', [WishlistController::class, 'wishlistlog']);
     Route::POST('/change-password', [AuthenticationController::class, 'changePassword']);
     Route::POST('/change-profile', [ProfileController::class, 'changeProfile']);
     Route::resource('/carts', CartController::class);

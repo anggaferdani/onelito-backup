@@ -135,8 +135,8 @@
                             class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'Shopping Cart' ? 'active' : '' }}">Shopping
                             cart</a>
 
-                        <a href="/wishlist" style="font-size: 11px"
-                            class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'wishlist' ? 'active' : '' }}">WishList</a>
+                        <!-- <a href="/wishlist" style="font-size: 11px"
+                            class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'wishlist' ? 'active' : '' }}">WishList</a> -->
 
                         <a href="/purchase" style="font-size: 11px"
                             class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'purchase' ? 'active' : '' }}">Purchase
@@ -230,12 +230,12 @@
                                         role="tab" aria-controls="v-pills-profile" aria-selected="false">
                                         Shopping cart
                                     </button>
-                                    <button class="nav-link text-body p-2 text-lg-start"
+                                    <!-- <button class="nav-link text-body p-2 text-lg-start"
                                         style="background-color: white;font-size:larger" id="v-pills-messages-tab"
                                         data-bs-toggle="pill" data-bs-target="#v-pills-messages2" type="button"
                                         role="tab" aria-controls="v-pills-messages" aria-selected="false">
                                         WishList
-                                    </button>
+                                    </button> -->
                                     <button class="nav-link text-body p-2 text-lg-start"
                                         style="background-color: white;font-size:larger" id="v-pills-settings-tab"
                                         data-bs-toggle="pill" data-bs-target="#v-pills-settings2" type="button"

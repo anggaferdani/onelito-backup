@@ -51,6 +51,9 @@ height = 31hv">
                             STOCK</a>
                     </li> --}}
                     <li class="nav-item">
+                        <a class="nav-link {{ $title === 'wishlistlog' ? 'active text-danger' : '' }}"href="/wishlistlog">WISHLIST</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link {{ $title === 'login' ? 'active text-danger' : '' }}"href="/profil"><i
                                 class="fa-solid fa-circle-user" style="font-size: x-large"></i></a>
                     </li>

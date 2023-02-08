@@ -144,6 +144,10 @@
                     </li> --}}
 
                     <li class="nav-item">
+                        <a class="nav-link {{ $title === 'wishlistlog' ? 'active text-danger' : '' }}"href="/wishlistlog">WISHLIST</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link {{ $title === 'login' ? 'active text-danger' : '' }}"href="/profil">
                             <!-- <i class="fa-solid fa-circle-user" style="font-size: x-large"></i> -->
                             <img src="{{ $imgProfile }}" style="width:24px;height:24px;border-radius:50%;max-width:unset">
@@ -168,6 +172,8 @@
         <a class="nav-link {{ $title === 'auction' ? 'active text-danger' : '' }}"href="/auction">AUCTION</a>
         {{-- <a class="nav-link {{ $title === 'onelito_store' ? 'active text-danger' : '' }}"href="/onelito_store">ONELITO STORE</a>
         <a class="nav-link {{ $title === 'koi_stok' ? 'active text-danger' : '' }}"href="/koi_stok">KOI STOCK</a> --}}
+
+        <a class="nav-link {{ $title === 'wishlistlog' ? 'active text-danger' : '' }}"href="/wishlistlog">WISHLIST</a>
 
         <div class="px-4" style="position: absolute;
         padding-right: 1.5rem!important;
