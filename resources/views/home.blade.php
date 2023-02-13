@@ -74,9 +74,9 @@
                     if ($auctionProduct->photo !== null) {
                         $photo = url('storage') . '/' . $auctionProduct->photo->path_foto;
                     }
-                    
+
                     $currentMaxBid = $auctionProduct->ob;
-                    
+
                     if ($auctionProduct->maxBid !== null) {
                         $currentMaxBid = $auctionProduct->maxBid->nominal_bid;
                     }
@@ -131,9 +131,9 @@
                     if ($auctionProduct->photo !== null) {
                         $photo = url('storage') . '/' . $auctionProduct->photo->path_foto;
                     }
-                    
+
                     $currentMaxBid = $auctionProduct->ob;
-                    
+
                     if ($auctionProduct->maxBid !== null) {
                         $currentMaxBid = $auctionProduct->maxBid->nominal_bid;
                     }
@@ -197,13 +197,13 @@
             @forelse($hotProductStores as $hotProduct)
                 @php
                     $productPhoto2 = 'img/bio_media.png';
-                    
+
                     if ($hotProduct->photo !== null) {
                         $productPhoto2 = url('storage') . '/' . $hotProduct->photo->path_foto;
                     }
-                    
+
                     $wishlistClass = 'far fa-heart';
-                    
+
                     if (array_key_exists('wishlist', $hotProduct->toArray()) && $hotProduct->wishlist !== null) {
                         $wishlistClass = 'fas fa-heart';
                     }
@@ -247,13 +247,13 @@
                 @forelse($hotProductStores as $hotProduct)
                     @php
                         $productPhoto = 'img/bio_media.png';
-                        
+
                         if ($hotProduct->photo !== null) {
                             $productPhoto = url('storage') . '/' . $hotProduct->photo->path_foto;
                         }
-                        
+
                         $wishlistClass = 'far fa-heart';
-                        
+
                         if (array_key_exists('wishlist', $hotProduct->toArray()) && $hotProduct->wishlist !== null) {
                             $wishlistClass = 'fas fa-heart';
                         }
@@ -335,7 +335,7 @@
             </center>
         </div>
     </div> --}}
-    {{-- web --}}   
+    {{-- web --}}
     <div class="container">
         <div class="row" style="display: flex; justify-content: space-between">
             <div class="col-lg-2 col-12 mt-4 col-md-6" style="display: flex; justify-content: center">
@@ -387,7 +387,7 @@
         </div>
     </div> --}}
 
-    
+
 
     <div class="container-fluit m-5">
         {{-- <img src="img/gc.png" alt="gc" class="w-100"> --}}
@@ -398,7 +398,7 @@
             @forelse($championFishes as $championFish)
                 @php
                     $photoChampion = 'img/koi12.jpg';
-                    
+
                     if ($championFish->foto_ikan !== null) {
                         $photoChampion = url('storage') . '/' . $championFish->foto_ikan;
                     }
@@ -438,7 +438,6 @@
             $.each(timerLabels, function(prefix, val) {
                 var addedExtraTime = $(val).attr('data-end-extratime');
                 var currentEndTime = $(val).attr('data-endtime');
-
                 startTimer(addedExtraTime, currentEndTime, val)
             })
         }
@@ -454,14 +453,14 @@
             var x = setInterval(function() {
                 // Get today's date and time and extend it
                 var now = currTime.add(1, 'seconds').valueOf();
-
                 // Find the distance between now and the count down date
                 var duration = endTime - now;
 
                 // Time calculations for days, hours, minutes and seconds
                 var days = Math.floor(duration / (1000 * 60 * 60 * 24));
                 var hours = Math.floor((duration % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                hours = hours + (days * 60);
+                hours = hours + (days * 24);
+
                 var minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((duration % (1000 * 60)) / 1000);
 

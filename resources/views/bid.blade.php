@@ -596,7 +596,7 @@
                 // Time calculations for days, hours, minutes and seconds
                 var days = Math.floor(duration / (1000 * 60 * 60 * 24));
                 var hours = Math.floor((duration % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                hours = hours + (days * 60);
+                hours = hours + (days * 24);
                 var minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((duration % (1000 * 60)) / 1000);
 

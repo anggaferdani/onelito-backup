@@ -67,7 +67,7 @@
     @if ($currentAuction && $currentAuction->kategori_event === 'Event')
         @php
             $bannerImg = 'img/event.png';
-            
+
             if ($currentAuction->banner !== null) {
                 $bannerImg = url('storage') . '/' . $currentAuction->banner;
             }
@@ -160,11 +160,11 @@
 
         @php
             $auctionTitle = 'Special';
-            
+
             if ($currentAuction && $currentAuction->kategori_event === 'Event') {
                 $auctionTitle = 'Event';
             }
-            
+
         @endphp
 
         <div class="container-fluid">
@@ -184,15 +184,15 @@
                         if ($auctionProduct->photo !== null) {
                             $photo = url('storage') . '/' . $auctionProduct->photo->path_foto;
                         }
-                        
+
                         $currentMaxBid = $auctionProduct->ob;
-                        
+
                         if ($auctionProduct->maxBid !== null) {
                             $currentMaxBid = $auctionProduct->maxBid->nominal_bid;
                         }
-                        
+
                         $wishlistClass = 'far fa-heart';
-                        
+
                         if (array_key_exists('wishlist', $auctionProduct->toArray()) && $auctionProduct->wishlist !== null) {
                             $wishlistClass = 'fas fa-heart';
                         }
@@ -302,7 +302,7 @@
                 // Time calculations for days, hours, minutes and seconds
                 var days = Math.floor(duration / (1000 * 60 * 60 * 24));
                 var hours = Math.floor((duration % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                hours = hours + (days * 60);
+                hours = hours + (days * 24);
                 var minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((duration % (1000 * 60)) / 1000);
 
