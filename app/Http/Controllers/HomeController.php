@@ -65,6 +65,10 @@ class HomeController extends Controller
             ->orderByRaw('created_at desc')
             ->paginate(4);
 
+        Carbon::setLocale('id');
+
+        $now = Carbon::now();
+
         return view('home',[
             "title" => "home",
             'now' => $now,

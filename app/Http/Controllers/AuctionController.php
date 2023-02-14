@@ -117,8 +117,6 @@ class AuctionController extends Controller
 
         Carbon::setLocale('id');
 
-        $now = Carbon::now();
-
         $addedExtraTime = Carbon::createFromDate($auctionProduct->event->tgl_akhir)
             ->addMinutes($auctionProduct->extra_time ?? 0);
 
@@ -126,6 +124,8 @@ class AuctionController extends Controller
             $addedExtraTime = Carbon::createFromDate($maxBidData->logBid->updated_at)
                 ->addMinutes($auctionProduct->extra_time ?? 0);
         }
+
+        $now = Carbon::now();
 
         return view('bid',[
             'auth' => $auth,

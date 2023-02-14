@@ -581,7 +581,7 @@
 
         function startTimer() {
             // let modalRunningOutHasShown = false;
-            var currTime = moment()
+            var currTime = moment(currentTime)
             var end = moment(currentEndTime);
             var endTime = end.valueOf();
 

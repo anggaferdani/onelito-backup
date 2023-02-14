@@ -445,7 +445,7 @@
         allTimer()
 
         function startTimer(addedExtraTime, currentEndTime, val) {
-            var currTime = moment()
+            var currTime = moment(currentTime)
             var end = moment(currentEndTime);
             var endTime = end.valueOf();
 

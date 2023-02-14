@@ -81,6 +81,8 @@ class WishlistController extends Controller
     {
         $auth = Auth::guard('member')->user();
 
+        Carbon::setLocale('id');
+
         $now = Carbon::now();
         $nowAkhir = Carbon::now()->subDay()->endOfDay();
 
@@ -121,6 +123,8 @@ class WishlistController extends Controller
         $products = $getWishlist->where('wishlistable_type', Wishlist::Product);
 
         $wishlists = $products->merge($wishEventFish);
+
+        $now = Carbon::now();
 
         return view('wishlistlog',[
             'auth' => $auth,
