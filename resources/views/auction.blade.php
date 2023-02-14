@@ -218,7 +218,7 @@
                                     </div>
                                     <div class="col-6 p-0 pe-lg-1">
                                         <p class="m-0" id="countdown-title-{{ $auctionProduct->id_ikan }}"
-                                            style="text-align: end;font-size:80%">Live Time</p>
+                                            style="text-align: end;font-size:80%">Time Live</p>
                                         <p class="m-0 countdown-label" id="{{ $auctionProduct->id_ikan }}"
                                             data-endtime="{{ $auctionProduct->event->tgl_akhir }}"
                                             data-end-extratime="{{ $auctionProduct->tgl_akhir_extra_time }}"

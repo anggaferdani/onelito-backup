@@ -35,7 +35,7 @@ height = 31hv">
             <nav class="justify-content-center navbar navbar-dark navbar-expand-lg py-5">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link {{ $title === 'home' ? 'active text-danger' : '' }}"href="/home">HOME</a>
+                        <a class="nav-link {{ $title === 'home' ? 'active text-danger' : '' }}"href="/">HOME</a>
                     </li>
                     <li class="nav-item">
                         <a
