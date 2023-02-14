@@ -14,6 +14,7 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\WishlistController;
 use App\Mail\EmailVerification;
 use Illuminate\Routing\Route as RoutingRoute;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -52,6 +53,10 @@ Route::get('/admin-login', function () {
     return view('admin.pages.auth-login',[
         "title" => "home"
     ]);
+});
+
+Route::get('/now', function () {
+    return Carbon::now();
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');

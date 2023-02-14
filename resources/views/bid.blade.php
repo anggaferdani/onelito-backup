@@ -583,12 +583,23 @@
             // let modalRunningOutHasShown = false;
             var currTime = moment(currentTime)
             var end = moment(currentEndTime);
-            var endTime = end.valueOf();
+            // var endTime = end.valueOf();
+            var endTime = new Date(currentEndTime).getTime();
+
 
             // Update the count down every 1 second
             var x = setInterval(function() {
+                getCurrentNow();
+
                 // Get today's date and time and extend it
-                var now = currTime.add(1, 'seconds').valueOf();
+                // var now = currTime.add(1, 'seconds').valueOf();
+                // let current = new Date()
+                  // Get today's date and time
+                var now = new Date(currentTime).getTime();
+
+                // Find the distance between now and the count down date
+                // var distance = countDownDate - now;
+
 
                 // Find the distance between now and the count down date
                 var duration = endTime - now;
@@ -624,10 +635,10 @@
             // Update the count down every 1 second
             var x = setInterval(function() {
                 var end = moment(addedExtraTime);
-                var endTime = end.valueOf();
+                var endTime = new Date(currentEndTime).getTime();
 
                 // Get today's date and time and extend it
-                var now = currTime.add(1, 'seconds').valueOf();
+                var now = new Date(currentTime).getTime();
 
                 // Find the distance between now and the count down date
                 var duration = endTime - now;
@@ -662,7 +673,28 @@
             }, 1000);
         }
 
+        function getCurrentNow()
+        {
+            $.ajax({
+                type: 'GET',
+                contentType: false,
+                processData: false,
+                url: '/now',
+                beforeSend: function() {
+
+                },
+                success: function(res) {
+                    currentTime = res;
+                },
+                error(err) {
+
+                }
+            })
+        }
+
         startTimer();
         autoDetailBid();
+
+
     </script>
 @endpush

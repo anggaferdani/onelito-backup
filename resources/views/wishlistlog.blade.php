@@ -112,17 +112,40 @@
             })
         }
 
+        setInterval(function() {
+            getCurrentNow();
+        }, 700);
+
+        function getCurrentNow()
+        {
+            $.ajax({
+                type: 'GET',
+                contentType: false,
+                processData: false,
+                url: '/now',
+                beforeSend: function() {
+
+                },
+                success: function(res) {
+                    currentTime = res;
+                },
+                error(err) {
+
+                }
+            })
+        }
+
         allTimer()
 
         function startTimer(addedExtraTime, currentEndTime, val) {
             var currTime = moment(currentTime)
             var end = moment(currentEndTime);
-            var endTime = end.valueOf();
+            var endTime = new Date(currentEndTime).getTime();
 
             // Update the count down every 1 second
             var x = setInterval(function() {
                 // Get today's date and time and extend it
-                var now = currTime.add(1, 'seconds').valueOf();
+                var now = new Date(currentTime).getTime();
 
                 // Find the distance between now and the count down date
                 var duration = endTime - now;
@@ -155,11 +178,11 @@
             var currTime = moment()
 
             var end = moment(addedExtraTime);
-            var endTime = end.valueOf();
+            var endTime = new Date(currentEndTime).getTime();
             // Update the count down every 1 second
             var x = setInterval(function() {
                 // Get today's date and time and extend it
-                var now = currTime.add(1, 'seconds').valueOf();
+                var now = new Date(currentTime).getTime();
 
                 // Find the distance between now and the count down date
                 var duration = endTime - now;
