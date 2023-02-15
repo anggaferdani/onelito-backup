@@ -102,6 +102,11 @@
 
         let currentTime = "{{ $now }}";
         let timerLabels = document.getElementsByClassName('countdown-label');
+        let addedExtraTimeGroups = [];
+
+        setInterval(function() {
+            getCurrentNow();
+        }, 700);
 
         function allTimer() {
             $.each(timerLabels, function(prefix, val) {
@@ -177,12 +182,25 @@
         function startExtraTimer(addedExtraTime, val) {
             var currTime = moment()
 
-            var end = moment(addedExtraTime);
-            var endTime = new Date(currentEndTime).getTime();
+
+            var id = $(val).attr('data-id');
+            var idTitle = $(val).attr('id');
+
+            addedExtraTimeGroups[id] = addedExtraTime;
+
+            if (idTitle === `bawah-${id}`) {
+                setInterval(function() {
+                    autoDetailBid(id);
+                }, 2500);
+            }
+
             // Update the count down every 1 second
             var x = setInterval(function() {
+                var id = $(val).attr('data-id');
+                var endTime = new Date(addedExtraTimeGroups[id]);
+
                 // Get today's date and time and extend it
-                var now = new Date(currentTime).getTime();
+                var now = new Date(currentTime);
 
                 // Find the distance between now and the count down date
                 var duration = endTime - now;
@@ -202,18 +220,55 @@
                 const secondString = `${seconds < 10 ? '0' : ''}${seconds}`;
                 const timerString = `${hourString}:${minuteString}:${secondString}`;
                 $(val).html(timerString);
+                var id = $(val).attr('id');
+                $(`#countdown-title-${id}`).html(`Extra Time`);
 
-                var id = $(val).attr('data-id');
-                $(`.countdown-title-${id}`).html(`Extra Time`);
 
                 // If the count down is finished, finish the exam
                 if (duration < 0) {
-                    var id = $(val).attr('id');
                     $(val).html(`00:00:00`);
 
+                    // document.getElementById(`btn-bid-${id}`).disabled = true;
+                    // document.getElementById("auto_bid").disabled = true;
+                    // document.getElementById("buttonAutoBid").disabled = true;
+                    // document.getElementById("buttonNormalBid").disabled = true;
                     clearInterval(x);
                 }
             }, 1000);
+        }
+
+        function autoDetailBid(idIkan) {
+            urlGet = `/auction/${idIkan}/detail`;
+
+            $.ajax({
+                type: 'GET',
+                contentType: false,
+                processData: false,
+                url: urlGet,
+                beforeSend: function() {
+
+                },
+                success: function(res) {
+                    meMaxBid = res.meMaxBid;
+
+                    if (res.maxBid !== null) {
+                        currentMaxBid = parseInt(res.maxBid)
+                    }
+
+                    if (res.logBid !== null) {
+                        nominalBid = parseInt(res.logBid.nominal_bid)
+                    }
+
+                    // var currentPriceHtml = $('#currentPrice').html();
+                    // var formatedMaxBid = thousandSeparator(res.maxBid)
+                    // $('#currentPrice').html(`${formatedMaxBid}`);
+
+                    addedExtraTimeGroups[idIkan] = res.addedExtraTime;
+                },
+                error(err) {
+
+                }
+            })
         }
     </script>
 @endpush

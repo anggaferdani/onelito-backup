@@ -456,9 +456,6 @@
         function autoDetailBid() {
             urlGet = `/auction/${idIkan}/detail`;
 
-            // if ($('#auto_bid').length !== 0) {
-            // }
-
             $.ajax({
                 type: 'GET',
                 contentType: false,

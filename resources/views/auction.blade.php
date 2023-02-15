@@ -274,6 +274,7 @@
 
         let currentTime = "{{ $now }}";
         let timerLabels = document.getElementsByClassName('countdown-label');
+        let addedExtraTimeGroups = [];
 
         setInterval(function() {
             getCurrentNow();
@@ -349,11 +350,22 @@
         function startExtraTimer(addedExtraTime, val) {
             var currTime = moment()
 
-            var endTime = new Date(addedExtraTime).getTime();
+
+            var id = $(val).attr('id');
+
+            addedExtraTimeGroups[id] = addedExtraTime;
+
+            setInterval(function() {
+                autoDetailBid(id);
+            }, 2500);
+
             // Update the count down every 1 second
             var x = setInterval(function() {
+                var id = $(val).attr('id');
+                var endTime = new Date(addedExtraTimeGroups[id]);
+
                 // Get today's date and time and extend it
-                var now = new Date(currentTime).getTime();
+                var now = new Date(currentTime);
 
                 // Find the distance between now and the count down date
                 var duration = endTime - now;
@@ -388,6 +400,40 @@
                     clearInterval(x);
                 }
             }, 1000);
+        }
+
+        function autoDetailBid(idIkan) {
+            urlGet = `/auction/${idIkan}/detail`;
+
+            $.ajax({
+                type: 'GET',
+                contentType: false,
+                processData: false,
+                url: urlGet,
+                beforeSend: function() {
+
+                },
+                success: function(res) {
+                    meMaxBid = res.meMaxBid;
+
+                    if (res.maxBid !== null) {
+                        currentMaxBid = parseInt(res.maxBid)
+                    }
+
+                    if (res.logBid !== null) {
+                        nominalBid = parseInt(res.logBid.nominal_bid)
+                    }
+
+                    // var currentPriceHtml = $('#currentPrice').html();
+                    // var formatedMaxBid = thousandSeparator(res.maxBid)
+                    // $('#currentPrice').html(`${formatedMaxBid}`);
+
+                    addedExtraTimeGroups[idIkan] = res.addedExtraTime;
+                },
+                error(err) {
+
+                }
+            })
         }
 
         $(document).on('click', '.wishlist', function(e) {
