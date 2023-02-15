@@ -17,7 +17,7 @@ class HomeController extends Controller
         Carbon::setLocale('id');
 
         $now = Carbon::now();
-        $nowAkhir = Carbon::now()->subDay()->endOfDay();
+        $nowAkhir = Carbon::now()->subDays(2)->endOfDay();
 
         $auth = Auth::guard('member')->user();
 

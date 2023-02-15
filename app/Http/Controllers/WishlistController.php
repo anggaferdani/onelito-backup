@@ -84,7 +84,7 @@ class WishlistController extends Controller
         Carbon::setLocale('id');
 
         $now = Carbon::now();
-        $nowAkhir = Carbon::now()->subDay()->endOfDay();
+        $nowAkhir = Carbon::now()->subDays(2)->endOfDay();
 
         $currentAuctions = Event::with(['auctionProducts'])
             ->where('tgl_mulai', '<=', $now)

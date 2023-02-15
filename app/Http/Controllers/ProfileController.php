@@ -22,7 +22,7 @@ class ProfileController extends Controller
 
         Carbon::setLocale('id');
         $now = Carbon::now();
-        $nowAkhir = Carbon::now()->subDay()->endOfDay();
+        $nowAkhir = Carbon::now()->subDays(2)->endOfDay();
 
         $currentAuctions = Event::with(['auctionProducts'=> function ($q) {
             $q->with(['maxBid']);
@@ -156,7 +156,7 @@ class ProfileController extends Controller
 
         Carbon::setLocale('id');
         $now = Carbon::now();
-        $nowAkhir = Carbon::now()->subDay()->endOfDay();
+        $nowAkhir = Carbon::now()->subDays(2)->endOfDay();
 
         $currentAuctions = Event::with(['auctionProducts'=> function ($q) {
             $q->with(['maxBid']);
@@ -289,7 +289,7 @@ class ProfileController extends Controller
         $auth = Auth::guard('member')->user();
 
         $now = Carbon::now();
-        $nowAkhir = Carbon::now()->subDay()->endOfDay();
+        $nowAkhir = Carbon::now()->subDays(2)->endOfDay();
 
         $currentAuctions = Event::with(['auctionProducts'])
             ->where('tgl_mulai', '<=', $now)
@@ -361,7 +361,7 @@ class ProfileController extends Controller
         $auth = Auth::guard('member')->user();
 
         $now = Carbon::now();
-        $nowAkhir = Carbon::now()->subDay()->endOfDay();
+        $nowAkhir = Carbon::now()->subDays(2)->endOfDay();
 
         $currentAuctions = Event::with(['auctionProducts'])
             ->where('tgl_mulai', '<=', $now)
@@ -434,7 +434,7 @@ class ProfileController extends Controller
 
         Carbon::setLocale('id');
         $now = Carbon::now();
-        $nowAkhir = Carbon::now()->subDay()->endOfDay();
+        $nowAkhir = Carbon::now()->subDays(2)->endOfDay();
 
         $currentAuctions = Event::with(['auctionProducts'=> function ($q) {
             $q->with(['maxBid']);
