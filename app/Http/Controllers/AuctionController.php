@@ -18,7 +18,7 @@ class AuctionController extends Controller
         $auth = Auth::guard('member')->user();
 
         $now = Carbon::now();
-        $nowAkhir = Carbon::now()->subDays(2)->endOfDay();
+        $nowAkhir = Carbon::now()->subDays(3)->endOfDay();
 
         $currentAuctions = Event::
             when($auth !== null, function ($q) use ($auth){

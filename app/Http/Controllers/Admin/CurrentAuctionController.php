@@ -21,7 +21,7 @@ class CurrentAuctionController extends Controller
 
         if ($this->request->ajax()) {
             $now = Carbon::now();
-            $nowAkhir = Carbon::now()->subDays(2)->endOfDay();
+            $nowAkhir = Carbon::now()->subDays(3)->endOfDay();
 
             $currentAuctions = Event::with([
                     'auctionProducts' => function ($q) {
