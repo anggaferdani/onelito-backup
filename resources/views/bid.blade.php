@@ -631,10 +631,12 @@
             // let modalRunningOutHasShown = false;
             var currTime = moment()
 
+            var endTime = new Date(addedExtraTime);
+            console.log(endTime);
             // Update the count down every 1 second
             var x = setInterval(function() {
+                getCurrentNow();
                 var end = moment(addedExtraTime);
-                var endTime = new Date(currentEndTime);
 
                 // Get today's date and time and extend it
                 var now = new Date(currentTime);
@@ -684,7 +686,7 @@
                 },
                 success: function(res) {
                     currentTime = res;
-                    console.log(currentTime);
+                    // console.log(currentTime);
                 },
                 error(err) {
 

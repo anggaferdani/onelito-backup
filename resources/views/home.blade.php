@@ -508,11 +508,11 @@
             var currTime = moment()
 
             var end = moment(addedExtraTime);
-            var endTime = new Date(currentEndTime).getTime();
+            var endTime = new Date(currentEndTime);
             // Update the count down every 1 second
             var x = setInterval(function() {
                 // Get today's date and time and extend it
-                var now = new Date(currentTime).getTime();
+                var now = new Date(currentTime);
 
                 // Find the distance between now and the count down date
                 var duration = endTime - now;
