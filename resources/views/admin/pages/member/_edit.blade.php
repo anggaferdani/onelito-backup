@@ -27,7 +27,7 @@
                     <label for="edit_alamat">Alamat</label>
                     <input  type="text" id="edit_alamat" class="form-control" name="edit_alamat" placeholder="">
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="edit_provinsi">Provinsi</label>
                     <select name="edit_provinsi" id="edit_provinsi" required class="form-control select2">
                         <option></option>
@@ -50,7 +50,7 @@
                     <label for="edit_kelurahan">Kelurahan</label>
                     <select name="edit_kelurahan" id="edit_kelurahan" required class="form-control select2">
                     </select>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label for="edit_kode_pos">Kode Pos</label>
                     <input  type="text" id="edit_kode_pos" class="form-control" name="edit_kode_pos" placeholder="">
