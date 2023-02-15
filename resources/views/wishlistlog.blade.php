@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="col-6 p-0 pe-lg-1">
                                     <p class="m-0 countdown-title-{{ $wishlistable->id_ikan }}"
-                                        style="text-align: end;font-size:80%">Live Time</p>
+                                        style="text-align: end;font-size:80%">Remaining Time</p>
                                     <p class="m-0 countdown-label" data-id="{{ $wishlistable->id_ikan }}"
                                         id="atas-{{ $wishlistable->id_ikan }}"
                                         data-endtime="{{ $wishlistable->event->tgl_akhir }}"

@@ -150,7 +150,7 @@
                         {{ number_format($auctionProduct->kb, 0, '.', '.') }}</span></p>
                     <hr>
                     <div class="row d-flex">
-                        <p class="m-0" style="font-size: larger">Time Live &nbsp;
+                        <p class="m-0" style="font-size: larger">Remaining Time &nbsp;
                         <span id="countdown-extra" class="m-0 text-danger d-none">Extra Time</span>
                     </p>
                     </div>
