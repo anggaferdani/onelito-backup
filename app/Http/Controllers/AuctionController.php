@@ -255,7 +255,8 @@ class AuctionController extends Controller
         if ($this->request->ajax()) {
 
             $addedExtraTime = Carbon::createFromDate($maxBidData->created_at)
-                ->addMinutes($auctionProduct->extra_time ?? 0);
+                ->addMinutes($auctionProduct->extra_time ?? 0)
+                ->format('d M Y H:i:s');
 
             return response()->json([
                 'logBid' => $logBid,
