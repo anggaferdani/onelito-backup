@@ -9,6 +9,7 @@ use App\Models\LogBidDetail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class AuctionController extends Controller
 {
@@ -146,6 +147,7 @@ class AuctionController extends Controller
 
     public function bidProcess($idIkan)
     {
+
         $nominalBid = $this->request->input('nominal_bid', null);
         $nominalBidDetail = $this->request->input('nominal_bid_detail', null);
         $autoBid = $this->request->input('auto_bid', null);
@@ -182,6 +184,12 @@ class AuctionController extends Controller
                 $logBid->auto_bid = $autoBid;
             }
 
+            $maxBid = LogBid::where('id_ikan_lelang', $idIkan)->orderBy('nominal_bid', 'desc')->first()->nominal_bid ?? $auctionProduct->ob;
+
+            if ($nominalBid === $maxBid) {
+                return response()->json(['message' => 'Nominal bid tidak sesuai'], 400);
+            }
+
             $logBid->save();
 
             LogBidDetail::create([
@@ -191,6 +199,12 @@ class AuctionController extends Controller
             ]);
 
             return response()->json(['message' => 'success updated']);
+        }
+
+        $maxBid = LogBid::where('id_ikan_lelang', $idIkan)->orderBy('nominal_bid', 'desc')->first()->nominal_bid ?? $auctionProduct->ob;
+
+        if ($nominalBid === $maxBid) {
+            return response()->json(['message' => 'Nominal bid tidak sesuai'], 400);
         }
 
         $createBid = LogBid::create([
