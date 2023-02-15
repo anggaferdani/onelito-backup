@@ -386,7 +386,7 @@
                 const timerString = `${hourString}:${minuteString}:${secondString}`;
                 $(val).html(timerString);
                 var id = $(val).attr('id');
-                $(`#countdown-title-${id}`).html(`Extra Time`);
+                // $(`#countdown-title-${id}`).html(`Extra Time`);
 
 
                 // If the count down is finished, finish the exam

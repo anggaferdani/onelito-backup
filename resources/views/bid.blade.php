@@ -151,7 +151,7 @@
                     <hr>
                     <div class="row d-flex">
                         <p class="m-0" style="font-size: larger">Remaining Time &nbsp;
-                        <span id="countdown-extra" class="m-0 text-danger d-none">Extra Time</span>
+                        <span id="countdown-extra" class="m-0 text-danger d-none"></span>
                     </p>
                     </div>
                     <p class="alert-link text-danger countdown-label" style="font-size: 30px">00 : 00 : 00</p>
