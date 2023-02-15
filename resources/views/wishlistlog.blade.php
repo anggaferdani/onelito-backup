@@ -188,7 +188,7 @@
 
             addedExtraTimeGroups[id] = addedExtraTime;
 
-            if (idTitle === `bawah-${id}`) {
+            if (idTitle === `atas-${id}`) {
                 setInterval(function() {
                     autoDetailBid(id);
                 }, 2500);
