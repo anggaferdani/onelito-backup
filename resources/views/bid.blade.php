@@ -242,6 +242,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('library/moment/min/moment.min.js') }}"></script>
     <script src="{{ asset('/js/price-separator.min.js') }}"></script>
+    <script src="{{ asset('/library/lodash/lodash.js') }}"></script>
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
@@ -263,6 +264,8 @@
         let addedExtraTime = "{{ $addedExtraTime }}";
         let currentEndTime = auctionProduct.event.tgl_akhir;
         let lastUpdateBid = @json($maxBidData)
+
+        this.bidding = _.debounce(this.bidding, 1000);
 
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
@@ -399,7 +402,7 @@
             // bidding(formData, url);
         })
 
-        function bidding(formData, url) {
+        async function bidding(formData, url) {
             $.ajax({
                 type: 'POST',
                 data: formData,
