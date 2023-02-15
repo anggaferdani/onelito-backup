@@ -56,7 +56,7 @@ Route::get('/admin-login', function () {
 });
 
 Route::get('/now', function () {
-    return Carbon::now();
+    return Carbon::now()->format('d M Y H:i:s');
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');

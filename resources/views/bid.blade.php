@@ -581,10 +581,10 @@
 
         function startTimer() {
             // let modalRunningOutHasShown = false;
-            var currTime = moment(currentTime)
-            var end = moment(currentEndTime);
+            // var currTime = moment(currentTime)
+            // var end = moment(currentEndTime);
             // var endTime = end.valueOf();
-            var endTime = new Date(currentEndTime).getTime();
+            var endTime = new Date(currentEndTime);
 
 
             // Update the count down every 1 second
@@ -595,8 +595,7 @@
                 // var now = currTime.add(1, 'seconds').valueOf();
                 // let current = new Date()
                   // Get today's date and time
-                var now = new Date(currentTime).getTime();
-
+                var now = new Date(currentTime);
                 // Find the distance between now and the count down date
                 // var distance = countDownDate - now;
 
@@ -635,10 +634,10 @@
             // Update the count down every 1 second
             var x = setInterval(function() {
                 var end = moment(addedExtraTime);
-                var endTime = new Date(currentEndTime).getTime();
+                var endTime = new Date(currentEndTime);
 
                 // Get today's date and time and extend it
-                var now = new Date(currentTime).getTime();
+                var now = new Date(currentTime);
 
                 // Find the distance between now and the count down date
                 var duration = endTime - now;
@@ -685,6 +684,7 @@
                 },
                 success: function(res) {
                     currentTime = res;
+                    console.log(currentTime);
                 },
                 error(err) {
 
