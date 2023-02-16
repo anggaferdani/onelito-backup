@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 
 class AuctionController extends Controller
 {
@@ -245,7 +246,6 @@ class AuctionController extends Controller
 
         $logBids = LogBidDetail::with('logBid.member')
         ->distinct('nominal_bid')
-        ->selectRaw('t_log_bidding_detail.*, DATE_FORMAT(created_at, "%e %b %H:%i:%s") as bid_time')
         ->whereHas('logBid', function($q) use ($idIkan){
             $q->where('id_ikan_lelang', $idIkan);
         })
@@ -253,6 +253,9 @@ class AuctionController extends Controller
         ->orderBy('updated_at', 'desc')
         ->limit(10)->get();
 
+        foreach ($logBids as $logBid) {
+            $logBid->bid_time = Carbon::parse($logBid->created_at)->format('d M H:i:s');
+        }
 
         $maxBidData = $logBids->first();
 
