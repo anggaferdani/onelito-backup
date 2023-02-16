@@ -177,6 +177,7 @@ class MemberController extends Controller
     {
         $member = Member::findOrFail($id);
         $member->status_aktif = 0;
+        $member->status_hapus = 1;
 
         $member->save();
 
