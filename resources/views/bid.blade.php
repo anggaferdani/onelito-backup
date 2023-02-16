@@ -163,6 +163,7 @@
                     <div class="col-md-4">
                     </div>
                     @auth('member')
+                        @if($addedExtraTime >= $now)
                         <div class="col-12 col-md-8 no-gutters">
                             <form method="" id="" action="" class="row">
                                 @csrf
@@ -177,6 +178,7 @@
                                 </div>
                             </form>
                         </div>
+                        @endif
                     @endauth
                 </div>
 
