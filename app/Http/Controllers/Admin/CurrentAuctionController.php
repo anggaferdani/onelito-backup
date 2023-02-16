@@ -82,9 +82,9 @@ class CurrentAuctionController extends Controller
         ->whereHas('logBid', function($q) use ($id){
             $q->where('id_ikan_lelang', $id);
         })
+        ->distinct('nominal_bid')
         ->orderBy('nominal_bid', 'desc')
-        ->limit(10)
-        ->get();
+        ->orderBy('updated_at', 'desc')->limit(10)->get();
 
         if($auctionProduct){
             return response()->json([

@@ -245,9 +245,11 @@ class AuctionController extends Controller
 
         $logBids = LogBidDetail::with('logBid.member')
         ->selectRaw('t_log_bidding_detail.*, DATE_FORMAT(created_at, "%e %b %H:%i:%s") as bid_time')
+        ->distinct('nominal_bid')
         ->whereHas('logBid', function($q) use ($idIkan){
             $q->where('id_ikan_lelang', $idIkan);
-        })->orderBy('nominal_bid', 'desc')->limit(10)->get();
+        })->orderBy('nominal_bid', 'desc')
+        ->orderBy('updated_at', 'desc')->limit(10)->get();
 
 
         $maxBidData = $logBids->first();
