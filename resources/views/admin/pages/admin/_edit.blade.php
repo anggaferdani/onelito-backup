@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-group">
                     <label for="edit_username">Username</label>
-                    <input  type="text" id="edit_username" class="form-control" name="edit_nama" placeholder="" required>
+                    <input  type="text" id="edit_username" class="form-control" name="edit_username" placeholder="" required>
                 </div>
                 <div class="form-group">
                     <label for="edit_email">Email</label>
