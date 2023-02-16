@@ -31,6 +31,7 @@ class MemberController extends Controller
                         $q->whereNull('email_verified_at');
                     }
                 })
+                ->where('status_hapus', 0)
                 ->orderBy('created_at', 'desc')
                 ->with(['province', 'city', 'district', 'subdistrict']);
 
