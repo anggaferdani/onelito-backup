@@ -88,7 +88,16 @@
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/admin-admin.js') }}"></script>
 
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+
     <script>
+
         $(document).ready(function() {
             $('#table-1').DataTable({
                 // dom: 'Bfrtip',
