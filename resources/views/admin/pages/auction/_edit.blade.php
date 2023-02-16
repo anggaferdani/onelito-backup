@@ -44,7 +44,7 @@
                     height: 400px;
                     object-fit: cover;">
             </div>
-            <div class="form-group total_hadiah">
+            <div class="form-group total_hadiah d-none">
                 <label for="edit_total_hadiah">Total Hadiah</label>
                 <input  type="text" id="edit_total_hadiah" class="form-control" name="edit_total_hadiah" placeholder="">
             </div>

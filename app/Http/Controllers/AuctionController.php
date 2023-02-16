@@ -47,10 +47,12 @@ class AuctionController extends Controller
 
         $currentAuction = null;
         $currentTotalBid = 0;
+        $currentTotalPrize = 0;
         if (count($currentProducts) > 0) {
 
             foreach ($currentProducts as $product) {
-                $currentTotalBid += $product->maxBid->nominal_bid ?? 0;
+                $currentTotalBid += $product->bid_details_count ?? 0;
+                $currentTotalPrize += $product->maxBid->nominal_bid ?? 0;
 
                 $product->tgl_akhir_extra_time = Carbon::createFromDate($product->event->tgl_akhir)
                     ->addMinutes($product->extra_time ?? 0)->toDateTimeString();
@@ -74,6 +76,7 @@ class AuctionController extends Controller
             'auctionProducts' => $currentProducts,
             'now' => $now,
             'currentTotalBid' => $currentTotalBid,
+            'currentTotalPrize' => $currentTotalPrize,
             'title' => 'auction'
         ]);
     }

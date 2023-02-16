@@ -62,7 +62,7 @@
                                                 <th>Tgl. Mulai</th>
                                                 <th>Tgl. Akhir</th>
                                                 <th>Banner</th>
-                                                <th>Total Hadiah</th>
+                                                <!-- <th>Total Hadiah</th> -->
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -166,7 +166,7 @@
                     { data : 'tgl_mulai'},
                     { data : 'tgl_akhir'},
                     { data : 'banner'},
-                    { data : 'total_hadiah'},
+                    // { data : 'total_hadiah'},
                     { data : 'action' , orderable : false,searchable :false}
                 ]
             });
@@ -254,11 +254,6 @@
                         $('.total_hadiah').addClass('d-none');
                     }
 
-                    if (res.kategori_event === 'Event') {
-                        $('.banner').removeClass('d-none');
-                        $('.total_hadiah').removeClass('d-none');
-                    }
-
                     if (res.banner) {
                         $('#edit_banner2').attr('src', `/storage/${res.banner}`)
                     }
@@ -343,10 +338,10 @@
                 $('.total_hadiah').addClass('d-none');
             }
 
-            if (val === 'Event') {
-                $('.banner').removeClass('d-none');
-                $('.total_hadiah').removeClass('d-none');
-            }
+            // if (val === 'Event') {
+            //     $('.banner').removeClass('d-none');
+            //     $('.total_hadiah').removeClass('d-none');
+            // }
         })
 
         $(document).on('change', 'select#edit_kategori_event', function () {

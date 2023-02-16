@@ -87,7 +87,7 @@
                     <div class="card">
                         <div class="card-body p-2 text-center">
                             <p class="m-0" style="font-size: small">CURRENT TOTAL PRIZE</p>
-                            <h3 class="m-0 text-danger">{{ number_format($currentAuction->total_hadiah, 0, '.', '.') }}</h3>
+                            <h3 class="m-0 text-danger">{{ number_format($currentTotalPrize, 0, '.', '.') }}</h3>
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,7 @@
                                 <div class="card-body p-2 text-center">
                                     <p class="m-0" style="font-size: xx-small">CURRENT TOTAL PRIZE</p>
                                     <h5 class="m-0 text-danger">
-                                        {{ number_format($currentAuction->total_hadiah, 0, '.', '.') }}</h5>
+                                        {{ number_format($currentTotalPrize, 0, '.', '.') }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -137,7 +137,7 @@
                     <div class="card mt-2">
                         <div class="p-2 text-center">
                             <p class="m-0">CURRENT TOTAL PRIZE</p>
-                            <h3 class="m-0 text-danger">{{ number_format($currentAuction->total_hadiah, 0, '.', '.') }}</h3>
+                            <h3 class="m-0 text-danger">{{ number_format($currentTotalPrize, 0, '.', '.') }}</h3>
                         </div>
                     </div>
                 </div>

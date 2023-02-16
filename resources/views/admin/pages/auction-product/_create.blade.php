@@ -52,7 +52,7 @@
             </div>
             <div class="form-group">
                 <label for="note">Deskripsi</label>
-                <textarea id="note" name="note" class="form-control summernote" placeholder="" required></textarea>
+                <textarea id="note" name="note" class="form-control summernote" placeholder=""></textarea>
             </div>
             <div class="form-group">
                 <label for="link_video">Link Video</label>
