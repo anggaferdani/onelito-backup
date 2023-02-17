@@ -272,13 +272,14 @@
 
         function startTimer(addedExtraTime, currentEndTime, val) {
             var currTime = moment(currentTime)
-            var end = moment(currentEndTime);
-            var endTime = new Date(currentEndTime);
+            var endTime = moment(currentEndTime);
+            // var endTime = new Date(currentEndTime);
 
             // Update the count down every 1 second
             var x = setInterval(function() {
                 // Get today's date and time and extend it
-                var now = new Date(currentTime);
+                // var now = new Date(currentTime);
+                var now = moment(currentTime)
 
                 // Find the distance between now and the count down date
                 var duration = endTime - now;
