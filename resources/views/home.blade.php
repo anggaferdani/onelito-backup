@@ -89,7 +89,7 @@
                                 <div class="cb-jud">
                                     <h5 class="card-title">{!! Illuminate\Support\Str::limit(
                                         "$auctionProduct->variety | $auctionProduct->breeder | $auctionProduct->size | $auctionProduct->bloodline",
-                                        25,
+                                        45,
                                     ) !!}</h5>
                                 </div>
                                 {{-- <p style="font-size: 10px" class="card-text ma">Starting Price</p>
@@ -152,7 +152,7 @@
                                 <div class="cb-judu">
                                     <h5 class="card-title"> {!! Illuminate\Support\Str::limit(
                                         "$auctionProduct->variety | $auctionProduct->breeder | Pedigree | $auctionProduct->size | $auctionProduct->bloodline",
-                                        32,
+                                        25,
                                     ) !!}
                                     </h5>
                                 </div>
