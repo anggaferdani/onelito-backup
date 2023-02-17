@@ -111,14 +111,12 @@
         </div>
     @endif
     <div class="container">
-        @if ($currentAuction && $currentAuction->kategori_event === 'Regular')
             <h5>Rules Auction</h5>
             <p class="m-0">{!! $currentAuction->rules_event ?? '' !!}</p>
 
             {{-- <div class="my-5">
                 <p style="color: red">{{ $currentAuction->deskripsi_event ?? "" }}</p>
             </div> --}}
-        @endif
 
         @php
             $auctionTitle = 'Special';
