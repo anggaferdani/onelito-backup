@@ -586,7 +586,7 @@
             // var currTime = moment(currentTime)
             // var end = moment(currentEndTime);
             // var endTime = end.valueOf();
-            var endTime = new Date(currentEndTime);
+            var endTime = new Date(currentEndTime.replace(' ', 'T'));
 
 
             // Update the count down every 1 second
@@ -597,7 +597,7 @@
                 // var now = currTime.add(1, 'seconds').valueOf();
                 // let current = new Date()
                   // Get today's date and time
-                var now = new Date(currentTime);
+                var now = new Date(currentTime.replace(' ', 'T'));
                 // Find the distance between now and the count down date
                 // var distance = countDownDate - now;
 

@@ -124,15 +124,17 @@ class AuctionController extends Controller
 
         $addedExtraTime = Carbon::createFromDate($auctionProduct->event->tgl_akhir)
             ->addMinutes($auctionProduct->extra_time ?? 0)
-            ->format('d M Y H:i:s');
+            ->toDateTimeString();
+            // ->format('d M Y H:i:s');
 
         if ($maxBidData !== null && $maxBidData->logBid->updated_at >= $auctionProduct->event->tgl_akhir) {
             $addedExtraTime = Carbon::createFromDate($maxBidData->logBid->updated_at)
                 ->addMinutes($auctionProduct->extra_time ?? 0)
-                ->format('d M Y H:i:s');
+                // ->format('d M Y H:i:s');
+                ->toDateTimeString();
         }
 
-        $now = Carbon::now()->format('d M Y H:i:s');
+        $now = Carbon::now()->toDateTimeString();
 
         return view('bid',[
             'auth' => $auth,
