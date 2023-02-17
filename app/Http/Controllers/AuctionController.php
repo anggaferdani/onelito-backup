@@ -290,7 +290,7 @@ class AuctionController extends Controller
 
             $addedExtraTime = Carbon::createFromDate($maxBidData->created_at)
                 ->addMinutes($auctionProduct->extra_time ?? 0)
-                ->format('d M Y H:i:s');
+                ->toDateTimeString();
 
             return response()->json([
                 'logBid' => $logBid,

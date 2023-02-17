@@ -468,12 +468,12 @@
         allTimer()
 
         function startTimer(addedExtraTime, currentEndTime, val) {
-            var endTime = new Date(currentEndTime).getTime();
+            var endTime = new Date(currentEndTime.replace(' ', 'T'));
 
             // Update the count down every 1 second
             var x = setInterval(function() {
                 // Get today's date and time and extend it
-                var now = new Date(currentTime).getTime();
+                var now = new Date(currentTime.replace(' ', 'T'));
                 // Find the distance between now and the count down date
                 var duration = endTime - now;
 
@@ -517,10 +517,10 @@
             // Update the count down every 1 second
             var x = setInterval(function() {
                 var id = $(val).attr('data-id');
-                var endTime = new Date(addedExtraTimeGroups[id]);
+                var endTime = new Date(addedExtraTimeGroups[id].replace(' ', 'T'));
 
                 // Get today's date and time and extend it
-                var now = new Date(currentTime);
+                var now = new Date(currentTime.replace(' ', 'T'));
 
                 // Find the distance between now and the count down date
                 var duration = endTime - now;
