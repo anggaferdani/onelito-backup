@@ -273,7 +273,7 @@
         function startTimer(addedExtraTime, currentEndTime, val) {
             var currTime = moment(currentTime)
             var end = moment(currentEndTime);
-            var endTime = new Date(currentEndTime).getTime();
+            var endTime = new Date(currentEndTime);
 
             // Update the count down every 1 second
             var x = setInterval(function() {
