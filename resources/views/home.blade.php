@@ -423,7 +423,6 @@
     </div> --}}
 @endsection
 @push('scripts')
-    <script src="{{ asset('library/moment/min/moment.min.js') }}"></script>
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
@@ -469,8 +468,6 @@
         allTimer()
 
         function startTimer(addedExtraTime, currentEndTime, val) {
-            var currTime = moment(currentTime)
-            var end = moment(currentEndTime);
             var endTime = new Date(currentEndTime).getTime();
 
             // Update the count down every 1 second
@@ -506,9 +503,6 @@
         }
 
         function startExtraTimer(addedExtraTime, val) {
-            var currTime = moment()
-
-
             var id = $(val).attr('data-id');
             var idTitle = $(val).attr('id');
 
