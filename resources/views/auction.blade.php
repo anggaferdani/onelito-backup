@@ -18,7 +18,7 @@
 
         .bottom {
             position: absolute;
-            margin-top: 19.5%;
+            margin-top: 15%;
             width: 99%;
 
         }
