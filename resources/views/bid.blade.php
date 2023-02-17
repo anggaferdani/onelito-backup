@@ -342,17 +342,17 @@
 
             var inputNominalBid = parseInt($('#nominal_bid').unmask());
 
-            if (inputNominalBid <= currentMaxBid) {
-                $('.alert.bid').html(`Nominal bid tidak boleh dibawah harga saat ini`);
+            // if (inputNominalBid <= currentMaxBid) {
+            //     $('.alert.bid').html(`Nominal bid tidak boleh dibawah harga saat ini`);
 
-                $('.alert.bid').addClass('show');
+            //     $('.alert.bid').addClass('show');
 
-                setTimeout(function() {
-                    $('.alert.bid').removeClass('show')
-                }, 2000);
+            //     setTimeout(function() {
+            //         $('.alert.bid').removeClass('show')
+            //     }, 2000);
 
-                return true;
-            }
+            //     return true;
+            // }
 
             formData.set('nominal_bid', inputNominalBid)
             formData.append('nominal_bid_detail', inputNominalBid)

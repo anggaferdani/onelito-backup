@@ -72,30 +72,9 @@
                 $bannerImg = url('storage') . '/' . $currentAuction->banner;
             }
         @endphp
-        {{-- <div class="container-fluid p-0 mb-3">
-            <img src="{{ $bannerImg }}" class="w-100 banner" alt="...">
-            <div class="row justify-content-center bottom-banner">
-                <div class="col-sm-5 col-md-2">
-                    <div class="card">
-                        <div class="card-body p-2 text-center">
-                            <p class="m-0" style="font-size: small">CURRENT TOTAL BID</p>
-                            <h3 class="m-0 text-danger">{{ number_format($currentTotalBid, 0, '.', '.') }}</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-5 col-md-2">
-                    <div class="card">
-                        <div class="card-body p-2 text-center">
-                            <p class="m-0" style="font-size: small">CURRENT TOTAL PRIZE</p>
-                            <h3 class="m-0 text-danger">{{ number_format($currentTotalPrize, 0, '.', '.') }}</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
 
         <div class="container-fluid p-0 web">
-            <div class="row w-100 m-0">
+            <div class="row w-100 m-0 mb-3">
                 <div class="col-12">
                     <img src="{{ $bannerImg }}" class="w-100" alt="...">
                 </div>
@@ -105,16 +84,7 @@
                             <div class="card">
                                 <div class="card-body p-2 text-center">
                                     <p class="m-0" style="font-size: xx-small">CURRENT TOTAL BID</p>
-                                    <h5 class="m-0 text-danger">{{ number_format($currentTotalBid, 0, '.', '.') }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="card">
-                                <div class="card-body p-2 text-center">
-                                    <p class="m-0" style="font-size: xx-small">CURRENT TOTAL PRIZE</p>
-                                    <h5 class="m-0 text-danger">
-                                        {{ number_format($currentTotalPrize, 0, '.', '.') }}</h5>
+                                    <h5 class="m-0 text-danger">{{ number_format($currentTotalPrize, 0, '.', '.') }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -129,14 +99,6 @@
                     <div class="card mt-2">
                         <div class="p-2 text-center">
                             <p class="m-0">CURRENT TOTAL BID</p>
-                            <h3 class="m-0 text-danger">{{ number_format($currentTotalBid, 0, '.', '.') }}</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card mt-2">
-                        <div class="p-2 text-center">
-                            <p class="m-0">CURRENT TOTAL PRIZE</p>
                             <h3 class="m-0 text-danger">{{ number_format($currentTotalPrize, 0, '.', '.') }}</h3>
                         </div>
                     </div>

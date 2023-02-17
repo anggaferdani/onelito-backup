@@ -173,6 +173,8 @@ class AuctionController extends Controller
             return response()->json(['message' => 'Nominal bid harus sesuai dengan kelipatan bid'], 400);
         }
 
+        $bids = LogBid::where('id_ikan_lelang', $idIkan)->orderBy('nominal_bid', 'desc')->first();
+
         $logBid = LogBid::where('id_peserta', $auth->id_peserta)->where('id_ikan_lelang', $idIkan)->first();
 
         if ($logBid !== null) {
@@ -188,10 +190,13 @@ class AuctionController extends Controller
                 $logBid->auto_bid = $autoBid;
             }
 
-            $maxBid = LogBid::where('id_ikan_lelang', $idIkan)->orderBy('nominal_bid', 'desc')->first()->nominal_bid ?? $auctionProduct->ob;
-
-            if ($nominalBid === $maxBid) {
+            $maxBid = $bids->nominal_bid ?? $auctionProduct->ob;
+            if ((int) $nominalBid === (int) $maxBid) {
                 return response()->json(['message' => 'Nominal bid tidak sesuai'], 400);
+            }
+
+            if ((int)$nominalBid <= (int)$maxBid) {
+                return response()->json(['message' => 'Nominal tidak boleh dibawah harga saat ini'], 400);
             }
 
             $logBid->save();
@@ -205,10 +210,13 @@ class AuctionController extends Controller
             return response()->json(['message' => 'success updated']);
         }
 
-        $maxBid = LogBid::where('id_ikan_lelang', $idIkan)->orderBy('nominal_bid', 'desc')->first()->nominal_bid ?? $auctionProduct->ob;
-
-        if ($nominalBid === $maxBid) {
+        $maxBid = $bids->nominal_bid ?? $auctionProduct->ob;
+        if ((int)$nominalBid === (int)$maxBid && $bids !== null) {
             return response()->json(['message' => 'Nominal bid tidak sesuai'], 400);
+        }
+
+        if ((int)$nominalBid <= (int) $maxBid && (int)$nominalBid !== (int)$auctionProduct->ob) {
+            return response()->json(['message' => 'Nominal tidak boleh dibawah harga saat ini'], 400);
         }
 
         $createBid = LogBid::create([
