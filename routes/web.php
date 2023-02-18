@@ -41,8 +41,8 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/send-email', function () {
-    $email = 'rifqizzz6@gmail.com';
+Route::get('/send-email/{email}', function ($email) {
+    // $email = '';
 
     Mail::to($email)->send(new EmailVerification($email));
 
