@@ -104,7 +104,8 @@ class WishlistController extends Controller
                 Product::class => ['photo'],
                 EventFish::class => ['photo', 'maxBid', 'event'],
             ]);
-        }])->get();
+        }])
+        ->get();
 
         $wishEventFish = $getWishlist->whereIn('wishlistable_id', $currentProducts->pluck('id_ikan'));
 
@@ -121,6 +122,7 @@ class WishlistController extends Controller
         }
 
         $products = $getWishlist->where('wishlistable_type', Wishlist::Product);
+
 
         $wishlists = $products->merge($wishEventFish);
 

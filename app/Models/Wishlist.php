@@ -29,6 +29,10 @@ class Wishlist extends Model
 
     public function wishlistable()
     {
-        return $this->morphTo('wishlistable', 'wishlistable_type', 'wishlistable_id');
+        return $this->morphTo('wishlistable', 'wishlistable_type', 'wishlistable_id')
+        ->morphWithCount([
+            EventFish::class => ['bidDetails'],
+        ]);
+
     }
 }
