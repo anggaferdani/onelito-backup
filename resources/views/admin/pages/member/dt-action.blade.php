@@ -18,6 +18,19 @@ title="Edit">
     <i class="fa fa-pencil"></i>
 </button>
 
+@if ($model->email_verified_at === null)
+<button class="btn btn-sm btn-primary mb-2"
+    id="btn-send-email"
+    data-url="{{ url('/send-email/'. $model->email) }}"
+    data-id="{{ $model->id_peserta }}"
+    data-toggle="tooltip"
+    data-placement="top"
+    title="Send Email Verify">
+
+    <i class="fa fa-envelope"></i>
+</button>
+@endif
+
 
 <button class="btn btn-sm btn-danger mb-2"
     id="btn-delete"
