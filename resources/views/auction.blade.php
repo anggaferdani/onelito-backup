@@ -169,7 +169,24 @@
                                     ) !!}</h5>
                                 </div>
                                 <p class="m-0">Number of bids</p>
-                                <p class="" style="color: red">{{ $auctionProduct->bid_details_count }}</p>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p class="" style="color: red">{{ $auctionProduct->bid_details_count }}</p>
+                                    </div>
+    
+                                    <div class="col-6 p-0">
+                                        <div class="row">
+                                            <div class="col-4 p-0 px-1 text-end">
+                                                <i style="color:red" class="fa-solid fa-caret-down"></i>
+                                            </div>
+                                            <div class="col-8 p-0 pt-1">
+                                                <p class="m-0" style="font-size:70%;color:red">HIGHEST BID</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                 <div class="row">
                                     <div class="col-6 p-0 ps-lg-1">
                                         <p class="m-0" style="font-size:80%">Harga saat ini</p>
