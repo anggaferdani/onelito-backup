@@ -490,6 +490,46 @@
                 }
             });
         });
+
+        $(document).on('click','button#btn-send-email',function() {
+                var id = $(this).data('id');
+                var url = $(this).data('url');
+                swal({
+                    title: 'Email',
+                    text: 'Kirim ulang email verifikasi',
+                    icon: 'info',
+                    buttons: true,
+                    dangerMode: false,
+                    })
+                    .then((willSend) => {
+                    if (willSend) {
+                        $.ajax({
+                            type:'GET',
+                            dataType: 'JSON',
+                            url: url,
+                            data:{
+                                "_token": $('meta[name="csrf-token"]').attr('content'),
+                            },
+                            success:function(response){
+                                if(response.success){
+                                    swal('Email verifikasi telah dikirim', {
+                                        icon: 'success',
+                                    });
+
+                                    location.reload();
+                                }
+                            },
+                            error:function(err){
+                                swal({
+                                    icon: 'error',
+                                    title: 'Terjadi kesalahan',
+                                    text: err.responseJSON.message+'.',
+                                })
+                            }
+                        });
+                    }
+                });
+            });
     </script>
 
 

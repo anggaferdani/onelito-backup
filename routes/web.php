@@ -46,7 +46,9 @@ Route::get('/send-email/{email}', function ($email) {
 
     Mail::to($email)->send(new EmailVerification($email));
 
-    return response()->json('sended');
+    return response()->json([
+        'success' => true,
+    ],200);
 });
 
 Route::get('/admin-login', function () {
