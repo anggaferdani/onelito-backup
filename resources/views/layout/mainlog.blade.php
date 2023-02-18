@@ -27,6 +27,32 @@
         i.fas.fa-heart.wishlist:before {
             color: red;
         }
+
+        @media screen and (max-width: 600px) {
+            .font-footer {
+                font-size:
+            }
+
+            h3 {
+                font-size: 15px !important;
+            }
+
+            h4 {
+                font-size: 12px !important;
+            }
+
+            h5 {
+                font-size: 11px !important;
+            }
+
+            h6 {
+                font-size: 10px !important;
+            }
+
+            p {
+                font-size: 10px !important;
+            }
+        }
     </style>
 
 </head>

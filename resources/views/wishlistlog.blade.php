@@ -44,15 +44,15 @@
                                     <p class="" style="color: red">{{ $wishlistable->bid_details_count }}</p>
                                 </div>
 
-                                <div class="col-6 p-0">
+                                <div class="col-6 pe-2">
                                     @if ($auth !== null)
                                         @if ($wishlistable->maxBid !== null)
                                             @if ($wishlistable->maxBid->id_peserta === $auth->id_peserta)
                                                 <div class="row">
-                                                    <div class="col-4 p-0 px-1 text-end">
+                                                    <div class="col-2 p-0 px-1 text-end">
                                                         <i style="color:red" class="fa-solid fa-caret-down"></i>
                                                     </div>
-                                                    <div class="col-8 p-0 pt-1">
+                                                    <div class="col-10 p-0 pt-1">
                                                         <p class="m-0" style="font-size:70%;color:red">HIGHEST BID</p>
                                                     </div>
                                                 </div>
