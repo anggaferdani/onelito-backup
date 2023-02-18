@@ -45,15 +45,19 @@
                                 </div>
 
                                 <div class="col-6 p-0">
-                                    @if ($wishlistable->maxBid->id_peserta !== $auth->id_peserta)
-                                        <div class="row">
-                                            <div class="col-4 p-0 px-1 text-end">
-                                                <i style="color:red" class="fa-solid fa-caret-down"></i>
-                                            </div>
-                                            <div class="col-8 p-0 pt-1">
-                                                    <p class="m-0" style="font-size:70%;color:red">HIGHEST BID</p>
-                                            </div>
-                                        </div>
+                                    @if ($auth !== null)
+                                        @if ($wishlistable->maxBid !== null)
+                                            @if ($wishlistable->maxBid->id_peserta === $auth->id_peserta)
+                                                <div class="row">
+                                                    <div class="col-4 p-0 px-1 text-end">
+                                                        <i style="color:red" class="fa-solid fa-caret-down"></i>
+                                                    </div>
+                                                    <div class="col-8 p-0 pt-1">
+                                                        <p class="m-0" style="font-size:70%;color:red">HIGHEST BID</p>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endif
                                     @endif
                                 </div>
                             </div>
