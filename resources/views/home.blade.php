@@ -508,11 +508,7 @@
 
             addedExtraTimeGroups[id] = addedExtraTime;
 
-            if (idTitle === `bawah-${id}`) {
-                setInterval(function() {
-                    autoDetailBid(id);
-                }, 2500);
-            }
+            autoDetailBid(id);
 
             // Update the count down every 1 second
             var x = setInterval(function() {
@@ -557,7 +553,7 @@
             }, 1000);
         }
 
-        function autoDetailBid(idIkan) {
+        async function autoDetailBid(idIkan) {
             urlGet = `/auction/${idIkan}/detail`;
 
             $.ajax({
@@ -584,6 +580,10 @@
                     // $('#currentPrice').html(`${formatedMaxBid}`);
 
                     addedExtraTimeGroups[idIkan] = res.addedExtraTime;
+
+                    setTimeout(() => {
+                        autoDetailBid(idIkan)
+                    }, 5000);
                 },
                 error(err) {
 
