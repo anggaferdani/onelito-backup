@@ -32,7 +32,8 @@ class HomeController extends Controller
             ->get();
 
         $currentProducts = $nextAuction->pluck('auctionProducts')
-        ->flatten(1);
+        ->flatten(1)
+        ->take(5);
 
         if (count($currentProducts) > 0) {
             foreach ($currentProducts as $product) {

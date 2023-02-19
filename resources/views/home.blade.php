@@ -585,7 +585,7 @@
 
                     setTimeout(() => {
                         autoDetailBid(idIkan)
-                    }, 5000);
+                    }, 2500);
                 },
                 error(err) {
 
