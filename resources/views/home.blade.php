@@ -434,9 +434,7 @@
         let timerLabels = document.getElementsByClassName('countdown-label');
         let addedExtraTimeGroups = [];
 
-        setInterval(function() {
-            getCurrentNow();
-        }, 700);
+        getCurrentNow();
 
         function allTimer() {
             $.each(timerLabels, function(prefix, val) {
@@ -458,6 +456,11 @@
                 },
                 success: function(res) {
                     currentTime = res;
+                },
+                complete: function() {
+                    setTimeout(() => {
+                        getCurrentNow()
+                    }, 800);
                 },
                 error(err) {
 
@@ -556,7 +559,7 @@
         }
 
         function autoDetailBid(idIkan) {
-            urlGet = `/auction/${idIkan}/detail`;
+            urlGet = `/auction/${idIkan}/detail?simple=yes`;
 
             $.ajax({
                 type: 'GET',
@@ -567,22 +570,13 @@
 
                 },
                 success: function(res) {
-                    meMaxBid = res.meMaxBid;
-
-                    if (res.maxBid !== null) {
-                        currentMaxBid = parseInt(res.maxBid)
-                    }
-
-                    if (res.logBid !== null) {
-                        nominalBid = parseInt(res.logBid.nominal_bid)
-                    }
-
                     // var currentPriceHtml = $('#currentPrice').html();
                     // var formatedMaxBid = thousandSeparator(res.maxBid)
                     // $('#currentPrice').html(`${formatedMaxBid}`);
 
                     addedExtraTimeGroups[idIkan] = res.addedExtraTime;
-
+                },
+                complete: function() {
                     setTimeout(() => {
                         autoDetailBid(idIkan)
                     }, 2500);

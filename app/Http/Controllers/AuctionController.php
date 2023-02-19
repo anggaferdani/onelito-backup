@@ -250,8 +250,44 @@ class AuctionController extends Controller
     public function detail($idIkan)
     {
         $auth = Auth::guard('member')->user();
+        $simple = $this->request->input('simple', null);
 
         $auctionProduct = EventFish::with(['photo', 'event'])->findOrFail($idIkan);
+
+        if ($simple === 'yes') {
+            if ($this->request->ajax()) {
+
+                $maxBidData = LogBidDetail::distinct('nominal_bid')
+                ->whereHas('logBid', function($q) use ($idIkan){
+                    $q->where('id_ikan_lelang', $idIkan);
+                })
+                ->orderBy('nominal_bid', 'desc')
+                ->orderBy('updated_at', 'desc')
+                ->first();
+
+                $addedExtraTime = Carbon::createFromDate($auctionProduct->event->tgl_akhir)
+                    ->addMinutes($auctionProduct->extra_time ?? 0)
+                    ->toDateTimeString();
+
+                if ($maxBidData !== null) {
+                    $addedExtraTime = Carbon::createFromDate($maxBidData->created_at)
+                        ->addMinutes($auctionProduct->extra_time ?? 0)
+                        ->toDateTimeString();
+                }
+
+                return response()->json([
+                    // 'logBid' => $logBid,
+                    // 'autoBid' => $autoBid,
+                    // 'maxBid' => $maxBid,
+                    // 'idIkan' => $idIkan,
+                    // 'meMaxBid' => $meMaxBid,
+                    // 'logBids' => $logBids,
+                    // 'maxBidData' => $maxBidData,
+                    // 'auctionProduct' => $auctionProduct,
+                    'addedExtraTime' => $addedExtraTime,
+                ]);
+            }
+        }
 
         $logBid = null;
         if ($auth) {
