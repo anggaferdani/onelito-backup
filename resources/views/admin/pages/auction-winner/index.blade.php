@@ -55,7 +55,7 @@
                                                 <th>Tinggal</th>
                                                 <th>Kategori Event</th>
                                                 <th>Tgl. Mulai</th>
-                                                <th>Tgl. Akhir</th>
+                                                <!-- <th>Tgl. Akhir</th> -->
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -140,7 +140,7 @@
                     { data : 'member.city.city_name', defaultContent: ''},
                     { data : 'event.kategori_event'},
                     { data : 'event.tgl_mulai'},
-                    { data : 'event.tgl_akhir'},
+                    // { data : 'event.tgl_akhir'},
                     { data : 'action' , orderable : false,searchable :false},
                 ]
             });
