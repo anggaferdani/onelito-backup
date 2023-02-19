@@ -386,7 +386,7 @@
             }, 1000);
         }
 
-        function autoDetailBid(idIkan) {
+        async function autoDetailBid(idIkan) {
             urlGet = `/auction/${idIkan}/detail`;
 
             $.ajax({
