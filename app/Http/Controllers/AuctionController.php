@@ -272,14 +272,10 @@ class AuctionController extends Controller
                     ->addMinutes($auctionProduct->extra_time ?? 0)
                     ->toDateTimeString();
 
-                $now = Carbon::now()->toDateTimeString();
-
-                if ($addedExtraTime < $now) {
-                    if ($maxBidData !== null) {
-                        $addedExtraTime = Carbon::createFromDate($maxBidData->created_at)
-                            ->addMinutes($auctionProduct->extra_time ?? 0)
-                            ->toDateTimeString();
-                    }
+                if ($maxBidData !== null) {
+                    $addedExtraTime = Carbon::createFromDate($maxBidData->created_at)
+                        ->addMinutes($auctionProduct->extra_time ?? 0)
+                        ->toDateTimeString();
                 }
 
                 return response()->json([
