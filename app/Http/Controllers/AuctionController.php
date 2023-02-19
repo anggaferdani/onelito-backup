@@ -59,12 +59,12 @@ class AuctionController extends Controller
                 $product->tgl_akhir_extra_time = Carbon::createFromDate($product->event->tgl_akhir)
                     ->addMinutes($product->extra_time ?? 0)->toDateTimeString();
 
-                if ($product->tgl_akhir_extra_time < $now) {
-                    if ($product->maxBid !== null && $product->maxBid->updated_at >= $product->event->tgl_akhir) {
-                        $product->tgl_akhir_extra_time = Carbon::createFromDate($product->maxBid->updated_at)
-                            ->addMinutes($product->extra_time ?? 0)->toDateTimeString();
-                    }
-                }
+                // if ($product->tgl_akhir_extra_time < $now) {
+                //     if ($product->maxBid !== null && $product->maxBid->updated_at >= $product->event->tgl_akhir) {
+                //         $product->tgl_akhir_extra_time = Carbon::createFromDate($product->maxBid->updated_at)
+                //             ->addMinutes($product->extra_time ?? 0)->toDateTimeString();
+                //     }
+                // }
             }
 
             $currentAuction = $currentAuctions->first();
@@ -273,9 +273,13 @@ class AuctionController extends Controller
                     ->toDateTimeString();
 
                 if ($maxBidData !== null) {
-                    $addedExtraTime = Carbon::createFromDate($maxBidData->created_at)
+                    $addedExtraTime2 = Carbon::createFromDate($maxBidData->created_at)
                         ->addMinutes($auctionProduct->extra_time ?? 0)
                         ->toDateTimeString();
+
+                        if ($addedExtraTime < $addedExtraTime2) {
+                            $addedExtraTime = $addedExtraTime2;
+                        }
                 }
 
                 return response()->json([
