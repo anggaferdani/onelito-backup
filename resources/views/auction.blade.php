@@ -339,7 +339,9 @@
 
             addedExtraTimeGroups[id] = addedExtraTime;
 
-            autoDetailBid(id);
+            // if (idTitle === `bawah-${id}`) {
+                autoDetailBid(id);
+            // }
 
             // Update the count down every 1 second
             var x = setInterval(function() {
