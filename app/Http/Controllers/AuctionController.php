@@ -50,6 +50,7 @@ class AuctionController extends Controller
         $currentTotalBid = 0;
         $currentTotalPrize = 0;
         if (count($currentProducts) > 0) {
+            $now = Carbon::now()->toDateTimeString();
 
             foreach ($currentProducts as $product) {
                 $currentTotalBid += $product->bid_details_count ?? 0;
@@ -58,9 +59,11 @@ class AuctionController extends Controller
                 $product->tgl_akhir_extra_time = Carbon::createFromDate($product->event->tgl_akhir)
                     ->addMinutes($product->extra_time ?? 0)->toDateTimeString();
 
-                if ($product->maxBid !== null && $product->maxBid->updated_at >= $product->event->tgl_akhir) {
-                    $product->tgl_akhir_extra_time = Carbon::createFromDate($product->maxBid->updated_at)
-                        ->addMinutes($product->extra_time ?? 0)->toDateTimeString();
+                if ($product->tgl_akhir_extra_time < $now) {
+                    if ($product->maxBid !== null && $product->maxBid->updated_at >= $product->event->tgl_akhir) {
+                        $product->tgl_akhir_extra_time = Carbon::createFromDate($product->maxBid->updated_at)
+                            ->addMinutes($product->extra_time ?? 0)->toDateTimeString();
+                    }
                 }
             }
 
@@ -269,10 +272,14 @@ class AuctionController extends Controller
                     ->addMinutes($auctionProduct->extra_time ?? 0)
                     ->toDateTimeString();
 
-                if ($maxBidData !== null) {
-                    $addedExtraTime = Carbon::createFromDate($maxBidData->created_at)
-                        ->addMinutes($auctionProduct->extra_time ?? 0)
-                        ->toDateTimeString();
+                $now = Carbon::now()->toDateTimeString();
+
+                if ($addedExtraTime < $now) {
+                    if ($maxBidData !== null) {
+                        $addedExtraTime = Carbon::createFromDate($maxBidData->created_at)
+                            ->addMinutes($auctionProduct->extra_time ?? 0)
+                            ->toDateTimeString();
+                    }
                 }
 
                 return response()->json([
