@@ -307,12 +307,12 @@
                             <div class="container overflow-hidden p-0">
                                 <div class="card">
                                     <div class="row">
-                                        <div class="col-lg-8 px-3 py-3">
-                                            <div class="container d-flex py-3" style="">
+                                        <div class="col-lg-12 px-3 py-3">
+                                            <div class="d-none  container d-flex py-3" style="">
                                                 <input class="form-check-input mr-3 my-auto cart-check-all"
                                                     style="font-size:large;" type="checkbox" value=""
                                                     id="Pilih Semua">
-                                                <label class="form-check-label" for="Pilih Semua">
+                                                <label class="form-check-label d-none" for="Pilih Semua">
                                                     Pilih Semua
                                                 </label>
                                             </div>
@@ -339,14 +339,16 @@
                                                 @if ($cart->cartable_type === 'EventFish')
                                                     <div class="container">
                                                         <div class="container d-flex p-0 my-3">
-                                                            <input class="form-check-input mr-3 my-auto cart-check"
+                                                            <input class="d-none form-check-input mr-3 my-auto cart-check"
                                                                 type="checkbox" data-price="{{ $cart->price }}"
                                                                 data-id="{{ $cart->id_keranjang }}"
                                                                 data-cartableid="{{ $cart->cartable_id }}"
                                                                 data-type="eventfish" value=""
                                                                 id="flexCheckDefault">
                                                             <div class="card mr-3">
-                                                                <a href="/auction/{{ $cart->cartable_id }}"><img
+                                                                <!-- <a href="/auction/{{ $cart->cartable_id }}"> -->
+                                                                <a href="#">
+                                                                    <img
                                                                         src="{{ $cartPhoto }}"
                                                                         class="card-img-top"
                                                                         style="height: 10vh; width: 5vw; object-fit: cover;"
@@ -425,7 +427,7 @@
                                             @empty
                                             @endforelse
                                         </div>
-                                        <div class="col-lg-4 p-4">
+                                        <div class="d-none">
                                             <div class="card">
                                                 <div class="card-body ">
                                                     <h5 class="card-title mb-3">Ringkasan belanja</h5>
@@ -435,9 +437,6 @@
                                                                     class="total-item">0</span> barang)
                                                             </h6>
                                                         </div>
-                                                        <!-- <div class="col-3"> -->
-                                                        <!-- <h6 class="card-subtitle text-muted text-end">Rp <span class="total-price">0</span></h6> -->
-                                                        <!-- </div> -->
                                                     </div>
                                                     <hr>
                                                     <br>

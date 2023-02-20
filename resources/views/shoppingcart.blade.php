@@ -5,7 +5,7 @@
         <h5><i class="fa-solid fa-cart-shopping"></i> <b>Shopping cart</b></h5>
     </div>
     <div class="container">
-        <div class="container border-top border-bottom py-3">
+        <div class="d-none container border-top border-bottom py-3">
             <input class="form-check-input my-auto cart-check-mobile-all checkbox-mobile" style="font-size:large" type="checkbox" value="" id="Pilih Semua">
             <label class="form-check-label" for="Pilih Semua">
                 Pilih Semua
@@ -33,7 +33,7 @@
             @if($cart->cartable_type === 'EventFish')
                 <div class="container">
                     <div class="container d-flex p-0 my-3">
-                        <input class="form-check-input mr-3 my-auto cart-check-mobile checkbox-mobile" type="checkbox" value=""
+                        <input class="d-none form-check-input mr-3 my-auto cart-check-mobile checkbox-mobile" type="checkbox" value=""
                         data-price="{{ $cart->price }}"
                         data-id="{{ $cart->id_keranjang }}"
                         data-cartableid="{{ $cart->cartable_id }}"
