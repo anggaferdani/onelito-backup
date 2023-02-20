@@ -410,7 +410,7 @@
                 complete: function() {
                     setTimeout(() => {
                         autoDetailBid(idIkan)
-                    }, 8000);
+                    }, 20000);
                 },
                 error(err) {
 

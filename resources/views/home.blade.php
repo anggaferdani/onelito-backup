@@ -579,7 +579,7 @@
                 complete: function() {
                     setTimeout(() => {
                         autoDetailBid(idIkan)
-                    }, 2500);
+                    }, 20000);
                 },
                 error(err) {
 
