@@ -135,9 +135,9 @@
                 },
                 columns : [
                     { data : 'DT_RowIndex' , orderable : false,searchable :false},
-                    { data : 'member.nama' },
-                    { data : 'member.alamat'},
-                    { data : 'member.city.city_name', defaultContent: ''},
+                    { data : 'member.nama', name: 'member.nama' },
+                    { data : 'member.alamat', name: 'member.alamat'},
+                    { data : 'member.city.city_name' ,name: 'member.city.city_name',  defaultContent: ''},
                     { data : 'event.kategori_event'},
                     { data : 'event.tgl_mulai'},
                     // { data : 'event.tgl_akhir'},
