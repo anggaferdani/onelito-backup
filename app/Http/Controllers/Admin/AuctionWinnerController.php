@@ -45,8 +45,7 @@ class AuctionWinnerController extends Controller
             $winners = AuctionWinner::query()
                 ->join('t_log_bidding', 't_pemenang_lelang.id_bidding', '=', 't_log_bidding.id_bidding')
                 ->join('m_ikan_lelang', 't_log_bidding.id_ikan_lelang', '=', 'm_ikan_lelang.id_ikan')
-                ->orderBy('id_event', 'desc')
-                ->orderBy('t_pemenang_lelang.created_at', 'desc')
+                ->orderBy('m_ikan_lelang.id_event', 'desc')
                 ->select(
                     'm_ikan_lelang.id_event as id_event',
                 't_log_bidding.id_peserta as id_peserta'
