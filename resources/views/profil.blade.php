@@ -138,9 +138,9 @@
                         <!-- <a href="/wishlist" style="font-size: 11px"
                             class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'wishlist' ? 'active' : '' }}">WishList</a> -->
 
-                        <a href="/purchase" style="font-size: 11px"
+                        {{-- <a href="/purchase" style="font-size: 11px"
                             class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'purchase' ? 'active' : '' }}">Purchase
-                            history</a>
+                            history</a> --}}
                         <a href="/ganti_password" style="font-size: 11px"
                             class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'purchase' ? 'active' : '' }}">Ganti password</a>
                     </div>
@@ -203,9 +203,9 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex align-items-start">
-                                <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist"
+                                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                     aria-orientation="vertical">
-                                    <button class="nav-link active bg-tranparent text-body"
+                                    <button class="nav-link active bg-tranparent p-0 text-body"
                                         style="background-color: white" id="v-pills-home-tab" data-bs-toggle="pill"
                                         data-bs-target="#v-pills-home2" type="button" role="tab"
                                         aria-controls="v-pills-home2" aria-selected="true">
@@ -236,12 +236,12 @@
                                         role="tab" aria-controls="v-pills-messages" aria-selected="false">
                                         WishList
                                     </button> -->
-                                    <button class="nav-link text-body p-2 text-lg-start"
+                                    {{-- <button class="nav-link text-body p-2 text-lg-start"
                                         style="background-color: white;font-size:larger" id="v-pills-settings-tab"
                                         data-bs-toggle="pill" data-bs-target="#v-pills-settings2" type="button"
                                         role="tab" aria-controls="v-pills-settings" aria-selected="false">
                                         Purchase history
-                                    </button>
+                                    </button> --}}
                                     <br>
                                 </div>
                             </div>
