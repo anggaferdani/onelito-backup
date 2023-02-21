@@ -205,6 +205,7 @@
                     sumTotal = thousandSeparator(sumTotal);
                     $('#send_to').html(`
                     ${res.member.nama}<br>
+                    No Telp. ${res.member.no_hp}<br>
                     ${res.member.alamat}<br>
                     ${city}, ${prov}
                     `)
