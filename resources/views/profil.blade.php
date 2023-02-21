@@ -203,9 +203,9 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex align-items-start">
-                                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                                <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist"
                                     aria-orientation="vertical">
-                                    <button class="nav-link active bg-tranparent p-0 text-body"
+                                    <button class="nav-link active bg-tranparent text-body"
                                         style="background-color: white" id="v-pills-home-tab" data-bs-toggle="pill"
                                         data-bs-target="#v-pills-home2" type="button" role="tab"
                                         aria-controls="v-pills-home2" aria-selected="true">
