@@ -370,7 +370,15 @@
                     $('#exampleModal').modal('show')
                 },
                 error(err) {
-
+                    $.each(err.responseJSON,function(prefix,val) {
+                        if (val === 'The email has already been taken.') {
+                           var element = document.getElementById('email')
+                            element.onchange = element.setCustomValidity('The email has already been taken.');
+                            element.onblur = element.setCustomValidity('The email has already been taken.');
+                            element.oninvalid = element.setCustomValidity('The email has already been taken.');
+                            element.onsubmit = element.setCustomValidity('The email has already been taken.');
+                        }
+                    })
                 }
             })
 
