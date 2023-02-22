@@ -338,10 +338,10 @@
                 $('.total_hadiah').addClass('d-none');
             }
 
-            // if (val === 'Event') {
-            //     $('.banner').removeClass('d-none');
-            //     $('.total_hadiah').removeClass('d-none');
-            // }
+            if (val === 'Event') {
+                $('.banner').removeClass('d-none');
+                // $('.total_hadiah').removeClass('d-none');
+            }
         })
 
         $(document).on('change', 'select#edit_kategori_event', function () {
@@ -354,7 +354,7 @@
 
             if (val === 'Event') {
                 $('.banner').removeClass('d-none');
-                $('.total_hadiah').removeClass('d-none');
+                // $('.total_hadiah').removeClass('d-none');
             }
         })
 

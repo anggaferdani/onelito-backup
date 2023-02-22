@@ -73,11 +73,46 @@
             }
         @endphp
 
+
         <div class="container-fluid p-0 web">
+            @if (count($auctionProducts) > 0)
             <div class="row w-100 m-0 mb-3">
-                <div class="col-12">
-                    <img src="{{ $bannerImg }}" class="w-100" alt="...">
+                <div id="carouselExampleControls" class="pt-2 carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner img-mh-300">
+                            @forelse ($auctions as $key => $auction)
+                                @php
+                                    $bannerImg = 'img/event.png';
+
+                                    if ($auction->banner !== null) {
+                                        $bannerImg = url('storage') . '/' . $auction->banner;
+                                    }
+                                @endphp
+                                <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                                    <div class="container-fluit" style="background-color:red;">
+                                        <img src="{{ $bannerImg }}" class="w-100" alt="...">
+                                    </div>
+                                </div>
+                            @empty
+                                <div class="carousel-item active">
+                                    <div class="container-fluit" style="background-color:red;">
+                                        <img src="{{ $bannerImg }}" class="w-100" alt="...">
+                                    </div>
+                                </div>
+                            @endforelse
+
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                 </div>
+                <!-- <div class="col-12">
+                    <img src="{{ $bannerImg }}" class="w-100" alt="...">
+                </div> -->
             </div>
             <!-- <div class="bottom col-12"> -->
                     <div class="row justify-content-center">
@@ -90,29 +125,66 @@
                             </div>
                         </div>
                     </div>
+            @endif
+
             <!-- </div> -->
         </div>
         <div class="container res">
-            <img src="{{ $bannerImg }}" class="w-100" alt="...">
-            <div class="row justify-content-center">
-                <div class="col">
-                    <div class="card mt-2">
-                        <div class="p-2 text-center">
-                            <p class="m-0">CURRENT TOTAL BID</p>
-                            <h3 class="m-0 text-danger">{{ number_format($currentTotalPrize, 0, '.', '.') }}</h3>
+        @if (count($auctionProducts) > 0)
+            <div id="carouselExampleControls" class="pt-2 carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner img-mh-300">
+                                @forelse ($auctions as $key => $auction)
+                                    @php
+                                        $bannerImg = 'img/event.png';
+
+                                        if ($auction->banner !== null) {
+                                            $bannerImg = url('storage') . '/' . $auction->banner;
+                                        }
+                                    @endphp
+                                    <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                                        <div class="container-fluit" style="background-color:red;">
+                                            <img src="{{ $bannerImg }}" class="w-100" alt="...">
+                                        </div>
+                                    </div>
+                                @empty
+                                    <div class="carousel-item active">
+                                        <div class="container-fluit" style="background-color:red;">
+                                            <img src="{{ $bannerImg }}" class="w-100" alt="...">
+                                        </div>
+                                    </div>
+                                @endforelse
+
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                    </div>
+                <div class="row justify-content-center">
+                    <div class="col">
+                        <div class="card mt-2">
+                            <div class="p-2 text-center">
+                                <p class="m-0">CURRENT TOTAL BID</p>
+                                <h3 class="m-0 text-danger">{{ number_format($currentTotalPrize, 0, '.', '.') }}</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
+        @endif
 
         <br>
         </div>
     @endif
     <div class="container">
+        @if (count($auctionProducts) > 0)
             <h5>Rules Auction</h5>
             <p class="m-0">{!! $currentAuction->rules_event ?? '' !!}</p>
+        @endif
 
             {{-- <div class="my-5">
                 <p style="color: red">{{ $currentAuction->deskripsi_event ?? "" }}</p>
@@ -342,9 +414,9 @@
 
             addedExtraTimeGroups[id] = addedExtraTime;
 
-            // if (idTitle === `bawah-${id}`) {
-                autoDetailBid(id);
-            // }
+            setTimeout(() => {
+                autoDetailBid(id)
+            }, 20000);
 
             // Update the count down every 1 second
             var x = setInterval(function() {

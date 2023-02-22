@@ -41,10 +41,16 @@ class HomeController extends Controller
                     ->addMinutes($product->extra_time ?? 0)->toDateTimeString();
 
                 if ($product->maxBid !== null && $product->maxBid->updated_at >= $product->event->tgl_akhir) {
-                    $product->tgl_akhir_extra_time = Carbon::createFromDate($product->maxBid->updated_at)
-                        ->addMinutes($product->extra_time ?? 0)->toDateTimeString();
+                    $addedExtraTime2 = Carbon::createFromDate($product->maxBid->updated_at)
+                    ->addMinutes($product->extra_time ?? 0)->toDateTimeString();
+
+                    if ($product->tgl_akhir_extra_time < $addedExtraTime2) {
+                        $product->tgl_akhir_extra_time = $addedExtraTime2;
+                    }
                 }
             }
+
+        $currentProducts = $currentProducts->where('tgl_akhir_extra_time', '>', $now);
         }
 
         $hotProductStores = Product::where('status_aktif', 1)

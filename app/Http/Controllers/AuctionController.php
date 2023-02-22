@@ -39,7 +39,6 @@ class AuctionController extends Controller
             ->where('tgl_mulai', '<=', $now)
             ->where('tgl_akhir', '>=', $nowAkhir)
             ->where('status_aktif', 1)
-            ->orderBy('tgl_mulai')
             ->orderBy('created_at', 'desc')
             ->get();
 
@@ -59,13 +58,18 @@ class AuctionController extends Controller
                 $product->tgl_akhir_extra_time = Carbon::createFromDate($product->event->tgl_akhir)
                     ->addMinutes($product->extra_time ?? 0)->toDateTimeString();
 
-                // if ($product->tgl_akhir_extra_time < $now) {
-                //     if ($product->maxBid !== null && $product->maxBid->updated_at >= $product->event->tgl_akhir) {
-                //         $product->tgl_akhir_extra_time = Carbon::createFromDate($product->maxBid->updated_at)
-                //             ->addMinutes($product->extra_time ?? 0)->toDateTimeString();
-                //     }
-                // }
+                    if ($product->maxBid !== null && $product->maxBid->updated_at >= $product->event->tgl_akhir) {
+                        $addedExtraTime2 = Carbon::createFromDate($product->maxBid->updated_at)
+                        ->addMinutes($product->extra_time ?? 0)->toDateTimeString();
+
+                        if ($product->tgl_akhir_extra_time < $addedExtraTime2) {
+                            $product->tgl_akhir_extra_time = $addedExtraTime2;
+                        }
+                    }
             }
+
+            $currentProducts = $currentProducts->where('tgl_akhir_extra_time', '>', $now);
+
 
             $currentAuction = $currentAuctions->first();
         }
@@ -76,11 +80,12 @@ class AuctionController extends Controller
 
         return view('auction',[
             'auth' => $auth,
-            'currentAuction' => $currentAuction ,
+            'currentAuction' => $currentAuction,
             'auctionProducts' => $currentProducts,
             'now' => $now,
             'currentTotalBid' => $currentTotalBid,
             'currentTotalPrize' => $currentTotalPrize,
+            'auctions' => $currentAuctions,
             'title' => 'auction'
         ]);
     }
