@@ -307,7 +307,7 @@
 
         getCurrentNow();
 
-        function getCurrentNow()
+        async function getCurrentNow()
         {
             $.ajax({
                 type: 'GET',
