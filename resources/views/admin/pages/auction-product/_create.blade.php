@@ -44,11 +44,11 @@
             </div>
             <div class="form-group">
                 <label for="ob">Open Bid</label>
-                <input  type="text" id="ob" name="ob" class="form-control" placeholder="">
+                <input  type="text" id="ob" name="ob" class="form-control" placeholder="" required>
             </div>
             <div class="form-group">
                 <label for="kb">Kelipatan Bid</label>
-                <input  type="text" id="kb" name="kb" class="form-control" placeholder="">
+                <input  type="text" id="kb" name="kb" class="form-control" placeholder="" required>
             </div>
             <div class="form-group">
                 <label for="note">Deskripsi</label>
