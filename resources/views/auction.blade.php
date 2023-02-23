@@ -154,7 +154,7 @@
         <br>
         </div>
     @endif
-    <div class="container" style="padding-top: 2%">
+    <div class="container" style="padding-top: 4%">
         @if (count($auctionProducts) > 0)
             <h5>Rules Auction</h5>
             <p class="m-0">{!! $currentAuction->rules_event ?? '' !!}</p>
