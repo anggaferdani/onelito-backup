@@ -17,7 +17,7 @@ class HomeController extends Controller
         Carbon::setLocale('id');
 
         $now = Carbon::now();
-        $nowAkhir = Carbon::now()->subDays(3)->endOfDay();
+        $nowAkhir = Carbon::now()->subDays(2)->endOfDay();
 
         $auth = Auth::guard('member')->user();
 
@@ -28,12 +28,16 @@ class HomeController extends Controller
             ->where('tgl_mulai', '<=', $now)
             ->where('tgl_akhir', '>=', $nowAkhir)
             ->where('status_aktif', 1)
+            ->where('status_tutup', 0)
             ->orderBy('tgl_mulai')
             ->get();
 
         $currentProducts = $nextAuction->pluck('auctionProducts')
         ->flatten(1)
         ->take(5);
+
+        // dd($currentProducts);
+
 
         if (count($currentProducts) > 0) {
             foreach ($currentProducts as $product) {
@@ -50,7 +54,7 @@ class HomeController extends Controller
                 }
             }
 
-        $currentProducts = $currentProducts->where('tgl_akhir_extra_time', '>', $now);
+        $auctionProducts = $currentProducts->where('tgl_akhir_extra_time', '>', $now);
         }
 
         $hotProductStores = Product::where('status_aktif', 1)
@@ -76,6 +80,7 @@ class HomeController extends Controller
 
         $now = Carbon::now();
 
+
         return view('home',[
             "title" => "home",
             'now' => $now,
@@ -83,6 +88,7 @@ class HomeController extends Controller
             'hotProductStores' => $hotProductStores,
             'championFishes' => $championFishes,
             'auctionProducts' => $currentProducts,
+            'auctions' => $nextAuction,
         ]);
     }
 }

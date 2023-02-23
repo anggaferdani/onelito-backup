@@ -62,7 +62,7 @@
                                                 <th>Tgl. Mulai</th>
                                                 <th>Tgl. Akhir</th>
                                                 <th>Banner</th>
-                                                <!-- <th>Total Hadiah</th> -->
+                                                <th>Auction ditutup</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -166,7 +166,7 @@
                     { data : 'tgl_mulai'},
                     { data : 'tgl_akhir'},
                     { data : 'banner'},
-                    // { data : 'total_hadiah'},
+                    { data : 'text_status_tutup'},
                     { data : 'action' , orderable : false,searchable :false}
                 ]
             });
@@ -380,6 +380,46 @@
                         success:function(response){
                             if(response.success){
                                 swal('Data Auction berhasil dihapus', {
+                                    icon: 'success',
+                                });
+
+                                location.reload();
+                            }
+                        },
+                        error:function(err){
+                            swal({
+                                icon: 'error',
+                                title: 'Terjadi kesalahan',
+                                text: err.responseJSON.message+'.',
+                            })
+                        }
+                    });
+                }
+            });
+        });
+
+        $(document).on('click','button#btn-close',function() {
+            let id = $(this).data('id');
+
+            swal({
+                title: 'Anda akan menutup data Auction',
+                text: 'Auction yang ditutup tidak akan ditampilkan di halaman depan',
+                icon: 'warning',
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        type:'PATCH',
+                        dataType: 'JSON',
+                        url: `auctions/${id}?action=close-auction`,
+                        data:{
+                            "_token": $('meta[name="csrf-token"]').attr('content'),
+                        },
+                        success:function(response){
+                            if(response.success){
+                                swal('Data Auction berhasil ubah', {
                                     icon: 'success',
                                 });
 

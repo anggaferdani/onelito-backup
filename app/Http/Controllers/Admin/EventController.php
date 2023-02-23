@@ -40,8 +40,17 @@ class EventController extends Controller
 
                 return $number;
             })
+            ->addColumn('text_status_tutup', function ($data) {
+                $text = "Ya";
+
+                if ($data->status_tutup === 0) {
+                    $text = "Tidak";
+                }
+
+                return $text;
+            })
             ->addColumn('action','admin.pages.auction.dt-action')
-            ->rawColumns(['action', 'banner', 'rules_event'])
+            ->rawColumns(['action', 'banner', 'rules_event', 'text_status_tutup'])
             ->make(true);
         }
 
@@ -112,7 +121,23 @@ class EventController extends Controller
 
     public function update($id)
     {
+        $action = $this->request->input('action', null);
         $auction = Event::With('auctionProducts')->findOrFail($id);
+
+        if ($action === 'close-auction') {
+            $auction->status_tutup = 1;
+            $auction->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => [
+                    'title' => 'Berhasil',
+                    'content' => 'Mengubah data auction',
+                    'type' => 'success'
+                ],
+            ],200);
+        }
+
         $data = $this->request->all();
         $data['total_hadiah'] = (int) str_replace('.', '', $data['total_hadiah']);
         $validator = Validator::make($this->request->all(), [

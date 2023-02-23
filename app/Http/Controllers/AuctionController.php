@@ -19,7 +19,7 @@ class AuctionController extends Controller
         $auth = Auth::guard('member')->user();
 
         $now = Carbon::now();
-        $nowAkhir = Carbon::now()->subDays(3)->endOfDay();
+        $nowAkhir = Carbon::now()->subDays(2)->endOfDay();
 
         $currentAuctions = Event::
             when($auth !== null, function ($q) use ($auth){
@@ -39,10 +39,12 @@ class AuctionController extends Controller
             ->where('tgl_mulai', '<=', $now)
             ->where('tgl_akhir', '>=', $nowAkhir)
             ->where('status_aktif', 1)
+            ->where('status_tutup', 0)
             ->orderBy('created_at', 'desc')
             ->get();
 
-        $currentProducts = $currentAuctions->pluck('auctionProducts')
+        $currentProducts = $currentAuctions
+        ->pluck('auctionProducts')
         ->flatten(1);
 
         $currentAuction = null;
@@ -68,10 +70,11 @@ class AuctionController extends Controller
                     }
             }
 
-            $currentProducts = $currentProducts->where('tgl_akhir_extra_time', '>', $now);
+            $auctionProducts = $currentProducts->where('tgl_akhir_extra_time', '>', $now);
 
 
-            $currentAuction = $currentAuctions->first();
+            $currentAuction = $currentAuctions
+            ->first();
         }
 
         Carbon::setLocale('id');
