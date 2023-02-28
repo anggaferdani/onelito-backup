@@ -31,6 +31,16 @@ title="Edit">
 </button>
 @endif
 
+<button class="btn btn-sm btn-danger mb-2"
+    id="btn-password"
+    data-url="{{ url('admin/members/'. $model->id_peserta) }}"
+    data-id="{{ $model->id_peserta }}"
+    data-toggle="tooltip"
+    data-placement="top"
+    title="Reset Password">
+
+    <i class="fa fa-lock"></i>
+</button>
 
 <button class="btn btn-sm btn-danger mb-2"
     id="btn-delete"

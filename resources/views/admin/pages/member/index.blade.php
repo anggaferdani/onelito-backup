@@ -491,6 +491,47 @@
             });
         });
 
+        $(document).on('click','button#btn-password',function() {
+            let id = $(this).data('id');
+
+            swal({
+                title: 'Anda Yakin?',
+                text: `Anda akan mereset password akun peserta menjadi
+                'password123'`,
+                icon: 'warning',
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        type:'PATCH',
+                        dataType: 'JSON',
+                        url: `members/${id}?action=reset-password`,
+                        data:{
+                            "_token": $('meta[name="csrf-token"]').attr('content'),
+                        },
+                        success:function(response){
+                            if(response.success){
+                                swal('Password berhasil direset', {
+                                    icon: 'success',
+                                });
+
+                                location.reload();
+                            }
+                        },
+                        error:function(err){
+                            swal({
+                                icon: 'error',
+                                title: 'Terjadi kesalahan',
+                                text: err.responseJSON.message+'.',
+                            })
+                        }
+                    });
+                }
+            });
+        });
+
         $(document).on('click','button#btn-send-email',function() {
                 var id = $(this).data('id');
                 var url = $(this).data('url');

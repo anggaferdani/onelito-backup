@@ -133,7 +133,24 @@ class MemberController extends Controller
 
     public function update($id)
     {
+        $action = $this->request->input('action', null);
         $member = Member::findOrFail($id);
+
+        if ($action === 'reset-password') {
+
+            $member->password = 'password123';
+            $member->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => [
+                    'title' => 'Berhasil',
+                    'content' => 'Password berhasil di reset',
+                    'type' => 'success'
+                ],
+            ],200);
+        }
+
         $statusAktif = $member->status_aktif;
         $data = $this->request->all();
         $validator = Validator::make($this->request->all(), [
