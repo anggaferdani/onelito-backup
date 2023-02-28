@@ -64,10 +64,14 @@ Route::get('/now', function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/ls/click', [AuthenticationController::class, 'emailVerification'])->name('email.verification');
+Route::get('/ls/reset', [AuthenticationController::class, 'emailChangePassword'])->name('email.change_password');
+Route::post('/ls/reset', [AuthenticationController::class, 'emailChangePasswordProsess'])->name('email.change_password.prosess');
 
 Route::get('/login', [AuthenticationController::class, 'loginPage'])->name('login');
 Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 Route::get('/registrasi', [AuthenticationController::class, 'registration'])->name('registration');
+Route::get('/reqreset', [AuthenticationController::class, 'reqreset'])->name('reqreset');
+Route::post('/reqreset', [AuthenticationController::class, 'reqresetProsses'])->name('reqreset.prosses');
 Route::post('/register', [AuthenticationController::class, 'register'])->name('register');
 
 Route::get('/auction', [AuctionController::class, 'index'])->name('auction.index');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EmailResetPassword;
 use App\Mail\EmailVerification;
 use App\Models\Member;
 use App\Models\Province;
@@ -184,6 +185,7 @@ class AuthenticationController extends Controller
             "title" => "login"
         ]);
     }
+
     public function emailVerification()
     {
         $token = $this->request->click;
@@ -224,5 +226,88 @@ class AuthenticationController extends Controller
         $member->save();
 
         return back()->with("status", "Password changed successfully!");
+    }
+
+    public function reqreset()
+    {
+
+        return view('reqreset')->with([
+            // 'provinces' => $provinces
+        ]);
+    }
+
+    public function reqresetProsses()
+    {
+        $this->request->validate([
+            'email' => 'required',
+        ]);
+
+        $email = $this->request->input('email');
+
+        $user = Member::where('email', $email)->first();
+
+        if ($user === null) {
+            return back()->withErrors("Email belum terdaftar");
+        }
+
+        Mail::to($email)->send(new EmailResetPassword($email));
+
+        return back()->with("success", "Email reset password dikirim");
+    }
+
+    public function emailChangePassword()
+    {
+        $token = $this->request->click;
+
+        try {
+            $data = Crypt::decrypt($token);
+            if($data) {
+                $user = Member::where('email', $data['email'])
+                    ->where('id_peserta', $data['id'])->first();
+
+                if(!$user) {
+                    return redirect('login')
+                    ->with(['message' => 'User Not Found']);
+                }
+
+                // $user->email_verified_at = Carbon::now();
+                // $user->save();
+
+                // session()->flash('message','Your Email Successfully Verified',);
+
+                return view('reqreset_change_password')->with([
+                    // 'provinces' => $provinces
+                ]);
+            }
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function emailChangePasswordProsess()
+    {
+        $token = $this->request->token;
+
+        try {
+            $data = Crypt::decrypt($token);
+            if($data) {
+                $user = Member::where('email', $data['email'])
+                    ->where('id_peserta', $data['id'])->first();
+
+                if(!$user) {
+                    return redirect()->back()
+                    ->with(['message' => 'User Not Found']);
+                }
+
+                $user->password = $this->request->password;
+                $user->save();
+
+                return redirect('login')->with("password", "Password berhasil diubah, silahkan login menggunakan password baru");
+            }
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }

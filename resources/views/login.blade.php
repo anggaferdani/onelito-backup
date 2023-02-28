@@ -125,6 +125,17 @@
                             <p class="mb-0">Mohon menunggu email notifikasi selanjutnya apabila proses registrasi telah berhasil.</p>
                         </div>
                         @endif
+
+                        @if (Session::has('password'))
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Password berhasil diubah</h4>
+                            <!-- <p>Akun Anda saat ini sedang dalam tahap peninjauan terlebih dahulu.</p> -->
+                            <hr>
+                            <br>
+                            <p class="mb-0">Silahkan login menggunakan password baru.</p>
+                        </div>
+                        @endif
+
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -142,6 +153,7 @@
                         <!-- <a href="/" type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"> LOGIN </a> -->
                     </div>
                     <p>Don't have an account yet let's join <a class="text-danger" style="text-decoration: blink" href="/registrasi">here</a></p>
+                    <p>Forget your password? <a class="text-danger" style="text-decoration: blink" href="/reqreset">Click here</a></p>
                     </form>
                 </center>
                 </div>
