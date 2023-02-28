@@ -19,6 +19,19 @@ title="Edit">
 </button>
 
 @if ($model->email_verified_at === null)
+
+@php
+    $payload = array(
+                        'id'        => $model->id_peserta,
+                        'email'     => $model->email,
+                        'action'       => 'email-verification',
+                    );
+
+    $crypt = Crypt::encrypt($payload);
+
+    $url = config('app.url') . "/ls/click?click=$crypt";
+@endphp
+
 <button class="btn btn-sm btn-primary mb-2"
     id="btn-send-email"
     data-url="{{ url('/send-email/'. $model->email) }}"
@@ -28,6 +41,18 @@ title="Edit">
     title="Send Email Verify">
 
     <i class="fa fa-envelope"></i>
+</button>
+
+<button class="btn btn-sm btn-primary mb-2"
+    id="btn-copy-url-verif"
+    data-url="{{ url('/send-email/'. $model->email) }}"
+    data-id="{{ $model->id_peserta }}"
+    data-email-url="{{ $url }}"
+    data-toggle="tooltip"
+    data-placement="top"
+    title="Copy url Email Verification">
+
+    <i class="fa fa-clipboard"></i>
 </button>
 @endif
 

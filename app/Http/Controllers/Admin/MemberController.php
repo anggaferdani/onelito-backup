@@ -8,6 +8,7 @@ use App\Mail\EmailVerification;
 use App\Models\Member;
 use App\Models\Province;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
@@ -37,6 +38,19 @@ class MemberController extends Controller
 
             return DataTables::of($members)
             ->addIndexColumn()
+            ->addColumn('email_verif_url', function ($data) {
+                $payload = array(
+                    'id'        => $data->id_peserta,
+                    'email'     => $data->email,
+                    'action'       => 'email-verification',
+                );
+
+                $crypt = Crypt::encrypt($payload);
+
+                $url = config('app.url') . "/ls/click?click=$crypt";
+
+                return $url;
+            })
             ->addColumn('action','admin.pages.member.dt-action')
             ->editColumn('province.prov_name', function ($data) {
                 if ($data->province === null) {
@@ -80,7 +94,7 @@ class MemberController extends Controller
 
                 return "Tidak Aktif";
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['email_verif_url', 'action'])
             ->make(true);
         }
 

@@ -20,6 +20,7 @@
 @endpush
 
 @section('main')
+<div class="cliptext"></div>
     <div class="main-content">
         <section class="section">
             <div class="section-header">
@@ -570,7 +571,38 @@
                         });
                     }
                 });
-            });
+        });
+
+        $(document).on('click','button#btn-copy-url-verif', async function() {
+                var id = $(this).data('id');
+                let url = await $(this).data('email-url');
+
+                // url.select();
+                // url.setSelectionRange(0, 99999);
+
+                // console.log({url})
+
+                // navigator.clipboard.write(`${url}`)
+
+                const type = "text/plain";
+                const blob = new Blob([url], { type });
+                const data = [new ClipboardItem({ [type]: blob })];
+
+                navigator.clipboard.write(data).then(
+                    () => {
+                    /* success */
+                    alert("Copied Verification Url");
+
+                    },
+                    () => {
+                    /* failure */
+                    }
+                );
+
+
+                // navigator.clipboard.writeText($(this).data('email-url'));
+
+        });
     </script>
 
 
