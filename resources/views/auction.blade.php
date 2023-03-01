@@ -388,9 +388,11 @@
 
             addedExtraTimeGroups[id] = addedExtraTime;
 
-            setTimeout(() => {
-                autoDetailBid(id)
-            }, 20000);
+            if (addedExtraTime > now) {
+                setTimeout(() => {
+                    autoDetailBid(id)
+                }, 20000);
+            }
 
             // Update the count down every 1 second
             var x = setInterval(function() {
@@ -452,11 +454,15 @@
                     // $('#currentPrice').html(`${formatedMaxBid}`);
 
                     addedExtraTimeGroups[idIkan] = res.addedExtraTime;
+
+                    if (res.addedExtraTime > now) {
+                        setTimeout(() => {
+                            autoDetailBid(idIkan)
+                        }, 20000);
+                    }
                 },
                 complete: function() {
-                    setTimeout(() => {
-                        autoDetailBid(idIkan)
-                    }, 20000);
+
                 },
                 error(err) {
 
