@@ -388,6 +388,8 @@
 
             addedExtraTimeGroups[id] = addedExtraTime;
 
+            var now = new Date(currentTime.replace(' ', 'T'));
+
             if (addedExtraTime > now) {
                 setTimeout(() => {
                     autoDetailBid(id)
