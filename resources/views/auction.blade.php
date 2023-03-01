@@ -388,9 +388,7 @@
 
             addedExtraTimeGroups[id] = addedExtraTime;
 
-            var now = new Date(currentTime.replace(' ', 'T'));
-
-            if (addedExtraTime > now) {
+            if (addedExtraTime > currentTime) {
                 setTimeout(() => {
                     autoDetailBid(id)
                 }, 20000);
@@ -457,7 +455,7 @@
 
                     addedExtraTimeGroups[idIkan] = res.addedExtraTime;
 
-                    if (res.addedExtraTime > now) {
+                    if (res.addedExtraTime > currentTime) {
                         setTimeout(() => {
                             autoDetailBid(idIkan)
                         }, 20000);
