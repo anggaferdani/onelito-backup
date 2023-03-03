@@ -94,6 +94,7 @@ Route::get('/auction/{idIkan}/detail', [AuctionController::class, 'detail'])->na
 Route::group(['middleware' => 'auth:member'], function () {
     Route::GET('/wishlistlog', [WishlistController::class, 'wishlistlog']);
     Route::POST('/change-password', [AuthenticationController::class, 'changePassword']);
+    Route::POST('/update-profile', [ProfileController::class, 'updateProfile']);
     Route::POST('/change-profile', [ProfileController::class, 'changeProfile']);
     Route::resource('/carts', CartController::class);
     Route::POST('/carts-order', [CartController::class, 'order']);
@@ -103,6 +104,7 @@ Route::group(['middleware' => 'auth:member'], function () {
     Route::get('/wishlist', [ProfileController::class, 'wishlist'])->name('profile.wishlist');
     Route::get('/purchase', [ProfileController::class, 'purchase'])->name('profile.purchase');
     Route::get('/ganti_password', [ProfileController::class, 'viewChangePassword'])->name('profile.view_change_password');
+    Route::get('/update_profile', [ProfileController::class, 'viewUpdateProfile'])->name('profile.view_update_profile');
     Route::POST('/auction/{idIkan}', [AuctionController::class, 'bidProcess'])->name('auction.bid_process');
     Route::resource('/wishlists', WishlistController::class);
 

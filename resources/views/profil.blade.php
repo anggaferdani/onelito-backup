@@ -143,6 +143,8 @@
                             history</a> --}}
                         <a href="/ganti_password" style="font-size: 11px"
                             class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'purchase' ? 'active' : '' }}">Ganti password</a>
+                        <a href="/update_profile" style="font-size: 11px"
+                            class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'update-profile' ? 'active' : '' }}">Update Profile</a>
                     </div>
                 </div>
             </div>
@@ -166,6 +168,10 @@
                                 <button onclick="uploadProfile()" class="border btn btn-light" style="width: 68vw">
                                     Change photo</button>
                             </button>
+                            <!-- <button type="button" class="btn btn-light btn-sm">
+                                <button onclick="updateProfile()" class="border btn btn-light" style="width: 68vw">
+                                    Update Profile</button>
+                            </button> -->
                         </div>
                         <div class="">
                             <div class="mb-3">
@@ -252,6 +258,11 @@
                             id="v-pills-password-tab" href="/profil?section=change-password"
                             style="font-size: x-large">Ganti Password</a>
                     </div>
+                    <div class="nav card mb-2 nav-pills">
+                        <a class="btn btn-danger w-100 justify-content-between" role="button"
+                            id="v-pills-password-tab" href="/profil?section=update-profile"
+                            style="font-size: x-large">Update Profile</a>
+                    </div>
                     <div class="card p-0">
                         <a class="btn btn-danger w-100 justify-content-between" href="/logout" role="button"
                             style="font-size: x-large">Log Out</a>
@@ -277,7 +288,12 @@
                                                         <b>
                                                             <center>Change photo</center>
                                                         </b></button>
-                                                    <Input class="uploadProfileInput d-none" type="file" name="profile_pic" id="newProfilePhoto" accept="image/*" style="opacity: 0;" />
+                                                    <!-- <button onclick="updateProfile()"
+                                                    class="border btn btn-light w-100 justify-content-between mt-1">
+                                                    <b>
+                                                        <center>Update Profile</center>
+                                                    </b></button>
+                                                    <Input class="uploadProfileInput d-none" type="file" name="profile_pic" id="newProfilePhoto" accept="image/*" style="opacity: 0;" /> -->
                                                 </div>
 
                                             </div>
@@ -635,6 +651,44 @@
                                             <label for="password_confirm">Confirm Password</label>
                                             <input type="password" name="password_confirmation" class="form-control"
                                                 id="password_confirmation" required="">
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <!-- <button type="submit" class="btn btn-success btn-lg float-right">Save</button> -->
+                                            <button type="submit"
+                                                class="btn btn-danger w-100 justify-content-between"
+                                                style="background-color:#dc3545" role="button">Save</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade {{ $request === 'update-profile' ? 'show active' : '' }}"
+                            id="v-pills-password" role="tabpanel" aria-labelledby="v-pills-password-tab">
+                            <div class="container mt-3 my-3">
+                                <h5><i class="fa-solid fa-key"></i> <b>Update Profile</b></h5>
+                            </div>
+                            <div class="container overflow-hidden p-0">
+                                <div class="card">
+                                </div>
+                                <div class="row p-5">
+                                    <form class="form" method="POST" action="/update-profile" role="form"
+                                        autocomplete="off">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label for="name">Name</label>
+                                            <input type="name" name="name" class="form-control"
+                                                id="name" required="" value="{{ $auth->nama }}">
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <label for="no_hp">Phone Number</label>
+                                            <input type="no_hp" name="no_hp" class="form-control"
+                                                id="no_hp" required="" value="{{ $auth->no_hp }}">
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <label for="alamat">Alamat</label>
+                                            <input type="alamat" name="alamat" class="form-control"
+                                                id="alamat" required="" value="{{ $auth->alamat }}">
                                         </div>
                                         <div class="form-group mt-3">
                                             <!-- <button type="submit" class="btn btn-success btn-lg float-right">Save</button> -->
