@@ -90,6 +90,7 @@ class WishlistController extends Controller
             ->where('tgl_mulai', '<=', $now)
             ->where('tgl_akhir', '>=', $nowAkhir)
             ->where('status_aktif', 1)
+            ->where('status_tutup', 0)
             ->orderBy('tgl_mulai')
             ->orderBy('created_at', 'desc')
             ->get();
