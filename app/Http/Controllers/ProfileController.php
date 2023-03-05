@@ -111,10 +111,10 @@ class ProfileController extends Controller
         $carts = $auth->carts()
         ->with(['cartable' => function (MorphTo $morphTo) {
             $morphTo->morphWith([
-                Product::class => ['photo'],
                 EventFish::class => ['photo'],
             ]);
         }])
+        ->where('cartable_type', Cart::EventFish)
         ->where('status_aktif', 1)
         ->get();
 
@@ -141,11 +141,22 @@ class ProfileController extends Controller
         }])
         ->where('status_aktif', 1)->get();
 
+        $storeCarts = $auth->carts()
+        ->with(['cartable' => function (MorphTo $morphTo) {
+            $morphTo->morphWith([
+                Product::class => ['photo'],
+            ]);
+        }])
+        ->where('cartable_type', Cart::Product)
+        ->where('status_aktif', 1)
+        ->get();
+
         return view('profil',[
             'auth' => $auth,
             'title' => 'profil',
             'wishlists' => $wishlists,
             'carts' => $carts,
+            'storeCarts' => $storeCarts,
             'orders' => $orders,
         ]);
     }
@@ -245,10 +256,10 @@ class ProfileController extends Controller
         $carts = $auth->carts()
         ->with(['cartable' => function (MorphTo $morphTo) {
             $morphTo->morphWith([
-                Product::class => ['photo'],
                 EventFish::class => ['photo'],
             ]);
         }])
+        ->where('cartable_type', Cart::EventFish)
         ->where('status_aktif', 1)
         ->get();
 
@@ -275,10 +286,21 @@ class ProfileController extends Controller
         }])
         ->where('status_aktif', 1)->get();
 
+        $storeCarts = $auth->carts()
+        ->with(['cartable' => function (MorphTo $morphTo) {
+            $morphTo->morphWith([
+                Product::class => ['photo'],
+            ]);
+        }])
+        ->where('cartable_type', Cart::Product)
+        ->where('status_aktif', 1)
+        ->get();
+
         return view('shoppingcart',[
             'auth' => $auth,
             'title' => 'Shopping Cart',
             'carts' => $carts,
+            'storeCarts' => $storeCarts,
             'wishlists' => $wishlists,
             'orders' => $orders
         ]);

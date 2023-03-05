@@ -76,7 +76,7 @@
                                     style="background-color: white">Add Cart</button>
                             </div>
                             <div class="col">
-                                <button type="button" class="btn btn-success w-100 justify-content-between text-success"
+                                <button type="button" id="wishlist" class="btn btn-success w-100 justify-content-between text-success"
                                     style="background-color: white">Wishlist</button>
                             </div>
                         </div>
@@ -127,6 +127,7 @@
                                     </div>
                                     <div class="col">
                                         <button type="button"
+                                            id="wishlist"
                                             class="btn btn-success w-100 justify-content-between text-success"
                                             style="background-color: white">Wishlist</button>
                                     </div>
@@ -196,7 +197,7 @@
                 },
                 dataType: "json",
                 complete: function(res) {
-                    document.location = '/profil?section=cart'
+                    document.location = '/profil?section=store-cart'
                     // element.attr('class', 'fas fa-heart wishlist');
                     button.removeAttr('disabled')
                 },
@@ -207,8 +208,28 @@
             })
         });
 
+        $(document).on('click', '#wishlist', function(e) {
+            var button = $(this);
+            $.ajax({
+                    type: 'POST',
+                    url: `/wishlists`,
+                    data: {
+                        id_produk: productId
+                    },
+                    dataType: "json",
+                    success: function(res) {
+                        document.location = '/wishlistlog'
+
+                        return true;
+                    },
+                    error: function(error) {
+                        console.log(error)
+                        return false
+                    }
+            })
+        });
+
         function thousandSeparator(x) {
-            // return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
             var	reverse = x.toString().split('').reverse().join(''),
             ribuan 	= reverse.match(/\d{1,3}/g);
             ribuan	= ribuan.join('.').split('').reverse().join('');

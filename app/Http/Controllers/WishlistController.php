@@ -29,6 +29,22 @@ class WishlistController extends Controller
             unset($data['id_ikan_lelang']);
         }
 
+        $exists = Wishlist::where('id_peserta', $auth->id_peserta)
+            ->where('wishlistable_id', $data['wishlistable_id'])
+            ->where('wishlistable_type', $data['wishlistable_type'])
+            ->first();
+
+        if ($exists !== null) {
+            $exists->status_aktif = 1;
+            $exists->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'success',
+            ],200);
+        }
+
+
         $data['id_peserta'] = $auth->id_peserta;
 
         $data['create_by'] = Auth::guard('admin')->id();

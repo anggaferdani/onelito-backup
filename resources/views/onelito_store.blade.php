@@ -140,7 +140,8 @@
                                                             <span>Wishlist</span></button>
                                                     </div>
                                                     <div class="col-4 mb-1">
-                                                        <button class="rounded"
+                                                        <button class="rounded addcart"
+                                                            data-id="{{ $product->id_produk }}"
                                                             style="background-color: red;border-color:red; outline: none; border: none;"><i
                                                                 class="fa-solid fa-cart-shopping"
                                                                 style="color: white"></i></button>
@@ -223,12 +224,13 @@
                                                     <div class="col-8 text-center">
                                                         <button class="border rounded-1 text-black-50"
                                                             style="background-color: transparent;font-size:small"><i
-                                                                data-id="{{ $product->id_produk }}"
-                                                                class="{{ $wishlistClass }} wishlist produk-{{ $product->id_produk }}"></i>
+                                                                data-id="{{ $fishfoodProduct->id_produk }}"
+                                                                class="{{ $wishlistClass }} wishlist produk-{{ $fishfoodProduct->id_produk }}"></i>
                                                             <span>Wishlist</span></button>
                                                     </div>
                                                     <div class="col-4 mb-1">
-                                                        <button class="rounded"
+                                                        <button class="rounded addcart"
+                                                            data-id="{{ $fishfoodProduct->id_produk }}"
                                                             style="background-color: red;border-color:red; outline: none; border: none;"><i
                                                                 class="fa-solid fa-cart-shopping"
                                                                 style="color: white"></i></button>
@@ -310,12 +312,13 @@
                                                     <div class="col-8 text-center">
                                                         <button class="border rounded-1 text-black-50"
                                                             style="background-color: transparent;font-size:small"><i
-                                                                data-id="{{ $product->id_produk }}"
-                                                                class="{{ $wishlistClass }} wishlist produk-{{ $product->id_produk }}"></i>
+                                                                data-id="{{ $fishgearProduct->id_produk }}"
+                                                                class="{{ $wishlistClass }} wishlist produk-{{ $fishgearProduct->id_produk }}"></i>
                                                             <span>Wishlist</span></button>
                                                     </div>
                                                     <div class="col-4 mb-1">
-                                                        <button class="rounded"
+                                                        <button class="rounded addcart"
+                                                            data-id="{{ $fishgearProduct->id_produk }}"
                                                             style="background-color: red;border-color:red; outline: none; border: none;"><i
                                                                 class="fa-solid fa-cart-shopping"
                                                                 style="color: white"></i></button>
@@ -390,7 +393,6 @@
                         console.log(error)
                         return false
                     }
-
                 })
             }
 
@@ -416,5 +418,39 @@
                 })
             }
         })
+
+        $(document).on('click', '.addcart', function(e) {
+            var button = $(this);
+            var productId = $(this).attr('data-id')
+            // $(this).attr('disabled', true)
+            // var output = document.querySelector("#output");
+            $.ajax({
+                type: 'POST',
+                url: `/carts`,
+                data: {
+                    jumlah: 1,
+                    cartable_id: productId,
+                    cartable_type: 'Product',
+                },
+                dataType: "json",
+                complete: function(res) {
+                    document.location = '/profil?section=store-cart'
+                    // element.attr('class', 'fas fa-heart wishlist');
+                    button.removeAttr('disabled')
+                },
+                error: function(error) {
+                    console.log(error)
+                    return false
+                }
+            })
+        });
+
+        function thousandSeparator(x) {
+            var	reverse = x.toString().split('').reverse().join(''),
+            ribuan 	= reverse.match(/\d{1,3}/g);
+            ribuan	= ribuan.join('.').split('').reverse().join('');
+
+            return ribuan
+        }
     </script>
 @endpush

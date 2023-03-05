@@ -135,6 +135,10 @@
                             class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'Shopping Cart' ? 'active' : '' }}">Shopping
                             cart</a>
 
+                        <a href="/storecart" style="font-size: 11px"
+                            class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'Store Cart' ? 'active' : '' }}">Store
+                            cart</a>
+
                         <!-- <a href="/wishlist" style="font-size: 11px"
                             class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'wishlist' ? 'active' : '' }}">WishList</a> -->
 
@@ -236,6 +240,12 @@
                                         role="tab" aria-controls="v-pills-profile" aria-selected="false">
                                         Shopping cart
                                     </button>
+                                    <button class="nav-link bg-tranparent text-body p-2 text-lg-start"
+                                        style="background-color: white;font-size:larger" id="v-pills-profile-tab"
+                                        data-bs-toggle="pill" data-bs-target="#v-pills-store" type="button"
+                                        role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                                        Store cart
+                                    </button>
                                     <!-- <button class="nav-link text-body p-2 text-lg-start"
                                         style="background-color: white;font-size:larger" id="v-pills-messages-tab"
                                         data-bs-toggle="pill" data-bs-target="#v-pills-messages2" type="button"
@@ -325,12 +335,12 @@
                                     <div class="row">
                                         <div class="col-lg-12 px-3 py-3">
                                             <div class="d-none  container d-flex py-3" style="">
-                                                <input class="form-check-input mr-3 my-auto cart-check-all"
+                                                <!-- <input class="form-check-input mr-3 my-auto cart-check-all"
                                                     style="font-size:large;" type="checkbox" value=""
                                                     id="Pilih Semua">
                                                 <label class="form-check-label d-none" for="Pilih Semua">
                                                     Pilih Semua
-                                                </label>
+                                                </label> -->
                                             </div>
                                             <hr class="float-sm-end text-center" style="width: 98%;">
                                             @forelse($carts as $cart)
@@ -355,12 +365,12 @@
                                                 @if ($cart->cartable_type === 'EventFish')
                                                     <div class="container">
                                                         <div class="container d-flex p-0 my-3">
-                                                            <input class="d-none form-check-input mr-3 my-auto cart-check"
+                                                            <!-- <input class="d-none form-check-input mr-3 my-auto cart-check"
                                                                 type="checkbox" data-price="{{ $cart->price }}"
                                                                 data-id="{{ $cart->id_keranjang }}"
                                                                 data-cartableid="{{ $cart->cartable_id }}"
                                                                 data-type="eventfish" value=""
-                                                                id="flexCheckDefault">
+                                                                id="flexCheckDefault"> -->
                                                             <div class="card mr-3">
                                                                 <!-- <a href="/auction/{{ $cart->cartable_id }}"> -->
                                                                 <a href="#">
@@ -443,7 +453,132 @@
                                             @empty
                                             @endforelse
                                         </div>
-                                        <div class="d-none">
+                                        <!-- <div class="d-none">
+                                            <div class="card">
+                                                <div class="card-body ">
+                                                    <h5 class="card-title mb-3">Ringkasan belanja</h5>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <h6 class="card-subtitle text-muted">Total Barang (<span
+                                                                    class="total-item">0</span> barang)
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <h6 class="card-subtitle">Total harga</h6>
+                                                        </div>
+                                                        <div class="col">
+                                                            <h6 class="card-subtitle text-muted text-end">Rp <span
+                                                                    class="total-price">0</span></h6>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <a onclick=""
+                                                        class="transaction btn btn-secondary w-100 justify-content-between "
+                                                        href="#">Pesan
+                                                        Sekarang (<span class="total-item">0</span>)</a>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade {{ $request === 'store-cart' ? 'show active' : '' }}"
+                            id="v-pills-store" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                            <div class="container mt-3 my-3">
+                                <h5><i class="fa-solid fa-cart-shopping"></i> <b>Store cart</b></h5>
+                            </div>
+                            <div class="container overflow-hidden p-0">
+                                <div class="card">
+                                    <div class="row p-2">
+                                        <div class="col-lg-7 px-3 py-3">
+                                            <div class="container d-flex py-3" style="">
+                                                <input class="form-check-input mr-3 my-auto cart-check-all"
+                                                    style="font-size:large;" type="checkbox" value=""
+                                                    id="Pilih Semua">
+                                                <label class="form-check-label" for="Pilih Semua">
+                                                    Pilih Semua
+                                                </label>
+                                            </div>
+                                            <hr class="float-sm-end text-center" style="width: 98%;">
+                                            @forelse($storeCarts as $cart)
+                                                @php
+
+                                                    $cartPhoto = url('img/uniring.jpeg');
+                                                    $cartable = $cart->cartable;
+
+                                                    if ($cart->cartable->photo !== null) {
+                                                        $cartPhoto = url('storage') . '/' . $cart->cartable->photo->path_foto;
+                                                    }
+
+                                                    if ($cart->cartable_type === 'Product') {
+                                                        $cartPrice = $cartable->harga;
+                                                    }
+                                                @endphp
+
+
+                                                @if ($cart->cartable_type === 'Product')
+                                                    <div class="container">
+                                                        <div class="container d-flex p-0 my-3">
+                                                            <input class="form-check-input mr-3 my-auto cart-check"
+                                                                type="checkbox" data-price="{{ $cartPrice }}"
+                                                                data-id="{{ $cart->id_keranjang }}"
+                                                                data-cartableid="{{ $cart->cartable_id }}"
+                                                                data-type="product" value=""
+                                                                id="flexCheckDefault">
+                                                            <div class="card mr-3">
+                                                                <a href="/onelito_store/{{ $cart->cartable_id }}"><img
+                                                                        src="{{ $cartPhoto }}"
+                                                                        class="card-img-top"
+                                                                        style="height: 10vh; width: 5vw; object-fit: cover;"
+                                                                        alt="..."></a>
+                                                            </div>
+                                                            <div>
+                                                                <p class="m-0">{!! Illuminate\Support\Str::limit("$cartable->merek_produk $cartable->nama_produk", 75) !!}</p>
+                                                                <p class="m-0"><b>Rp.
+                                                                        {{ number_format($cartPrice, 0, '.', '.') }}</b>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="container d-flex p-0 my-3 justify-content-between">
+                                                            <!-- <p class="my-auto text-danger">Tulis Catatan</p> -->
+                                                            <p class="my-auto text-center">
+                                                                Pindahkan ke Wishlist |
+                                                            </p>
+                                                            <button class="border-0"
+                                                                style="background-color: transparent"><i
+                                                                    class="fa-regular fa-trash-can"></i></button>
+                                                            <div class="btn-group" role="group"
+                                                                aria-label="Basic outlined example">
+                                                                <button type="button" id="subtract"
+                                                                    onclick="manageProduct(this)"
+                                                                    class="border-0 btn-light mr-2"
+                                                                    style="background-color:tranparent">
+                                                                    <i class="fa-sharp fa-solid fa-circle-minus text-black-50"
+                                                                        style="font-size: larger"></i>
+                                                                </button>
+                                                                <button type="button" id="output"
+                                                                    data-id="{{ $cart->id_keranjang }}"
+                                                                    class="btn btn-light outputproduct outputproduct-{{ $cart->id_keranjang }}">{{ $cart->jumlah }}</button>
+                                                                <button id="add" type="button"
+                                                                    onclick="manageProduct(this)"
+                                                                    class=" border-0 btn-light ml-2">
+                                                                    <i class="fa-solid fa-circle-plus text-danger"
+                                                                        style="font-size: larger"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr class="float-sm-end text-center mb-3" style="width: 98%;">
+                                                @endif
+                                            @empty
+                                            @endforelse
+                                        </div>
+                                        <div class="col-lg-5">
                                             <div class="card">
                                                 <div class="card-body ">
                                                     <h5 class="card-title mb-3">Ringkasan belanja</h5>

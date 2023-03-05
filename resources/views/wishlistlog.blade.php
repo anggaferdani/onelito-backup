@@ -100,7 +100,8 @@
                                 ) !!}</p>
                             <p><b>Rp.
                                     {{ number_format($wishlist->wishlistable->harga, 0, '.', '.') }}</b></p>
-                            <button class="mb-3 text-danger "
+                            <button class="mb-3 text-danger addcart"
+                                data-id="{{ $wishlist->wishlistable_id }}"
                                 style="background-color: transparent;font-size:small;border-color:red"><i
                                     class="fa-solid fa-plus"></i>
                                 <span>Keranjang</span></button>
@@ -293,5 +294,31 @@
                 }
             })
         }
+
+        $(document).on('click', '.addcart', function(e) {
+            var button = $(this);
+            var productId = $(this).attr('data-id')
+            // $(this).attr('disabled', true)
+            // var output = document.querySelector("#output");
+            $.ajax({
+                type: 'POST',
+                url: `/carts`,
+                data: {
+                    jumlah: 1,
+                    cartable_id: productId,
+                    cartable_type: 'Product',
+                },
+                dataType: "json",
+                complete: function(res) {
+                    document.location = '/profil?section=store-cart'
+                    // element.attr('class', 'fas fa-heart wishlist');
+                    button.removeAttr('disabled')
+                },
+                error: function(error) {
+                    console.log(error)
+                    return false
+                }
+            })
+        });
     </script>
 @endpush

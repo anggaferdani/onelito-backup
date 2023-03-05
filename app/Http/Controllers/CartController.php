@@ -19,6 +19,7 @@ class CartController extends Controller
         $exists = Cart::where('id_peserta', $auth->id_peserta)
             ->where('cartable_id', $dataCart['cartable_id'])
             ->where('cartable_type', $dataCart['cartable_type'])
+            ->where('status_aktif', 1)
             ->first();
 
         if ($exists !== null) {
