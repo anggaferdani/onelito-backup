@@ -101,6 +101,7 @@ Route::group(['middleware' => 'auth:member'], function () {
     Route::get('/auction-bid-now/{idIkan}', [AuctionController::class, 'bidNow'])->name('auction.bid_now');
     Route::get('/profil', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/shoppingcart', [ProfileController::class, 'shopcart'])->name('profile.shopcart');
+    Route::get('/storecart', [ProfileController::class, 'storecart'])->name('profile.storecart');
     Route::get('/wishlist', [ProfileController::class, 'wishlist'])->name('profile.wishlist');
     Route::get('/purchase', [ProfileController::class, 'purchase'])->name('profile.purchase');
     Route::get('/ganti_password', [ProfileController::class, 'viewChangePassword'])->name('profile.view_change_password');
