@@ -246,12 +246,6 @@
                                         role="tab" aria-controls="v-pills-profile" aria-selected="false">
                                         Store cart
                                     </button>
-                                    <!-- <button class="nav-link text-body p-2 text-lg-start"
-                                        style="background-color: white;font-size:larger" id="v-pills-messages-tab"
-                                        data-bs-toggle="pill" data-bs-target="#v-pills-messages2" type="button"
-                                        role="tab" aria-controls="v-pills-messages" aria-selected="false">
-                                        WishList
-                                    </button> -->
                                     {{-- <button class="nav-link text-body p-2 text-lg-start"
                                         style="background-color: white;font-size:larger" id="v-pills-settings-tab"
                                         data-bs-toggle="pill" data-bs-target="#v-pills-settings2" type="button"
@@ -419,12 +413,13 @@
                                                                 </p>
                                                             </div>
                                                         </div>
-                                                        <div class="container d-flex p-0 my-3 justify-content-between">
+                                                        <div class="container d-flex p-0 my-3 justify-content-end">
                                                             <!-- <p class="my-auto text-danger">Tulis Catatan</p> -->
-                                                            <p class="my-auto text-center">
+                                                            <p class="my-auto text-center d-none">
                                                                 Pindahkan ke Wishlist |
                                                             </p>
-                                                            <button class="border-0"
+                                                            <button class="border-0 mr-3 remove-cart"
+                                                                data-id="{{ $cart->id_keranjang }}"
                                                                 style="background-color: transparent"><i
                                                                     class="fa-regular fa-trash-can"></i></button>
                                                             <div class="btn-group" role="group"
@@ -534,7 +529,7 @@
                                                                 <a href="/onelito_store/{{ $cart->cartable_id }}"><img
                                                                         src="{{ $cartPhoto }}"
                                                                         class="card-img-top"
-                                                                        style="height: 10vh; width: 5vw; object-fit: cover;"
+                                                                        style="width: 5vw; object-fit: cover;"
                                                                         alt="..."></a>
                                                             </div>
                                                             <div>
@@ -544,12 +539,13 @@
                                                                 </p>
                                                             </div>
                                                         </div>
-                                                        <div class="container d-flex p-0 my-3 justify-content-between">
+                                                        <div class="container d-flex p-0 my-3 justify-content-end">
                                                             <!-- <p class="my-auto text-danger">Tulis Catatan</p> -->
-                                                            <p class="my-auto text-center">
+                                                            <p class="my-auto text-center d-none">
                                                                 Pindahkan ke Wishlist |
                                                             </p>
-                                                            <button class="border-0"
+                                                            <button class="border-0 mr-3 remove-cart"
+                                                                data-id="{{ $cart->id_keranjang }}"
                                                                 style="background-color: transparent"><i
                                                                     class="fa-regular fa-trash-can"></i></button>
                                                             <div class="btn-group" role="group"
@@ -917,6 +913,23 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        $("body").on("click", ".remove-cart", function(o) {
+            var id = $(this).attr('data-id');
+
+            $.ajax({
+                type: 'DELETE',
+                url: `/carts/${id}`,
+                data: {},
+                dataType: "json",
+                success: function(res) {
+                    location.href = `/profil?section=store-cart`;
+                },
+                error: function(error) {
+                    return false
+                }
+            })
+        })
 
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
