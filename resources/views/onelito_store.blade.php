@@ -2,6 +2,17 @@
 
 @section('container')
     <style>
+        .swal2-cancel {
+            margin-right: 10px;
+        }
+
+        .swal2-cancel {
+            background-color: #dc3545;
+        }
+
+        .swal2-confirm {
+            background-color: #198754;
+        }
         /* On screens that are 992px or less, set the background color to blue */
         @media screen and (min-width: 601px) {
             .nav-atas {
@@ -126,8 +137,11 @@
                                                     <span>Wishlist</span></button>
                                             </div> --}}
                                             <div class="mb-1 mx-auto">
-                                                <button class="border-0 btn-success rounded-2"
+                                                <button class="border-0 btn-success rounded-2 order-now"
+                                                    data-id="{{ $product->id_produk }}"
+                                                    data-price="{{ $product->harga }}"
                                                     style="background-color:#188518;">Order
+
                                                     Now</button>
                                             </div>
                                             <div class="col-12">
@@ -215,7 +229,9 @@
                                                     <span>Wishlist</span></button>
                                             </div> --}}
                                             <div class="mb-1 mx-auto">
-                                                <button class="border-0 btn-success rounded-2"
+                                                <button class="border-0 btn-success rounded-2 order-now"
+                                                    data-id="{{ $fishfoodProduct->id_produk }}"
+                                                    data-price="{{ $fishfoodProduct->harga }}"
                                                     style="background-color:#188518;">Order
                                                     Now</button>
                                             </div>
@@ -303,7 +319,9 @@
                                                     <span>Wishlist</span></button>
                                             </div> --}}
                                             <div class="mb-1 mx-auto">
-                                                <button class="border-0 btn-success rounded-2"
+                                                <button class="border-0 btn-success rounded-2 order-now"
+                                                    data-id="{{ $fishgearProduct->id_produk }}"
+                                                    data-price="{{ $fishgearProduct->harga }}"
                                                     style="background-color:#188518;">Order
                                                     Now</button>
                                             </div>
@@ -359,12 +377,21 @@
     </div>
 @endsection
 @push('scripts')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
 
         $(document).on('click', '.wishlist', function(e) {
             var element = $(e.currentTarget);
@@ -451,6 +478,75 @@
             ribuan	= ribuan.join('.').split('').reverse().join('');
 
             return ribuan
+        }
+
+        $(document).on('click', '.order-now', function(e) {
+            var nominal = $(this).attr('data-price');
+            nominal = thousandSeparator(nominal)
+
+            swalWithBootstrapButtons.fire({
+                title: 'apa anda yakin?',
+                text: `Total harga Rp. ${nominal}`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    orderNowProcess(this);
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    // swalWithBootstrapButtons.fire(
+                    //     'Batal',
+                    //     'Pesanan dibatalkan',
+                    //     'error'
+                    // )
+                }
+            })
+        })
+
+        function orderNowProcess(element) {
+            var nominal = $(element).attr('data-price');
+            const output = 1;
+            var totalPrice = 0;
+            var items = 0;
+            var transaction = $('.transaction')
+            var dataOrder = []
+
+            var orderItem = {}
+
+            var id = $(element).attr('data-id');
+
+            orderItem.id = id;
+            orderItem.price = nominal;
+
+            items += Number(output)
+            orderItem.price = nominal * Number(output)
+            orderItem.type = 'Product';
+            orderItem.total_produk = Number(output);
+
+            dataOrder.push(orderItem);
+
+            $.ajax({
+                type: 'POST',
+                url: `/carts-order?method=single`,
+                data: {
+                    data_order: dataOrder,
+                    total: nominal * Number(output),
+                    item: items,
+                },
+                dataType: "json",
+                success: function(res) {
+                    location.href = `/carts/${res.id}`;
+                },
+                error: function(error) {
+                    // console.log(error)
+                    return false
+                }
+            })
         }
     </script>
 @endpush

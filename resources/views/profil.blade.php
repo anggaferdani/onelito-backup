@@ -238,7 +238,7 @@
                                         style="background-color: white;font-size:larger" id="v-pills-profile-tab"
                                         data-bs-toggle="pill" data-bs-target="#v-pills-profile2" type="button"
                                         role="tab" aria-controls="v-pills-profile" aria-selected="false">
-                                        Shopping cart
+                                        Auction cart
                                     </button>
                                     <button class="nav-link bg-tranparent text-body p-2 text-lg-start"
                                         style="background-color: white;font-size:larger" id="v-pills-profile-tab"
@@ -328,7 +328,7 @@
                         <div class="tab-pane fade {{ $request === 'cart' ? 'show active' : '' }}"
                             id="v-pills-profile2" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                             <div class="container mt-3 my-3">
-                                <h5><i class="fa-solid fa-cart-shopping"></i> <b>Shopping cart</b></h5>
+                                <h5><i class="fa-solid fa-cart-shopping"></i> <b>Auction cart</b></h5>
                             </div>
                             <div class="container overflow-hidden p-0">
                                 <div class="card">
@@ -945,11 +945,11 @@
                     /* Read more about handling dismissals below */
                     result.dismiss === Swal.DismissReason.cancel
                 ) {
-                    swalWithBootstrapButtons.fire(
-                        'Batal',
-                        'Pesanan dibatalkan',
-                        'error'
-                    )
+                    // swalWithBootstrapButtons.fire(
+                    //     'Batal',
+                    //     'Pesanan dibatalkan',
+                    //     'error'
+                    // )
                 }
             })
         }
@@ -1157,7 +1157,8 @@
 
 
             if (items > 0) {
-                transaction.attr('onclick', 'orderNowProcess()')
+                // transaction.attr('onclick', 'orderNowProcess()')
+                transaction.attr('onclick', 'orderNow()')
                 transaction.removeClass('btn-secondary');
                 transaction.addClass('btn-danger');
             }
@@ -1221,7 +1222,8 @@
 
 
             if (items > 0) {
-                transaction.attr('onclick', 'orderNowProcess()')
+                // transaction.attr('onclick', 'orderNowProcess()')
+                transaction.attr('onclick', 'orderNow()')
                 transaction.removeClass('btn-secondary');
                 transaction.addClass('btn-danger');
             }
@@ -1275,7 +1277,8 @@
             elemTotalPrice[0].innerText = totalPrice
 
             if (items > 0) {
-                transaction.attr('onclick', 'orderNowProcess()')
+                // transaction.attr('onclick', 'orderNowProcess()')
+                transaction.attr('onclick', 'orderNow()')
                 transaction.removeClass('btn-secondary');
                 transaction.addClass('btn-danger');
             }

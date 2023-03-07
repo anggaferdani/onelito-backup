@@ -96,6 +96,8 @@ class CartController extends Controller
 
     public function order()
     {
+        $method = $this->request->input('method', null);
+
         $auth = Auth::guard('member')->user();
         $data = $this->request->all();
         $now = Carbon::now();
@@ -110,9 +112,12 @@ class CartController extends Controller
         $order->no_order = $order->no_order.$order->id_order;
         $order->save();
 
-        Cart::whereIn('id_keranjang', collect($data['data_order'])->pluck('id_keranjang'))->update([
-            'status_aktif' => 0,
-        ]);
+        // only use for checkout from store cart
+        if ($method === null) {
+            Cart::whereIn('id_keranjang', collect($data['data_order'])->pluck('id_keranjang'))->update([
+                'status_aktif' => 0,
+            ]);
+        }
 
         foreach ($data['data_order'] as $dOrder) {
             if ($dOrder['id'] === "0") {

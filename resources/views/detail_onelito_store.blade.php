@@ -9,6 +9,17 @@
 
         <div class="container">
             <style>
+                .swal2-cancel {
+                    margin-right: 10px;
+                }
+
+                .swal2-cancel {
+                    background-color: #dc3545;
+                }
+
+                .swal2-confirm {
+                    background-color: #198754;
+                }
                 /* On screens that are 992px or less, set the background color to blue */
                 @media screen and (min-width: 601px) {
                     .nav-atas {
@@ -68,7 +79,9 @@
                                 <p>Rp 1.300.000</p>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-success w-100 justify-content-between mb-xl-2">Order
+                        <button type="button"
+                        onclick="orderNow()"
+                        class="btn btn-success w-100 justify-content-between mb-xl-2">Order
                             Now</button>
                         <div class="row gx-5 mt-3">
                             <div class="col">
@@ -113,10 +126,12 @@
                                         <h6 class="my-md-2 text-muted">Subtotal</h6>
                                     </div>
                                     <div class="col">
-                                        <p id="total_price">Rp {{ number_format($product->harga, 0, '.', '.') }}</p>
+                                        <p id="total_price" class="total-price">Rp {{ number_format($product->harga, 0, '.', '.') }}</p>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-success w-100 justify-content-between mb-xl-2">Order
+                                <button type="button"
+                                onclick="orderNow()"
+                                class="btn btn-success w-100 justify-content-between mb-xl-2">Order
                                     Now</button>
                                 <div class="row gx-5">
                                     <div class="col">
@@ -142,6 +157,7 @@
     </div>
 @endsection
 @push('scripts')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $.ajaxSetup({
             headers: {
@@ -157,6 +173,14 @@
 
         // output * originPrice
         let totalPrice = Number('{{ $product->harga }}');
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
 
         add.addEventListener("click", function() {
             let output = document.querySelector("#output");
@@ -235,6 +259,74 @@
             ribuan	= ribuan.join('.').split('').reverse().join('');
 
             return ribuan
+        }
+
+        function orderNow() {
+            var nominal = $('.total-price')[0].innerText
+
+            swalWithBootstrapButtons.fire({
+                title: 'apa anda yakin?',
+                text: `Total harga Rp. ${nominal}`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    orderNowProcess();
+
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    // swalWithBootstrapButtons.fire(
+                    //     'Batal',
+                    //     'Pesanan dibatalkan',
+                    //     'error'
+                    // )
+                }
+            })
+        }
+
+        function orderNowProcess() {
+            const output = Number(document.querySelector("#output").innerText);
+            var totalPrice = 0;
+            var items = 0;
+            var transaction = $('.transaction')
+            var dataOrder = []
+
+            var orderItem = {}
+
+            var id = productId;
+
+            orderItem.id = id;
+            orderItem.price = originPrice;
+
+            items += Number(output)
+            orderItem.price = originPrice * Number(output)
+            orderItem.type = 'Product';
+            orderItem.total_produk = Number(output);
+
+            dataOrder.push(orderItem);
+
+            $.ajax({
+                type: 'POST',
+                url: `/carts-order?method=single`,
+                data: {
+                    data_order: dataOrder,
+                    total: originPrice * Number(output),
+                    item: items,
+                },
+                dataType: "json",
+                success: function(res) {
+                    location.href = `/carts/${res.id}`;
+                },
+                error: function(error) {
+                    // console.log(error)
+                    return false
+                }
+            })
         }
     </script>
 @endpush

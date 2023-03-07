@@ -207,22 +207,18 @@
                                     <h5>Filter</h5>
                                     <a href="/profil?section=cart" class="nav-link bg-tranparent text-body p-2 text-lg-start"
                                         style="background-color: white;font-size:larger">
-                                        Shopping cart
+                                        Auction cart
                                     </a>
-                                    <a href="/profil?section=wishlist" class="nav-link text-body p-2 text-lg-start"
+                                    <a href="/profil?section=store-cart" class="nav-link bg-tranparent text-body p-2 text-lg-start"
                                         style="background-color: white;font-size:larger">
-                                        WishList
-                                    </a>
-                                    <a href="/profil?section=purchase" class="nav-link text-body p-2 text-lg-start"
-                                        style="background-color: white;font-size:larger">
-                                        Purchase history
+                                        Store cart
                                     </a>
                                     <br>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="nav card mt-3 mb-2 nav-pills">
+                    <!-- <div class="nav card mt-3 mb-2 nav-pills">
                         <a class="btn btn-danger w-100 justify-content-between" role="button"
                             id="v-pills-password-tab" href="/profil?section=change-password"
                             style="font-size: x-large">Ganti Password</a>
@@ -230,7 +226,7 @@
                     <div class="card p-0">
                         <a class="btn btn-danger w-100 justify-content-between" href="/login" role="button"
                             style="font-size: x-large">Log Out</a>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="col-md-9">
                     <div class="tab-content" id="v-pills-tabContent">
