@@ -85,6 +85,9 @@
         if ($auth->profile_pic !== null) {
             $imgProfile = url('storage/'.$auth->profile_pic);
         }
+
+        $order->load('details.productable');
+        $details = $order->details;
     @endphp
     <div class="res">
         <div class="container-fluid py-3">
@@ -140,35 +143,33 @@
                                             </div>
                                         </div>
                                     </div> -->
-                                    <br>
-                                    <hr>
-                                    <hr>
-                                    <hr>
-                                    <br>
-                                    <h4 class="card-title mb-3">Transfer Ke No.Rekening</h4>
-                                    <h4 class="card-subtitle mb-2">(Nama Pemilik Rekening)</h4>
-                                    <div class="card ">
-                                        <h4 class="d-flex m-2 justify-content-between">
-                                            <img src="{{ url('img/groupbca.png') }}" alt="bca" class="w-20">
-                                            <span style="font-weight: bold">789987687899</span>
-                                        </h4>
-                                    </div>
-                                    <div class="text-danger mt-2" style="text-align:end">
-                                        <h4>Salin</h4>
-                                    </div>
                                     <hr class="mt-2">
                                     <hr>
                                     <hr>
                                     <br>
-                                    <h4 class="card-subtitle mb-2 mt-2">Jumlah yang harus ditranfer</h4>
+                                    <h4 class="card-subtitle mb-2">Belanja</h4>
+                                    @forelse ($details as $detail)
+                                        <div class="card ">
+                                            <h4 class="d-flex m-2 justify-content-between">
+                                                <span>
+                                                    <span>{{ $detail->jumlah_produk }} x </span>
+                                                    <span style="font-weight: bold"> {{$detail->productable->merek_produk}}-{{ $detail->productable->nama_produk }}</span>
+                                                </span>
+                                                <span style="font-weight: bold">Rp. {{ number_format($detail->total, 0, '.', '.') }}</span>
+                                            </h4>
+                                        </div>
+                                    @empty
+                                    @endforelse
+                                    <h4 class="card-subtitle mb-2 mt-2">Total belanja</h4>
                                     <div class="card ">
                                         <h4 class="d-flex m-2" style="font-weight: bold">
                                             Rp. {{ number_format($order->total, 0, '.', '.') }}
                                         </h4>
                                     </div>
 
-                                    <div class="text-danger mt-2" style="text-align:end">
-                                        <h4>Salin</h4>
+                                    <br>
+                                    <div class="mt-2" style="">
+                                        <h3>Pembayaran harap menunggu invoice dari admin onelito koi</h3>
                                     </div>
                                 </div>
                             </div>
@@ -264,7 +265,21 @@
                                     <hr>
                                     <hr>
                                     <br>
-                                    <h4 class="card-title mb-3">Transfer Ke No.Rekening</h4>
+                                    <h4 class="card-subtitle mb-2">Belanja</h4>
+                                    @forelse ($details as $detail)
+
+                                    <div class="card ">
+                                        <h4 class="d-flex m-2 justify-content-between">
+                                            <span>
+                                                <span>{{ $detail->jumlah_produk }} x </span>
+                                                <span style="font-weight: bold"> {{$detail->productable->merek_produk}}-{{ $detail->productable->nama_produk }}</span>
+                                            </span>
+                                            <span style="font-weight: bold">Rp. {{ number_format($detail->total, 0, '.', '.') }}</span>
+                                        </h4>
+                                    </div>
+                                    @empty
+                                    @endforelse
+                                    <!-- <h4 class="card-title mb-3">Transfer Ke No.Rekening</h4>
                                     <h4 class="card-subtitle mb-2">(Nama Pemilik Rekening)</h4>
                                     <div class="card ">
                                         <h4 class="d-flex m-2 justify-content-between">
@@ -278,16 +293,17 @@
                                     <hr class="mt-2">
                                     <hr>
                                     <hr>
-                                    <br>
-                                    <h4 class="card-subtitle mb-2 mt-2">Jumlah yang harus ditranfer</h4>
+                                    <br> -->
+                                    <h4 class="card-subtitle mb-2 mt-2">Total belanja</h4>
                                     <div class="card ">
                                         <h4 class="d-flex m-2" style="font-weight: bold">
                                             Rp. {{ number_format($order->total, 0, '.', '.') }}
                                         </h4>
                                     </div>
 
-                                    <div class="text-danger mt-2" style="text-align:end">
-                                        <h4>Salin</h4>
+                                    <br>
+                                    <div class="mt-2" style="">
+                                        <h3>Pembayaran harap menunggu invoice dari admin onelito koi</h3>
                                     </div>
                                 </div>
                             </div>
