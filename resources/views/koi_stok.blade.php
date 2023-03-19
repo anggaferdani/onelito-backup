@@ -2,15 +2,6 @@
 
 @section('container')
     <style>
-        /* .card {
-                width: 100%;
-                height: 100%;
-                display: flex;
-                justify-content: space-between;
-                align-items: flex-start;
-                flex-direction: column;
-            } */
-
         .cb-judul {
             height: 4rem;
         }
@@ -36,7 +27,7 @@
 
                     <div class="col mt-5">
                         <div class="card">
-                            <img src="img/koi12.jpg" class="card-img-top" alt="...">
+                            <img src="{{$photo}}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <div class="cb-judul">
                                     <h5 class="card-title">{!! Illuminate\Support\Str::limit(
@@ -52,7 +43,7 @@
                                                     class="fa-brands fa-whatsapp"></i></span></a>
                                     </div>
                                     <div class="col-6 col-lg-6 px-1">
-                                        <a href="/login"
+                                        <a href="{{ url('koi_stok') .'/'. $fish->id_koi_stock }}"
                                             class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-0 px-lg-2"
                                             style="font-size: 70%">DETAIL <span><i
                                                     class="fa-solid fa-circle-chevron-right"></i></span></a>

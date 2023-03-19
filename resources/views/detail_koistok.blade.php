@@ -1,8 +1,14 @@
 @extends('layout.mainlog')
 
 @section('container')
+<br><br><br><br>
+<br>
+
+@php
+@endphp
+
     <div class="container">
-        <a href="/koi_stoklog"><i class="fa-solid fa-arrow-left-long text-body" style="font-size: x-large"></i></a>
+        <a href="/koi_stok"><i class="fa-solid fa-arrow-left-long text-body" style="font-size: x-large"></i></a>
 
         <style>
             /* On screens that are 992px or less, set the background color to blue */
@@ -20,11 +26,13 @@
             }
         </style>
 
+
+
         <div class="res">
             <div class="row">
                 <div class="col-6">
                     <div class="">
-                        <img src="img/koi_3.jpg" class="card-img-top" alt="...">
+                        <img src="{{ url('/img/koi_3.jpg') }}" class="card-img-top" alt="...">
                         <br><br>
                     </div>
                     <!-- <div>
@@ -39,27 +47,27 @@
                         <table>
                             <tr>
                                 <td>Variety</td>
-                                <td>: Kohaku</td>
+                                <td>: {{ $fish->variety }}</td>
                             </tr>
                             <tr>
                                 <td>Breeder</td>
-                                <td>: Sakai Fish Farm</td>
+                                <td>: {{ $fish->breeder }}</td>
                             </tr>
                             <tr>
                                 <td>Bloodline</td>
-                                <td>: S Legend</td>
+                                <td>: {{ $fish->bloodline }}</td>
                             </tr>
                             <tr>
                                 <td>Sex</td>
-                                <td>: Female</td>
+                                <td>: {{ $fish->sex }}</td>
                             </tr>
                             <tr>
                                 <td>DOB</td>
-                                <td>: 2020</td>
+                                <td>: {{ $fish->dob }}</td>
                             </tr>
                             <tr>
                                 <td>Size</td>
-                                <td>: 57 cm</td>
+                                <td>: {{ $fish->size }}</td>
                             </tr>
                         </table>
                     </h3>
@@ -74,11 +82,11 @@
                     <hr class="m-0"> -->
 
                     <p class="" style="font-size:11px">Harga : <span class="alert-link text-danger"
-                            style="font-size:12px">Rp 7.500.000</span></p>
+                            style="font-size:12px">Rp {{ number_format($fish->harga_ikan, 0, '.', '.') }}</span></p>
 
 
                     <hr class="m-0">
-                    <a class="btn btn-danger float-end mb-3 mt-3" href="/" role="button">Question <span><i
+                    <a class="btn btn-danger float-end mb-3 mt-3" href="#" role="button">Question <span><i
                         class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
@@ -88,7 +96,7 @@
             <div class="row gx-5">
                 <div class="col-3">
                     <div class="m-lg-auto">
-                        <img src="img/koi_3.jpg" class="card-img-top" alt="...">
+                        <img src="{{ url('img/koi_3.jpg') }}" class="card-img-top" alt="...">
                         <br><br>
                         <!-- <div class="card-body p-0">
                             <a href="#" class="btn btn-danger w-100 d-flex justify-content-between"
@@ -107,15 +115,15 @@
                                 <table>
                                     <tr>
                                         <td>Variety</td>
-                                        <td>: Kohaku</td>
+                                        <td>: {{ $fish->variety }}</td>
                                     </tr>
                                     <tr>
                                         <td>Breeder</td>
-                                        <td>: Sakai Fish Farm</td>
+                                        <td>: {{ $fish->breeder }}</td>
                                     </tr>
                                     <tr>
                                         <td>Bloodline</td>
-                                        <td>: S Legend</td>
+                                        <td>: {{ $fish->bloodline }}</td>
                                     </tr>
                                 </table>
                             </h3>
@@ -125,15 +133,15 @@
                                 <table>
                                     <tr>
                                         <td>Sex</td>
-                                        <td>: Female</td>
+                                        <td>: {{ $fish->sex }}</td>
                                     </tr>
                                     <tr>
                                         <td>DOB</td>
-                                        <td>: 2020</td>
+                                        <td>: {{ $fish->dob }}</td>
                                     </tr>
                                     <tr>
                                         <td>Size</td>
-                                        <td>: 57 cm</td>
+                                        <td>: {{ $fish->size }}</td>
                                     </tr>
                                 </table>
                             </h3>
@@ -148,12 +156,12 @@
                         maiores commodi aliquid fugiat, laboriosam ipsa similique blanditiis.</p>
                     <hr> -->
 
-                    <p style="font-size:30px">Harga : <span class="alert-link text-danger">Rp 7.500.000</span></p>
+                    <p style="font-size:30px">Harga : <span class="alert-link text-danger">Rp {{ number_format($fish->harga_ikan, 0, '.', '.') }}</span></p>
                     <hr>
 
                     <br><br>
                     <div class="float-end">
-                        <a class="btn btn-danger mb-3" href="/bid" role="button">Question <span><i
+                        <a class="btn btn-danger mb-3" href="#" role="button">Question <span><i
                                     class="fa-brands fa-whatsapp"></i></a>
                     </div>
                 </div>

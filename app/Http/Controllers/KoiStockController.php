@@ -27,4 +27,19 @@ class KoiStockController extends Controller
             'title' => 'koi_stok'
         ]);
     }
+
+    public function show($id)
+    {
+        $auth = Auth::guard('member')->user();
+
+        $fish = KoiStock::
+            where('status_aktif', 1)
+            ->findOrFail($id);
+
+        return view('detail_koistok',[
+            'auth' => $auth,
+            'fish' => $fish,
+            'title' => 'Koi Stok'
+        ]);
+    }
 }

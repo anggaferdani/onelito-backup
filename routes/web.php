@@ -77,6 +77,7 @@ Route::post('/register', [AuthenticationController::class, 'register'])->name('r
 Route::get('/auction', [AuctionController::class, 'index'])->name('auction.index');
 
 Route::get('/koi_stok', [KoiStockController::class, 'index'])->name('koi_stock.index');
+Route::get('/koi_stok/{id}', [KoiStockController::class, 'show'])->name('koi_stock.show');
 
 Route::get('/onelito_store', [StoreController::class, 'index'])->name('store.index');
 Route::get('/onelito_store/{id}', [StoreController::class, 'detail'])->name('store.detail');
