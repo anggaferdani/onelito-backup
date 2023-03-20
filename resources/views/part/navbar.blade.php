@@ -133,7 +133,7 @@
                     </li>
                     <li class="nav-item">
                         <a
-                            class="nav-link {{ $title === 'koi_stok' ? 'active text-danger' : '' }}"href="/onelito_store">KOI
+                            class="nav-link {{ $title === 'koi_stok' ? 'active text-danger' : '' }}"href="/koi_stok">KOI
                             STOCK</a>
                     </li>
                     <li class="nav-item">
