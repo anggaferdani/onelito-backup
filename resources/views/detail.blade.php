@@ -27,7 +27,7 @@
             <div class="col-6">
                 <div class="">
                     @php
-                        $imgUrl = 'img/koi_3.jpg';
+                        $imgUrl = 'img/koi12.jpg';
 
                         if ($auctionProduct->photo) {
                             $imgUrl = 'storage/'. $auctionProduct->photo->path_foto;

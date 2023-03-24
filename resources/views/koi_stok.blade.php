@@ -22,7 +22,7 @@
             <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 mb-5">
                 @forelse($fishes as $fish)
                     @php
-                        $photo = 'img/koi_3.jpg';
+                        $photo = 'img/koi12.jpg';
                     @endphp
 
                     <div class="col mt-5">
@@ -47,6 +47,25 @@
                                             class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-0 px-lg-2"
                                             style="font-size: 70%">DETAIL <span><i
                                                     class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                    </div>
+                                </div>
+                                <div class="col-12 mt-2">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <button class="border rounded-1 text-black-50"
+                                                style="background-color: transparent;font-size:small"><i></i>
+                                                    {{-- data-id="{{ $product->id_produk }}"
+                                                    class="{{ $wishlistClass }} wishlist produk-{{ $product->id_produk }}" --}}
+                                                    <i class="far fa-heart"></i>
+                                                <span>Wishlist</span></button>
+                                        </div>
+                                        <div class="col-6 mb-1 text-end ">
+                                            <button class="rounded addcart"
+                                                {{-- data-id="{{ $product->id_produk }}" --}}
+                                                style="background-color: red;border-color:red; outline: none; border: none;"><i
+                                                    class="fa-solid fa-cart-shopping"
+                                                    style="color: white"></i></button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
