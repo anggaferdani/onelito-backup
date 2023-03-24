@@ -3,7 +3,7 @@
 @section('container')
     <style>
         .cb-judul {
-            height: 4rem;
+            height: 2.5rem;
         }
 
         @media screen and (max-width: 600px) {
@@ -15,7 +15,7 @@
     </style>
 
 
-<br><br><br><br>
+    <br><br><br><br>
 
     <div class="container-fluit">
         <div class="container">
@@ -27,12 +27,12 @@
 
                     <div class="col mt-5">
                         <div class="card">
-                            <img src="{{$photo}}" class="card-img-top" alt="...">
+                            <img src="{{ $photo }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <div class="cb-judul">
                                     <h5 class="card-title">{!! Illuminate\Support\Str::limit(
                                         "$fish->variety | $fish->breeder | Pedigree | $fish->size | $fish->bloodline",
-                                        50,
+                                        25,
                                     ) !!}</h5>
                                 </div>
                                 <p class="my-3" style="color :red">Rp. {{ $fish->harga_ikan }}</p>
@@ -43,7 +43,7 @@
                                                     class="fa-brands fa-whatsapp"></i></span></a>
                                     </div>
                                     <div class="col-6 col-lg-6 px-1">
-                                        <a href="{{ url('koi_stok') .'/'. $fish->id_koi_stock }}"
+                                        <a href="{{ url('koi_stok') . '/' . $fish->id_koi_stock }}"
                                             class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-0 px-lg-2"
                                             style="font-size: 70%">DETAIL <span><i
                                                     class="fa-solid fa-circle-chevron-right"></i></span></a>
@@ -54,17 +54,15 @@
                                         <div class="col-6">
                                             <button class="border rounded-1 text-black-50"
                                                 style="background-color: transparent;font-size:small"><i></i>
-                                                    {{-- data-id="{{ $product->id_produk }}"
+                                                {{-- data-id="{{ $product->id_produk }}"
                                                     class="{{ $wishlistClass }} wishlist produk-{{ $product->id_produk }}" --}}
-                                                    <i class="far fa-heart"></i>
+                                                <i class="far fa-heart"></i>
                                                 <span>Wishlist</span></button>
                                         </div>
-                                        <div class="col-6 mb-1 text-end ">
-                                            <button class="rounded addcart"
-                                                {{-- data-id="{{ $product->id_produk }}" --}}
+                                        <div class="col-6 text-end ">
+                                            <button class="rounded addcart" {{-- data-id="{{ $product->id_produk }}" --}}
                                                 style="background-color: red;border-color:red; outline: none; border: none;"><i
-                                                    class="fa-solid fa-cart-shopping"
-                                                    style="color: white"></i></button>
+                                                    class="fa-solid fa-cart-shopping" style="color: white"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -75,159 +73,161 @@
                 @endforelse
 
                 <!-- <div class="col-6 col-lg-3 mt-5">
-                            <div class="card">
-                                <img src="img/koi_3.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <div class="cb-judul">
-                                        <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farmee | Size | Farm</h5>
-                                    </div>
-                                    <p class="my-3" style="color :red">Rp. 7.500.000</p>
-                                    <div class="row">
-                                        <div class="col-6 col-lg-6 px-1">
-                                            <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 70%">Question <span><i class="fa-brands fa-whatsapp"></i></span></a>
-                                        </div>
-                                        <div class="col-6 col-lg-6 px-1">
-                                            <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-lg-2" style="font-size: 70%">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 col-lg-2 mt-5">
-                            <div class="card">
-                                <img src="img/koi_3.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <div class="cb-judul">
-                                        <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farmee | Size | Farm</h5>
-                                    </div>
-                                    <p class="my-3" style="color :red">Rp. 7.500.000</p>
-                                    <div class="row">
-                                        <div class="col-6 col-lg-6 px-1">
-                                            <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 70%">Question <span><i class="fa-brands fa-whatsapp"></i></span></a>
-                                        </div>
-                                        <div class="col-6 col-lg-6 px-1">
-                                            <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-lg-2" style="font-size: 70%">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                    <div class="card">
+                                        <img src="img/koi_3.jpg" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <div class="cb-judul">
+                                                <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farmee | Size | Farm</h5>
+                                            </div>
+                                            <p class="my-3" style="color :red">Rp. 7.500.000</p>
+                                            <div class="row">
+                                                <div class="col-6 col-lg-6 px-1">
+                                                    <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 70%">Question <span><i class="fa-brands fa-whatsapp"></i></span></a>
+                                                </div>
+                                                <div class="col-6 col-lg-6 px-1">
+                                                    <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-lg-2" style="font-size: 70%">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-6 col-lg-2 mt-5">
-                            <div class="card">
-                                <img src="img/koi_3.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <div class="cb-judul">
-                                        <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farmee | Size | Farm</h5>
-                                    </div>
-                                    <p class="my-3" style="color :red">Rp. 7.500.000</p>
-                                    <div class="row">
-                                        <div class="col-6 col-lg-6 px-1">
-                                            <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 70%">Question <span><i class="fa-brands fa-whatsapp"></i></span></a>
-                                        </div>
-                                        <div class="col-6 col-lg-6 px-1">
-                                            <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-lg-2" style="font-size: 70%">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                <div class="col-6 col-lg-2 mt-5">
+                                    <div class="card">
+                                        <img src="img/koi_3.jpg" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <div class="cb-judul">
+                                                <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farmee | Size | Farm</h5>
+                                            </div>
+                                            <p class="my-3" style="color :red">Rp. 7.500.000</p>
+                                            <div class="row">
+                                                <div class="col-6 col-lg-6 px-1">
+                                                    <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 70%">Question <span><i class="fa-brands fa-whatsapp"></i></span></a>
+                                                </div>
+                                                <div class="col-6 col-lg-6 px-1">
+                                                    <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-lg-2" style="font-size: 70%">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div> -->
+                                <div class="col-6 col-lg-2 mt-5">
+                                    <div class="card">
+                                        <img src="img/koi_3.jpg" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <div class="cb-judul">
+                                                <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farmee | Size | Farm</h5>
+                                            </div>
+                                            <p class="my-3" style="color :red">Rp. 7.500.000</p>
+                                            <div class="row">
+                                                <div class="col-6 col-lg-6 px-1">
+                                                    <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 70%">Question <span><i class="fa-brands fa-whatsapp"></i></span></a>
+                                                </div>
+                                                <div class="col-6 col-lg-6 px-1">
+                                                    <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-lg-2" style="font-size: 70%">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
             </div>
-            <div class="btn-toolbar my-3 justify-content-end" role="toolbar"
-                aria-label="Toolbar with button groups">
+            <div class="btn-toolbar my-3 justify-content-end" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group me-2" role="group" aria-label="First group">
-                    <a href="{{ $fishes->previousPageUrl() }}"><button  type="button" class="btn btn-danger">Prev</button></a>
+                    <a href="{{ $fishes->previousPageUrl() }}"><button type="button"
+                            class="btn btn-danger">Prev</button></a>
                 </div>
-                    @foreach ($fishes->onEachSide(0)->links()->elements as $elements)
-                        @if (is_array($elements))
-                            @foreach ($elements as $key => $element)
-                                <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <a href="?page={{ $key }}"><button  type="button" class="btn btn-danger {{ (request()->page ?? 1) == $key ? 'active disabled' : '' }}"">{{ $key }}</button></a>
-                                </div>
-                            @endforeach
-                        @endif
-                    @endforeach
+                @foreach ($fishes->onEachSide(0)->links()->elements as $elements)
+                    @if (is_array($elements))
+                        @foreach ($elements as $key => $element)
+                            <div class="btn-group me-2" role="group" aria-label="First group">
+                                <a href="?page={{ $key }}"><button type="button"
+                                        class="btn btn-danger {{ (request()->page ?? 1) == $key ? 'active disabled' : '' }}"">{{ $key }}</button></a>
+                            </div>
+                        @endforeach
+                    @endif
+                @endforeach
                 <div class="btn-group me-2" role="group" aria-label="First group">
-                    <a href="{{ $fishes->nextPageUrl() }}"><button  type="button" class="btn btn-danger">Next</button></a>
+                    <a href="{{ $fishes->nextPageUrl() }}"><button type="button"
+                            class="btn btn-danger">Next</button></a>
                 </div>
             </div>
             <!-- <div class="row mb-5">
-                        <div class="col-6 col-lg-3 mt-5">
-                            <div class="card">
-                                <img src="img/koi_3.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <div class="cb-judul">
-                                        <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farmee | Size | Farm</h5>
-                                    </div>
-                                    <p class="my-3" style="color :red">Rp. 7.500.000</p>
-                                    <div class="row">
-                                        <div class="col-6 col-lg-6 px-1">
-                                            <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 70%">Question <span><i class="fa-brands fa-whatsapp"></i></span></a>
-                                        </div>
-                                        <div class="col-6 col-lg-6 px-1">
-                                            <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-lg-2" style="font-size: 70%">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 col-lg-2 mt-5">
-                            <div class="card">
-                                <img src="img/koi_3.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <div class="cb-judul">
-                                        <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farmee | Size | Farm</h5>
-                                    </div>
-                                    <p class="my-3" style="color :red">Rp. 7.500.000</p>
-                                    <div class="row">
-                                        <div class="col-6 col-lg-6 px-1">
-                                            <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 70%">Question <span><i class="fa-brands fa-whatsapp"></i></span></a>
-                                        </div>
-                                        <div class="col-6 col-lg-6 px-1">
-                                            <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-lg-2" style="font-size: 70%">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                <div class="col-6 col-lg-3 mt-5">
+                                    <div class="card">
+                                        <img src="img/koi_3.jpg" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <div class="cb-judul">
+                                                <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farmee | Size | Farm</h5>
+                                            </div>
+                                            <p class="my-3" style="color :red">Rp. 7.500.000</p>
+                                            <div class="row">
+                                                <div class="col-6 col-lg-6 px-1">
+                                                    <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 70%">Question <span><i class="fa-brands fa-whatsapp"></i></span></a>
+                                                </div>
+                                                <div class="col-6 col-lg-6 px-1">
+                                                    <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-lg-2" style="font-size: 70%">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-6 col-lg-2 mt-5">
-                            <div class="card">
-                                <img src="img/koi_3.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <div class="cb-judul">
-                                        <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farmee | Size | Farm</h5>
-                                    </div>
-                                    <p class="my-3" style="color :red">Rp. 7.500.000</p>
-                                    <div class="row">
-                                        <div class="col-6 col-lg-6 px-1">
-                                            <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 70%">Question <span><i class="fa-brands fa-whatsapp"></i></span></a>
-                                        </div>
-                                        <div class="col-6 col-lg-6 px-1">
-                                            <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-lg-2" style="font-size: 70%">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 col-lg-2 mt-5">
-                            <div class="card">
-                                <img src="img/koi_3.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <div class="cb-judul">
-                                        <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farmee | Size | Farm</h5>
-                                    </div>
-                                    <p class="my-3" style="color :red">Rp. 7.500.000</p>
-                                    <div class="row">
-                                        <div class="col-6 col-lg-6 px-1">
-                                            <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 70%">Question <span><i class="fa-brands fa-whatsapp"></i></span></a>
-                                        </div>
-                                        <div class="col-6 col-lg-6 px-1">
-                                            <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-lg-2" style="font-size: 70%">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                <div class="col-6 col-lg-2 mt-5">
+                                    <div class="card">
+                                        <img src="img/koi_3.jpg" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <div class="cb-judul">
+                                                <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farmee | Size | Farm</h5>
+                                            </div>
+                                            <p class="my-3" style="color :red">Rp. 7.500.000</p>
+                                            <div class="row">
+                                                <div class="col-6 col-lg-6 px-1">
+                                                    <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 70%">Question <span><i class="fa-brands fa-whatsapp"></i></span></a>
+                                                </div>
+                                                <div class="col-6 col-lg-6 px-1">
+                                                    <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-lg-2" style="font-size: 70%">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div> -->
+                                <div class="col-6 col-lg-2 mt-5">
+                                    <div class="card">
+                                        <img src="img/koi_3.jpg" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <div class="cb-judul">
+                                                <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farmee | Size | Farm</h5>
+                                            </div>
+                                            <p class="my-3" style="color :red">Rp. 7.500.000</p>
+                                            <div class="row">
+                                                <div class="col-6 col-lg-6 px-1">
+                                                    <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 70%">Question <span><i class="fa-brands fa-whatsapp"></i></span></a>
+                                                </div>
+                                                <div class="col-6 col-lg-6 px-1">
+                                                    <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-lg-2" style="font-size: 70%">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-lg-2 mt-5">
+                                    <div class="card">
+                                        <img src="img/koi_3.jpg" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <div class="cb-judul">
+                                                <h5 class="card-title">Jenis ikan | Parent Fish | Pedigree | Size | Farmee | Size | Farm</h5>
+                                            </div>
+                                            <p class="my-3" style="color :red">Rp. 7.500.000</p>
+                                            <div class="row">
+                                                <div class="col-6 col-lg-6 px-1">
+                                                    <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1" style="font-size: 70%">Question <span><i class="fa-brands fa-whatsapp"></i></span></a>
+                                                </div>
+                                                <div class="col-6 col-lg-6 px-1">
+                                                    <a href="/login" class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-lg-2" style="font-size: 70%">DETAIL <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
         </div>
     </div>
 @endsection
