@@ -25,7 +25,7 @@ class KoiStockController extends Controller
 
                 return $number;
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['action', 'note'])
             ->make(true);
         }
 

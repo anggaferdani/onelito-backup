@@ -46,6 +46,14 @@
                 <label for="harga_ikan">Harga</label>
                 <input  type="text" id="harga_ikan" class="form-control" name="harga_ikan" placeholder="">
             </div>
+            <div class="form-group">
+                <label for="note">Deskripsi</label>
+                <textarea id="note" name="note" class="form-control summernote" placeholder=""></textarea>
+            </div>
+            <div class="form-group">
+                <label for="link_video">Link Video</label>
+                <input  type="text" id="link_video" name="link_video" class="form-control" placeholder="">
+            </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn" data-dismiss="modal">Tutup</button>

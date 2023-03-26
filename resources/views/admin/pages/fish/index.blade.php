@@ -19,6 +19,9 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 
+    <link rel="stylesheet"
+        href="{{ asset('library/summernote/dist/summernote-bs4.css') }}">
+
 @endpush
 
 @section('main')
@@ -91,6 +94,7 @@
     <script src="https://demo.getstisla.com/assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
     <!-- Page Specific JS File -->
     <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('library/summernote/dist/summernote-bs4.js') }}"></script>
 
     <!-- bootsrap datepicker -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
@@ -184,6 +188,8 @@
                     $('#show_dob').val(res.dob)
                     $('#show_size').val(res.size)
                     $('#show_harga_ikan').val(res.harga_ikan)
+                    $('#show_note').html(res.note)
+                    $('#show_link_video').val(res.link_video)
                 },
                 error:function(error) {
                     console.log(error)
@@ -214,6 +220,8 @@
                     $('#edit_dob').val(res.dob)
                     $('#edit_size').val(res.size)
                     $('#edit_harga_ikan').val(res.harga_ikan)
+                    $('#edit_note').summernote('code', res.note)
+                    $('#edit_link_video').val(res.link_video)
 
                     $('#edit_harga_ikan').priceFormat({
                         prefix: '',
@@ -241,6 +249,8 @@
                 dob: formData.get('edit_dob'),
                 size: formData.get('edit_size'),
                 harga_ikan: formData.get('edit_harga_ikan'),
+                note: formData.get('edit_note'),
+                link_video: formData.get('edit_link_video'),
             }
 
             $.ajax({

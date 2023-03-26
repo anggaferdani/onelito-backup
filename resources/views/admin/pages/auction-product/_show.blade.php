@@ -47,7 +47,6 @@
             <div class="form-group">
                 <label for="show_note">Deskripsi</label>
                 <div id="show_note"></div>
-                <!-- <input readonly type="text" id="show_note" class="form-control" name="show_kb" placeholder=""> -->
             </div>
             <div class="form-group">
                 <label for="show_link_video">Link Video</label>

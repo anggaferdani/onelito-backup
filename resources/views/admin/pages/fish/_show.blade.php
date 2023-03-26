@@ -40,6 +40,14 @@
                 <label for="show_harga_ikan">Harga</label>
                 <input readonly type="number" id="show_harga_ikan" class="form-control" name="show_harga_ikan" placeholder="">
             </div>
+            <div class="form-group">
+                <label for="show_note">Deskripsi</label>
+                <div id="show_note"></div>
+            </div>
+            <div class="form-group">
+                <label for="show_link_video">Link Video</label>
+                <input readonly type="text" id="show_link_video" class="form-control" name="show_link_video" placeholder="">
+            </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn" data-dismiss="modal">Tutup</button>
