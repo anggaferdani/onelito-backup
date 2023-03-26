@@ -106,7 +106,7 @@
                             <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
                                 @forelse ($products as $product)
                                     @php
-                                        $productPhoto = 'img/bio_media.png';
+                                        $productPhoto = 'img/produk1.jpeg';
 
                                         if ($product->photo !== null) {
                                             $productPhoto = url('storage') . '/' . $product->photo->path_foto;
