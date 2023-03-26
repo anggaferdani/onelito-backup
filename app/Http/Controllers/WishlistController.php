@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Event;
+use App\Models\KoiStock;
 use App\Models\Wishlist;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -13,7 +14,7 @@ class WishlistController extends Controller
 {
     public function store()
     {
-        $data = $this->request->only(['id_produk', 'id_ikan_lelang']);
+        $data = $this->request->only(['id_produk', 'id_ikan_lelang', 'id_koi_stock']);
 
         $auth = Auth::guard('member')->user();
 
@@ -27,6 +28,12 @@ class WishlistController extends Controller
             $data['wishlistable_id'] = $data['id_ikan_lelang'];
             $data['wishlistable_type'] = Wishlist::EventFish;
             unset($data['id_ikan_lelang']);
+        }
+
+        if ($this->request->has('id_koi_stock')) {
+            $data['wishlistable_id'] = $data['id_koi_stock'];
+            $data['wishlistable_type'] = Wishlist::KoiStock;
+            unset($data['id_koi_stock']);
         }
 
         $exists = Wishlist::where('id_peserta', $auth->id_peserta)
@@ -70,7 +77,7 @@ class WishlistController extends Controller
 
     public function destroy($id)
     {
-        $data = $this->request->only(['id_produk', 'id_ikan_lelang']);
+        $data = $this->request->only(['id_produk', 'id_ikan_lelang', 'id_koi_stock']);
 
         if ($this->request->has('id_produk')) {
             $id = $data['id_produk'];
@@ -80,6 +87,11 @@ class WishlistController extends Controller
         if ($this->request->has('id_ikan_lelang')) {
             $id = $data['id_ikan_lelang'];
             $type = Wishlist::EventFish;
+        }
+
+        if ($this->request->has('id_koi_stock')) {
+            $id = $data['id_koi_stock'];
+            $type = Wishlist::KoiStock;
         }
 
         $auth = Auth::guard('member')->user();
@@ -138,7 +150,7 @@ class WishlistController extends Controller
             }
         }
 
-        $products = $getWishlist->where('wishlistable_type', Wishlist::Product);
+        $products = $getWishlist->whereIn('wishlistable_type', [Wishlist::Product, Wishlist::KoiStock]);
 
 
         $wishlists = $products->merge($wishEventFish);

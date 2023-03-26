@@ -18,6 +18,13 @@ class KoiStockController extends Controller
 
         $fishes = KoiStock::
             where('status_aktif', 1)
+            ->when($auth !== null, function ($q) use ($auth){
+                return $q->with([
+                    'wishlist' => fn($w) => $w->where('id_peserta', $auth->id_peserta)]
+                );
+            }, function ($q) {
+                return $q;
+            })
             ->orderBy('created_at', 'desc')
             ->paginate($this->perPage());
 

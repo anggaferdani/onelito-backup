@@ -9,21 +9,25 @@
             <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 mb-5">
                 @forelse($wishlists as $wishlist)
                     @php
-                        
+
                         $wishlistPhoto = url('img/produk1.jpeg');
                         $wishlistable = $wishlist->wishlistable;
-                        
+
                         if ($wishlist->wishlistable_type === 'EventFish') {
                             $wishlistPhoto = url('img/koi11.jpg');
                             $currentMaxBid = $wishlistable->ob;
-                        
+
                             if ($wishlistable->maxBid !== null) {
                                 $currentMaxBid = $wishlistable->maxBid->nominal_bid;
                             }
                         }
-                        
+
                         if ($wishlist->wishlistable->photo !== null) {
                             $wishlistPhoto = url('storage') . '/' . $wishlist->wishlistable->photo->path_foto;
+                        }
+
+                        if ($wishlist->wishlistable_type === 'KoiStock') {
+                            $wishlistPhoto = url('img/koi12.jpg');
                         }
                     @endphp
 
@@ -44,7 +48,10 @@
                                         </div>
                                         <div class="col-3 text-end">
                                             <i>
-                                                <i style="color:red;font-size:smaller" class="fa-solid fa-trash-can"></i>
+                                                <i
+                                                data-id="{{ $wishlistable->id_ikan }}"
+                                                data-type="id_ikan_lelang"
+                                                style="color:red;font-size:smaller" class="remove fa-solid fa-trash-can"></i>
                                             </i>
                                         </div>
                                     </div>
@@ -109,10 +116,82 @@
                                     ) !!}</p>
                                     <p><b>Rp.
                                             {{ number_format($wishlist->wishlistable->harga, 0, '.', '.') }}</b></p>
-                                    <button class="mb-3 text-danger addcart" data-id="{{ $wishlist->wishlistable_id }}"
-                                        style="background-color: transparent;font-size:small;border-color:red"><i
-                                            class="fa-solid fa-plus"></i>
-                                        <span>Keranjang</span></button>
+
+                                    <div class="row">
+                                        <div class="col-9">
+                                            <button class="mb-3 text-danger addcart" data-id="{{ $wishlist->wishlistable_id }}"
+                                            style="background-color: transparent;font-size:small;border-color:red"><i
+                                                class="fa-solid fa-plus"></i>
+                                            <span>Keranjang</span></button>
+                                        </div>
+                                        <div class="col-3 text-end">
+                                            <p>
+                                            <i
+                                            data-id="{{ $wishlist->wishlistable_id }}"
+                                            data-type="id_produk"
+                                            style="color:red;font-size:smaller" class="remove my-2 fa-solid fa-trash-can"></i>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                    @if ($wishlist->wishlistable_type === 'KoiStock')
+                        <div class="col">
+                            <div class="card">
+                                <a href="{{ url('/koi_stok') . '/' . $wishlist->wishlistable_id }}">
+                                    <img
+                                    src="{{ $wishlistPhoto }}" class="card-img-top" alt="...">
+                                </a>
+                                <div class="card-body px-2">
+                                    <!-- <div class="cb-judul"> -->
+                                        <p class="">{!! Illuminate\Support\Str::limit(
+                                            "$wishlistable->variety | $wishlistable->breeder | Pedigree | $wishlistable->size | $wishlistable->bloodline",
+                                            25,
+                                        ) !!}</p>
+                                    <!-- </div> -->
+                                    <div class="row" style="height:58px;">
+                                        <div class="col-9">
+                                            <p class="my-2" style="color :red">Rp. {{ $wishlistable->harga_ikan }}</p>
+                                        </div>
+                                        <div class="col-3 text-end">
+                                            <p>
+                                            <i
+                                            data-id="{{ $wishlistable->id_koi_stock }}"
+                                            data-type="id_koi_stock"
+                                            style="color:red;font-size:smaller" class="remove my-3 fa-solid fa-trash-can"></i>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6 col-lg-6">
+                                            <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1"
+                                                style="font-size: 70%">Question <span><i
+                                                        class="fa-brands fa-whatsapp"></i></span></a>
+                                        </div>
+                                        <div class="col-6 col-lg-6">
+                                            <a href="{{ url('koi_stok') . '/' . $wishlist->wishlistable_id }}"
+                                                class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-0 px-lg-2"
+                                                style="font-size: 70%">DETAIL <span><i
+                                                        class="fa-solid fa-circle-chevron-right"></i></span></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-2 d-none">
+                                        <div class="row">
+                                            <div class="col-9 px-1 pb-0">
+                                                <button class="mb-3 text-danger addcart" data-id="{{ $wishlist->wishlistable_id }}"
+                                                style="background-color: transparent;font-size:small;border-color:red"><i
+                                                    class="fa-solid fa-plus"></i>
+                                                <span>Keranjang</span></button>
+                                            </div>
+                                            <div class="col-3 px-1 text-end d-none">
+                                                <button class="rounded addcart" {{-- data-id="{{ $product->id_produk }}" --}}
+                                                    style="background-color: red;border-color:red; outline: none; border: none;"><i
+                                                        class="fa-solid fa-cart-shopping" style="color: white"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -327,5 +406,43 @@
                     }
                 })
             });
+
+            $(document).on('click', '.remove', function(e) {
+                var element = $(e.currentTarget);
+                var id = element.attr('data-id');
+                var type = element.attr('data-type');
+                var postData = {};
+
+                if (type === 'id_ikan_lelang') {
+                    postData = {id_ikan_lelang: id}
+                }
+
+                if (type === 'id_koi_stock') {
+                    postData = {id_koi_stock: id}
+                }
+
+                if (type === 'id_produk') {
+                    postData = {id_produk: id}
+                }
+
+                $.ajax({
+                    type: 'DELETE',
+                    url: `wishlists/${id}`,
+                    data: postData,
+                    dataType: "json",
+                    success: function(res) {
+                        location.reload()
+                        // $.map(targetElements, function(item) {
+                        //     $(item).attr('class', `far fa-heart wishlist ${idClass}`);
+                        // })
+
+                        // return true;
+                    },
+                    error: function(error) {
+                        console.log(error)
+                        return false
+                    }
+                })
+            })
         </script>
     @endpush

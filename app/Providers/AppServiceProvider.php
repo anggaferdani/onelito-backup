@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Cart;
 use App\Models\EventFish;
+use App\Models\KoiStock;
 use App\Models\OrderDetail;
 use App\Models\Product;
 use App\Models\Wishlist;
@@ -43,6 +44,7 @@ class AppServiceProvider extends ServiceProvider
         Relation::morphMap([
             Wishlist::Product => Product::class,
             Wishlist::EventFish => EventFish::class,
+            Wishlist::KoiStock => KoiStock::class,
 
             Cart::Product => Product::class,
             Cart::EventFish => EventFish::class,

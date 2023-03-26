@@ -36,7 +36,8 @@
                         <br>
                     </div>
                     <div>
-                        <a class="btn btn-danger mb-3 d-block d-flex justify-content-between mt-2" href="#"
+                        <a class="btn btn-danger mb-3 d-block d-flex justify-content-between mt-2"
+                            target="_blank" href="{{ $fish->link_video }}"
                             style="font-size: 12px" role="button">VIDEO
                             <span><i class="fa-solid fa-circle-chevron-right"></i></span></a>
                     </div>
@@ -75,9 +76,9 @@
 
                     <hr class="m-0">
 
-                    <p class="m-0" style="font-size: 11px">Note :</p>
-                    <p style="font-size: 10px">
-                        {{-- {{ $auctionProduct->note }} --}} -
+                    <p class="m-0" style="font-size: larger">Note :</p>
+                    <p style="font-size: larger">
+                        {{ $fish->note }}
                     </p>
 
                     <hr class="m-0">
@@ -109,7 +110,7 @@
                         <img src="{{ url('img/koi12.jpg') }}" class="card-img-top" alt="...">
                         <br><br>
                         <div class="card-body p-0">
-                            <a href="#" class="btn btn-danger w-100 d-flex justify-content-between"
+                            <a target="_blank" href="{{ $fish->link_video }}" class="btn btn-danger w-100 d-flex justify-content-between"
                                 style="font-size:larger">VIDEO <span><i
                                         class="fa-solid fa-circle-chevron-right"></i></span></a>
                         </div>
@@ -160,9 +161,9 @@
 
                     <hr class="m-0">
 
-                    <p class="m-0" style="font-size: 11px">Note :</p>
-                    <p style="font-size: 10px">
-                        {{-- {{ $auctionProduct->note }} --}} -
+                    <p class="m-0" style="font-size: larger">Note :</p>
+                    <p style="font-size: larger">
+                        {{ $fish->note }}
                     </p>
 
                     <hr class="m-0">
