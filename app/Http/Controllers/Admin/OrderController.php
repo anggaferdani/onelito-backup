@@ -16,7 +16,7 @@ class OrderController extends Controller
     {
         if ($this->request->ajax()) {
             $orders = Order::query()
-                ->whereHas('details', fn($q) => $q->where('productable_type', OrderDetail::Product))
+                ->whereHas('details', fn($q) => $q->whereIn('productable_type', [OrderDetail::Product, OrderDetail::KoiStock]))
                 ->select('t_order.*')
                 ->with(['details.productable', 'latestDetail.member', 'latestDetail.productable'])
                 ->where('t_order.status_aktif', 1)

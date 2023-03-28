@@ -42,12 +42,12 @@ class CartController extends Controller
         if($createCart){
             return response()->json([
                 'success' => true,
-                'message' => 'Sukses Menambahkan Pemenang Lelang',
+                'message' => 'Sukses Menambahkan Ke Keranjang',
             ],200);
         }else{
             return response()->json([
                 'success' => false,
-                'message' => 'Gagal Menambahkan Pemenang Lelang'
+                'message' => 'Gagal Menambahkan Ke Keranjang'
             ],500);
         }
     }

@@ -16,6 +16,7 @@ class OrderDetail extends Model
 
     public const EventFish = 'EventFish';
     public const Product = 'Product';
+    public const KoiStock = 'KoiStock';
 
     public function member()
     {

@@ -147,7 +147,7 @@ class ProfileController extends Controller
                 Product::class => ['photo'],
             ]);
         }])
-        ->where('cartable_type', Cart::Product)
+        ->whereIn('cartable_type', [Cart::Product, Cart::KoiStock])
         ->where('status_aktif', 1)
         ->get();
 
@@ -292,7 +292,7 @@ class ProfileController extends Controller
                 Product::class => ['photo'],
             ]);
         }])
-        ->where('cartable_type', Cart::Product)
+        ->whereIn('cartable_type', [Cart::Product, Cart::KoiStock])
         ->where('status_aktif', 1)
         ->get();
 
@@ -437,7 +437,7 @@ class ProfileController extends Controller
                 Product::class => ['photo'],
             ]);
         }])
-        ->where('cartable_type', Cart::Product)
+        ->whereIn('cartable_type', [Cart::Product, Cart::KoiStock])
         ->where('status_aktif', 1)
         ->get();
 

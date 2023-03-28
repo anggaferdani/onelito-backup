@@ -38,7 +38,7 @@
                             <div class="card-body">
                                 <div class="cb-judul">
                                     <h5 class="card-title">{!! Illuminate\Support\Str::limit(
-                                        "$fish->variety | $fish->breeder | Pedigree | $fish->size | $fish->bloodline",
+                                        "$fish->variety | $fish->breeder | $fish->size | $fish->bloodline",
                                         25,
                                     ) !!}</h5>
                                 </div>
@@ -67,7 +67,7 @@
 
                                         </div>
                                         <div class="col-3 px-1 text-end ">
-                                            <button class="rounded addcart" {{-- data-id="{{ $product->id_produk }}" --}}
+                                            <button class="rounded addcart" data-id="{{ $fish->id_koi_stock }}"
                                                 style="background-color: red;border-color:red; outline: none; border: none;"><i
                                                     class="fa-solid fa-cart-shopping" style="color: white"></i></button>
                                         </div>
@@ -300,6 +300,32 @@
                 })
             }
         })
+
+        $(document).on('click', '.addcart', function(e) {
+            var button = $(this);
+            var productId = $(this).attr('data-id')
+            // $(this).attr('disabled', true)
+            // var output = document.querySelector("#output");
+            $.ajax({
+                type: 'POST',
+                url: `/carts`,
+                data: {
+                    jumlah: 1,
+                    cartable_id: productId,
+                    cartable_type: 'KoiStock',
+                },
+                dataType: "json",
+                complete: function(res) {
+                    document.location = '/profil?section=store-cart'
+                    // element.attr('class', 'fas fa-heart wishlist');
+                    button.removeAttr('disabled')
+                },
+                error: function(error) {
+                    console.log(error)
+                    return false
+                }
+            })
+        });
 
 </script>
 @endpush

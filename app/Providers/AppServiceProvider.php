@@ -48,9 +48,11 @@ class AppServiceProvider extends ServiceProvider
 
             Cart::Product => Product::class,
             Cart::EventFish => EventFish::class,
+            Cart::KoiStock => KoiStock::class,
 
             OrderDetail::Product => Product::class,
             OrderDetail::EventFish => EventFish::class,
+            OrderDetail::KoiStock => KoiStock::class,
         ]);
     }
 }

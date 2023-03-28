@@ -138,6 +138,7 @@
                                     <tr>
                                         <th data-width="40">#</th>
                                         <th class="">Item</th>
+                                        <th class="">Kategori Barang</th>
                                         <th class="">Harga</th>
                                         <th class="">Jumlah</th>
                                         <th class="">Total</th>
@@ -145,10 +146,11 @@
                     let no = 1;
                     res.details.forEach(detail => {
                         sumTotal += detail.total;
+                        var productable = detail.productable
                         if (detail.productable_type === 'EventFish') {
                             detailTable += `<tr>
                                         <th data-width="40">${no}</th>
-                                        <th class="">Ikan Lelang No. ${detail.productable.no_ikan}</th>
+                                        <th class="">Ikan Lelang No. ${productable.no_ikan}</th>
                                         <th class="">Rp. ${detail.total}</th>
                                         <th class="">${detail.jumlah_produk}</th>
                                         <th class="">Rp. ${detail.total}</th>
@@ -158,8 +160,20 @@
                         if (detail.productable_type === 'Product') {
                             detailTable += `<tr>
                                         <th data-width="40">${no}</th>
-                                        <th class="">${detail.productable.merek_produk} ${detail.productable.nama_produk} </th>
-                                        <th class="">${detail.productable.harga}</th>
+                                        <th class="">${productable.merek_produk} ${productable.nama_produk} </th>
+                                        <th class="">Barang Store</th>
+                                        <th class="">${productable.harga}</th>
+                                        <th class="">${detail.jumlah_produk}</th>
+                                        <th class="">Rp. ${detail.total}</th>
+                                    </tr>`
+                        }
+
+                        if (detail.productable_type === 'KoiStock') {
+                            detailTable += `<tr>
+                                        <th data-width="40">${no}</th>
+                                        <th class=""> ${productable.no_ikan} | ${productable.variety} - ${productable.breeder} - ${productable.size} - ${productable.bloodline} </th>
+                                        <th class="">Koi Stock</th>
+                                        <th class="">${productable.harga_ikan}</th>
                                         <th class="">${detail.jumlah_produk}</th>
                                         <th class="">Rp. ${detail.total}</th>
                                     </tr>`

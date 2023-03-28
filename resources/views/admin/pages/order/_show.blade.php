@@ -60,6 +60,7 @@
                                             <th class="">Ketegori</th>
                                             <th>Merek</th>
                                             <th class="">Nama</th>
+                                            <th class="">Kategori Barang</th>
                                             <th class="">Harga</th>
                                             <th class="">Jumlah</th>
                                             <th class="">Total</th>

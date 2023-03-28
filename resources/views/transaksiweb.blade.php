@@ -149,6 +149,10 @@
                                     <br>
                                     <h4 class="card-subtitle mb-2">Belanja</h4>
                                     @forelse ($details as $detail)
+                                        @php
+                                            $cartable = $detail->productable;
+                                        @endphp
+                                        @if ($detail->productable_type === "Product")
                                         <div class="card ">
                                             <h4 class="d-flex m-2 justify-content-between">
                                                 <span>
@@ -158,6 +162,18 @@
                                                 <span style="font-weight: bold">Rp. {{ number_format($detail->total, 0, '.', '.') }}</span>
                                             </h4>
                                         </div>
+                                        @endif
+                                        @if ($detail->productable_type === "KoiStock")
+                                        <div class="card ">
+                                            <h4 class="d-flex m-2 justify-content-between">
+                                                <span>
+                                                    <span>{{ $detail->jumlah_produk }} x </span>
+                                                    <span style="font-weight: bold"> {{ "$cartable->variety | $cartable->breeder | $cartable->size | $cartable->bloodline" }}</span>
+                                                </span>
+                                                <span style="font-weight: bold">Rp. {{ number_format($detail->total, 0, '.', '.') }}</span>
+                                            </h4>
+                                        </div>
+                                        @endif
                                     @empty
                                     @endforelse
                                     <h4 class="card-subtitle mb-2 mt-2">Total belanja</h4>
@@ -267,16 +283,32 @@
                                     <br>
                                     <h4 class="card-subtitle mb-2">Belanja</h4>
                                     @forelse ($details as $detail)
+                                        @php
+                                            $cartable = $detail->productable;
+                                        @endphp
+                                        @if ($detail->productable_type === "Product")
+                                        <div class="card ">
+                                            <h4 class="d-flex m-2 justify-content-between">
+                                                <span>
+                                                    <span>{{ $detail->jumlah_produk }} x </span>
+                                                    <span style="font-weight: bold"> {{$detail->productable->merek_produk}}-{{ $detail->productable->nama_produk }}</span>
+                                                </span>
+                                                <span style="font-weight: bold">Rp. {{ number_format($detail->total, 0, '.', '.') }}</span>
+                                            </h4>
+                                        </div>
+                                        @endif
 
-                                    <div class="card ">
-                                        <h4 class="d-flex m-2 justify-content-between">
-                                            <span>
-                                                <span>{{ $detail->jumlah_produk }} x </span>
-                                                <span style="font-weight: bold"> {{$detail->productable->merek_produk}}-{{ $detail->productable->nama_produk }}</span>
-                                            </span>
-                                            <span style="font-weight: bold">Rp. {{ number_format($detail->total, 0, '.', '.') }}</span>
-                                        </h4>
-                                    </div>
+                                        @if ($detail->productable_type === "KoiStock")
+                                            <div class="card ">
+                                                <h4 class="d-flex m-2 justify-content-between">
+                                                    <span>
+                                                        <span>{{ $detail->jumlah_produk }} x </span>
+                                                        <span style="font-weight: bold"> {{ "$cartable->variety | $cartable->breeder | $cartable->size | $cartable->bloodline" }}</span>
+                                                    </span>
+                                                    <span style="font-weight: bold">Rp. {{ number_format($detail->total, 0, '.', '.') }}</span>
+                                                </h4>
+                                            </div>
+                                        @endif
                                     @empty
                                     @endforelse
                                     <!-- <h4 class="card-title mb-3">Transfer Ke No.Rekening</h4>
