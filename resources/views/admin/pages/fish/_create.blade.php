@@ -54,6 +54,10 @@
                 <label for="link_video">Link Video</label>
                 <input  type="text" id="link_video" name="link_video" class="form-control" placeholder="">
             </div>
+            <div class="form-group">
+                <label for="path_foto">Foto Ikan</label>
+                <input type="file" name="path_foto" id="path_foto" class="form-control">
+            </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn" data-dismiss="modal">Tutup</button>

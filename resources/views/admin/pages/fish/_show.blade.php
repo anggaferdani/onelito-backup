@@ -48,6 +48,14 @@
                 <label for="show_link_video">Link Video</label>
                 <input readonly type="text" id="show_link_video" class="form-control" name="show_link_video" placeholder="">
             </div>
+            <div class="form-group">
+                <label for="foto">Foto Ikan</label>
+                <br>
+                <img id="show_foto" src="" style="
+                    width: 400px;
+                    height: 400px;
+                    object-fit: cover;">
+            </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn" data-dismiss="modal">Tutup</button>

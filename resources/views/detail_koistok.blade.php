@@ -26,13 +26,19 @@
             }
         </style>
 
-
+    @php
+        $photo = url('/img/koi12.jpg');
+        if ($fish->foto_ikan !== null) {
+                $photo = url('storage') . '/' . $fish->foto_ikan;
+        }
+    @endphp
 
         <div class="res">
             <div class="row">
                 <div class="col-6">
                     <div class="">
-                        <img src="{{ url('/img/koi12.jpg') }}" class="card-img-top" alt="...">
+
+                        <img src="{{ $photo }}" class="card-img-top" alt="...">
                         <br>
                     </div>
                     <div>
@@ -107,7 +113,7 @@
             <div class="row gx-5">
                 <div class="col-3">
                     <div class="m-lg-auto">
-                        <img src="{{ url('img/koi12.jpg') }}" class="card-img-top" alt="...">
+                        <img src="{{ $photo }}" class="card-img-top" alt="...">
                         <br><br>
                         <div class="card-body p-0">
                             <a target="_blank" href="{{ $fish->link_video }}" class="btn btn-danger w-100 d-flex justify-content-between"

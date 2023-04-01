@@ -61,6 +61,7 @@
                                                 <th>DOB</th>
                                                 <th>Size</th>
                                                 <th>Harga</th>
+                                                <th>Foto</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -166,6 +167,7 @@
                     { data : 'dob'},
                     { data : 'size'},
                     { data : 'harga_ikan'},
+                    { data : 'foto_ikan', orderable : false,searchable :false},
                     { data : 'action' , orderable : false,searchable :false},
                 ]
             });
@@ -190,6 +192,12 @@
                     $('#show_harga_ikan').val(res.harga_ikan)
                     $('#show_note').html(res.note)
                     $('#show_link_video').val(res.link_video)
+
+                    $('#show_foto').attr('src', ``)
+
+                    if (res.foto_ikan) {
+                        $('#show_foto').attr('src', `/storage/${res.foto_ikan}`)
+                    }
                 },
                 error:function(error) {
                     console.log(error)
@@ -223,6 +231,12 @@
                     $('#edit_note').summernote('code', res.note)
                     $('#edit_link_video').val(res.link_video)
 
+                    $('#edit_foto2').attr('src', ``)
+
+                    if (res.foto_ikan) {
+                        $('#edit_foto2').attr('src', `/storage/${res.foto_ikan}`)
+                    }
+
                     $('#edit_harga_ikan').priceFormat({
                         prefix: '',
                         centsLimit: 0,
@@ -240,23 +254,36 @@
             e.preventDefault();
             let formData = new FormData(this);
 
-            var dataForm = {
-                no_ikan: formData.get('edit_no_ikan'),
-                variety: formData.get('edit_variety'),
-                breeder: formData.get('edit_breeder'),
-                bloodline: formData.get('edit_bloodline'),
-                sex: formData.get('edit_sex'),
-                dob: formData.get('edit_dob'),
-                size: formData.get('edit_size'),
-                harga_ikan: formData.get('edit_harga_ikan'),
-                note: formData.get('edit_note'),
-                link_video: formData.get('edit_link_video'),
-            }
+            formData.append('no_ikan', formData.get('edit_no_ikan'));
+            formData.append('variety', formData.get('edit_variety'));
+            formData.append('breeder', formData.get('edit_breeder'));
+            formData.append('bloodline', formData.get('edit_bloodline'));
+            formData.append('sex', formData.get('edit_sex'));
+            formData.append('dob', formData.get('edit_dob'));
+            formData.append('size', formData.get('edit_size'));
+            formData.append('harga_ikan', formData.get('edit_harga_ikan'));
+            formData.append('note', formData.get('edit_note'));
+            formData.append('link_video', formData.get('edit_link_video'));
+            formData.append('path_foto', formData.get('edit_foto'));
+            formData.append('_method', 'PATCH');
+
+            formData.delete('edit_no_ikan');
+            formData.delete('edit_variety');
+            formData.delete('edit_breeder');
+            formData.delete('edit_bloodline');
+            formData.delete('edit_sex');
+            formData.delete('edit_dob');
+            formData.delete('edit_size');
+            formData.delete('edit_harga_ikan');
+            formData.delete('edit_note');
+            formData.delete('edit_link_video');
+            formData.delete('edit_foto');
 
             $.ajax({
-                type: 'PATCH',
-                data : dataForm,
-                dataType: 'json',
+                type: 'POST',
+                data : formData,
+                contentType: false,
+                processData: false,
                 url: $(this).attr('action'),
                 beforeSend:function(){
                     $('#btn-update').addClass("btn-progress");

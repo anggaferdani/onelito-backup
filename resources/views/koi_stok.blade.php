@@ -26,6 +26,10 @@
 
                         $wishlistClass = 'far fa-heart';
 
+                        if ($fish->foto_ikan !== null) {
+                                $photo = url('storage') . '/' . $fish->foto_ikan;
+                        }
+
                         if (array_key_exists('wishlist', $fish->toArray()) && $fish->wishlist !== null) {
                             $wishlistClass = 'fas fa-heart';
                         }

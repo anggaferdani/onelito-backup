@@ -25,7 +25,21 @@ class KoiStockController extends Controller
 
                 return $number;
             })
-            ->rawColumns(['action', 'note'])
+            ->editColumn('foto_ikan', function ($data) {
+                $path = $data->foto_ikan ?? false;
+
+                if (!$path) {
+                    return '';
+                }
+
+                return '
+                    <img src="'.asset("storage/$path").'" style="
+                    width: 80px;
+                    height: 80px;
+                    object-fit: cover;">
+                ';
+            })
+            ->rawColumns(['action', 'note', 'foto_ikan'])
             ->make(true);
         }
 
@@ -42,6 +56,16 @@ class KoiStockController extends Controller
         $data['update_by'] = Auth::guard('admin')->id();
         $data['harga_ikan'] = str_replace('.', '', $data['harga_ikan']);
         $data['status_aktif'] = 1;
+
+        $image = null;
+        if($this->request->hasFile('path_foto')){
+            $image = $this->request->file('path_foto')->store(
+                'foto_koi_stock','public'
+            );
+        }
+
+        $data['foto_ikan'] = $image;
+        unset($data['path_foto']);
 
         $createFish = KoiStock::create($data);
 
@@ -85,8 +109,19 @@ class KoiStockController extends Controller
             return response()->json($validator->errors(), 400);
         }
 
+        $image = $fish->foto_ikan;
+        if($this->request->hasFile('path_foto')){
+            $image = $this->request->file('path_foto')->store(
+                'foto_koi_stock','public'
+            );
+        }
+
+        $data['foto_ikan'] = $image;
+        unset($data['path_foto']);
+
         $data['harga_ikan'] = str_replace('.', '', $data['harga_ikan']);
         $data['update_by'] = Auth::guard('admin')->id();
+
         $updateFish = $fish->update($data);
 
         if($updateFish){
