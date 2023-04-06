@@ -84,7 +84,7 @@
 
                     <p class="m-0" style="font-size: larger">Note :</p>
                     <p style="font-size: larger">
-                        {{ $fish->note }}
+                        {!! $fish->note !!}
                     </p>
 
                     <hr class="m-0">
@@ -169,7 +169,7 @@
 
                     <p class="m-0" style="font-size: larger">Note :</p>
                     <p style="font-size: larger">
-                        {{ $fish->note }}
+                        {!! $fish->note !!}
                     </p>
 
                     <hr class="m-0">

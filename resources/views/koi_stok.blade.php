@@ -46,7 +46,7 @@
                                         25,
                                     ) !!}</h5>
                                 </div>
-                                <p class="my-3" style="color :red">Rp. {{ $fish->harga_ikan }}</p>
+                                <p class="my-3" style="color :red">Rp. {{ number_format($fish->harga_ikan, 0, '.', '.') }}</p>
                                 <div class="row">
                                     <div class="col-6 col-lg-6 px-1">
                                         <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1"
