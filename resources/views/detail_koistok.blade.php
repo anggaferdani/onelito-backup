@@ -103,7 +103,7 @@
 
 
                     <hr class="m-0">
-                    <a class="btn btn-danger float-end mb-3 mt-3" href="#" role="button">Question <span><i
+                    <a class="btn btn-danger float-end mb-3 mt-3" target="_blank" href="https://wa.me/0811972857" role="button">Question <span><i
                                 class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
@@ -188,7 +188,7 @@
 
                     <br><br>
                     <div class="float-end">
-                        <a class="btn btn-danger mb-3" href="#" role="button">Question <span><i
+                        <a class="btn btn-danger mb-3" target="_blank" href="https://wa.me/0811972857" role="button">Question <span><i
                                     class="fa-brands fa-whatsapp"></i></a>
                     </div>
                 </div>

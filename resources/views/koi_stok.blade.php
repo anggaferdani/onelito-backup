@@ -49,7 +49,7 @@
                                 <p class="my-3" style="color :red">Rp. {{ number_format($fish->harga_ikan, 0, '.', '.') }}</p>
                                 <div class="row">
                                     <div class="col-6 col-lg-6 px-1">
-                                        <a href="#" class="btn btn-danger w-100 d-flex justify-content-between p-1"
+                                        <a target="_blank" href="https://wa.me/0811972857" class="btn btn-danger w-100 d-flex justify-content-between p-1"
                                             style="font-size: 70%">Question <span><i
                                                     class="fa-brands fa-whatsapp"></i></span></a>
                                     </div>
