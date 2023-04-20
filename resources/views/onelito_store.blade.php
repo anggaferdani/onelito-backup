@@ -48,7 +48,19 @@
         }
 
         .order-now {
-            margin-left: 1rem
+            margin-left: 8px;
+        }
+
+        @media (min-width: 1400px) {
+            .order-now {
+                margin-left: 16px;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .order-now {
+                margin-left: 13px;
+            }
         }
     </style>
     <div class="container">
