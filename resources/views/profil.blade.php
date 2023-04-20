@@ -106,6 +106,12 @@
         if ($auth->profile_pic !== null) {
             $imgProfile = url('storage/'.$auth->profile_pic);
         }
+
+        $previous = url()->previous();
+
+        if(!str_contains($previous, '/onelito_store') && !str_contains($previous, '/koi_stok')) {
+            $previous = '/';
+        }
     @endphp
     <div class="res">
         <div class="container-fluid py-3">
@@ -122,7 +128,7 @@
                             </div>
                         </a>
                         <div class="ml-auto" style="font-size: 22px">
-                            <a href="/"><i class='bx bx-x-circle text-danger' style="font-size: x-large"></i></a>
+                            <a href="{{ $previous }}"><i class='bx bx-x-circle text-danger' style="font-size: x-large"></i></a>
                         </div>
                     </div>
                 </div>
@@ -205,8 +211,8 @@
 
     <div class="web">
         <div class="container p-0">
-            <a href="/" class="text-dark" style="text-decoration: blink"><i
-                    class="fa-solid fa-arrow-left text dark"></i> back to main page</a>
+            <a href="{{ $previous  }}" class="text-dark" style="text-decoration: blink"><i
+                    class="fa-solid fa-arrow-left text dark"></i> back</a>
             <br><br>
             <div class="row">
                 <div class="col-md-3">

@@ -46,6 +46,10 @@
             height: 3.5rem;
 
         }
+
+        .order-now {
+            margin-left: 1rem
+        }
     </style>
     <div class="container">
 
@@ -136,7 +140,7 @@
                                                         class="{{ $wishlistClass }} wishlist produk-{{ $product->id_produk }}"></i>
                                                     <span>Wishlist</span></button>
                                             </div> --}}
-                                            <div class="mb-1 mx-auto">
+                                            <div class="mb-1">
                                                 <button class="border-0 btn-success rounded-2 order-now"
                                                     data-id="{{ $product->id_produk }}"
                                                     data-price="{{ $product->harga }}"
@@ -228,7 +232,7 @@
                                                         class="{{ $wishlistClass }} wishlist produk-{{ $fishfoodProduct->id_produk }}"></i>
                                                     <span>Wishlist</span></button>
                                             </div> --}}
-                                            <div class="mb-1 mx-auto">
+                                            <div class="mb-1">
                                                 <button class="border-0 btn-success rounded-2 order-now"
                                                     data-id="{{ $fishfoodProduct->id_produk }}"
                                                     data-price="{{ $fishfoodProduct->harga }}"
@@ -318,7 +322,7 @@
                                                         class="{{ $wishlistClass }} wishlist produk-{{ $fishgearProduct->id_produk }}"></i>
                                                     <span>Wishlist</span></button>
                                             </div> --}}
-                                            <div class="mb-1 mx-auto">
+                                            <div class="mb-1">
                                                 <button class="border-0 btn-success rounded-2 order-now"
                                                     data-id="{{ $fishgearProduct->id_produk }}"
                                                     data-price="{{ $fishgearProduct->harga }}"
