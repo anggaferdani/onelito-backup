@@ -215,6 +215,7 @@
                                     @php
                                         $productPhoto2 = 'img/uniring.jpeg';
 
+
                                         if ($fishfoodProduct->photo !== null) {
                                             $productPhoto2 = url('storage') . '/' . $fishfoodProduct->photo->path_foto;
                                         }
@@ -224,6 +225,8 @@
                                         if (array_key_exists('wishlist', $fishfoodProduct->toArray()) && $fishfoodProduct->wishlist !== null) {
                                             $wishlistClass = 'fas fa-heart';
                                         }
+
+
                                     @endphp
                                     <div class="col">
                                         <div class="p-0 border bg-light cart">
@@ -318,7 +321,7 @@
                                     <div class="col">
                                         <div class="p-0 border bg-light cart">
                                             <a href="/onelito_store/{{ $fishgearProduct->id_produk }}"><img
-                                                    src="{{ $productPhoto2 }}" alt="bio media" class="card-img-top"
+                                                    src="{{ $productPhoto3 }}" alt="bio media" class="card-img-top"
                                                     height="170"></a>
                                             <div class="container px-2">
                                                 <div class="cb-judul">
