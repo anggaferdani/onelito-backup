@@ -63,7 +63,7 @@
             }
         }
     </style>
-    <div class="container">
+    <div class="container" style="min-height:400px">
 
         <br><br><br><br><br>
 
@@ -214,7 +214,6 @@
                                 @forelse ($fishFoodProducts as $fishfoodProduct)
                                     @php
                                         $productPhoto2 = 'img/uniring.jpeg';
-
 
                                         if ($fishfoodProduct->photo !== null) {
                                             $productPhoto2 = url('storage') . '/' . $fishfoodProduct->photo->path_foto;

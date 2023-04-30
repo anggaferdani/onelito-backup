@@ -18,7 +18,7 @@
     <br><br><br><br>
 
     <div class="container-fluit">
-        <div class="container">
+        <div class="container" style="min-height:400px;">
             <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 mb-5">
                 @forelse($fishes as $fish)
                     @php
