@@ -44,7 +44,7 @@
 
         .cb-judul {
             height: 3.5rem;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
         }
 
         .order-now {
