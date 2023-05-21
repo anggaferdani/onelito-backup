@@ -44,7 +44,7 @@
 
         .cb-judul {
             height: 3.5rem;
-
+            font-size: 0.8rem;
         }
 
         .order-now {
@@ -141,7 +141,7 @@
                                                     height="170"></a>
                                             <div class="container px-2">
                                                 <div class="cb-judul">
-                                                    <p>{!! Illuminate\Support\Str::limit("$product->merek_produk $product->nama_produk", 25) !!}</p>
+                                                    <p>{!! Illuminate\Support\Str::limit("$product->merek_produk $product->nama_produk", 35) !!}</p>
                                                 </div>
                                                 <p><b>Rp. {{ number_format($product->harga, 0, '.', '.') }}</b></p>
                                             </div>
@@ -234,7 +234,7 @@
                                                     height="170"></a>
                                             <div class="container px-2">
                                                 <div class="cb-judul">
-                                                    <p>{!! Illuminate\Support\Str::limit("$fishfoodProduct->merek_produk $fishfoodProduct->nama_produk", 25) !!}</p>
+                                                    <p>{!! Illuminate\Support\Str::limit("$fishfoodProduct->merek_produk $fishfoodProduct->nama_produk", 35) !!}</p>
                                                 </div>
                                                 <p><b>Rp {{ number_format($fishfoodProduct->harga, 0, '.', '.') }}</b></p>
 
@@ -324,7 +324,7 @@
                                                     height="170"></a>
                                             <div class="container px-2">
                                                 <div class="cb-judul">
-                                                    <p>{!! Illuminate\Support\Str::limit("$fishgearProduct->merek_produk $fishgearProduct->nama_produk", 25) !!}</p>
+                                                    <p>{!! Illuminate\Support\Str::limit("$fishgearProduct->merek_produk $fishgearProduct->nama_produk", 35) !!}</p>
                                                 </div>
                                                 <p><b>Rp {{ number_format($fishgearProduct->harga, 0, '.', '.') }}</b></p>
 
