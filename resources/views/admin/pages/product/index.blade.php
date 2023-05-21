@@ -18,6 +18,9 @@
 
     <link rel="stylesheet"
         href="{{ asset('library/select2/dist/css/select2.min.css') }}">
+
+    <link rel="stylesheet"
+        href="{{ asset('library/summernote/dist/summernote-bs4.css') }}">
 @endpush
 
 @section('main')
@@ -89,6 +92,7 @@
     <script src="https://demo.getstisla.com/assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
     <!-- Page Specific JS File -->
     <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('library/summernote/dist/summernote-bs4.js') }}"></script>
     <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('/js/price-separator.min.js') }}"></script>
 
@@ -164,7 +168,7 @@
                     $('#show_nama_produk').val(res.nama_produk)
                     $('#show_berat').val(res.berat)
                     $('#show_harga').val(res.harga)
-                    $('#show_deskripsi').val(res.deskripsi)
+                    $('#show_deskripsi').html(res.deskripsi)
                     $('#show_foto').attr('src', ``)
                     if (res.photo) {
                         $('#show_foto').attr('src', `/storage/${res.photo.path_foto}`)
@@ -198,7 +202,8 @@
                         centsLimit: 0,
                         thousandsSeparator: '.'
                     });
-                    $('#edit_deskripsi').val(res.deskripsi)
+
+                    $('#edit_deskripsi').summernote('code', res.deskripsi)
 
                     $('#edit_foto2').attr('src', ``)
                     if (res.photo) {

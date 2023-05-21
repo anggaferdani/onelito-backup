@@ -38,7 +38,7 @@
             </div>
             <div class="form-group">
                 <label for="deskripsi">Deskripsi</label>
-                <input  type="text" id="deskripsi" class="form-control" name="deskripsi" placeholder="">
+                <textarea  type="text" id="deskripsi" class="form-control summernote" name="deskripsi" placeholder=""></textarea>
             </div>
             <div class="form-group">
                 <label for="path_foto">Foto</label>

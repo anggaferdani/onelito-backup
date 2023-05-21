@@ -60,7 +60,7 @@
                         <h2>Rp. {{ $product->harga }}</h2>
                         <hr>
                         <p class="alert-link text-danger">Detail</p>
-                        <p>{{ $product->deskripsi }}</p>
+                        <p>{!! $product->deskripsi !!}</p>
                     </div>
                     <div>
                         <h5 class="card-title">Ordered quantity</h5>
@@ -106,7 +106,7 @@
                         <h2>Rp {{ number_format($product->harga, 0, '.', '.') }}</h2>
                         <hr>
                         <p class="alert-link text-danger">Detail</p>
-                        <p>{{ $product->deskripsi }}</p>
+                        <p>{!! $product->deskripsi !!}</p>
                     </div>
                     <div class="col">
                         <div class="card" style="width: 18rem;">

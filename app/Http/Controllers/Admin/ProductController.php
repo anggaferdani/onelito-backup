@@ -48,7 +48,7 @@ class ProductController extends Controller
                 ';
             })
             ->addColumn('action','admin.pages.product.dt-action')
-            ->rawColumns(['action', 'photo'])
+            ->rawColumns(['action', 'photo', 'deskripsi'])
             ->make(true);
         }
 

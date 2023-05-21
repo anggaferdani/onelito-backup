@@ -39,7 +39,7 @@
             </div>
             <div class="form-group">
                 <label for="edit_deskripsi">Deskripsi</label>
-                <input  type="text" id="edit_deskripsi" class="form-control" name="edit_deskripsi" placeholder="">
+                <textarea  type="text" id="edit_deskripsi" class="form-control summernote" name="edit_deskripsi" placeholder=""></textarea>
             </div>
             <div class="form-group">
                 <label for="foto">Foto</label>

@@ -30,7 +30,7 @@
             </div>
             <div class="form-group">
                 <label for="show_deskripsi">Deskripsi</label>
-                <input readonly type="text" id="show_deskripsi" class="form-control" name="show_deskripsi" placeholder="">
+                <div id="show_deskripsi"></div>
             </div>
             <div class="form-group">
                 <label for="foto">Foto</label>
