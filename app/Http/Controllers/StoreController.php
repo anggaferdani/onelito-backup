@@ -62,7 +62,7 @@ class StoreController extends Controller
             'products' => $products,
             'fishFoodProducts' => $fishFoodProducts,
             'fishEquipmentProducts' => $fishEquipmentProducts,
-            'title' => 'onelito_store'
+            'title' => 'ONELITO STORE'
         ]);
     }
 
@@ -77,7 +77,7 @@ class StoreController extends Controller
         return view('detail_onelito_store',[
             'auth' => $auth,
             'product' => $product,
-            'title' => 'onelito_store'
+            'title' => 'ONELITO STORE'
         ]);
     }
 }
