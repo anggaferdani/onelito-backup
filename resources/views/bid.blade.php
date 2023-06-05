@@ -393,6 +393,7 @@
             formData.append('nominal_bid', nextNominalBid)
             // formData.append('nominal_bid_detail', inputNominalBid)
             formData.append('auto_bid', autoBid)
+
             // var interval = setInterval(function(){
             //     if(timesRun === 60){
             //         clearInterval(interval);
@@ -403,6 +404,7 @@
         })
 
         async function bidding(formData, url) {
+            formData.append('_token','{{ csrf_token() }}')
             $.ajax({
                 type: 'POST',
                 data: formData,
