@@ -881,12 +881,24 @@ class ProfileController extends Controller
         }])
         ->where('status_aktif', 1)->get();
 
+
+        $storeCarts = $auth->carts()
+        ->with(['cartable' => function (MorphTo $morphTo) {
+            $morphTo->morphWith([
+                Product::class => ['photo'],
+            ]);
+        }])
+        ->whereIn('cartable_type', [Cart::Product, Cart::KoiStock])
+        ->where('status_aktif', 1)
+        ->get();
+
         return view('update_profile',[
             'auth' => $auth,
             'title' => 'Update Profile',
             'carts' => $carts,
             'wishlists' => $wishlists,
             'orders' => $orders,
+            'storeCarts' => $storeCarts,
         ]);
     }
 }
