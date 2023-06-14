@@ -25,8 +25,6 @@ class StoreController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate($this->perPage());
 
-            // dd($products->previousPageUrl());
-
         $fishFoodProducts = Product::
             where('status_aktif', 1)
             ->where('id_kategori_produk', 2)
@@ -57,11 +55,27 @@ class StoreController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate($this->perPage());
 
+        $fishMedicineProducts = Product::
+            where('status_aktif', 1)
+            ->where('id_kategori_produk', 3)
+            ->when($auth !== null, function ($q) use ($auth){
+                return $q->with([
+                    'category',
+                    'photo',
+                    'wishlist' => fn($w) => $w->where('id_peserta', $auth->id_peserta)]
+                );
+            }, function ($q) {
+                return $q->with(['category', 'photo']);
+            })
+            ->orderBy('created_at', 'desc')
+            ->paginate($this->perPage());
+
         return view('onelito_store',[
             'auth' => $auth,
             'products' => $products,
             'fishFoodProducts' => $fishFoodProducts,
             'fishEquipmentProducts' => $fishEquipmentProducts,
+            'fishMedicineProducts' => $fishMedicineProducts,
             'title' => 'ONELITO STORE'
         ]);
     }
