@@ -406,8 +406,9 @@
                                         $productPhoto3 = 'img/produk1.jpeg';
 
                                         if ($fishMedicineProduct->photo !== null) {
-                                            $productPhoto3 = url('storage') . '/' . $fishgearProduct->photo->path_foto;
+                                            $productPhoto3 = url('storage') . '/' . $fishMedicineProduct->photo->path_foto;
                                         }
+                                        
                                         $wishlistClass = 'far fa-heart';
 
                                         if (array_key_exists('wishlist', $fishMedicineProduct->toArray()) && $fishMedicineProduct->wishlist !== null) {
