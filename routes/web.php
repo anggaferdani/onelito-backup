@@ -158,11 +158,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('/charts/sum-nominal-product-sold', [Admin\DashboardController::class, 'productSoldNominalChart']);
     Route::get('/charts/sum-auction-participant', [Admin\DashboardController::class, 'auctionParticipantChart']);
     Route::get('/auction-winners-info', [Admin\AuctionWinnerController::class, 'info'])->name('admin.auction_winner.info');
+    Route::get('/members/excels', [Admin\MemberController::class, 'excels'])->name('admin.member.excels');
 
 
     Route::resource('admins', Admin\AdminController::class);
 
     Route::resource('members', Admin\MemberController::class);
+
 
     Route::resource('fishes', Admin\KoiStockController::class);
 

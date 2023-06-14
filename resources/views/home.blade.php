@@ -403,10 +403,10 @@
 
 
     <div class="container-fluit m-5">
-        {{-- <img src="img/gc.png" alt="gc" class="w-100"> --}}
+        <img src="img/gc.png" alt="gc" class="w-100">
     </div>
 
-    {{-- <div class="container">
+    <div class="container">
         <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
             @forelse($championFishes as $championFish)
                 @php
@@ -433,7 +433,7 @@
 
     <div class="container my-5">
         <a href="/detail_koichampion" style="color: red">Lihat lebih Banyak >></a>
-    </div> --}}
+    </div>
 @endsection
 @push('scripts')
     <script type="text/javascript">

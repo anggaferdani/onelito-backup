@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\MembersExport;
 use App\Http\Controllers\Controller;
 use App\Mail\EmailUserActivated;
 use App\Mail\EmailVerification;
@@ -11,6 +12,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Excel;
+use Maatwebsite\Excel\Facades\Excel as FacadesExcel;
+use stdClass;
 use Yajra\DataTables\Facades\DataTables;
 
 class MemberController extends Controller
@@ -215,5 +219,20 @@ class MemberController extends Controller
         return response()->json([
             'success' => true,
         ],200);
+    }
+
+    public function excels()
+    {
+            $filterStatusEmail = $this->request->input('filter_status_email', 'all');
+            $filterStatusAktif = $this->request->input('filter_status_aktif', 'all');
+
+            $filter = new stdClass;
+
+            $filter->filter_status_email = $filterStatusEmail;
+            $filter->filter_status_aktif = $filterStatusAktif;
+
+            $export = new MembersExport($filter);
+
+            return FacadesExcel::download($export, 'data_member.xlsx');
     }
 }

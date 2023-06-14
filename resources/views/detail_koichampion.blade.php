@@ -1,4 +1,4 @@
-@extends('layout.mainlog')
+@extends('layout.main')
 
 @section('container')
     <style>

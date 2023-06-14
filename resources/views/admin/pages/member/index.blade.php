@@ -17,6 +17,9 @@
         href="{{ asset('library/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
 
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
+
 @endpush
 
 @section('main')
@@ -59,7 +62,17 @@
                                 </select>
                             </div>
 
+                            <button class="btn btn-primary mb-2 mt-2"
+                            id="download-excel"     
+                            ><i class="fa fa-download"></i> Download Excel</button>
+
+
+
                                 <div class="table-responsive">
+                                <!-- <button class="btn btn-primary mb-2"
+                                    data-toggle="modal"
+                                    data-target="#modalCreate"
+                                    ><i class="fa fa-plus"></i> Tambah Member</button> -->
                                     <table class="table-striped table"
                                         id="table-1">
                                         <thead>
@@ -111,6 +124,10 @@
     <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+
+    <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+
 
     <script type="text/javascript">
         $.ajaxSetup({
@@ -253,13 +270,12 @@
         // ajaxChained('#edit_kecamatan','#edit_kelurahan','subdistricts?dis_id=');
 
        var table = $('#table-1').DataTable({
-                // dom: 'Bfrtip',
                 lengthMenu: [
                     [ 10, 25, 50, -1 ],
                     [ '10 rows', '25 rows', '50 rows', 'Show all' ]
                 ],
                 buttons: [
-                    'pageLength','csv', 'excel', 'pdf', 'print',
+                    'pageLength','excel',
                 ],
                 "responsive": true,
                 "autoWidth" : true,
@@ -602,6 +618,20 @@
 
                 // navigator.clipboard.writeText($(this).data('email-url'));
 
+        });
+
+        $(document).on('click','button#download-excel',function() {
+            var email = $('#filter_status_email').val();
+            var status = $('#filter_status_aktif').val();
+
+            var url = new URL(window.location.protocol + "//" +window.location.host+"/admin/members/excels");
+
+            url.searchParams.append("filter_status_email", email);
+            url.searchParams.append("filter_status_aktif", status);
+            console.log(url);
+            var link=document.createElement('a');
+            link.href = url.href;
+            link.click();
         });
     </script>
 
