@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\AuctionWinnerExport;
 use App\Http\Controllers\Controller;
 use App\Models\AuctionWinner;
 use App\Models\Cart;
@@ -12,6 +13,7 @@ use App\Models\OrderDetail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 
 class AuctionWinnerController extends Controller
@@ -21,31 +23,10 @@ class AuctionWinnerController extends Controller
         Carbon::setLocale('id');
         $now = Carbon::now();
 
-        // $winners = AuctionWinner::query()
-        //         ->select('t_pemenang_lelang.*', 't_log_bidding.id_ikan_lelang as id_ikan_lelang', 'm_ikan_lelang.id_event as id_event',
-        //         't_log_bidding.id_peserta as id_peserta'
-        //         )
-        //         ->join('t_log_bidding', 't_pemenang_lelang.id_bidding', '=', 't_log_bidding.id_bidding')
-        //         ->join('m_ikan_lelang', 't_log_bidding.id_ikan_lelang', '=', 'm_ikan_lelang.id_ikan')
-        //         ->distinct('id_peserta', 'id_event')
-        //         ->with(['bidding.member.city', 'bidding.eventFish'])
-        //         ->where('t_pemenang_lelang.status_aktif', 1)
-        //         ->orderBy('t_pemenang_lelang.created_at', 'desc');
-                // ->get();
-
-        // dd($winners);
-
         if ($this->request->ajax()) {
-            // $winners = AuctionWinner::query()
-            //     ->join('t_log_bidding', 't_pemenang_lelang.id_bidding', '=', 't_log_bidding.id_bidding')
-            //     ->with(['bidding.member.city', 'bidding.eventFish'])
-            //     ->where('status_aktif', 1)
-            //     ->orderBy('created_at', 'desc');
-
             $winners = AuctionWinner::query()
                 ->join('t_log_bidding', 't_pemenang_lelang.id_bidding', '=', 't_log_bidding.id_bidding')
                 ->join('m_ikan_lelang', 't_log_bidding.id_ikan_lelang', '=', 'm_ikan_lelang.id_ikan')
-                // ->orderBy('m_ikan_lelang.id_event', 'desc')
                 ->select(
                     'm_ikan_lelang.id_event as id_event',
                 't_log_bidding.id_peserta as id_peserta'
@@ -231,5 +212,10 @@ class AuctionWinnerController extends Controller
             'details' => $orderDetail,
             'member' => $member,
         ]);
+    }
+
+    public function excels()
+    {
+        return Excel::download(new AuctionWinnerExport, 'data_pemenang_lelang.xlsx');
     }
 }

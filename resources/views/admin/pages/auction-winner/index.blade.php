@@ -40,6 +40,9 @@
                             data-toggle="modal"
                             data-target="#modalCreate"
                             ><i class="fa fa-plus"></i> Tambah Pemenang Lelang</button> -->
+                            <button class="btn btn-primary mb-2 mt-2"
+                            id="download-excel"     
+                            ><i class="fa fa-download"></i> Download Excel</button>
 
                                 <div class="table-responsive">
                                     <table class="table-striped table"
@@ -335,6 +338,14 @@
                     });
                 }
             });
+        });
+
+        $(document).on('click','button#download-excel',function() {
+            var url = new URL(window.location.protocol + "//" +window.location.host+"/admin/auction-winners/excels");
+
+            var link=document.createElement('a');
+            link.href = url.href;
+            link.click();
         });
     </script>
 

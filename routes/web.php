@@ -180,6 +180,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
 
     Route::resource('orders', Admin\OrderController::class);
 
+    Route::get('/auction-winners/excels', [Admin\AuctionWinnerController::class, 'excels'])->name('admin.auction-winner.excels');
     Route::resource('auction-winners', Admin\AuctionWinnerController::class);
 
     Route::group(['prefix' => 'bot'], function () {
