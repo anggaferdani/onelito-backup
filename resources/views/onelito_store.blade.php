@@ -13,6 +13,10 @@
         .swal2-confirm {
             background-color: #198754;
         }
+
+        .filter-items {
+            display: inline-block;
+        }
         /* On screens that are 992px or less, set the background color to blue */
         @media screen and (min-width: 601px) {
             .nav-atas {
@@ -31,6 +35,12 @@
         .nav-pills .show>.nav-link {
             color: #fff;
             background-color: #F0F0F0;
+        }
+
+        .nav-pills {
+            overflow: auto;
+            white-space: nowrap;
+            flex-wrap: unset !important;
         }
 
         .cart {
@@ -100,19 +110,19 @@
 
             {{-- On screens that are 600px or less, set the display none --}}
             <div class="container nav-atas overflow-auto">
-                <div class="d-flex nav nav-pills" style="width: 115vw" id="v-pills-tab" role="tablist">
-                    <button type="button" class="btn btn-outline-secondary rounded-pill mr-2"><i
+                <div class="d-flex nav nav-pills" id="v-pills-tab" role="tablist">
+                    <button type="button" id="filter-mobile" class="btn btn-outline-secondary rounded-pill mr-2"><i
                             class='bx bx-menu-alt-left'></i> Filter</button>
-                    <button type="button" class="btn btn-outline-secondary rounded-pill mr-2" id="v-pills-Semua-tab"
+                    <button type="button" class="filter-items btn btn-outline-secondary rounded-pill mr-2 d-none" id="v-pills-Semua-tab"
                         data-bs-toggle="pill" data-bs-target="#v-pills-Semua" type="button" role="tab"
                         aria-controls="v-pills-Semua" aria-selected="true">All Product</button>
-                    <button type="button" class="btn btn-outline-secondary rounded-pill mr-2" id="v-pills-makanan-tab"
+                    <button type="button" class="filter-items btn btn-outline-secondary rounded-pill mr-2 d-none" id="v-pills-makanan-tab"
                         data-bs-toggle="pill" data-bs-target="#v-pills-makanan" type="button" role="tab"
                         aria-controls="v-pills-makanan" aria-selected="false">Fish Food</button>
-                    <button type="button" class="btn btn-outline-secondary rounded-pill mr-2" id="v-pills-alat-tab"
+                    <button type="button" class="filter-items btn btn-outline-secondary rounded-pill mr-2 d-none" id="v-pills-alat-tab"
                         data-bs-toggle="pill" data-bs-target="#v-pills-alat" type="button" role="tab"
                         aria-controls="v-pills-alat" aria-selected="false">Fish Equipment</button>
-                    <button type="button" class="btn btn-outline-secondary rounded-pill mr-2" id="v-pills-medicine-tab"
+                    <button type="button" class="filter-items btn btn-outline-secondary rounded-pill mr-2 d-none" id="v-pills-medicine-tab"
                         data-bs-toggle="pill" data-bs-target="#v-pills-medicine" type="button" role="tab"
                         aria-controls="v-pills-alat" aria-selected="false">Fish Medicine</button>
                 </div>
@@ -494,6 +504,19 @@
             }
         });
 
+        $(document).on('click', '#filter-mobile', function(e) {
+            var $this = $( this );
+
+            if ( $this.is('.is-checked') ) {
+                $('.filter-items').addClass('d-none');
+
+            } else {
+                $('.filter-items').removeClass('d-none');
+            }
+
+            $this.toggleClass('is-checked');
+        });
+
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
@@ -657,5 +680,6 @@
                 }
             })
         }
+
     </script>
 @endpush
