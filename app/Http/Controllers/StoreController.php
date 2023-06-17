@@ -11,8 +11,13 @@ class StoreController extends Controller
     {
         $auth = Auth::guard('member')->user();
 
+        $kategori = $this->request->input('kategori', null);
+
         $products = Product::
             where('status_aktif', 1)
+            ->when($kategori !== null, function ($q) use ($kategori){
+                $q->where('id_kategori_produk', $kategori);
+            })
             ->when($auth !== null, function ($q) use ($auth){
                 return $q->with([
                     'category',
@@ -25,58 +30,63 @@ class StoreController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate($this->perPage());
 
-        $fishFoodProducts = Product::
-            where('status_aktif', 1)
-            ->where('id_kategori_produk', 2)
-            ->when($auth !== null, function ($q) use ($auth){
-                return $q->with([
-                    'category',
-                    'photo',
-                    'wishlist' => fn($w) => $w->where('id_peserta', $auth->id_peserta)]
-                );
-            }, function ($q) {
-                return $q->with(['category', 'photo']);
-            })
-            ->orderBy('created_at', 'desc')
-            ->paginate($this->perPage());
+        // $fishFoodProducts = Product::
+        //     where('status_aktif', 1)
+        //     ->where('id_kategori_produk', 2)
+        //     ->when($auth !== null, function ($q) use ($auth){
+        //         return $q->with([
+        //             'category',
+        //             'photo',
+        //             'wishlist' => fn($w) => $w->where('id_peserta', $auth->id_peserta)]
+        //         );
+        //     }, function ($q) {
+        //         return $q->with(['category', 'photo']);
+        //     })
+        //     ->orderBy('created_at', 'desc')
+        //     ->paginate($this->perPage());
 
-        $fishEquipmentProducts = Product::
-            where('status_aktif', 1)
-            ->where('id_kategori_produk', 1)
-            ->when($auth !== null, function ($q) use ($auth){
-                return $q->with([
-                    'category',
-                    'photo',
-                    'wishlist' => fn($w) => $w->where('id_peserta', $auth->id_peserta)]
-                );
-            }, function ($q) {
-                return $q->with(['category', 'photo']);
-            })
-            ->orderBy('created_at', 'desc')
-            ->paginate($this->perPage());
+        // $fishEquipmentProducts = Product::
+        //     where('status_aktif', 1)
+        //     ->where('id_kategori_produk', 1)
+        //     ->when($auth !== null, function ($q) use ($auth){
+        //         return $q->with([
+        //             'category',
+        //             'photo',
+        //             'wishlist' => fn($w) => $w->where('id_peserta', $auth->id_peserta)]
+        //         );
+        //     }, function ($q) {
+        //         return $q->with(['category', 'photo']);
+        //     })
+        //     ->orderBy('created_at', 'desc')
+        //     ->paginate($this->perPage());
 
-        $fishMedicineProducts = Product::
-            where('status_aktif', 1)
-            ->where('id_kategori_produk', 3)
-            ->when($auth !== null, function ($q) use ($auth){
-                return $q->with([
-                    'category',
-                    'photo',
-                    'wishlist' => fn($w) => $w->where('id_peserta', $auth->id_peserta)]
-                );
-            }, function ($q) {
-                return $q->with(['category', 'photo']);
-            })
-            ->orderBy('created_at', 'desc')
-            ->paginate($this->perPage());
+        // $fishMedicineProducts = Product::
+        //     where('status_aktif', 1)
+        //     ->where('id_kategori_produk', 3)
+        //     ->when($auth !== null, function ($q) use ($auth){
+        //         return $q->with([
+        //             'category',
+        //             'photo',
+        //             'wishlist' => fn($w) => $w->where('id_peserta', $auth->id_peserta)]
+        //         );
+        //     }, function ($q) {
+        //         return $q->with(['category', 'photo']);
+        //     })
+        //     ->orderBy('created_at', 'desc')
+        //     ->paginate($this->perPage());
+
+        $fishFoodProducts = [];
+        $fishEquipmentProducts = [];
+        $fishMedicineProducts = [];
 
         return view('onelito_store',[
             'auth' => $auth,
             'products' => $products,
-            'fishFoodProducts' => $fishFoodProducts,
-            'fishEquipmentProducts' => $fishEquipmentProducts,
-            'fishMedicineProducts' => $fishMedicineProducts,
-            'title' => 'ONELITO STORE'
+            // 'fishFoodProducts' => $fishFoodProducts,
+            // 'fishEquipmentProducts' => $fishEquipmentProducts,
+            // 'fishMedicineProducts' => $fishMedicineProducts,
+            'title' => 'ONELITO STORE',
+            'kategori' => $this->request->input('kategori', null)
         ]);
     }
 

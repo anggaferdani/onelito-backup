@@ -77,6 +77,22 @@
 
         <br><br><br><br><br>
 
+             @php 
+                $kategoriTitle = 'All Product';
+
+                if ($kategori == 1) {
+                    $kategoriTitle = 'Fish Equipment';
+                }
+
+                if ($kategori == 2) {
+                    $kategoriTitle = 'Fish Food';
+                }
+
+                if ($kategori == 3) {
+                    $kategoriTitle = 'Fish Medicine';
+                }
+            @endphp
+
         <div class="row gx-3">
             {{-- On screens that are 992px or less, set the display on --}}
             <div class="col-3 nav-samping">
@@ -86,22 +102,22 @@
                         <div class="card-body">
                             <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist"
                                 aria-orientation="vertical">
-                                <button class="nav-link active bg-tranparent text-body m-2" style="text-align:left"
-                                    id="v-pills-Semua-tab" data-bs-toggle="pill" data-bs-target="#v-pills-Semua"
-                                    type="button" role="tab" aria-controls="v-pills-Semua" aria-selected="true">All
-                                    Product</button>
-                                <button class="nav-link bg-tranparent text-body m-2" style="text-align:left"
-                                    id="v-pills-makanan-tab" data-bs-toggle="pill" data-bs-target="#v-pills-makanan"
+                                <a href="{{ url('/onelito_store') }}" class="nav-link bg-tranparent text-body m-2 {{ ($kategori) == null ? 'active' : '' }}" style="text-align:left"
+                                    id="v-pills-Semua-tab" 
+                                    role="tab" aria-controls="v-pills-Semua" aria-selected="true">All
+                                    Product</a>
+                                <a href="{{ url('/onelito_store?kategori=2') }}" class="nav-link bg-tranparent text-body m-2 {{ ($kategori) == 2 ? 'active' : '' }}" style="text-align:left"
+                                    id="v-pills-makanan-tab"
                                     type="button" role="tab" aria-controls="v-pills-makanan" aria-selected="false">Fish
-                                    Food</button>
-                                <button class="nav-link bg-tranparent text-body m-2" style="text-align:left"
-                                    id="v-pills-alat-tab" data-bs-toggle="pill" data-bs-target="#v-pills-alat"
+                                    Food</a>
+                                <a href="{{ url('/onelito_store?kategori=1') }}" class="nav-link bg-tranparent text-body m-2 {{ ($kategori) == 1 ? 'active' : '' }}" style="text-align:left"
+                                    id="v-pills-alat-tab" 
                                     type="button" role="tab" aria-controls="v-pills-alat" aria-selected="false">Fish
-                                    Equipment</button>
-                                <button class="nav-link bg-tranparent text-body m-2" style="text-align:left"
-                                    id="v-pills-medicine-tab" data-bs-toggle="pill" data-bs-target="#v-pills-medicine"
+                                    Equipment</a>
+                                <a href="{{ url('/onelito_store?kategori=3') }}" class="nav-link bg-tranparent text-body m-2 {{ ($kategori) == 3 ? 'active' : '' }}" style="text-align:left"
+                                    id="v-pills-medicine-tab" 
                                     type="button" role="tab" aria-controls="v-pills-medicine" aria-selected="false">Fish
-                                    Medicine</button>
+                                    Medicine</a>
                             </div>
                         </div>
                     </div>
@@ -113,17 +129,17 @@
                 <div class="d-flex nav nav-pills" id="v-pills-tab" role="tablist">
                     <button type="button" id="filter-mobile" class="btn btn-outline-secondary rounded-pill mr-2"><i
                             class='bx bx-menu-alt-left'></i> Filter</button>
-                    <button type="button" class="filter-items btn btn-outline-secondary rounded-pill mr-2 d-none" id="v-pills-Semua-tab"
-                        data-bs-toggle="pill" data-bs-target="#v-pills-Semua" type="button" role="tab"
+                    <button onclick="window.location.href='/onelito_store'" type="button" class="{{ ($kategori) == null ? 'active' : '' }} filter-items btn btn-outline-secondary rounded-pill mr-2 d-none" id="v-pills-Semua-tab"
+                         type="button" role="tab"
                         aria-controls="v-pills-Semua" aria-selected="true">All Product</button>
-                    <button type="button" class="filter-items btn btn-outline-secondary rounded-pill mr-2 d-none" id="v-pills-makanan-tab"
-                        data-bs-toggle="pill" data-bs-target="#v-pills-makanan" type="button" role="tab"
+                    <button onclick="window.location.href='/onelito_store?kategori=2'" type="button" class="{{ ($kategori) == 2 ? 'active' : '' }} filter-items btn btn-outline-secondary rounded-pill mr-2 d-none" id="v-pills-makanan-tab"
+                         type="button" role="tab"
                         aria-controls="v-pills-makanan" aria-selected="false">Fish Food</button>
-                    <button type="button" class="filter-items btn btn-outline-secondary rounded-pill mr-2 d-none" id="v-pills-alat-tab"
-                        data-bs-toggle="pill" data-bs-target="#v-pills-alat" type="button" role="tab"
+                    <button onclick="window.location.href='/onelito_store?kategori=1'" type="button" class="{{ ($kategori) == 1 ? 'active' : '' }} filter-items btn btn-outline-secondary rounded-pill mr-2 d-none" id="v-pills-alat-tab"
+                         type="button" role="tab"
                         aria-controls="v-pills-alat" aria-selected="false">Fish Equipment</button>
-                    <button type="button" class="filter-items btn btn-outline-secondary rounded-pill mr-2 d-none" id="v-pills-medicine-tab"
-                        data-bs-toggle="pill" data-bs-target="#v-pills-medicine" type="button" role="tab"
+                    <button onclick="window.location.href='/onelito_store?kategori=3'" type="button" class="{{ ($kategori) == 3 ? 'active' : '' }} filter-items btn btn-outline-secondary rounded-pill mr-2 d-none" id="v-pills-medicine-tab"
+                         type="button" role="tab"
                         aria-controls="v-pills-alat" aria-selected="false">Fish Medicine</button>
                 </div>
             </div>
@@ -134,7 +150,7 @@
                         <div class="tab-pane fade show active" id="v-pills-Semua" role="tabpanel"
                             aria-labelledby="v-pills-Semua-tab">
                             <div class="container mt-3">
-                                <h5><b>All Product</b></h5>
+                                <h5><b>{{ $kategoriTitle }}</b></h5>
                             </div>
                             <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
                                 @forelse ($products as $product)
@@ -200,295 +216,40 @@
                                 @empty
                                 @endforelse
                             </div>
+                            @php
+                                $prev = $products->previousPageUrl();
+                                $next = $products->nextPageUrl();
+                                $page = '';
+                                
+                                if ($kategori !== null) {
+                                    $prev = $products->previousPageUrl().'&kategori='.$kategori;
+                                    $next = $products->nextPageUrl().'&kategori='.$kategori;
+                                    $page  = "&kategori=$kategori";
+                                }
+                            @endphp
                             <div class="btn-toolbar my-3 justify-content-end" role="toolbar"
                                 aria-label="Toolbar with button groups">
                                 <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <a href="{{ $products->previousPageUrl() }}"><button type="button"
+                                    <a href="{{ $prev }}"><button type="button"
                                             class="btn btn-danger ">Prev</button></a>
                                 </div>
                                 @foreach ($products->onEachSide(0)->links()->elements as $elements)
                                     @if (is_array($elements))
                                         @foreach ($elements as $key => $element)
                                             <div class="btn-group me-2" role="group" aria-label="First group">
-                                                <a href="?page={{ $key }}"><button type="button"
+                                                <a href="?page={{ $key.$page }}"><button type="button"
                                                         class="btn btn-danger {{ (request()->page ?? 1) == $key ? 'active disabled' : '' }}"">{{ $key }}</button></a>
                                             </div>
                                         @endforeach
                                     @endif
                                 @endforeach
                                 <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <a href="{{ $products->nextPageUrl() }}"><button type="button"
+                                    <a href="{{ $next }}"><button type="button"
                                             class="btn btn-danger">Next</button></a>
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="v-pills-makanan" role="tabpanel"
-                            aria-labelledby="v-pills-makanan-tab">
-                            <div class="container mt-3">
-                                <h5><b>Fish Food</b></h5>
-                            </div>
-                            <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-                                @forelse ($fishFoodProducts as $fishfoodProduct)
-                                    @php
-                                        $productPhoto2 = 'img/produk1.jpeg';
-
-                                        if ($fishfoodProduct->photo !== null) {
-                                            $productPhoto2 = url('storage') . '/' . $fishfoodProduct->photo->path_foto;
-                                        }
-
-                                        $wishlistClass = 'far fa-heart';
-
-                                        if (array_key_exists('wishlist', $fishfoodProduct->toArray()) && $fishfoodProduct->wishlist !== null) {
-                                            $wishlistClass = 'fas fa-heart';
-                                        }
-
-
-                                    @endphp
-                                    <div class="col">
-                                        <div class="p-0 border bg-light cart">
-                                            <a href="/onelito_store/{{ $fishfoodProduct->id_produk }}"><img
-                                                    src="{{ $productPhoto2 }}" alt="bio media" class="card-img-top"
-                                                    height="170"></a>
-                                            <div class="container px-2">
-                                                <div class="cb-judul">
-                                                    <p>{!! Illuminate\Support\Str::limit("$fishfoodProduct->merek_produk $fishfoodProduct->nama_produk", 35) !!}</p>
-                                                </div>
-                                                <p><b>Rp {{ number_format($fishfoodProduct->harga, 0, '.', '.') }}</b></p>
-
-                                            </div>
-                                            {{-- <div class="col px-2 mb-2" style="text-align: end">
-                                                <button class="border rounded-1 text-black-50"
-                                                    style="background-color: transparent;font-size:small"><i
-                                                        data-id="{{ $fishfoodProduct->id_produk }}"
-                                                        class="{{ $wishlistClass }} wishlist produk-{{ $fishfoodProduct->id_produk }}"></i>
-                                                    <span>Wishlist</span></button>
-                                            </div> --}}
-                                            <div class="mb-1">
-                                                <button class="border-0 btn-success rounded-2 order-now"
-                                                    data-id="{{ $fishfoodProduct->id_produk }}"
-                                                    data-price="{{ $fishfoodProduct->harga }}"
-                                                    style="background-color:#188518;">Order
-                                                    Now</button>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-8 text-center">
-                                                        <button class="border rounded-1 text-black-50"
-                                                            style="background-color: transparent;font-size:small"><i
-                                                                data-id="{{ $fishfoodProduct->id_produk }}"
-                                                                class="{{ $wishlistClass }} wishlist produk-{{ $fishfoodProduct->id_produk }}"></i>
-                                                            <span>Wishlist</span></button>
-                                                    </div>
-                                                    <div class="col-4 mb-1">
-                                                        <button class="rounded addcart"
-                                                            data-id="{{ $fishfoodProduct->id_produk }}"
-                                                            style="background-color: red;border-color:red; outline: none; border: none;"><i
-                                                                class="fa-solid fa-cart-shopping"
-                                                                style="color: white"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @empty
-                                @endforelse
-                            </div>
-                            <div class="btn-toolbar my-3 justify-content-end" role="toolbar"
-                                aria-label="Toolbar with button groups">
-                                <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <a href="{{ $fishFoodProducts->previousPageUrl() }}"><button type="button"
-                                            class="btn btn-danger ">Prev</button></a>
-                                </div>
-                                @foreach ($fishFoodProducts->onEachSide(0)->links()->elements as $elements)
-                                    @if (is_array($elements))
-                                        @foreach ($elements as $key => $element)
-                                            <div class="btn-group me-2" role="group" aria-label="First group">
-                                                <a href="?page={{ $key }}"><button type="button"
-                                                        class="btn btn-danger {{ (request()->page ?? 1) == $key ? 'active disabled' : '' }}"">{{ $key }}</button></a>
-                                            </div>
-                                        @endforeach
-                                    @endif
-                                @endforeach
-                                <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <a href="{{ $fishFoodProducts->nextPageUrl() }}"><button type="button"
-                                            class="btn btn-danger ">Next</button></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-alat" role="tabpanel" aria-labelledby="v-pills-alat-tab">
-                            <div class="container mt-3">
-                                <h5><b>Fish Equipment</b></h5>
-                            </div>
-                            <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-
-                                @forelse ($fishEquipmentProducts as $fishgearProduct)
-                                    @php
-                                        $productPhoto3 = 'img/produk1.jpeg';
-
-                                        if ($fishgearProduct->photo !== null) {
-                                            $productPhoto3 = url('storage') . '/' . $fishgearProduct->photo->path_foto;
-                                        }
-                                        $wishlistClass = 'far fa-heart';
-
-                                        if (array_key_exists('wishlist', $fishgearProduct->toArray()) && $fishgearProduct->wishlist !== null) {
-                                            $wishlistClass = 'fas fa-heart';
-                                        }
-                                    @endphp
-                                    <div class="col">
-                                        <div class="p-0 border bg-light cart">
-                                            <a href="/onelito_store/{{ $fishgearProduct->id_produk }}"><img
-                                                    src="{{ $productPhoto3 }}" alt="bio media" class="card-img-top"
-                                                    height="170"></a>
-                                            <div class="container px-2">
-                                                <div class="cb-judul">
-                                                    <p>{!! Illuminate\Support\Str::limit("$fishgearProduct->merek_produk $fishgearProduct->nama_produk", 35) !!}</p>
-                                                </div>
-                                                <p><b>Rp {{ number_format($fishgearProduct->harga, 0, '.', '.') }}</b></p>
-
-                                            </div>
-                                            {{-- <div class="col px-2 mb-2" style="text-align: end">
-                                                <button class="border rounded-1 text-black-50"
-                                                    style="background-color: transparent;font-size:small"><i
-                                                        data-id="{{ $fishgearProduct->id_produk }}"
-                                                        class="{{ $wishlistClass }} wishlist produk-{{ $fishgearProduct->id_produk }}"></i>
-                                                    <span>Wishlist</span></button>
-                                            </div> --}}
-                                            <div class="mb-1">
-                                                <button class="border-0 btn-success rounded-2 order-now"
-                                                    data-id="{{ $fishgearProduct->id_produk }}"
-                                                    data-price="{{ $fishgearProduct->harga }}"
-                                                    style="background-color:#188518;">Order
-                                                    Now</button>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-8 text-center">
-                                                        <button class="border rounded-1 text-black-50"
-                                                            style="background-color: transparent;font-size:small"><i
-                                                                data-id="{{ $fishgearProduct->id_produk }}"
-                                                                class="{{ $wishlistClass }} wishlist produk-{{ $fishgearProduct->id_produk }}"></i>
-                                                            <span>Wishlist</span></button>
-                                                    </div>
-                                                    <div class="col-4 mb-1">
-                                                        <button class="rounded addcart"
-                                                            data-id="{{ $fishgearProduct->id_produk }}"
-                                                            style="background-color: red;border-color:red; outline: none; border: none;"><i
-                                                                class="fa-solid fa-cart-shopping"
-                                                                style="color: white"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @empty
-                                @endforelse
-                            </div>
-                            <div class="btn-toolbar my-3 justify-content-end" role="toolbar"
-                                aria-label="Toolbar with button groups">
-                                <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <a href="{{ $fishEquipmentProducts->previousPageUrl() }}"><button type="button"
-                                            class="btn btn-danger ">Prev</button></a>
-                                </div>
-                                @foreach ($fishEquipmentProducts->onEachSide(0)->links()->elements as $elements)
-                                    @if (is_array($elements))
-                                        @foreach ($elements as $key => $element)
-                                            <div class="btn-group me-2" role="group" aria-label="First group">
-                                                <a href="?page={{ $key }}"><button type="button"
-                                                        class="btn btn-danger {{ (request()->page ?? 1) == $key ? 'active disabled' : '' }}"">{{ $key }}</button></a>
-                                            </div>
-                                        @endforeach
-                                    @endif
-                                @endforeach
-                                <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <a href="{{ $fishEquipmentProducts->nextPageUrl() }}"><button type="button"
-                                            class="btn btn-danger ">Next</button></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-medicine" role="tabpanel" aria-labelledby="v-pills-medicine-tab">
-                            <div class="container mt-3">
-                                <h5><b>Fish Medicine</b></h5>
-                            </div>
-                            <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-
-                                @forelse ($fishMedicineProducts as $fishMedicineProduct)
-                                    @php
-                                        $productPhoto3 = 'img/produk1.jpeg';
-
-                                        if ($fishMedicineProduct->photo !== null) {
-                                            $productPhoto3 = url('storage') . '/' . $fishMedicineProduct->photo->path_foto;
-                                        }
-                                        
-                                        $wishlistClass = 'far fa-heart';
-
-                                        if (array_key_exists('wishlist', $fishMedicineProduct->toArray()) && $fishMedicineProduct->wishlist !== null) {
-                                            $wishlistClass = 'fas fa-heart';
-                                        }
-                                    @endphp
-                                    <div class="col">
-                                        <div class="p-0 border bg-light cart">
-                                            <a href="/onelito_store/{{ $fishMedicineProduct->id_produk }}"><img
-                                                    src="{{ $productPhoto3 }}" alt="bio media" class="card-img-top"
-                                                    height="170"></a>
-                                            <div class="container px-2">
-                                                <div class="cb-judul">
-                                                    <p>{!! Illuminate\Support\Str::limit("$fishMedicineProduct->merek_produk $fishMedicineProduct->nama_produk", 35) !!}</p>
-                                                </div>
-                                                <p><b>Rp {{ number_format($fishMedicineProduct->harga, 0, '.', '.') }}</b></p>
-
-                                            </div>
-                                            <div class="mb-1">
-                                                <button class="border-0 btn-success rounded-2 order-now"
-                                                    data-id="{{ $fishMedicineProduct->id_produk }}"
-                                                    data-price="{{ $fishMedicineProduct->harga }}"
-                                                    style="background-color:#188518;">Order
-                                                    Now</button>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-8 text-center">
-                                                        <button class="border rounded-1 text-black-50"
-                                                            style="background-color: transparent;font-size:small"><i
-                                                                data-id="{{ $fishMedicineProduct->id_produk }}"
-                                                                class="{{ $wishlistClass }} wishlist produk-{{ $fishMedicineProduct->id_produk }}"></i>
-                                                            <span>Wishlist</span></button>
-                                                    </div>
-                                                    <div class="col-4 mb-1">
-                                                        <button class="rounded addcart"
-                                                            data-id="{{ $fishMedicineProduct->id_produk }}"
-                                                            style="background-color: red;border-color:red; outline: none; border: none;"><i
-                                                                class="fa-solid fa-cart-shopping"
-                                                                style="color: white"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @empty
-                                @endforelse
-                            </div>
-                            <div class="btn-toolbar my-3 justify-content-end" role="toolbar"
-                                aria-label="Toolbar with button groups">
-                                <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <a href="{{ $fishMedicineProducts->previousPageUrl() }}"><button type="button"
-                                            class="btn btn-danger ">Prev</button></a>
-                                </div>
-                                @foreach ($fishMedicineProducts->onEachSide(0)->links()->elements as $elements)
-                                    @if (is_array($elements))
-                                        @foreach ($elements as $key => $element)
-                                            <div class="btn-group me-2" role="group" aria-label="First group">
-                                                <a href="?page={{ $key }}"><button type="button"
-                                                        class="btn btn-danger {{ (request()->page ?? 1) == $key ? 'active disabled' : '' }}"">{{ $key }}</button></a>
-                                            </div>
-                                        @endforeach
-                                    @endif
-                                @endforeach
-                                <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <a href="{{ $fishMedicineProducts->nextPageUrl() }}"><button type="button"
-                                            class="btn btn-danger ">Next</button></a>
-                                </div>
-                            </div>
-                        </div>
+                    
                     </div>
                 </div>
             </div>
