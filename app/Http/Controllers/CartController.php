@@ -138,7 +138,7 @@ class CartController extends Controller
         }
     
 
-        Mail::to('rifqizzz6@gmail.com')->send(new OrderRequest($order));
+        Mail::to('onelito.koi@gmail.com')->send(new OrderRequest($order));
 
         return response()->json([
             'success' => true,
