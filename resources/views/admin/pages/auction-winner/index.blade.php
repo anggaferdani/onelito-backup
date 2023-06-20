@@ -197,14 +197,14 @@
                         detailTable += `<tr>
                                     <th data-width="40">${no}</th>
                                     <th><img style="width: 100px;
-                                    height: 100px;
-                                    object-fit: cover;" src="${img}"></th>
+                                    height: 145px;
+                                    " src="${img}"></th>
                                     <th class="">Ikan Lelang No. ${detail.bidding.event_fish.no_ikan}</th>
                                     <th class="">Rp. ${numberTotal}</th>
                                 </tr>`
                         no++;
                     });
-                    
+
                     var city = '';
                     var prov = '';
 
