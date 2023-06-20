@@ -203,7 +203,7 @@ class AuctionWinnerController extends Controller
                 ->whereHas('eventFish', fn($q2) => $q2->where('id_event', $idEvent))
             ;
         })
-        ->with('bidding.eventFish')
+        ->with('bidding.eventFish.photo')
         ->get();
 
         $member = Member::with(['city', 'province'])->findOrFail($idPeserta);

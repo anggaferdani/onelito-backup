@@ -179,20 +179,32 @@
                                 <tbody>
                                     <tr>
                                         <th data-width="40">#</th>
+                                        <th>Foto ikan</th>
                                         <th class="">Item</th>
                                         <th class="">Total</th>
                                     </tr>`;
                     let no = 1;
                     res.details.forEach(detail => {
+                        console.log({detail})
                         sumTotal += detail.bidding.nominal_bid;
                         var numberTotal = thousandSeparator(detail.bidding.nominal_bid);
+                        var img = '';
+
+                        if (detail.bidding.event_fish.photo !== null) {
+                            img = `/storage/${detail.bidding.event_fish.photo.path_foto}`;
+                        }
+
                         detailTable += `<tr>
                                     <th data-width="40">${no}</th>
+                                    <th><img style="width: 100px;
+                                    height: 100px;
+                                    object-fit: cover;" src="${img}"></th>
                                     <th class="">Ikan Lelang No. ${detail.bidding.event_fish.no_ikan}</th>
                                     <th class="">Rp. ${numberTotal}</th>
                                 </tr>`
                         no++;
                     });
+                    
                     var city = '';
                     var prov = '';
 
