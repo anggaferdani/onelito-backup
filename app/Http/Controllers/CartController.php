@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderRequest;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class CartController extends Controller
 {
@@ -134,6 +136,9 @@ class CartController extends Controller
                 'productable_type' => $dOrder['type'],
             ]);
         }
+    
+
+        Mail::to('rifqizzz6@gmail.com')->send(new OrderRequest($order));
 
         return response()->json([
             'success' => true,

@@ -78,6 +78,12 @@
         <br><br><br><br><br>
 
              @php 
+                $auth = Auth::guard('member')->user();
+
+                if ($auth !== null) {
+                    $auth = true;
+                }
+
                 $kategoriTitle = 'All Product';
 
                 if ($kategori == 1) {
@@ -259,6 +265,7 @@
 @push('scripts')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
+        let user = @json($auth);
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -377,6 +384,34 @@
             var nominal = $(this).attr('data-price');
             nominal = thousandSeparator(nominal)
 
+            if (user == null) {
+            swalWithBootstrapButtons.fire({
+                title: 'Belum Login',
+                text: `Anda harus login terlebih dahulu untuk dapat melakukan order`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ke halaman login',
+                cancelButtonText: 'Tidak',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = '/login';
+
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    // swalWithBootstrapButtons.fire(
+                    //     'Batal',
+                    //     'Pesanan dibatalkan',
+                    //     'error'
+                    // )
+                }
+            })
+            }
+
+            if (user == true) {
+
             swalWithBootstrapButtons.fire({
                 title: 'apa anda yakin?',
                 text: `Total harga Rp. ${nominal}`,
@@ -399,6 +434,8 @@
                     // )
                 }
             })
+            }
+
         })
 
         function orderNowProcess(element) {

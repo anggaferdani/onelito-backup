@@ -79,10 +79,20 @@
                                 <p>Rp 1.300.000</p>
                             </div>
                         </div>
-                        <button type="button"
-                        onclick="orderNow()"
-                        class="btn btn-success w-100 justify-content-between mb-xl-2">Order
-                            Now</button>
+                        @auth('member')
+                            <button type="button"
+                            onclick="orderNow()"
+                            class="btn btn-success w-100 justify-content-between mb-xl-2">Order
+                                Now</button>
+                        @endauth
+
+                        @guest('member')
+                            <button type="button"
+                                onclick="loginNow()"
+                                class="btn btn-success w-100 justify-content-between mb-xl-2">Order
+                                Now</button>
+                        @endguest
+
                         <div class="row gx-5 mt-3">
                             <div class="col">
                                 <button type="button" class="btn btn-success w-100 justify-content-between text-success"
@@ -129,10 +139,20 @@
                                         <p id="total_price" class="total-price">Rp {{ number_format($product->harga, 0, '.', '.') }}</p>
                                     </div>
                                 </div>
+                                @auth('member')
+
                                 <button type="button"
                                 onclick="orderNow()"
                                 class="btn btn-success w-100 justify-content-between mb-xl-2">Order
                                     Now</button>
+                                @endauth
+
+                                @guest('member')
+                                <button type="button"
+                                    onclick="loginNow()"
+                                    class="btn btn-success w-100 justify-content-between mb-xl-2">Order
+                                    Now</button>
+                                @endguest
                                 <div class="row gx-5">
                                     <div class="col">
                                         <button type="button"
@@ -275,6 +295,33 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     orderNowProcess();
+
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    // swalWithBootstrapButtons.fire(
+                    //     'Batal',
+                    //     'Pesanan dibatalkan',
+                    //     'error'
+                    // )
+                }
+            })
+        }
+
+        function loginNow() {
+
+            swalWithBootstrapButtons.fire({
+                title: 'Belum Login',
+                text: `Anda harus login terlebih dahulu untuk dapat melakukan order`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ke halaman login',
+                cancelButtonText: 'Tidak',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = '/login';
 
                 } else if (
                     /* Read more about handling dismissals below */
