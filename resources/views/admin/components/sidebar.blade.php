@@ -43,7 +43,7 @@
             </li>
             <li class="nav-item {{ $type_menu === 'manage-order' ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ url('admin/orders') }}"><i class="fas fa-store"></i> <span>Onelito Store</span></a>
+                    href="{{ url('admin/orders') }}"><i class="fas fa-store"></i> <span>Transaksi Order</span></a>
             </li>
             <li class="nav-item {{ $type_menu === 'manage-fish' ? 'active' : '' }}">
                 <a class="nav-link"
