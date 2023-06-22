@@ -137,8 +137,8 @@ class CartController extends Controller
             ]);
         }
     
-
-        Mail::to('onelito.koi@gmail.com')->send(new OrderRequest($order));
+        // temporary disable 
+        // Mail::to('onelito.koi@gmail.com')->send(new OrderRequest($order));
 
         return response()->json([
             'success' => true,
