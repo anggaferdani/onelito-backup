@@ -38,6 +38,11 @@
     <br><br><br><br>
     <div id="carouselExampleControls" class="pt-2 carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner img-mh-300">
+            <div class="carousel-item active">
+                <div class="container-fluit" style="background-color:red;">
+                    <img src="img/banner_special_price.jpg" class="d-block w-100" alt="Frame">
+                </div>
+            </div>
             @forelse($auctions as $key => $auction)
                 @php
                     $bannerImg = 'img/event.png';
@@ -55,7 +60,7 @@
                     </div>
                 @endif
             @empty
-                <div class="carousel-item active">
+                <div class="carousel-item">
                     <div class="container-fluit" style="background-color:red;">
                         <img src="img/banner1.png" class="d-block w-100" alt="Frame">
                     </div>
