@@ -361,9 +361,30 @@
                 },
                 dataType: "json",
                 complete: function(res) {
-                    document.location = '/profil?section=store-cart'
-                    // element.attr('class', 'fas fa-heart wishlist');
-                    button.removeAttr('disabled')
+                    // document.location = '/profil?section=store-cart'
+                    swalWithBootstrapButtons.fire({
+                        title: 'Product berhasil ditambahkan',
+                        text: `Klik Ya, untuk lihat keranjang`,
+                        icon: 'success',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ya',
+                        cancelButtonText: 'Tidak',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.location = '/profil?section=store-cart'
+
+                        } else if (
+                            /* Read more about handling dismissals below */
+                            result.dismiss === Swal.DismissReason.cancel
+                        ) {
+                            // swalWithBootstrapButtons.fire(
+                            //     'Batal',
+                            //     'Pesanan dibatalkan',
+                            //     'error'
+                            // )
+                        }
+                    })
                 },
                 error: function(error) {
                     console.log(error)
@@ -450,33 +471,36 @@
 
             var id = $(element).attr('data-id');
 
-            orderItem.id = id;
-            orderItem.price = nominal;
+            // orderItem.id = id;
 
-            items += Number(output)
-            orderItem.price = nominal * Number(output)
-            orderItem.type = 'Product';
-            orderItem.total_produk = Number(output);
+            location.href = `/order-now?item=${id}`;
+            // orderItem.price = nominal;
 
-            dataOrder.push(orderItem);
+            // items += Number(output)
+            // orderItem.price = nominal * Number(output)
+            // orderItem.type = 'Product';
+            // orderItem.total_produk = Number(output);
 
-            $.ajax({
-                type: 'POST',
-                url: `/carts-order?method=single`,
-                data: {
-                    data_order: dataOrder,
-                    total: nominal * Number(output),
-                    item: items,
-                },
-                dataType: "json",
-                success: function(res) {
-                    location.href = `/carts/${res.id}`;
-                },
-                error: function(error) {
-                    // console.log(error)
-                    return false
-                }
-            })
+            // dataOrder.push(orderItem);
+
+            // $.ajax({
+            //     type: 'GET',
+            //     url: `/order-now`,
+            //     data: {
+            //         // data_order: dataOrder,
+            //         // total: nominal * Number(output),
+            //         // item: items,
+            //         item: dataOrder
+            //     },
+            //     dataType: "json",
+            //     success: function(res) {
+            //         location.href = `/carts/${res.id}`;
+            //     },
+            //     error: function(error) {
+            //         // console.log(error)
+            //         return false
+            //     }
+            // })
         }
 
     </script>

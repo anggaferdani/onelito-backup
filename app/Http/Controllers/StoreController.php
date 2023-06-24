@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class StoreController extends Controller
@@ -102,6 +103,28 @@ class StoreController extends Controller
             'auth' => $auth,
             'product' => $product,
             'title' => 'ONELITO STORE'
+        ]);
+    }
+
+    public function orderNow()
+    {
+        $item = $this->request->item;
+        $ids= [];
+
+        if ($item !== null) {
+            $ids = [$item];
+        }
+
+        $auth = Auth::guard('member')->user();
+        
+        $products = Product::whereIn('id_produk', $ids)
+        ->with('photo')
+        ->get();
+
+        return view('order-now',[
+            'auth' => $auth,
+            'title' => 'Transaksi Order',
+            'products' => $products,
         ]);
     }
 }

@@ -241,9 +241,29 @@
                 },
                 dataType: "json",
                 complete: function(res) {
-                    document.location = '/profil?section=store-cart'
-                    // element.attr('class', 'fas fa-heart wishlist');
-                    button.removeAttr('disabled')
+                    swalWithBootstrapButtons.fire({
+                        title: 'Product berhasil ditambahkan',
+                        text: `Klik Ya, untuk lihat keranjang`,
+                        icon: 'success',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ya',
+                        cancelButtonText: 'Tidak',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.location = '/profil?section=store-cart'
+
+                        } else if (
+                            /* Read more about handling dismissals below */
+                            result.dismiss === Swal.DismissReason.cancel
+                        ) {
+                            // swalWithBootstrapButtons.fire(
+                            //     'Batal',
+                            //     'Pesanan dibatalkan',
+                            //     'error'
+                            // )
+                        }
+                    })
                 },
                 error: function(error) {
                     console.log(error)
