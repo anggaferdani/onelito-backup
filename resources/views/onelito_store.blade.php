@@ -36,8 +36,16 @@
         }
 
         @media screen and (min-width: 601px) and (max-width: 991px) {
-            #filter-tab {
+            /* #filter-tab {
                 display: block;
+            } */
+
+            .nav-atas {
+                display: block
+            }
+
+            .nav-samping {
+                display: none;
             }
         }
 
