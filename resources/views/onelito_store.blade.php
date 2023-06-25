@@ -17,6 +17,10 @@
         .filter-items {
             display: inline-block;
         }
+
+        #filter-tab {
+            display: none;
+        }
         /* On screens that are 992px or less, set the background color to blue */
         @media screen and (min-width: 601px) {
             .nav-atas {
@@ -28,6 +32,12 @@
         @media screen and (max-width: 600px) {
             .nav-samping {
                 display: none;
+            }
+        }
+
+        @media screen and (min-width: 601px) and (max-width: 991px) {
+            #filter-tab {
+                display: block;
             }
         }
 
@@ -99,11 +109,16 @@
                 }
             @endphp
 
+        <!-- <a id="filter-tab" class="float">
+            <i class="fa fa-fukter my-float">Filter</i>
+        </a> -->
+        <button type="button" id="filter-tab" class="btn btn-outline-secondary rounded-pill mr-2"><i
+        class='bx bx-menu-alt-left'></i> Filter</button>
         <div class="row gx-3">
             {{-- On screens that are 992px or less, set the display on --}}
             <div class="col-3 nav-samping">
                 <div class="">
-                    <div class="card text-dark bg-light mb-3 position-fixed" style="max-width: 18rem;">
+                    <div class="filter-box card text-dark bg-light mb-3 position-fixed" style="max-width: 18rem;">
                         <div class="card-header"><i class='bx bx-menu-alt-left'></i> Etalase Toko</div>
                         <div class="card-body">
                             <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist"
@@ -283,6 +298,19 @@
             }
 
             $this.toggleClass('is-checked');
+        });
+
+        $(document).on('click', '#filter-tab', function(e) {
+            var $this = $( this );
+
+            $this.toggleClass('is-checked');
+
+            if ( $this.is('.is-checked') ) {
+                $('.filter-box').addClass('d-none');
+
+            } else {
+                $('.filter-box').removeClass('d-none');
+            }
         });
 
         const swalWithBootstrapButtons = Swal.mixin({
