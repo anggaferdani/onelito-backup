@@ -99,6 +99,7 @@ Route::group(['middleware' => 'auth:member'], function () {
     Route::POST('/change-profile', [ProfileController::class, 'changeProfile']);
     Route::resource('/carts', CartController::class);
     Route::POST('/carts-order', [CartController::class, 'order']);
+    Route::GET('/carts-order/{id}/pdf', [CartController::class, 'pdf']);
     Route::get('/auction-bid-now/{idIkan}', [AuctionController::class, 'bidNow'])->name('auction.bid_now');
     Route::get('/profil', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/shoppingcart', [ProfileController::class, 'shopcart'])->name('profile.shopcart');

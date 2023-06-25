@@ -136,73 +136,99 @@
             </div>
 
             <div style="margin-top: 17vh; margin-bottom: 10vh">
-            <div class="card">
+            <!-- <div class="card"> -->
+                <div class="container-fluid">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="container p-0 mt-1">
+                                        <!-- <h5><i class="fa-solid fa-cart-shopping"></i> <b>Shopping cart</b></h5> -->
+                                        <div class="alert alert-success" role="alert">
+                                            Terima kasih atas pesanannya, saat ini order anda sedang di proses oleh admin kami, mohon ditunggu.
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="container p-0">
+                                        <h5 class="mb-3"><i class="fa-solid"></i> <b>Invoice #{{ $order->no_order }}</b></h5>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="card">
                                 <div class="card-body">
-                                    <!-- <div>
-                                        <p>Batas Pembayaran</p>
-                                        <div class="row">
-                                            <div class="col-8">
-                                                <h4 style="font-weight: bold">Minggu, 27 Mar 2022 01 : 47 WIB</h4>
-                                            </div>
-                                            <div class="col-4 text-danger" style="text-align:end; font-weight:bold ">
-                                                <h4>23:54:20</h4>
-                                            </div>
+                                    <div class="row mx-3 table-responsive">
+                                        <table class="table" style="width:700px">
+                                        <thead>
+                                            <tr>
+                                            <th scope="col">Produk</th>
+                                            <th scope="col">Jumlah</th>
+                                            <th scope="col">Harga Satuan</th>
+                                            <th scope="col">Total Harga</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($details as $detail)
+                                                @php
+                                                    $cartable = $detail->productable;
+                                                @endphp
+                                                @if ($detail->productable_type === "Product")
+                                                    <tr>
+                                                        <td width="52%">{{$detail->productable->merek_produk}}-{{ $detail->productable->nama_produk }}</td>
+                                                        <td width="8%">{{ $detail->jumlah_produk }}</td>
+                                                        <td width="20%">Rp. {{ number_format($detail->productable->harga, 0, '.', '.') }}</td>
+                                                        <td width="20%">Rp. {{ number_format($detail->total, 0, '.', '.') }}</td>
+                                                    </tr>    
+                                                @endif
+
+                                                @if ($detail->productable_type === "KoiStock")
+                                                    <tr>
+                                                        <td width="52%">{{ "$cartable->variety | $cartable->breeder | $cartable->size | $cartable->bloodline" }}</td>
+                                                        <td>{{ $detail->jumlah_produk }}</td>
+                                                        <td>Rp. {{ number_format($detail->productable->harga, 0, '.', '.') }}</td>
+                                                        <td>Rp. {{ number_format($detail->total, 0, '.', '.') }}</td>
+                                                    </tr>    
+                                                @endif
+
+                                            @empty
+                                            @endforelse                    
+                                        </tbody>
+                                        </table>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-11">
+                                        <ul class="list-unstyled float-end me-0">
+                                            <li><span class="me-3 float-start">Total Harga ({{ count($details ?? []) }} Barang):</span><i class=""></i>
+                                                Rp. {{ number_format($order->total, 0, '.', '.') }}
+                                            </li>
+                                        </ul>
                                         </div>
-                                    </div> -->
-                                    <hr class="mt-2">
-                                    <hr>
-                                    <hr>
-                                    <br>
-                                    <h4 class="card-subtitle mb-2">Belanja</h4>
-                                    @forelse ($details as $detail)
-                                        @php
-                                            $cartable = $detail->productable;
-                                        @endphp
-                                        @if ($detail->productable_type === "Product")
-                                        <div class="card ">
-                                            <h4 class="d-flex m-2 justify-content-between">
-                                                <span>
-                                                    <span>{{ $detail->jumlah_produk }} x </span>
-                                                    <span style="font-weight: bold"> {{$detail->productable->merek_produk}}-{{ $detail->productable->nama_produk }}</span>
-                                                </span>
-                                                <span style="font-weight: bold">Rp. {{ number_format($detail->total, 0, '.', '.') }}</span>
-                                            </h4>
-                                        </div>
-                                        @endif
-                                        @if ($detail->productable_type === "KoiStock")
-                                        <div class="card ">
-                                            <h4 class="d-flex m-2 justify-content-between">
-                                                <span>
-                                                    <span>{{ $detail->jumlah_produk }} x </span>
-                                                    <span style="font-weight: bold"> {{ "$cartable->variety | $cartable->breeder | $cartable->size | $cartable->bloodline" }}</span>
-                                                </span>
-                                                <span style="font-weight: bold">Rp. {{ number_format($detail->total, 0, '.', '.') }}</span>
-                                            </h4>
-                                        </div>
-                                        @endif
-                                    @empty
-                                    @endforelse
-                                    <h4 class="card-subtitle mb-2 mt-2">Total belanja</h4>
-                                    <div class="card ">
-                                        <h4 class="d-flex m-2" style="font-weight: bold">
-                                            Rp. {{ number_format($order->total, 0, '.', '.') }}
-                                        </h4>
                                     </div>
 
-                                    <br>
-                                    <div class="mt-2" style="">
-                                        <h3>Pembayaran harap menunggu invoice dari admin onelito koi</h3>
-                                    </div>
                                 </div>
                             </div>
 
-            </div>
+
+                        </div>
+                        <div class="container-fluid mt-3">
+                            <div class="col-12">
+                                <div class="float-end">
+                                    <button onclick="pdf()" class="btn btn-success w-100 justify-content-between"> <i class="fa-solid fa-download"></i> Download pdf</button>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+            <!-- </div> -->
         </div>
     </div>
 
     <div class="web">
         <div class="container p-0">
-            <a href="{{ $previous }}" class="text-dark" style="text-decoration: blink"><i
+            <a href="/onelito_store" class="text-dark" style="text-decoration: blink"><i
                     class="fa-solid fa-arrow-left text dark"></i> back</a>
             <br><br>
             <div class="row">
@@ -241,6 +267,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <!-- <div class="nav card mt-3 mb-2 nav-pills">
                         <a class="btn btn-danger w-100 justify-content-between" role="button"
                             id="v-pills-password-tab" href="/profil?section=change-password"
@@ -256,143 +283,87 @@
 
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col m-3">
-                                    <div class="container mt-3 my-3">
-                                        <h5><i class="fa-solid fa-cart-shopping"></i> <b>Shopping cart</b></h5>
+                                <div class="col">
+                                    <div class="container p-0">
+                                        <!-- <h5><i class="fa-solid fa-cart-shopping"></i> <b>Shopping cart</b></h5> -->
+                                        <div class="alert alert-success" role="alert">
+                                            Terima kasih atas pesanannya, saat ini order anda sedang di proses oleh admin kami, mohon ditunggu.
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-2 m-3">
-                                    <div class="ml-auto" style="font-size: 22px">
-                                        <a href="/profil">
-                                            <i class='bx bx-undo' style="font-size: 30px"></i>
-                                        </a>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="container p-0">
+                                        <h5 class="mb-3"><i class="fa-solid"></i> <b>Invoice #{{ $order->no_order }}</b></h5>
                                     </div>
                                 </div>
+                                
                             </div>
                             <div class="card">
                                 <div class="card-body">
-                                    <!-- <div>
-                                        <p>Batas Pembayaran</p>
-                                        <div class="row">
-                                            <div class="col-8">
-                                                <h4 style="font-weight: bold">Minggu, 27 Mar 2022 01 : 47 WIB</h4>
-                                            </div>
-                                            <div class="col-4 text-danger" style="text-align:end; font-weight:bold ">
-                                                <h4>23:54:20</h4>
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                    <br>
-                                    <hr>
-                                    <hr>
-                                    <hr>
-                                    <br>
-                                    <h4 class="card-subtitle mb-2">Belanja</h4>
-                                    @forelse ($details as $detail)
-                                        @php
-                                            $cartable = $detail->productable;
-                                        @endphp
-                                        @if ($detail->productable_type === "Product")
-                                        <div class="card ">
-                                            <h4 class="d-flex m-2 justify-content-between">
-                                                <span>
-                                                    <span>{{ $detail->jumlah_produk }} x </span>
-                                                    <span style="font-weight: bold"> {{$detail->productable->merek_produk}}-{{ $detail->productable->nama_produk }}</span>
-                                                </span>
-                                                <span style="font-weight: bold">Rp. {{ number_format($detail->total, 0, '.', '.') }}</span>
-                                            </h4>
-                                        </div>
-                                        @endif
+                                    <div class="row mx-3">
+                                        <table class="table table-responsive">
+                                        <thead>
+                                            <tr>
+                                            <th scope="col">Produk</th>
+                                            <th scope="col">Jumlah</th>
+                                            <th scope="col">Harga Satuan</th>
+                                            <th scope="col">Total Harga</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($details as $detail)
+                                                @php
+                                                    $cartable = $detail->productable;
+                                                @endphp
+                                                @if ($detail->productable_type === "Product")
+                                                    <tr>
+                                                        <td width="52%">{{$detail->productable->merek_produk}}-{{ $detail->productable->nama_produk }}</td>
+                                                        <td>{{ $detail->jumlah_produk }}</td>
+                                                        <td>Rp. {{ number_format($detail->productable->harga, 0, '.', '.') }}</td>
+                                                        <td>Rp. {{ number_format($detail->total, 0, '.', '.') }}</td>
+                                                    </tr>    
+                                                @endif
 
-                                        @if ($detail->productable_type === "KoiStock")
-                                            <div class="card ">
-                                                <h4 class="d-flex m-2 justify-content-between">
-                                                    <span>
-                                                        <span>{{ $detail->jumlah_produk }} x </span>
-                                                        <span style="font-weight: bold"> {{ "$cartable->variety | $cartable->breeder | $cartable->size | $cartable->bloodline" }}</span>
-                                                    </span>
-                                                    <span style="font-weight: bold">Rp. {{ number_format($detail->total, 0, '.', '.') }}</span>
-                                                </h4>
-                                            </div>
-                                        @endif
-                                    @empty
-                                    @endforelse
-                                    <!-- <h4 class="card-title mb-3">Transfer Ke No.Rekening</h4>
-                                    <h4 class="card-subtitle mb-2">(Nama Pemilik Rekening)</h4>
-                                    <div class="card ">
-                                        <h4 class="d-flex m-2 justify-content-between">
-                                            <img src="{{ url('img/groupbca.png') }}" alt="bca" class="w-20">
-                                            <span style="font-weight: bold">789987687899</span>
-                                        </h4>
+                                                @if ($detail->productable_type === "KoiStock")
+                                                    <tr>
+                                                        <td width="52%">{{ "$cartable->variety | $cartable->breeder | $cartable->size | $cartable->bloodline" }}</td>
+                                                        <td>{{ $detail->jumlah_produk }}</td>
+                                                        <td>Rp. {{ number_format($detail->productable->harga, 0, '.', '.') }}</td>
+                                                        <td>Rp. {{ number_format($detail->total, 0, '.', '.') }}</td>
+                                                    </tr>    
+                                                @endif
+
+                                            @empty
+                                            @endforelse                    
+                                        </tbody>
+                                        </table>
+
                                     </div>
-                                    <div class="text-danger mt-2" style="text-align:end">
-                                        <h4>Salin</h4>
-                                    </div>
-                                    <hr class="mt-2">
-                                    <hr>
-                                    <hr>
-                                    <br> -->
-                                    <h4 class="card-subtitle mb-2 mt-2">Total belanja</h4>
-                                    <div class="card ">
-                                        <h4 class="d-flex m-2" style="font-weight: bold">
-                                            Rp. {{ number_format($order->total, 0, '.', '.') }}
-                                        </h4>
+                                    <div class="row">
+                                        <div class="col-11">
+                                        <ul class="list-unstyled float-end me-0">
+                                            <li><span class="me-3 float-start">Total Harga ({{ count($details ?? []) }} Barang):</span><i class=""></i>
+                                                Rp. {{ number_format($order->total, 0, '.', '.') }}
+                                            </li>
+                                        </ul>
+                                        </div>
                                     </div>
 
-                                    <br>
-                                    <div class="mt-2" style="">
-                                        <h3>Pembayaran harap menunggu invoice dari admin onelito koi</h3>
-                                    </div>
                                 </div>
                             </div>
-
 
 
                         </div>
-
-                        {{-- <div class="pageContent" id="transaksi">
-                            <div class="container mt-3">
-                                <h5><i class="fa-solid fa-bag-shopping"></i> <b>Purchase history</b></h5>
-                            </div>
-                            <div class="container overflow-hidden p-0">
-                                <div class="card">
-                                    <div class="row m-4">
-                                        <div class="border col-3">
-                                            <div class="cart">
-                                                <a href="/detail_onelito_store"><img src="img/bio_media.png"
-                                                        alt="bio media" class="card-img-top" height="170"></a>
-                                                <p>Bio Tube Bacteria House
-                                                    Media Filter</p>
-                                                <p><b>Rp. 1.300.000</b></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-3 border">
-                                            <img src="img/uniring.jpeg" alt="uniring" class="card-img-top"
-                                                height="170">
-                                            <p>Uniring rubber hose /
-                                                selang aerasi</p>
-                                            <p><b>Rp. 580.000</b></p>
-                                        </div>
-                                        <div class="border col-3">
-                                            <div class="cart">
-                                                <img src="img/Matala.jpg" alt="matala" class="card-img-top"
-                                                    height="170">
-                                                <p>Matala Abu Media Filter
-                                                    Mekanik</p>
-                                                <p><b>Rp. 974.000</b></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-3 border">
-                                            <img src="img/bak_ukur.jpg" alt="bak_ukur" class="card-img-top"
-                                                height="170">
-                                            <p>Mistar ukur koi / penggaris ukur koi /
-                                                bak ukur</p>
-                                            <p><b>Rp. 600.000</b></p>
-                                        </div>
-                                    </div>
+                        <div class="container-fluid mt-3">
+                            <div class="col-12">
+                                <div class="float-end">
+                                    <button onclick="pdf()" class="btn btn-success w-100 justify-content-between"> <i class="fa-solid fa-download"></i> Download pdf</button>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -423,3 +394,9 @@
     </script>
 
 </body>
+<script>
+    let id = '{{ $order->id_order }}';
+    function pdf() {
+        window.open(`/carts-order/${id}/pdf`, '_blank');
+    }
+</script>

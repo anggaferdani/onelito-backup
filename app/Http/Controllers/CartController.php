@@ -9,6 +9,7 @@ use App\Models\OrderDetail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use PDF;
 
 class CartController extends Controller
 {
@@ -144,5 +145,26 @@ class CartController extends Controller
             'success' => true,
             'id' => $order->id_order,
         ],200);
+    }
+
+    public function pdf($id)
+    {
+        $auth = Auth::guard('member')->user();
+
+        $order = Order::find($id);
+
+        if ($order === null) {
+            return redirect('/profil');
+        }
+
+        $data = [
+            'auth' => $auth,
+            'order' => $order,
+            'title' => 'Cart',
+        ];
+
+        $pdf = PDF::loadView('transaksiweb-pdf', $data);
+
+        return $pdf->download('invoice.pdf');
     }
 }
