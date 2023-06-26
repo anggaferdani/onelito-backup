@@ -8,17 +8,17 @@
           </button>
         </div>
         <div class="modal-body" id="modalShowBody">
-        <div class="form-group">
+        <div class="form-group d-none">
                 <label for="show_nama_champion">Nama Champion</label>
-                <input readonly type="text" id="show_nama_champion" class="form-control" name="show_nama_champion" placeholder="" required>
+                <input readonly type="text" id="show_nama_champion" class="form-control" name="show_nama_champion" placeholder="">
             </div>
-            <div class="form-group">
+            <div class="form-group d-none">
                 <label for="show_tahun">Tahun</label>
-                <input readonly type="text" id="show_tahun" class="form-control" name="show_tahun" placeholder="" required>
+                <input readonly type="text" id="show_tahun" class="form-control" name="show_tahun" placeholder="">
             </div>
-            <div class="form-group">
+            <div class="form-group d-none">
                 <label for="show_size">Size</label>
-                <input readonly type="text" id="show_size" class="form-control" name="show_size" placeholder="" required>
+                <input readonly type="text" id="show_size" class="form-control" name="show_size" placeholder="">
             </div>
             <div class="form-group">
                 <label for="foto">Foto Ikan</label>

@@ -11,17 +11,17 @@
             <form action="{{ url('admin/champion-fishes') }}" method="post" id="formEdit" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
-            <div class="form-group">
+            <div class="form-group d-none">
                 <label for="edit_nama_champion">Nama Champion</label>
-                <input  type="text" id="edit_nama_champion" class="form-control" name="edit_nama_champion" placeholder="" required>
+                <input  type="text" id="edit_nama_champion" class="form-control" name="edit_nama_champion" placeholder="">
             </div>
-            <div class="form-group">
+            <div class="form-group d-none">
                 <label for="edit_tahun">Tahun</label>
-                <input  type="text" id="edit_tahun" class="form-control" name="edit_tahun" placeholder="" required>
+                <input  type="text" id="edit_tahun" class="form-control" name="edit_tahun" placeholder="">
             </div>
-            <div class="form-group">
+            <div class="form-group d-none">
                 <label for="edit_size">Size</label>
-                <input  type="text" id="edit_size" class="form-control" name="edit_size" placeholder="" required>
+                <input  type="text" id="edit_size" class="form-control" name="edit_size" placeholder="">
             </div>
             <div class="form-group">
                 <label for="edit_foto">Foto Ikan</label>

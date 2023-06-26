@@ -28,9 +28,9 @@ class ChampionFishController extends Controller
 
                 return '
                     <img src="'.asset("storage/$path").'" style="
-                    width: 80px;
-                    height: 80px;
-                    object-fit: cover;">
+                    width: 300px;
+                    height: 300px;
+                    ">
                 ';
             })
             ->addColumn('action','admin.pages.champion-fish.dt-action')

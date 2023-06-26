@@ -33,6 +33,10 @@
         body a {
             text-decoration: none
         }
+
+        .card.champion .card-img-top {
+            width: auto;
+        }
     </style>
 
     <br><br><br><br>
@@ -411,8 +415,8 @@
         <img src="img/gc.png" alt="gc" class="w-100">
     </div>
 
-    <div class="container">
-        <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+    <div class="container" style="max-width:80%">
+        <div class="row row-cols-lg-5 g-2 g-lg-3">
             @forelse($championFishes as $championFish)
                 @php
                     $photoChampion = 'img/koi12.jpg';
@@ -421,10 +425,10 @@
                         $photoChampion = url('storage') . '/' . $championFish->foto_ikan;
                     }
                 @endphp
-                <div class="col mt-3">
-                    <div class="card">
-                        <img src="{{ $photoChampion }}" class="card-img-top" alt="...">
-                        <div class="m-2 me-auto">
+                <div class="col col-md-4 col-lg-3 col-sm-6 mt-3">
+                    <div class="card champion">
+                        <img height="465" width="365" src="{{ $photoChampion }}" class="card-img-top" alt="...">
+                        <div class="m-2 me-auto d-none">
                             <h5 class="card-title">{!! Illuminate\Support\Str::limit("$championFish->nama_champion", 18) !!}</h5>
                             <p class="card-text ma">Tahun : {{ $championFish->tahun }}</p>
                             <p>Size : {{ $championFish->size }}</p>
@@ -434,11 +438,12 @@
             @empty
             @endforelse
         </div>
-    </div>
-
-    <div class="container my-5">
+        <div class="my-5">
         <a href="/detail_koichampion" style="color: red">Lihat lebih Banyak >></a>
     </div>
+    </div>
+
+    
 @endsection
 @push('scripts')
     <script type="text/javascript">

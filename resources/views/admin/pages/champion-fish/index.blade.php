@@ -46,9 +46,9 @@
                                                 <th class="text-center">
                                                     #
                                                 </th>
-                                                <th>Nama Champion</th>
-                                                <th>Tahun</th>
-                                                <th>Size</th>
+                                                <!-- <th>Nama Champion</th> -->
+                                                <!-- <th>Tahun</th> -->
+                                                <!-- <th>Size</th> -->
                                                 <th>Foto</th>
                                                 <th>Action</th>
                                             </tr>
@@ -117,9 +117,9 @@
                 },
                 columns : [
                     { data : 'DT_RowIndex' , orderable : false,searchable :false},
-                    { data : 'nama_champion' },
-                    { data : 'tahun'},
-                    { data : 'size'},
+                    // { data : 'nama_champion' },
+                    // { data : 'tahun'},
+                    // { data : 'size'},
                     { data : 'foto_ikan', orderable : false,searchable :false},
                     { data : 'action' , orderable : false,searchable :false},
                 ]

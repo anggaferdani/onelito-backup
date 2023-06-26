@@ -10,21 +10,21 @@
         <div class="modal-body" id="modalCreateBody">
             <form action="{{ url('admin/champion-fishes') }}" method="post" id="formData" enctype="multipart/form-data">
             @csrf
-            <div class="form-group">
+            <div class="form-group d-none">
                 <label for="nama_champion">Nama Champion</label>
-                <input  type="text" id="nama_champion" class="form-control" name="nama_champion" placeholder="" required>
+                <input  type="text" id="nama_champion" class="form-control" name="nama_champion" placeholder="">
             </div>
-            <div class="form-group">
+            <div class="form-group d-none">
                 <label for="tahun">Tahun</label>
-                <input  type="text" id="tahun" class="form-control" name="tahun" placeholder="" required>
+                <input  type="text" id="tahun" class="form-control" name="tahun" placeholder="">
             </div>
-            <div class="form-group">
+            <div class="form-group d-none">
                 <label for="size">Size</label>
-                <input  type="text" id="size" class="form-control" name="size" placeholder="" required>
+                <input  type="text" id="size" class="form-control" name="size" placeholder="">
             </div>
             <div class="form-group">
                 <label for="path_foto">Foto Ikan</label>
-                <input type="file" name="path_foto" id="path_foto" class="form-control">
+                <input type="file" name="path_foto" id="path_foto" class="form-control" required>
             </div>
         </div>
         <div class="modal-footer">
