@@ -512,10 +512,6 @@
                                                     $cartPhoto = url('img/uniring.jpeg');
                                                     $cartable = $cart->cartable;
 
-                                                    if ($cart->cartable->photo !== null) {
-                                                        $cartPhoto = url('storage') . '/' . $cart->cartable->photo->path_foto;
-                                                    }
-
                                                     if ($cart->cartable_type === 'Product') {
                                                         $cartPrice = $cartable->harga;
                                                     }
@@ -523,6 +519,10 @@
                                                     if ($cart->cartable_type === 'KoiStock') {
                                                         $cartPrice = $cartable->harga_ikan;
                                                         $cartPhoto = url('img/koi12.jpg');
+                                                    }
+
+                                                    if ($cart->cartable->photo !== null) {
+                                                        $cartPhoto = url('storage') . '/' . $cart->cartable->photo->path_foto;
                                                     }
                                                 @endphp
 
@@ -1012,7 +1012,7 @@
             var nominal = $('.total-price')[0].innerText
 
             swalWithBootstrapButtons.fire({
-                title: 'apa anda yakin?',
+                title: 'Apakah anda akan segera membeli produk ini?',
                 text: `Total harga Rp. ${nominal}`,
                 icon: 'warning',
                 showCancelButton: true,

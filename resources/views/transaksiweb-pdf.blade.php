@@ -136,7 +136,7 @@
                                             <tr>
                                                 <td width="52%">{{ "$cartable->variety | $cartable->breeder | $cartable->size | $cartable->bloodline" }}</td>
                                                 <td>{{ $detail->jumlah_produk }}</td>
-                                                <td>Rp. {{ number_format($detail->productable->harga, 0, '.', '.') }}</td>
+                                                <td>Rp. {{ number_format($detail->productable->harga_ikan, 0, '.', '.') }}</td>
                                                 <td>Rp. {{ number_format($detail->total, 0, '.', '.') }}</td>
                                             </tr>    
                                         @endif

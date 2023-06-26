@@ -86,7 +86,6 @@
             $imgProfile = url('storage/'.$auth->profile_pic);
         }
 
-        $order->load('details.productable');
         $details = $order->details;
 
         $previous = url()->previous();
@@ -178,16 +177,17 @@
                                                     <tr>
                                                         <td width="52%">{{$detail->productable->merek_produk}}-{{ $detail->productable->nama_produk }}</td>
                                                         <td width="8%">{{ $detail->jumlah_produk }}</td>
-                                                        <td width="20%">Rp. {{ number_format($detail->productable->harga, 0, '.', '.') }}</td>
+                                                        <td width="20%">Rp. {{ number_format($cartable->harga, 0, '.', '.') }}</td>
                                                         <td width="20%">Rp. {{ number_format($detail->total, 0, '.', '.') }}</td>
                                                     </tr>    
                                                 @endif
 
                                                 @if ($detail->productable_type === "KoiStock")
+                                                dd($detail);
                                                     <tr>
                                                         <td width="52%">{{ "$cartable->variety | $cartable->breeder | $cartable->size | $cartable->bloodline" }}</td>
                                                         <td>{{ $detail->jumlah_produk }}</td>
-                                                        <td>Rp. {{ number_format($detail->productable->harga, 0, '.', '.') }}</td>
+                                                        <td>Rp. {{ number_format($cartable->harga_ikan, 0, '.', '.') }}</td>
                                                         <td>Rp. {{ number_format($detail->total, 0, '.', '.') }}</td>
                                                     </tr>    
                                                 @endif
@@ -318,20 +318,20 @@
                                                 @php
                                                     $cartable = $detail->productable;
                                                 @endphp
-                                                @if ($detail->productable_type === "Product")
+                                                @if ($detail->productable_type == "Product")
                                                     <tr>
                                                         <td width="52%">{{$detail->productable->merek_produk}}-{{ $detail->productable->nama_produk }}</td>
                                                         <td>{{ $detail->jumlah_produk }}</td>
-                                                        <td>Rp. {{ number_format($detail->productable->harga, 0, '.', '.') }}</td>
+                                                        <td>Rp. {{ number_format($cartable->harga, 0, '.', '.') }}</td>
                                                         <td>Rp. {{ number_format($detail->total, 0, '.', '.') }}</td>
                                                     </tr>    
                                                 @endif
 
-                                                @if ($detail->productable_type === "KoiStock")
+                                                @if ($detail->productable_type == "KoiStock")
                                                     <tr>
                                                         <td width="52%">{{ "$cartable->variety | $cartable->breeder | $cartable->size | $cartable->bloodline" }}</td>
                                                         <td>{{ $detail->jumlah_produk }}</td>
-                                                        <td>Rp. {{ number_format($detail->productable->harga, 0, '.', '.') }}</td>
+                                                        <td>Rp. {{ number_format($cartable->harga_ikan, 0, '.', '.') }}</td>
                                                         <td>Rp. {{ number_format($detail->total, 0, '.', '.') }}</td>
                                                     </tr>    
                                                 @endif

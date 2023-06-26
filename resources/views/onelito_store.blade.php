@@ -470,7 +470,7 @@
             if (user == true) {
 
             swalWithBootstrapButtons.fire({
-                title: 'apa anda yakin?',
+                title: 'Apakah anda akan segera membeli produk ini?',
                 text: `Total harga Rp. ${nominal}`,
                 icon: 'warning',
                 showCancelButton: true,

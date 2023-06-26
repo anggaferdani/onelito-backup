@@ -84,7 +84,7 @@ class CartController extends Controller
     {
         $auth = Auth::guard('member')->user();
 
-        $order = Order::find($id);
+        $order = Order::with('details.productable')->find($id);
 
         if ($order === null) {
             return redirect('/profil');

@@ -6,6 +6,18 @@
             height: 2.5rem;
         }
 
+        .swal2-cancel {
+            margin-right: 10px;
+        }
+
+        .swal2-cancel {
+            background-color: #dc3545;
+        }
+
+        .swal2-confirm {
+            background-color: #198754;
+        }
+
         @media screen and (max-width: 600px) {
             .nav-samping {
                 display: none;
@@ -13,6 +25,14 @@
 
         }
     </style>
+
+    @php
+        $auth = Auth::guard('member')->user();
+
+        if ($auth !== null) {
+            $auth = true;
+        }
+    @endphp
 
 
     <br><br><br><br>
@@ -243,12 +263,22 @@
     </div>
 @endsection
 @push('scripts')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script type="text/javascript">
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
 
         $(document).on('click', '.wishlist', function(e) {
             var element = $(e.currentTarget);
@@ -320,9 +350,30 @@
                 },
                 dataType: "json",
                 complete: function(res) {
-                    document.location = '/profil?section=store-cart'
-                    // element.attr('class', 'fas fa-heart wishlist');
-                    button.removeAttr('disabled')
+                    // document.location = '/profil?section=store-cart'
+                    swalWithBootstrapButtons.fire({
+                        title: 'Product berhasil ditambahkan',
+                        text: `Klik Ya, untuk lihat keranjang`,
+                        icon: 'success',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ya',
+                        cancelButtonText: 'Tidak',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.location = '/profil?section=store-cart'
+
+                        } else if (
+                            /* Read more about handling dismissals below */
+                            result.dismiss === Swal.DismissReason.cancel
+                        ) {
+                            // swalWithBootstrapButtons.fire(
+                            //     'Batal',
+                            //     'Pesanan dibatalkan',
+                            //     'error'
+                            // )
+                        }
+                    })
                 },
                 error: function(error) {
                     console.log(error)
@@ -330,6 +381,5 @@
                 }
             })
         });
-
 </script>
 @endpush

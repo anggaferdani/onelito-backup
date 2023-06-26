@@ -93,7 +93,15 @@
         /* On screens that are 600px or less, set the background color to olive */
         @media screen and (max-width: 600px) {
             .web {
+                /* display: none; */
+            }
+
+            .profil {
                 display: none;
+            }
+
+            .tab-content {
+                margin-top: -20%;
             }
         }
     </style>
@@ -211,11 +219,11 @@
 
     <div class="web">
         <div class="container p-0">
-            <a href="/onelito_store" class="text-dark" style="text-decoration: blink"><i
+            <a href="/onelito_store" class="profil text-dark" style="text-decoration: blink"><i
                     class="fa-solid fa-arrow-left text dark"></i> back</a>
             <br><br>
             <div class="row">
-                <div class="col-md-3">
+                <div class="profil col-md-3">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex align-items-start">
@@ -277,7 +285,7 @@
                     <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane active"
                             id="v-pills-store" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                            <div class="container mt-3 my-3">
+                            <div class="store container mt-3 my-3">
                                 <h5><i class="fa-solid fa-cart-shopping"></i> <b>Store</b></h5>
                             </div>
                             <div class="container overflow-hidden p-0">
@@ -466,7 +474,7 @@
             var nominal = $('.total-price')[0].innerText
 
             swalWithBootstrapButtons.fire({
-                title: 'apa anda yakin?',
+                title: 'Apakah anda akan segera membeli produk ini?',
                 text: `Total harga Rp. ${nominal}`,
                 icon: 'warning',
                 showCancelButton: true,
