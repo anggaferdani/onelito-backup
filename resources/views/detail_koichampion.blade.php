@@ -10,7 +10,8 @@
     <br><br><br><br><br>
     <div class="container" style="max-width:80%">
         <!-- <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 mb-5"> -->
-        <div class="row row-cols-lg-5 g-2 g-lg-3 mb-5">
+        <div class="row row-cols-1 row-cols-lg-5 g-2 g-lg-3 mb-5">
+            
 
             @forelse ($championFishes as $fish)
                 @php
@@ -36,80 +37,7 @@
                 </div>
             @empty
             @endforelse
-
-            <!-- <div class="col-lg-3 col-6 mt-3">
-                    <div class="card modal-header">
-                        <img src="img/koi_2.jpg" class="card-img-top" alt="...">
-                        <div class="m-2 me-auto">
-                            <h5 class="card-title">32nd Champion</h5>
-                            <p class="card-text ma">Tahun : 2015</p>
-                            <p>Size : 50 cm</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6 mt-3">
-                    <div class="card modal-header">
-                        <img src="img/koi_2.jpg" class="card-img-top" alt="...">
-                        <div class="m-2 me-auto">
-                            <h5 class="card-title">32nd Champion</h5>
-                            <p class="card-text ma">Tahun : 2015</p>
-                            <p>Size : 50 cm</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6 mt-3">
-                    <div class="card modal-header">
-                        <img src="img/koi_2.jpg" class="card-img-top" alt="...">
-                        <div class="m-2 me-auto">
-                            <h5 class="card-title">32nd Champion</h5>
-                            <p class="card-text ma">Tahun : 2015</p>
-                            <p>Size : 50 cm</p>
-                        </div>
-                    </div>
-                </div> -->
         </div>
-        <!-- <div class="row ">
-                <div class="col-lg-3 col-6 mt-3">
-                    <div class="card modal-header">
-                        <img src="img/koi_2.jpg" class="card-img-top" alt="...">
-                        <div class="m-2 me-auto">
-                            <h5 class="card-title">32nd Champion</h5>
-                            <p class="card-text ma">Tahun : 2015</p>
-                            <p>Size : 50 cm</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6 mt-3">
-                    <div class="card modal-header">
-                        <img src="img/koi_2.jpg" class="card-img-top" alt="...">
-                        <div class="m-2 me-auto">
-                            <h5 class="card-title">32nd Champion</h5>
-                            <p class="card-text ma">Tahun : 2015</p>
-                            <p>Size : 50 cm</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6 mt-3">
-                    <div class="card modal-header">
-                        <img src="img/koi_2.jpg" class="card-img-top" alt="...">
-                        <div class="m-2 me-auto">
-                            <h5 class="card-title">32nd Champion</h5>
-                            <p class="card-text ma">Tahun : 2015</p>
-                            <p>Size : 50 cm</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6 mt-3">
-                    <div class="card modal-header">
-                        <img src="img/koi_2.jpg" class="card-img-top" alt="...">
-                        <div class="m-2 me-auto">
-                            <h5 class="card-title">32nd Champion</h5>
-                            <p class="card-text ma">Tahun : 2015</p>
-                            <p>Size : 50 cm</p>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
     </div>
     <br><br>
 @endsection
