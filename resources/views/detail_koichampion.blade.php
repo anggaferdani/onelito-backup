@@ -6,11 +6,45 @@
             height: 4rem;
 
         }
+
+        .grid {
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        
+        .grid > div img {
+        width: 100%;
+        grid-area: 1/1/2/2;
+        aspect-ratio: 1/1;
+        }
+
+        @media screen and (max-width:982px) {
+            .grid {
+                grid-template-columns: auto auto auto;
+            }
+        }
+
+        @media screen and (max-width:764px) {
+            .grid {
+                grid-template-columns: auto auto;
+            }
+        }
+
+        @media screen and (max-width:600px) {
+            .grid {
+                grid-template-columns: auto;
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+        }
     </style>
     <br><br><br><br><br>
-    <div class="container" style="max-width:80%">
+    <div class="container grid center">
         <!-- <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 mb-5"> -->
-        <div class="row row-cols-1 row-cols-lg-5 g-2 g-lg-3 mb-5">
+        <!-- <div class="row row-cols-1 row-cols-lg-5 g-2 g-lg-3 mb-5"> -->
             @forelse ($championFishes as $fish)
                 @php
                     $photoChampion = 'img/koi12.jpg';
@@ -19,23 +53,12 @@
                         $photoChampion = url('storage') . '/' . $fish->foto_ikan;
                     }
                 @endphp
-                <div class="col col-md-4 col-lg-3 col-sm-6 mt-3">
-                    <div class="card">
-                        <img height="465" width="365" src="{{ $photoChampion }}" class="card-img-top" alt="...">
-                        <div class="m-2 me-auto d-none">
-                            <div class="cb-judul">
-                                <h5 class="card-title">
-                                    {!! Illuminate\Support\Str::limit("$fish->nama_champion", 30) !!}
-                                </h5>
-                            </div>
-                            <!-- <p class="card-text ma">Tahun : {{ $fish->tahun }}</p> -->
-                            <!-- <p>Size : {{ $fish->size }}</p> -->
-                        </div>
-                    </div>
+                <div class="d-grid">
+                        <img src="{{ $photoChampion }}" class="" alt="...">
                 </div>
             @empty
             @endforelse
-        </div>
+        <!-- </div> -->
     </div>
     <br><br>
 @endsection
