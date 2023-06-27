@@ -40,7 +40,7 @@
     </style>
 
     <br><br><br><br>
-    <div id="carouselExampleControls" class="pt-2 carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleControls" class="pt-2 carousel slide" data-bs-interval="3000" data-bs-ride="carousel">
         <div class="carousel-inner img-mh-300">
             <div class="carousel-item active">
                 <div class="container-fluit" style="background-color:red;">
@@ -446,6 +446,9 @@
     
 @endsection
 @push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+</script>
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
