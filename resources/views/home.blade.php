@@ -57,7 +57,7 @@
                 @endphp
 
                 @if ($auction->banner !== null)
-                    <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                    <div class="carousel-item {{ $key === 0 ? '' : '' }}">
                         <div class="container-fluit" style="background-color:red;">
                             <img src="{{ $bannerImg }}" class="w-100" alt="...">
                         </div>
