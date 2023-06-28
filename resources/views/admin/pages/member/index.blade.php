@@ -44,7 +44,7 @@
                             data-target="#modalCreate"
                             ><i class="fa fa-plus"></i> Tambah Member</button>
 
-                            <div class="row col-3 mb-2">
+                            <div class="row col-10 col-md-4 mb-2">
                                 <label for="filter_status_email">Filter Status Email</label>
                                 <select name="filter_status_email" id="filter_status_email" class="form-control select2">
                                     <option value="all">Semua</option>
@@ -53,7 +53,7 @@
                                 </select>
                             </div>
 
-                            <div class="row col-3 mb-2">
+                            <div class="row col-10 col-md-4 mb-2">
                                 <label for="filter_status_aktif">Filter Status Aktif</label>
                                 <select name="filter_status_aktif" id="filter_status_aktif" class="form-control select2">
                                     <option value="all">Semua</option>
