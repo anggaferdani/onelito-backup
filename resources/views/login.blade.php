@@ -109,7 +109,7 @@
 
 <div class="web">
     <div class="container d-flex justify-content-center align-content-center">
-        <div class="card" style="width: 45vw; height: 100vh">
+        <div class="card" style="width: 45vw; height: 100vh;min-height:750px">
             <div class="card-body">
                 <a href="/" class="text-dark" style="text-decoration: blink"><i class="fa-solid fa-arrow-left text dark"></i> back to main page</a>
                 <br>
