@@ -34,7 +34,6 @@
         .card.mobile {
             height: 100%;
             height: -webkit-fill-available;
-
         }
     }
 
@@ -49,7 +48,7 @@
 
 <div class="res">
     <div class="container d-flex justify-content-center align-content-center p-0">
-        <div class="card mobile w-100" style="height: 100vh">
+        <div class="card mobile w-100" style="height: 100vh;min-height:750px">
             <div class="card-body">
                 <a href="/" class="text-dark" style="text-decoration: blink"><i class="fa-solid fa-arrow-left text dark"></i> back to main page</a>
                 <br>
