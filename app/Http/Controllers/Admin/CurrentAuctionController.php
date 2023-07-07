@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\Event;
 use App\Models\EventFish;
 use App\Models\LogBid;
@@ -23,20 +24,30 @@ class CurrentAuctionController extends Controller
             $now = Carbon::now();
             $nowAkhir = Carbon::now()->subDays(3)->endOfDay();
 
-            $currentAuctions = Event::with([
-                    'auctionProducts' => function ($q) {
-                        $q->withCount('bidDetails')->with(['photo', 'maxBid']);
-                    },
-                ])
-                ->where('tgl_mulai', '<=', $now)
-                ->where('tgl_akhir', '>=', $nowAkhir)
-                ->where('status_aktif', 1)
-                ->orderBy('tgl_mulai')
-                ->orderBy('created_at', 'desc')
-                ->get();
+            // $currentAuctions = Event::with([
+            //         'auctionProducts' => function ($q) {
+            //             $q->withCount('bidDetails')->with(['photo', 'maxBid']);
+            //         },
+            //     ])
+            //     ->where('tgl_mulai', '<=', $now)
+            //     ->where('tgl_akhir', '>=', $nowAkhir)
+            //     ->where('status_aktif', 1)
+            //     ->orderBy('tgl_mulai')
+                // ->orderBy('created_at', 'desc')
+            //     ->get();
 
-            $currentProducts = $currentAuctions->pluck('auctionProducts')
-            ->flatten(1);
+            // $currentProducts = $currentAuctions->pluck('auctionProducts')
+            // ->flatten(1);
+
+            $currentProducts = EventFish::
+            withCount('bidDetails')->with(['photo', 'maxBid'])
+            ->whereHas('event', function ($q) {
+                $q->where('status_aktif', 1);
+            })
+            ->where('status_aktif', 1)
+            ->orderBy('created_at', 'desc')
+            ;
+
 
             return DataTables::of($currentProducts)
             ->addIndexColumn()
@@ -83,6 +94,7 @@ class CurrentAuctionController extends Controller
         ->whereHas('logBid', function($q) use ($id){
             $q->where('id_ikan_lelang', $id);
         })
+        ->where('status_aktif', 1)
         ->orderBy('nominal_bid', 'desc')
         ->orderBy('updated_at', 'desc')->limit(10)->get();
 
@@ -106,18 +118,58 @@ class CurrentAuctionController extends Controller
         try {
             DB::transaction(function () use ($detail, $idLogBid){
                 $lastDetail = LogBidDetail::where('id_bidding', $detail->id_bidding)
+                    ->with('logBid')
                     ->where('id_bidding_detail', '!=', $idLogBid)
+                    ->where('status_aktif', 1)
+                    ->orderBy('nominal_bid', 'desc')
+                    ->orderBy('updated_at', 'desc')
                     ->orderBy('nominal_bid')->first();
 
                 $bid = LogBid::findOrFail($detail->id_bidding);
 
+                $bidCart = Cart::where('id_peserta', $bid->id_peserta)
+                ->where('cartable_id', $bid->id_ikan_lelang)
+                ->where('status_aktif', 1)
+                ->get();
+
                 if ($lastDetail === null) {
-                    $detail->delete();
-                    $bid->delete();
+                    $detail->status_aktif = 0;
+                    $bid->status_aktif = 0;
+                    $detail->save();
+                    $bid->save();
+                    
+                    if ($bidCart !==  null) {
+                        Cart::where('id_peserta', $bid->id_peserta)
+                        ->where('cartable_id', $bid->id_ikan_lelang)
+                        ->delete();
+                    }
                 } else {
                     $bid->nominal_bid = $lastDetail->nominal_bid;
                     $bid->save();
-                    $detail->delete();
+
+                    $detail->status_aktif = 0;
+                    $detail->save();
+
+                    if ($bidCart !==  null) {
+                        Cart::where('id_peserta', $bid->id_peserta)
+                        ->where('cartable_id', $bid->id_ikan_lelang)
+                        ->delete();
+                    }
+
+                    $nextBidCart = Cart::where('id_peserta', $lastDetail->logBid->id_peserta)
+                    ->where('status_aktif', 1)
+                    ->where('cartable_id', $lastDetail->logBid->id_ikan_lelang)->get();
+
+                    if ($nextBidCart === null) {
+                        $dataCart['status_aktif'] = 1;
+
+                        $dataCart['id_peserta'] = $lastDetail->logBid->id_peserta;
+                        $dataCart['cartable_id'] = $lastDetail->logBid->id_ikan_lelang;
+                        $dataCart['jumlah'] = 1;
+                        $dataCart['cartable_type'] = Cart::EventFish;
+
+                        Cart::create($dataCart);
+                    }
                 }
             });
 

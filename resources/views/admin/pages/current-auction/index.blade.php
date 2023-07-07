@@ -159,7 +159,7 @@
                     { data : 'variety'},
                     { data : 'breeder'},
                     { data : 'bloodline'},
-                    { data : 'bid_details_count'},
+                    { data : 'bid_details_count', orderable : false,searchable :false},
                     { data : 'current_price'},
                     { data : 'photo', name: 'photo.path_foto'},
                     { data : 'action' , orderable : false,searchable :false},
