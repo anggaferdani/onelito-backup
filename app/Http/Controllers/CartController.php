@@ -137,6 +137,8 @@ class CartController extends Controller
                 'productable_type' => $dOrder['type'],
             ]);
         }
+
+        session()->remove('item');
     
         // temporary disable 
         Mail::to('onelito.koi@gmail.com')->send(new OrderRequest($order));

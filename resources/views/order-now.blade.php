@@ -400,6 +400,17 @@
                                                         Sekarang (<span class="total-item">1</span>)</a>
                                                 </div>
                                             </div>
+                                            <div class="row p-2">
+                                       
+                                            <div class="mt-3">
+                                                <a onclick=""
+                                                                class="transaction btn btn-danger w-100 justify-content-between "
+                                                                href="{{ url('/onelito_store').'?item='. request()->item }}">Belanja Produk Lainya</a>
+                                                                <a onclick=""
+                                                                class="transaction btn btn-danger w-100 justify-content-between mt-3"
+                                                                href="/cancel-order">Batalkan Pesanan</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

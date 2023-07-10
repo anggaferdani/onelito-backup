@@ -356,8 +356,9 @@
             })
         }
 
-        function orderNowProcess() {
-            const output = Number(document.querySelector("#output").innerText);
+        function orderNowProcess(element) {
+            var nominal = $(element).attr('data-price');
+            const output = 1;
             var totalPrice = 0;
             var items = 0;
             var transaction = $('.transaction')
@@ -367,33 +368,37 @@
 
             var id = productId;
 
-            orderItem.id = id;
-            orderItem.price = originPrice;
 
-            items += Number(output)
-            orderItem.price = originPrice * Number(output)
-            orderItem.type = 'Product';
-            orderItem.total_produk = Number(output);
+            // orderItem.id = id;
 
-            dataOrder.push(orderItem);
+            location.href = `/order-now?item=${id}`;
+            // orderItem.price = nominal;
 
-            $.ajax({
-                type: 'POST',
-                url: `/carts-order?method=single`,
-                data: {
-                    data_order: dataOrder,
-                    total: originPrice * Number(output),
-                    item: items,
-                },
-                dataType: "json",
-                success: function(res) {
-                    location.href = `/carts/${res.id}`;
-                },
-                error: function(error) {
-                    // console.log(error)
-                    return false
-                }
-            })
+            // items += Number(output)
+            // orderItem.price = nominal * Number(output)
+            // orderItem.type = 'Product';
+            // orderItem.total_produk = Number(output);
+
+            // dataOrder.push(orderItem);
+
+            // $.ajax({
+            //     type: 'GET',
+            //     url: `/order-now`,
+            //     data: {
+            //         // data_order: dataOrder,
+            //         // total: nominal * Number(output),
+            //         // item: items,
+            //         item: dataOrder
+            //     },
+            //     dataType: "json",
+            //     success: function(res) {
+            //         location.href = `/carts/${res.id}`;
+            //     },
+            //     error: function(error) {
+            //         // console.log(error)
+            //         return false
+            //     }
+            // })
         }
     </script>
 @endpush

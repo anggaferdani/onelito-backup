@@ -10,6 +10,8 @@ class StoreController extends Controller
 {
     public function index()
     {
+        $item = $this->request->input('item', null);
+
         $auth = Auth::guard('member')->user();
 
         $kategori = $this->request->input('kategori', null);
@@ -111,8 +113,22 @@ class StoreController extends Controller
         $item = $this->request->item;
         $ids= [];
 
-        if ($item !== null) {
-            $ids = [$item];
+        $sessionItems = session()->get('item');
+
+        if ($sessionItems === null) {
+            $items = [$item];
+            session()->put('item', $items);
+        }
+
+        if ($sessionItems !== null) {
+            $items = $sessionItems;
+            array_push($items, $item);
+            array_unique($items);
+            session()->put('item', $items);
+        }
+
+        if ($items !== null) {
+            $ids = collect($items)->unique()->values();
         }
 
         $auth = Auth::guard('member')->user();
@@ -126,5 +142,12 @@ class StoreController extends Controller
             'title' => 'Transaksi Order',
             'products' => $products,
         ]);
+    }
+
+    public function cancelOrder()
+    {
+        session()->remove('item');
+
+        return redirect('/onelito_store');
     }
 }
