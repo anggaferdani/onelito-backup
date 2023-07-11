@@ -122,9 +122,12 @@ class StoreController extends Controller
 
         if ($sessionItems !== null) {
             $items = $sessionItems;
-            array_push($items, $item);
-            array_unique($items);
-            session()->put('item', $items);
+
+            if ($item !== null) {
+                array_push($items, $item);
+                array_unique($items);
+                session()->put('item', $items);
+            }
         }
 
         if ($items !== null) {
@@ -149,5 +152,34 @@ class StoreController extends Controller
         session()->remove('item');
 
         return redirect('/onelito_store');
+    }
+
+    public function removeOrderNowItem($idProduct) {
+        $items = session()->get('item');
+
+        $res = array_diff(array_unique($items), [$idProduct]);
+
+        if ($res !== null) {
+            array_unique($res);
+            array_values($res);
+            array_filter($res);
+        }
+
+
+        session()->put('item', $res);
+
+
+        return ['data' => $res, 'count' => count($res)];
+    }
+
+    public function checkOrderNow()
+    {
+        $sessionItems = session()->get('item');
+
+        if ($sessionItems !== null) {
+            return redirect('order-now');
+        }
+
+        return redirect('onelito_store');
     }
 }

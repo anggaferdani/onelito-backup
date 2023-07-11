@@ -345,6 +345,10 @@
                                                             <p class="my-auto text-center d-none">
                                                                 Pindahkan ke Wishlist |
                                                             </p>
+                                                            <button class="border-0 mr-3 remove-cart"
+                                                                data-id="{{ $cart->id_produk }}"
+                                                                style="background-color: transparent"><i
+                                                                class="fa-regular fa-trash-can"></i></button>
                                                             <div class="btn-group" role="group"
                                                                 aria-label="Basic outlined example">
                                                                 
@@ -402,12 +406,12 @@
                                             </div>
                                             <div class="row p-2">
                                        
-                                            <div class="mt-3">
+                                                <div class="mt-3">
                                                 <a onclick=""
                                                                 class="transaction btn btn-danger w-100 justify-content-between "
                                                                 href="{{ url('/onelito_store').'?item='. request()->item }}">Belanja Produk Lainya</a>
                                                                 <a onclick=""
-                                                                class="transaction btn btn-danger w-100 justify-content-between mt-3"
+                                                                class="d-none transaction btn btn-danger w-100 justify-content-between mt-3"
                                                                 href="/cancel-order">Batalkan Pesanan</a>
                                                 </div>
                                             </div>
@@ -461,11 +465,17 @@
 
             $.ajax({
                 type: 'DELETE',
-                url: `/carts/${id}`,
+                url: `/order-now/${id}`,
                 data: {},
                 dataType: "json",
                 success: function(res) {
-                    location.href = `/profil?section=store-cart`;
+                    if (res.count === 0) {
+                        location.href = '/onelito_store';
+                    } else {
+                        // window.location.reload();
+                        location.href = '/check-order-now';
+                    }
+
                 },
                 error: function(error) {
                     return false

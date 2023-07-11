@@ -677,6 +677,14 @@
                                                         Sekarang (<span class="total-item">0</span>)</a>
                                                 </div>
                                             </div>
+                                            <div class="row p-2">
+                                       
+                                                <div class="mt-3">
+                                                <a onclick=""
+                                                                class="transaction btn btn-danger w-100 justify-content-between "
+                                                                href="{{ url('/onelito_store') }}">Belanja Produk Lainya</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

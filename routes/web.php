@@ -110,6 +110,8 @@ Route::group(['middleware' => 'auth:member'], function () {
     Route::get('/update_profile', [ProfileController::class, 'viewUpdateProfile'])->name('profile.view_update_profile');
     Route::POST('/auction/{idIkan}', [AuctionController::class, 'bidProcess'])->name('auction.bid_process');
     Route::get('/order-now', [StoreController::class, 'orderNow'])->name('store.order_now');
+    Route::get('/check-order-now', [StoreController::class, 'checkOrderNow'])->name('store.check_order_now');
+    Route::DELETE('/order-now/{idProduct}', [StoreController::class, 'removeOrderNowItem'])->name('store.order_now.remove_item');
     Route::get('/cancel-order', [StoreController::class, 'cancelOrder'])->name('store.cancel_order');
     Route::resource('/wishlists', WishlistController::class);
 
