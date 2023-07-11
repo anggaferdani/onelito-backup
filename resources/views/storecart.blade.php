@@ -138,13 +138,20 @@
             @endif
         @empty
         @endforelse
-        <div class="container border-top fixed-bottom d-flex p-3 justify-content-between bg-white">
-            <div class="my-auto">
-                <h5 class="">Total Harga</h5>
-                <h5 class="font-bold pricetotal">Rp. <span class="total-price">0</span></h5>
+        <div class="container border-top fixed-bottom p-3 bg-white">
+            <div class="d-flex justify-content-between">
+                <div class="my-auto">
+                    <h5 class="">Total Harga</h5>
+                    <h5 class="font-bold pricetotal">Rp. <span class="total-price">0</span></h5>
+                </div>
+                <a onclick=""
+            class="transaction btn btn-danger w-50"
+            style="padding:4%;"
+            href="{{ url('/onelito_store').'?item='. request()->item }}">Belanja Produk Lainya</a>
+                <a class="transaction btn btn-secondary w-25" onclick="orderNow()" href="#" role="button">Pesan
+                    Sekarang</a>
             </div>
-            <a class="transaction btn btn-secondary w-25" onclick="orderNow()" href="#" role="button">Pesan
-                Sekarang</a>
+                
         </div>
     </div>
 @endsection
