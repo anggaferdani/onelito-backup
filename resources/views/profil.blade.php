@@ -81,7 +81,7 @@
 </head>
 
 <body>
-
+    @include('part.navbarlog')
     <style>
         /* On screens that are 992px or less, set the background color to blue */
         @media screen and (min-width: 601px) {
@@ -115,9 +115,9 @@
     @endphp
     <div class="res">
         <div class="container-fluid py-3">
-            <div class="fixed-top p-4 bg-white">
+            <div class="fixed-top p-4 bg-white" style="margin-top:50px">
                 <div class="container mb-3">
-                    <div class="d-flex">
+                    <div class="d-flex d-none">
                         <a href="/profil" class="{{ $title === 'profil' ? 'active' : '' }}">
                             <div class="d-flex">
                                 <i class="fa-solid fa-circle-user mr-4" style="font-size: xx-large"></i>
@@ -134,16 +134,16 @@
                 </div>
                 <div class="container overflow-scroll">
                     <div class="d-flex" style="width: 123vw">
-                        <a href="#" style="font-size: 11px" class="btn btn-outline-secondary rounded-pill mr-2 ">
+                        <!-- <a href="#" style="font-size: 11px" class="btn btn-outline-secondary rounded-pill mr-2 ">
                             <i class='bx bx-menu-alt-left'></i>
                             Filter</a>
                         <a href="/shoppingcart" style="font-size: 11px"
-                            class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'Shopping Cart' ? 'active' : '' }}">Shopping
+                            class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'Shopping Cart' ? 'active' : '' }}">Auction
                             cart</a>
 
                         <a href="/storecart" style="font-size: 11px"
                             class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'Store Cart' ? 'active' : '' }}">Store
-                            cart</a>
+                            cart</a> -->
 
                         <!-- <a href="/wishlist" style="font-size: 11px"
                             class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'wishlist' ? 'active' : '' }}">WishList</a> -->
@@ -151,10 +151,10 @@
                         {{-- <a href="/purchase" style="font-size: 11px"
                             class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'purchase' ? 'active' : '' }}">Purchase
                             history</a> --}}
-                        <a href="/ganti_password" style="font-size: 11px"
+                        <!-- <a href="/ganti_password" style="font-size: 11px"
                             class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'purchase' ? 'active' : '' }}">Ganti password</a>
                         <a href="/update_profile" style="font-size: 11px"
-                            class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'update-profile' ? 'active' : '' }}">Update Profile</a>
+                            class="btn btn-outline-secondary rounded-pill mr-2 {{ $title === 'update-profile' ? 'active' : '' }}">Update Profile</a> -->
                     </div>
                 </div>
             </div>
@@ -174,10 +174,22 @@
                     <div class="container p-0">
                         <img src="{{ $imgProfile }}" style="width:351px;height:255px" class="card-img-top px-5" alt="image">
                         <div class="container text-center">
-                            <button type="button" class="btn btn-light btn-sm">
-                                <button onclick="uploadProfile()" class="border btn btn-light" style="width: 68vw">
-                                    Change photo</button>
-                            </button>
+                            <div class="mt-3 mb-2 nav-pills" style="align-items:center">
+                                <button type="button" class="">
+                                    <button type="button" onclick="uploadProfile()" class="border btn btn-light" style="width: 68vw">
+                                        Change photo</button>
+                                </button>
+                            </div>
+                            <div class="mt-3 mb-2 nav-pills" style="align-items:center">
+                                <a class="btn btn-danger w-75 justify-content-between" role="button"
+                                    id="v-pills-password-tab" href="/profil?section=change-password"
+                                    style="font-size: x-large">Ganti Password</a>
+                            </div>
+                            <div class="mb-2" style="align-items:center">
+                                <a class="btn btn-danger w-75 justify-content-between" role="button"
+                                    id="v-pills-password-tab" href="/profil?section=update-profile"
+                                    style="font-size: x-large">Update Profile</a>
+                            </div>
                             <!-- <button type="button" class="btn btn-light btn-sm">
                                 <button onclick="updateProfile()" class="border btn btn-light" style="width: 68vw">
                                     Update Profile</button>
@@ -210,6 +222,8 @@
     </div>
 
     <div class="web">
+    <br><br><br><br>
+
         <div class="container p-0">
             <a href="{{ $previous  }}" class="text-dark" style="text-decoration: blink"><i
                     class="fa-solid fa-arrow-left text dark"></i> back</a>
@@ -238,8 +252,8 @@
                                             </div>
                                         </div>
                                     </button>
-                                    <br>
-                                    <h5>Filter</h5>
+                                    <!-- <br> -->
+                                    <!-- <h5>Filter</h5>
                                     <button class="nav-link bg-tranparent text-body p-2 text-lg-start"
                                         style="background-color: white;font-size:larger" id="v-pills-profile-tab"
                                         data-bs-toggle="pill" data-bs-target="#v-pills-profile2" type="button"
@@ -251,7 +265,7 @@
                                         data-bs-toggle="pill" data-bs-target="#v-pills-store" type="button"
                                         role="tab" aria-controls="v-pills-profile" aria-selected="false">
                                         Store cart
-                                    </button>
+                                    </button> -->
                                     {{-- <button class="nav-link text-body p-2 text-lg-start"
                                         style="background-color: white;font-size:larger" id="v-pills-settings-tab"
                                         data-bs-toggle="pill" data-bs-target="#v-pills-settings2" type="button"
@@ -291,7 +305,7 @@
                                         <div class="col-4">
                                             <div class="p-2 border bg-light m-4">
 
-                                                <img src="{{ $imgProfile }}" style="width:235px;height:235px" class="card-img-top" alt="image">
+                                                <img src="{{ $imgProfile }}" style="width:235px;height:235px;margin:auto" class="card-img-top" alt="image">
                                                 <div class="card-body">
                                                     <button onclick="uploadProfile()"
                                                         class="border btn btn-light w-100 justify-content-between">
@@ -303,7 +317,8 @@
                                                     <b>
                                                         <center>Update Profile</center>
                                                     </b></button>
-                                                    <Input class="uploadProfileInput d-none" type="file" name="profile_pic" id="newProfilePhoto" accept="image/*" style="opacity: 0;" /> -->
+                                                     -->
+                                                     <Input class="uploadProfileInput d-none" type="file" name="profile_pic" id="newProfilePhoto" accept="image/*" style="opacity: 0;" />
                                                 </div>
 
                                             </div>

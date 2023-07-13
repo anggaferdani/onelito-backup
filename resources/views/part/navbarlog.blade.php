@@ -2,7 +2,7 @@
     /* On screens that are 992px or less, set the background color to blue */
     @media screen and (min-width: 601px) {
         .samping {
-            display: none
+            display: none;
         }
     }
 
@@ -102,7 +102,7 @@
 
     .fix {
         position: fixed;
-        z-index: 99;
+        z-index:1031;
         width: 100vw;
     }
 </style>
@@ -149,6 +149,14 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link {{ $title === 'cart' ? 'active text-danger' : '' }}"href="/profil?section=cart">AUCTION CART</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ $title === 'store_cart' ? 'active text-danger' : '' }}"href="/profil?section=store-cart">STORE CART</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link {{ $title === 'login' ? 'active text-danger' : '' }}"href="/profil">
                             <!-- <i class="fa-solid fa-circle-user" style="font-size: x-large"></i> -->
                             <img src="{{ $imgProfile }}" style="width:24px;height:24px;border-radius:50%;max-width:unset">
@@ -175,6 +183,9 @@
         <a class="nav-link {{ $title === 'koi_stok' ? 'active text-danger' : '' }}"href="/koi_stok">KOI STOCK</a>
 
         <a class="nav-link {{ $title === 'wishlistlog' ? 'active text-danger' : '' }}"href="/wishlistlog">WISHLIST</a>
+        <a class="nav-link {{ $title === 'cart' ? 'active text-danger' : '' }}"href="/shoppingcart">AUCTION CART</a>
+        <a class="nav-link {{ $title === 'store_cart' ? 'active text-danger' : '' }}"href="/storecart">STORE CART</a>
+
 
         <div class="px-4" style="position: absolute;
         padding-right: 1.5rem!important;
@@ -191,6 +202,11 @@
 
     <div id="main" class="d-flex" style="background: white">
         <button class="openbtn" onclick="openNav()">&#9776;</button>
+        @php 
+            if ($title === "Shopping Cart") {
+                $title = "Auction Cart";
+            }
+        @endphp
         <h2 class="title my-0 mx-auto" style="text-transform: capitalize">{{ $title }}</h2>
 
         <a class="nav-link {{ $title === 'login' ? 'active text-danger' : '' }}"href="/profil">

@@ -151,9 +151,19 @@ class ProfileController extends Controller
         ->where('status_aktif', 1)
         ->get();
 
+        $title = 'profil';
+        $section = $this->request->input('section', null);
+        if ($section == "cart") {
+            $title = 'cart';
+        }
+
+        if ($section == "store-cart") {
+            $title = 'store_cart';
+        }
+
         return view('profil',[
             'auth' => $auth,
-            'title' => 'profil',
+            'title' => $title,
             'wishlists' => $wishlists,
             'carts' => $carts,
             'storeCarts' => $storeCarts,
@@ -295,6 +305,10 @@ class ProfileController extends Controller
         ->whereIn('cartable_type', [Cart::Product, Cart::KoiStock])
         ->where('status_aktif', 1)
         ->get();
+
+        $title = 'Shopping Cart';
+
+        
 
         return view('shoppingcart',[
             'auth' => $auth,

@@ -148,10 +148,13 @@ class AuthenticationController extends Controller
 
     public function adminLogin()
     {
+        dd(1);
         $credentials = $this->request->validate([
             'username' => ['required'],
             'password' => ['required'],
         ]);
+
+        dd($credentials);
 
         if (Auth::guard('admin')->attempt($credentials)) {
             $this->request->session()->regenerate();

@@ -2,7 +2,8 @@
     /* On screens that are 992px or less, set the background color to blue */
     @media screen and (min-width: 601px) {
         .samping {
-            display: none
+            display: none;
+            z-index:1031;
         }
     }
 
@@ -102,7 +103,7 @@
 
     .fix {
         position: fixed;
-        z-index: 99;
+        z-index:1031;
         width: 100vw;
     }
 </style>
@@ -140,6 +141,14 @@
                         <a
                             class="nav-link"href="/login">WISHLIST</a>
                     </li>
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"href="/login">AUCTION CART</a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"href="/login">STORE CART</a>
+                    </li>
                     {{--
                     <li class="nav-item">
                         <a class="nav-link {{ $title === 'koi_stok' ? 'active text-danger' : '' }}"href="/koi_stok">KOI
@@ -168,6 +177,8 @@
         <a class="nav-link {{ $title === 'onelito_store' ? 'active text-danger' : '' }}"href="/onelito_store">ONELITO STORE</a>
         <a class="nav-link {{ $title === 'koi_stok' ? 'active text-danger' : '' }}"href="/koi_stok">KOI STOCK</a>
         <a class="nav-link"href="/login">WISHLIST</a>
+        <a class="nav-link"href="/login">AUCTION CART</a>
+        <a class="nav-link"href="/login">STORE CART</a>
         <a class="nav-link {{ $title === 'login' ? 'active text-danger' : '' }}"href="/login">LOGIN</a>
     </div>
 

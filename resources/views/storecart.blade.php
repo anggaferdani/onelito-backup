@@ -1,7 +1,7 @@
 @extends('profil')
 
 @section('container')
-    <div class="container my-3 text-center">
+    <div class="container my-3 text-center d-none">
         <h5><i class="fa-solid fa-cart-shopping"></i> <b>Shopping cart</b></h5>
     </div>
     <div class="container">

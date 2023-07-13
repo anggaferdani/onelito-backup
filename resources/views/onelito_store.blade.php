@@ -215,7 +215,7 @@
                                                     <span>Wishlist</span></button>
                                             </div> --}}
                                             <div class="mb-1">
-                                                <button class="border-0 btn-success rounded-2 order-now"
+                                                <button class="border-0 btn-success rounded-2 order-now d-none"
                                                     data-id="{{ $product->id_produk }}"
                                                     data-price="{{ $product->harga }}"
                                                     style="background-color:#188518;">Order

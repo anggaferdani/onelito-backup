@@ -143,14 +143,14 @@
 
                                 <button type="button"
                                 onclick="orderNow()"
-                                class="btn btn-success w-100 justify-content-between mb-xl-2">Order
+                                class="btn btn-success w-100 justify-content-between mb-xl-2 d-none">Order
                                     Now</button>
                                 @endauth
 
                                 @guest('member')
                                 <button type="button"
                                     onclick="loginNow()"
-                                    class="btn btn-success w-100 justify-content-between mb-xl-2">Order
+                                    class="btn btn-success w-100 justify-content-between mb-xl-2 d-none">Order
                                     Now</button>
                                 @endguest
                                 <div class="row gx-5">
