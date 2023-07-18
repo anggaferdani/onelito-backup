@@ -183,7 +183,6 @@
                                                 @endif
 
                                                 @if ($detail->productable_type === "KoiStock")
-                                                dd($detail);
                                                     <tr>
                                                         <td width="52%">{{ "$cartable->variety | $cartable->breeder | $cartable->size | $cartable->bloodline" }}</td>
                                                         <td>{{ $detail->jumlah_produk }}</td>
@@ -287,7 +286,7 @@
                                     <div class="container p-0">
                                         <!-- <h5><i class="fa-solid fa-cart-shopping"></i> <b>Shopping cart</b></h5> -->
                                         <div class="alert alert-success" role="alert">
-                                            Terima kasih atas pesanannya, saat ini order anda sedang di proses oleh admin kami, mohon ditunggu.
+                                            Terima kasih atas pesanannya, order anda sedang diproses dan admin kami akan segera menghubungi anda by WhatsApp, mohon ditunggu.
                                         </div>
                                     </div>
                                 </div>
