@@ -209,7 +209,8 @@
                                             </div>
                                             {{-- <div class="col px-2 mb-2" style="text-align: end">
                                                 <button class="border rounded-1 text-black-50"
-                                                    style="background-color: transparent;font-size:small"><i
+                                                    style="background-color: transparent;font-size:small">
+                                                    <i
                                                         data-id="{{ $product->id_produk }}"
                                                         class="{{ $wishlistClass }} wishlist produk-{{ $product->id_produk }}"></i>
                                                     <span>Wishlist</span></button>
@@ -225,9 +226,9 @@
                                             <div class="col-12">
                                                 <div class="row">
                                                     <div class="col-8 text-center">
-                                                        <button class="border rounded-1 text-black-50"
+                                                        <button class="border rounded-1 text-black-50 button-wishlist"
+                                                            data-id="{{ $product->id_produk }}"
                                                             style="background-color: transparent;font-size:small"><i
-                                                                data-id="{{ $product->id_produk }}"
                                                                 class="{{ $wishlistClass }} wishlist produk-{{ $product->id_produk }}"></i>
                                                             <span>Wishlist</span></button>
                                                     </div>
@@ -329,12 +330,13 @@
             buttonsStyling: false
         })
 
-        $(document).on('click', '.wishlist', function(e) {
+        $(document).on('click', '.button-wishlist', function(e) {
             var element = $(e.currentTarget);
-            var elClass = element.attr('class');
+            var id = element.attr('data-id');
+            var children = document.getElementsByClassName(`wishlist produk-${id}`)[0];
+            var elClass = children.getAttribute('class');
             var targetClass = elClass.substr(0, 21);
             var idClass = elClass.substr(22);
-            var id = element.attr('data-id');
             var targetElements = $(`.${idClass}`)
 
             if (targetClass === 'far fa-heart wishlist') {
