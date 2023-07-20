@@ -207,7 +207,7 @@
                 $title = "WINNING AUCTION";
             }
 
-            if ($title === "Store Cart") {
+            if ($title === "Store Cart" || $title === "store_cart") {
                 $title = "Payment Cart";
             }
         @endphp
