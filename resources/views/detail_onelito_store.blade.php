@@ -79,23 +79,9 @@
                                 <p>Rp 1.300.000</p>
                             </div>
                         </div>
-                        @auth('member')
-                            <button type="button"
-                            onclick="orderNow()"
-                            class="btn btn-success w-100 justify-content-between mb-xl-2">Order
-                                Now</button>
-                        @endauth
-
-                        @guest('member')
-                            <button type="button"
-                                onclick="loginNow()"
-                                class="btn btn-success w-100 justify-content-between mb-xl-2">Order
-                                Now</button>
-                        @endguest
-
                         <div class="row gx-5 mt-3">
                             <div class="col">
-                                <button type="button" class="btn btn-success w-100 justify-content-between text-success"
+                                <button type="button" class="btn btn-success w-100 justify-content-between text-success addcart"
                                     style="background-color: white">Add Cart</button>
                             </div>
                             <div class="col">
@@ -157,7 +143,7 @@
                                     <div class="col">
                                         <button type="button"
                                             id="addcart"
-                                            class="btn btn-success w-100 justify-content-between text-success"
+                                            class="btn btn-success w-100 justify-content-between text-success addcart"
                                             style="background-color: white">Add Cart</button>
                                     </div>
                                     <div class="col">
@@ -184,6 +170,11 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        function isMobile() {
+            const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+            return regex.test(navigator.userAgent);
+        }
 
         let add = document.querySelector("#add");
         let output = Number(document.querySelector("#output").innerText);
@@ -227,7 +218,7 @@
 
         });
 
-        $(document).on('click', '#addcart', function(e) {
+        $(document).on('click', '.addcart', function(e) {
             var button = $(this);
             $(this).attr('disabled', true)
             var output = document.querySelector("#output");
@@ -251,7 +242,11 @@
                         reverseButtons: true
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            document.location = '/profil?section=store-cart'
+                            if (isMobile()) {
+                                document.location = '/storecart'
+                            } else {
+                                document.location = '/profil?section=store-cart'
+                            }
 
                         } else if (
                             /* Read more about handling dismissals below */
