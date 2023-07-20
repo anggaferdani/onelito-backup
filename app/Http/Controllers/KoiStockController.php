@@ -31,7 +31,7 @@ class KoiStockController extends Controller
         return view('koi_stok',[
             'auth' => $auth,
             'fishes' => $fishes,
-            'title' => 'KOI STOCKS'
+            'title' => 'KOI STOCK'
         ]);
     }
 
@@ -46,7 +46,7 @@ class KoiStockController extends Controller
         return view('detail_koistok',[
             'auth' => $auth,
             'fish' => $fish,
-            'title' => 'KOI STOCKS'
+            'title' => 'KOI STOCK'
         ]);
     }
 }

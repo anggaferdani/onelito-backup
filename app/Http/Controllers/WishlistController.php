@@ -159,7 +159,7 @@ class WishlistController extends Controller
 
         return view('wishlistlog',[
             'auth' => $auth,
-            'title' => 'wishlistlog',
+            'title' => 'wishlist',
             'wishlists' => $wishlists,
             'now' => $now,
         ]);

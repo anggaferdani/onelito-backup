@@ -143,11 +143,11 @@
                     </li>
                     <li class="nav-item">
                         <a
-                            class="nav-link"href="/login">AUCTION CART</a>
+                            class="nav-link"href="/login">WINNING AUCTION</a>
                     </li>
                     <li class="nav-item">
                         <a
-                            class="nav-link"href="/login">STORE CART</a>
+                            class="nav-link"href="/login">PAYMENT CART</a>
                     </li>
                     {{--
                     <li class="nav-item">
@@ -177,8 +177,8 @@
         <a class="nav-link {{ $title === 'onelito_store' ? 'active text-danger' : '' }}"href="/onelito_store">ONELITO STORE</a>
         <a class="nav-link {{ $title === 'koi_stok' ? 'active text-danger' : '' }}"href="/koi_stok">KOI STOCK</a>
         <a class="nav-link"href="/login">WISHLIST</a>
-        <a class="nav-link"href="/login">AUCTION CART</a>
-        <a class="nav-link"href="/login">STORE CART</a>
+        <a class="nav-link"href="/login">WINNING AUCTION</a>
+        <a class="nav-link"href="/login">PAYMENT CART</a>
         <a class="nav-link {{ $title === 'login' ? 'active text-danger' : '' }}"href="/login">LOGIN</a>
     </div>
 

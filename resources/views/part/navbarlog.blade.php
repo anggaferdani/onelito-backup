@@ -149,11 +149,11 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link {{ $title === 'cart' ? 'active text-danger' : '' }}"href="/profil?section=cart">AUCTION CART</a>
+                        <a class="nav-link {{ $title === 'cart' ? 'active text-danger' : '' }}"href="/profil?section=cart">WINNING AUCTION</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link {{ $title === 'store_cart' ? 'active text-danger' : '' }}"href="/profil?section=store-cart">STORE CART</a>
+                        <a class="nav-link {{ $title === 'store_cart' ? 'active text-danger' : '' }}"href="/profil?section=store-cart">PAYMENT CART</a>
                     </li>
 
                     <li class="nav-item">
@@ -183,8 +183,8 @@
         <a class="nav-link {{ $title === 'koi_stok' ? 'active text-danger' : '' }}"href="/koi_stok">KOI STOCK</a>
 
         <a class="nav-link {{ $title === 'wishlistlog' ? 'active text-danger' : '' }}"href="/wishlistlog">WISHLIST</a>
-        <a class="nav-link {{ $title === 'cart' ? 'active text-danger' : '' }}"href="/shoppingcart">AUCTION CART</a>
-        <a class="nav-link {{ $title === 'store_cart' ? 'active text-danger' : '' }}"href="/storecart">STORE CART</a>
+        <a class="nav-link {{ $title === 'cart' ? 'active text-danger' : '' }}"href="/shoppingcart">WINNING AUCTION</a>
+        <a class="nav-link {{ $title === 'store_cart' ? 'active text-danger' : '' }}"href="/storecart">PAYMENT CART</a>
 
 
         <div class="px-4" style="position: absolute;
@@ -204,7 +204,11 @@
         <button class="openbtn" onclick="openNav()">&#9776;</button>
         @php 
             if ($title === "Shopping Cart") {
-                $title = "Auction Cart";
+                $title = "WINNING AUCTION";
+            }
+
+            if ($title === "Store Cart") {
+                $title = "Payment Cart";
             }
         @endphp
         <h2 class="title my-0 mx-auto" style="text-transform: capitalize">{{ $title }}</h2>

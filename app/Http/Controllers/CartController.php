@@ -115,7 +115,7 @@ class CartController extends Controller
         $order->no_order = $order->no_order.$order->id_order;
         $order->save();
 
-        // only use for checkout from store cart
+        // only use for checkout from payment cart
         if ($method === null) {
             Cart::whereIn('id_keranjang', collect($data['data_order'])->pluck('id_keranjang'))->update([
                 'status_aktif' => 0,
