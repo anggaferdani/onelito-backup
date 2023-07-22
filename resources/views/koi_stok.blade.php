@@ -273,6 +273,11 @@
             }
         });
 
+        function isMobile() {
+            const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+            return regex.test(navigator.userAgent);
+        }
+
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
@@ -353,7 +358,6 @@
                 },
                 dataType: "json",
                 complete: function(res) {
-                    // document.location = '/profil?section=store-cart'
                     swalWithBootstrapButtons.fire({
                         title: 'Product berhasil ditambahkan',
                         text: `Klik Ya, untuk lihat keranjang`,
@@ -364,8 +368,11 @@
                         reverseButtons: true
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            document.location = '/profil?section=store-cart'
-
+                            if (isMobile()) {
+                                document.location = '/storecart'
+                            } else {
+                                document.location = '/profil?section=store-cart'
+                            }
                         } else if (
                             /* Read more about handling dismissals below */
                             result.dismiss === Swal.DismissReason.cancel

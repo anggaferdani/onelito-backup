@@ -1,6 +1,63 @@
 @extends('layout.mainlog')
 
 @section('container')
+    <style>
+        .card-img-top.product {
+            min-height: 367px;
+            max-width: 245px;
+            object-fit: contain;
+            border: 1px solid #dee2e6!important
+        }
+
+        .card-img-top {
+            min-height: 367px;
+        }
+
+        .card-img-top {
+            max-height: 367px;
+        }
+
+        @media screen and (min-width: 601px) {
+            .addcart.mobile {
+                display: none
+            }
+        }
+
+        /* On screens that are 600px or less, set the background color to olive */
+        @media screen and (max-width: 600px) {
+            .addcart.desktop {
+                display: none;
+            }
+
+            .card-img-top.product {
+                min-height: 254px;
+                object-fit: contain;
+                border: 1px solid #dee2e6!important
+            }
+
+            .card-img-top {
+                min-height: 254px;
+            }
+        }
+
+        @media screen and (min-width: 601px) and (max-width: 1332px) {
+         
+
+            .card-img-top.product {
+                min-height: 364px;
+                object-fit: contain;
+                border: 1px solid #dee2e6!important
+            }
+
+            .addcart.desktop {
+                display: block
+            }
+
+            .addcart.mobile {
+                display: none;
+            }
+        }
+    </style>
     <br><br><br><br><br>
 
     <div class="container-fluit">
@@ -106,31 +163,42 @@
                     @endif
                     @if ($wishlist->wishlistable_type === 'Product')
                         <div class="col">
-                            <div class="border">
+                            <div class="border card">
                                 <a href="{{ url('/onelito_store') . '/' . $wishlist->wishlistable_id }}"><img
-                                        src="{{ $wishlistPhoto }}" alt="bio media" class="card-img-top"></a>
-                                <div class="px-1">
-                                    <p class="cb-judul">{!! Illuminate\Support\Str::limit(
+                                        src="{{ $wishlistPhoto }}" alt="bio media" class="card-img-top product"></a>
+                                <div class="card-body px-2">
+                                    <p class="">{!! Illuminate\Support\Str::limit(
                                         $wishlist->wishlistable->merek_produk . ' ' . $wishlist->wishlistable->nama_produk,
                                         100,
                                     ) !!}</p>
-                                    <p><b>Rp.
-                                            {{ number_format($wishlist->wishlistable->harga, 0, '.', '.') }}</b></p>
-
-                                    <div class="row">
+                                    
+                                    
+                                    <div class="row" style="height:58px;">
                                         <div class="col-9">
-                                            <button class="mb-3 text-danger addcart" data-id="{{ $wishlist->wishlistable_id }}"
-                                            style="background-color: transparent;font-size:small;border-color:red"><i
-                                                class="fa-solid fa-plus"></i>
-                                            <span>Keranjang</span></button>
+                                        <p class="my-2"><b>Rp.
+                                            {{ number_format($wishlist->wishlistable->harga, 0, '.', '.') }}</b></p>
                                         </div>
-                                        <div class="col-3 text-end">
-                                            <p>
-                                            <i
-                                            data-id="{{ $wishlist->wishlistable_id }}"
-                                            data-type="id_produk"
-                                            style="color:red;font-size:smaller" class="remove my-2 fa-solid fa-trash-can"></i>
-                                            </p>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-8">
+                                        <!-- <button class="rounded addcart mobile"
+                                                            data-id="{{ $wishlist->wishlistable_id }}"
+                                                            style="background-color: red;border-color:red; outline: none; border: none;"><i
+                                                                class="fa-solid fa-cart-shopping"
+                                                                style="color: white"></i></button> -->
+                                            <button class="text-danger addcart" data-id="{{ $wishlist->wishlistable_id }}"
+                                                style="background-color: transparent;font-size:small;border-color:red"><i
+                                                    class="fa-solid fa-plus"></i>
+                                                <span>Keranjang</span>
+                                                
+                                            </button>
+                                        </div>
+                                        <div class="col-4 text-end">
+                                                <i
+                                                data-id="{{ $wishlist->wishlistable_id }}"
+                                                data-type="id_produk"
+                                                style="color:red;font-size:smaller" class="remove my-2 fa-solid fa-trash-can"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -153,7 +221,7 @@
                                     <!-- </div> -->
                                     <div class="row" style="height:58px;">
                                         <div class="col-9">
-                                            <p class="my-2" style="color :red">Rp. {{ $wishlistable->harga_ikan }}</p>
+                                            <p class="my-2" style=""><b>Rp. {{ $wishlistable->harga_ikan }}</b></p>
                                         </div>
                                         <div class="col-3 text-end">
                                             <p>
@@ -172,24 +240,9 @@
                                         </div>
                                         <div class="col-6 col-lg-6">
                                             <a href="{{ url('koi_stok') . '/' . $wishlist->wishlistable_id }}"
-                                                class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-0 px-lg-2"
+                                                class="btn btn-secondary w-100 d-flex justify-content-between p-1 px-lg-2"
                                                 style="font-size: 70%">DETAIL <span><i
                                                         class="fa-solid fa-circle-chevron-right"></i></span></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 mt-2 d-none">
-                                        <div class="row">
-                                            <div class="col-9 px-1 pb-0">
-                                                <button class="mb-3 text-danger addcart" data-id="{{ $wishlist->wishlistable_id }}"
-                                                style="background-color: transparent;font-size:small;border-color:red"><i
-                                                    class="fa-solid fa-plus"></i>
-                                                <span>Keranjang</span></button>
-                                            </div>
-                                            <div class="col-3 px-1 text-end d-none">
-                                                <button class="rounded addcart" {{-- data-id="{{ $product->id_produk }}" --}}
-                                                    style="background-color: red;border-color:red; outline: none; border: none;"><i
-                                                        class="fa-solid fa-cart-shopping" style="color: white"></i></button>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

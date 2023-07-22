@@ -110,7 +110,7 @@
                             </div>
                         </a>
                         <div class="ml-auto" style="font-size: 22px">
-                            <a href="/homelog"><i class='bx bx-x-circle text-danger' style="font-size: x-large"></i></a>
+                            <a href="/"><i class='bx bx-x-circle text-danger' style="font-size: x-large"></i></a>
                         </div>
                     </div>
                 </div>
@@ -142,7 +142,7 @@
                                     <div class="container p-0 mt-1">
                                         <!-- <h5><i class="fa-solid fa-cart-shopping"></i> <b>Shopping cart</b></h5> -->
                                         <div class="alert alert-success" role="alert">
-                                            Terima kasih atas pesanannya, saat ini order anda sedang di proses oleh admin kami, mohon ditunggu.
+                                        Terima kasih atas pesanannya, order anda sedang diproses dan admin kami akan segera menghubungi anda by WhatsApp, mohon ditunggu.
                                         </div>
                                     </div>
                                 </div>
