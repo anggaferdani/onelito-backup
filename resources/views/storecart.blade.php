@@ -91,7 +91,7 @@
                             <a href="/koi_stok/{{ $cart->cartable_id }}"><img
                                     src="{{ $cartPhoto }}"
                                     class="card-img-top"
-                                    style="width: 5vw; object-fit: cover;"
+                                    style="width: 96px; height: 144px; object-fit: cover;"
                                     alt="..."></a>
                         </div>
                         <div>
@@ -113,7 +113,7 @@
                             data-id="{{ $cart->id_keranjang }}"
                             style="background-color: transparent"><i
                                 class="fa-regular fa-trash-can"></i></button>
-                        <div class="btn-group" role="group"
+                        <div class="btn-group d-none" role="group"
                             aria-label="Basic outlined example">
                             <button type="button" id="subtract"
                                 onclick="manageProduct(this)"
@@ -145,10 +145,10 @@
                     <h5 class="font-bold pricetotal">Rp. <span class="total-price">0</span></h5>
                 </div>
                 <a onclick=""
-            class="transaction btn btn-danger w-50"
+            class="btn btn-danger w-50"
             style="padding:4%;"
             href="{{ url('/onelito_store').'?item='. request()->item }}">Belanja Produk Lainya</a>
-                <a class="transaction btn btn-secondary w-25" onclick="orderNow()" href="#" role="button">Pesan
+                <a class="transaction btn btn-secondary w-25" onclick="itemCheckNotif()" href="#" role="button">Pesan
                     Sekarang</a>
             </div>
                 

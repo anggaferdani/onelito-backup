@@ -48,7 +48,7 @@
                                         "$cartable->variety | $cartable->breeder | $cartable->bloodline | $cartable->size",
                                         64,
                                     ) !!}</p>
-                        <p class="m-0"><b>Rp. {{ number_format($cart->price, 0, '.', '.') }}</b></p>
+                        <p class="m-0 d-none"><b>Rp. {{ number_format($cart->price, 0, '.', '.') }}</b></p>
                         </div>
                     </div>
                     <div class="container d-flex p-0 my-3 justify-content-between">
@@ -97,7 +97,7 @@
             @endif
         @empty
         @endforelse
-        <div class="container border-top fixed-bottom d-flex p-3 justify-content-between bg-white">
+        <div class="container border-top fixed-bottom d-flex p-3 justify-content-between bg-white d-none">
             <div class="my-auto">
                 <h5 class="">Total Harga</h5>
                 <h5 class="font-bold pricetotal">Rp. <span class="total-price">0</span></h5>

@@ -400,7 +400,7 @@
                                                                     "$cartable->variety | $cartable->breeder | $cartable->bloodline | $cartable->size",
                                                                     64,
                                                                 ) !!}</p>
-                                                                <p class="m-0"><b>Rp.
+                                                                <p class="m-0 d-none"><b>Rp.
                                                                         {{ number_format($cart->price, 0, '.', '.') }}</b>
                                                                 </p>
                                                             </div>
@@ -429,7 +429,7 @@
                                                             </div>
                                                             <div>
                                                                 <p class="m-0">{!! Illuminate\Support\Str::limit("$cartable->merek_produk $cartable->nama_produk", 75) !!}</p>
-                                                                <p class="m-0"><b>Rp.
+                                                                <p class="m-0 "><b>Rp.
                                                                         {{ number_format($cartPrice, 0, '.', '.') }}</b>
                                                                 </p>
                                                             </div>
@@ -686,7 +686,7 @@
                                                         </div>
                                                     </div>
                                                     <br>
-                                                    <a onclick=""
+                                                    <a onclick="itemCheckNotif()"
                                                         class="transaction btn btn-secondary w-100 justify-content-between "
                                                         href="#">Pesan
                                                         Sekarang (<span class="total-item">0</span>)</a>
@@ -696,7 +696,7 @@
                                        
                                                 <div class="mt-3">
                                                 <a onclick=""
-                                                                class="transaction btn btn-danger w-100 justify-content-between "
+                                                                class="btn btn-danger w-100 justify-content-between "
                                                                 href="{{ url('/onelito_store') }}">Belanja Produk Lainya</a>
                                                 </div>
                                             </div>
@@ -830,7 +830,7 @@
                                                                         "$productable->variety | $productable->breeder | $productable->size | $productable->bloodline",
                                                                         25,
                                                                     ) !!}</p>
-                                                <p><b>Rp.{{ number_format($order->total, 0, '.', '.') }}</b></p>
+                                                <p class=""><b>Rp.{{ number_format($order->total, 0, '.', '.') }}</b></p>
                                             </div>
                                         </div>
                                         @endif
@@ -1035,6 +1035,26 @@
             },
             buttonsStyling: false
         })
+
+        function itemCheckNotif() {
+            swalWithBootstrapButtons.fire({
+                title: 'Pilih produk',
+                text: `Pilih produk yang akan dibelanjakan`,
+                icon: 'warning',
+                confirmButtonText: 'Ya',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    result.dismiss === Swal.DismissReason.cancel
+
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+
+                }
+            })
+        }
 
         function orderNow() {
             var nominal = $('.total-price')[0].innerText
@@ -1278,7 +1298,7 @@
             }
 
             if (items === 0) {
-                transaction.attr('onclick', '')
+                transaction.attr('onclick', 'itemCheckNotif()')
                 transaction.removeClass('btn-danger');
                 transaction.addClass('btn-secondary');
             }
@@ -1343,7 +1363,7 @@
             }
 
             if (items === 0) {
-                transaction.attr('onclick', '')
+                transaction.attr('onclick', 'itemCheckNotif()')
                 transaction.removeClass('btn-danger');
                 transaction.addClass('btn-secondary');
             }
@@ -1398,7 +1418,7 @@
             }
 
             if (items === 0) {
-                transaction.attr('onclick', '#')
+                transaction.attr('onclick', 'itemCheckNotif()')
                 transaction.removeClass('btn-danger');
                 transaction.addClass('btn-secondary');
             }
