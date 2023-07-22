@@ -165,6 +165,8 @@
 @push('scripts')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        let user = @json($auth);
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -222,6 +224,35 @@
             var button = $(this);
             $(this).attr('disabled', true)
             var output = document.querySelector("#output");
+
+            if (user == null) {
+                swalWithBootstrapButtons.fire({
+                    title: 'Belum Login',
+                    text: `Harap login terlebih dulu untuk pemesanan`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ke halaman login',
+                    cancelButtonText: 'Tidak',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = '/login';
+
+                    } else if (
+                        /* Read more about handling dismissals below */
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        // swalWithBootstrapButtons.fire(
+                        //     'Batal',
+                        //     'Pesanan dibatalkan',
+                        //     'error'
+                        // )
+                    }
+                })
+
+                return true;
+            }
+
             $.ajax({
                 type: 'POST',
                 url: `/carts`,
