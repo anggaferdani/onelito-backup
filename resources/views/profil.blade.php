@@ -637,7 +637,7 @@
                                                                 data-id="{{ $cart->id_keranjang }}"
                                                                 style="background-color: transparent"><i
                                                                     class="fa-regular fa-trash-can"></i></button>
-                                                            <div class="btn-group" role="group"
+                                                            <div class="btn-group d-none" role="group"
                                                                 aria-label="Basic outlined example">
                                                                 <button type="button" id="subtract"
                                                                     onclick="manageProduct(this)"
