@@ -263,6 +263,57 @@
             })
         })
 
+        $(document).on('click','button#btn-completed',function() {
+                var id_peserta = $(this).data('peserta');
+                var id_event = $(this).data('event');
+                var status_pembayaran = $(this).data('status');
+                var url = "{{ url('admin/auction-winners-update') }}";
+
+                var textBody = 'Update status transaksi menjadi Selesai';
+
+                if (status_pembayaran == 1) {
+                    textBody = 'Update status transaksi menjadi Belum Selesai'
+                }
+                swal({
+                    title: 'Update',
+                    text: textBody,
+                    icon: 'info',
+                    buttons: true,
+                    dangerMode: false,
+                    })
+                    .then((willSend) => {
+                    if (willSend) {
+                        $.ajax({
+                            type:'PATCH',
+                            dataType: 'JSON',
+                            url: url,
+                            data:{
+                                "_token": $('meta[name="csrf-token"]').attr('content'),
+                                "id_peserta": id_peserta,
+                                "id_event": id_event,
+                                "status": status_pembayaran,
+                            },
+                            success:function(response){
+                                if(response.success){
+                                    swal('Data berhasil di update', {
+                                        icon: 'success',
+                                    });
+
+                                    location.reload();
+                                }
+                            },
+                            error:function(err){
+                                swal({
+                                    icon: 'error',
+                                    title: 'Terjadi kesalahan',
+                                    text: err.responseJSON.message+'.',
+                                })
+                            }
+                        });
+                    }
+                });
+        });
+
         $('#formEdit').submit(function(e) {
             e.preventDefault();
             let formData = new FormData(this);

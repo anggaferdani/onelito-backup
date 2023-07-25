@@ -12,6 +12,7 @@ use App\Models\Member;
 use App\Models\OrderDetail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
@@ -28,14 +29,16 @@ class AuctionWinnerController extends Controller
                 ->join('t_log_bidding', 't_pemenang_lelang.id_bidding', '=', 't_log_bidding.id_bidding')
                 ->join('m_ikan_lelang', 't_log_bidding.id_ikan_lelang', '=', 'm_ikan_lelang.id_ikan')
                 ->select(
+                    'id_pemenang_lelang',
+                    'status_pembayaran',
                     'm_ikan_lelang.id_event as id_event',
                 't_log_bidding.id_peserta as id_peserta'
                 )
                 ->with(['member.city', 'event'])
                 ->where('t_pemenang_lelang.status_aktif', 1)
-                ->groupBy('id_peserta', 'id_event')
+                ->orderBy('m_ikan_lelang.id_event', 'desc')
                 ->get()
-                ->sortByDesc('id_event')
+                ->mapWithKeys(fn($q) => [$q['id_peserta'].$q['id_event'] => $q]);
                 ;
 
             return DataTables::of($winners)
@@ -217,5 +220,64 @@ class AuctionWinnerController extends Controller
     public function excels()
     {
         return Excel::download(new AuctionWinnerExport, 'data_pemenang_lelang.xlsx');
+    }
+
+    public function winnerUpdate()
+    {
+        $idPeserta = $this->request->id_peserta;
+        $idEvent = $this->request->id_event;
+        $status = $this->request->status;
+
+        $orderDetail = AuctionWinner::whereHas('bidding', function($q) use($idPeserta, $idEvent){
+            $q->where('id_peserta', $idPeserta)
+                ->whereHas('eventFish', fn($q2) => $q2->where('id_event', $idEvent))
+            ;
+        })
+        ->with('bidding.eventFish')
+        ->get();
+
+        try {
+
+            DB::transaction(function () use ($orderDetail, $idPeserta, $status){
+                
+                if ($status != 1) {
+                    AuctionWinner::whereIn('id_pemenang_lelang', $orderDetail->pluck('id_pemenang_lelang'))
+                    ->update(['status_pembayaran' => 1]);
+
+                    $eventFishIds = $orderDetail->pluck('bidding.id_ikan_lelang');
+
+                    Cart::where('id_peserta', $idPeserta)
+                        ->whereIn('cartable_id', $eventFishIds)
+                        ->where('cartable_type', Cart::EventFish)
+                        ->update(['status_aktif' => 0]);
+                }else {
+                    AuctionWinner::whereIn('id_pemenang_lelang', $orderDetail->pluck('id_pemenang_lelang'))
+                    ->update(['status_pembayaran' => 0]);
+
+                    $eventFishIds = $orderDetail->pluck('bidding.id_ikan_lelang');
+
+                    Cart::where('id_peserta', $idPeserta)
+                        ->whereIn('cartable_id', $eventFishIds)
+                        ->where('cartable_type', Cart::EventFish)
+                        ->update(['status_aktif' => 1]);
+                }
+            });
+
+            return response()->json([
+                'success' => true,
+                'message' => [
+                    'title' => 'Berhasil',
+                    'content' => 'Mengubah data Pemenang Lelang',
+                    'type' => 'success'
+                ],
+            ],200);
+
+        } catch(\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+                'error' => $e->getMessage(),
+            ],500);
+        }
     }
 }

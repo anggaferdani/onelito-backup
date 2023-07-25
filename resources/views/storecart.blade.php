@@ -18,8 +18,9 @@
                 $cartPhoto = url('img/uniring.jpeg');
                 $cartable = $cart->cartable;
 
-                if ($cart->cartable_type === 'EventFish') {
-                    $cartPhoto = url('img/koi11.jpg');
+                if ($cart->cartable_type === 'KoiStock') {
+                    $cartPhoto = url('');
+                    $cartPrice = $cartable->harga_ikan;
                 }
 
                 if ($cart->cartable->photo !== null) {
@@ -28,11 +29,6 @@
 
                 if ($cart->cartable_type === 'Product') {
                     $cartPrice = $cartable->harga;
-                }
-
-                if ($cart->cartable_type === 'KoiStock') {
-                    $cartPrice = $cartable->harga_ikan;
-                    $cartPhoto = url('img/koi12.jpg');
                 }
             @endphp
             @if($cart->cartable_type === 'Product')
