@@ -21,6 +21,10 @@
                 if ($cart->cartable_type === 'KoiStock') {
                     $cartPhoto = url('');
                     $cartPrice = $cartable->harga_ikan;
+                                            
+                    if ($cartable->foto_ikan !== null) {
+                        $cartPhoto = url('storage') . '/' . $cart->cartable->foto_ikan;
+                    }
                 }
 
                 if ($cart->cartable->photo !== null) {
