@@ -268,6 +268,11 @@
             let timerLabels = document.getElementsByClassName('countdown-label');
             let addedExtraTimeGroups = [];
 
+            function isMobile() {
+                const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+                return regex.test(navigator.userAgent);
+            }
+
             setInterval(function() {
                 getCurrentNow();
             }, 700);
@@ -449,7 +454,11 @@
                     },
                     dataType: "json",
                     complete: function(res) {
-                        document.location = '/profil?section=store-cart'
+                        if (isMobile()) {
+                            document.location = '/storecart'
+                        } else {
+                            document.location = '/profil?section=store-cart'
+                        }
                         // element.attr('class', 'fas fa-heart wishlist');
                         button.removeAttr('disabled')
                     },
