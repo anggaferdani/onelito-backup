@@ -16,6 +16,9 @@
 </style>
 
 <br><br><br><br>
+    @php 
+        $previous = url()->previous();
+    @endphp
 
     <div class="container">
         <div class="modal fade" id="exampleModal" tabindex="-1">
@@ -30,7 +33,7 @@
                 </div>
             </div>
         </div>
-        <a href="/auction"><i class="fa-solid fa-arrow-left-long text-body" style="font-size: x-large"></i></a>
+        <a href="{{ $previous }}"><i class="fa-solid fa-arrow-left-long text-body" style="font-size: x-large"></i></a>
 
         <style>
             /* On screens that are 992px or less, set the background color to blue */

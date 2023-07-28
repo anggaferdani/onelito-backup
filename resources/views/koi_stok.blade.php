@@ -82,7 +82,7 @@
                                 </div>
                                 <div class="col-12 mt-2">
                                     <div class="row">
-                                        <div class="col-9 px-1">
+                                        <div class="col-7 px-1">
                                         <button class="border rounded-1 text-black-50 button-wishlist"
                                             data-id="{{ $fish->id_koi_stock }}"
 
@@ -91,7 +91,7 @@
                                                         <span>Wishlist</span></button>
 
                                         </div>
-                                        <div class="col-3 px-1 text-end ">
+                                        <div class="col-5 px-1 text-end ">
                                             <button class="rounded addcart" data-id="{{ $fish->id_koi_stock }}"
                                                 style="background-color: red;border-color:red; outline: none; border: none;"><i
                                                     class="fa-solid fa-cart-shopping" style="color: white"></i></button>

@@ -388,7 +388,7 @@
                                                                 id="flexCheckDefault"> -->
                                                             <div class="card mr-3">
                                                                 <!-- <a href="/auction/{{ $cart->cartable_id }}"> -->
-                                                                <a href="#">
+                                                                <a href="/auction/{{$cart->cartable_id}}">
                                                                     <img
                                                                         src="{{ $cartPhoto }}"
                                                                         class="card-img-top"
@@ -1020,7 +1020,8 @@
                 data: {},
                 dataType: "json",
                 success: function(res) {
-                    location.href = `/profil?section=store-cart`;
+                    // location.href = `/profil?section=store-cart`;
+                    location.reload();
                 },
                 error: function(error) {
                     return false
@@ -1155,7 +1156,7 @@
                     //     reverseButtons: true
                     // }).then((result) => {
                     //     if (result.isConfirmed) {
-                    //         location.reload();
+                            // location.reload();
                     //     } else if (
                     //         /* Read more about handling dismissals below */
                     //         result.dismiss === Swal.DismissReason.cancel
