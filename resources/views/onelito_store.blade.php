@@ -224,7 +224,7 @@
                                                     Now</button>
                                             </div>
                                             <div class="col-12">
-                                                <div class="row px-1">
+                                                <div class="row">
                                                     <div class="col-7 px-1">
                                                         <button class="border rounded-1 text-black-50 button-wishlist"
                                                             data-id="{{ $product->id_produk }}"
