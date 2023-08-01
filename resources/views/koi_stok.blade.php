@@ -91,7 +91,7 @@
                                                         <span>Wishlist</span></button>
 
                                         </div>
-                                        <div class="col-5 px-1 text-end ">
+                                        <div class="col-5 px-1 text-end">
                                             <button class="rounded addcart" data-id="{{ $fish->id_koi_stock }}"
                                                 style="background-color: red;border-color:red; outline: none; border: none;"><i
                                                     class="fa-solid fa-cart-shopping" style="color: white"></i></button>

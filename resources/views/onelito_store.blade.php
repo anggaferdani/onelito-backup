@@ -197,7 +197,7 @@
                                         }
                                     @endphp
                                     <div class="col">
-                                        <div class="p-0 border bg-light cart">
+                                        <div class="border bg-light cart">
                                             <a href="/onelito_store/{{ $product->id_produk }}"><img
                                                     src="{{ $productPhoto }}" alt="bio media" class="card-img-top"
                                                     height="170"></a>
