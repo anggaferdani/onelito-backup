@@ -224,18 +224,18 @@
                                                     Now</button>
                                             </div>
                                             <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-7 px-1">
+                                                <div class="row px-1">
+                                                    <div class="col-8">
                                                         <button class="border rounded-1 text-black-50 button-wishlist"
                                                             data-id="{{ $product->id_produk }}"
-                                                            style="background-color: transparent;font-size:small"><i
+                                                            style="background-color: transparent;font-size:x-small"><i
                                                                 class="{{ $wishlistClass }} wishlist produk-{{ $product->id_produk }}"></i>
                                                             <span>Wishlist</span></button>
                                                     </div>
-                                                    <div class="col-5 px-1 mb-1 text-end">
+                                                    <div class="col-4 mb-1 text-end">
                                                         <button class="rounded addcart"
                                                             data-id="{{ $product->id_produk }}"
-                                                            style="background-color: red;border-color:red; outline: none; border: none; font-size:small"><i
+                                                            style="background-color: red;border-color:red; outline: none; border: none; font-size:x-small"><i
                                                                 class="fa-solid fa-cart-shopping"
                                                                 style="color: white"></i></button>
                                                     </div>
