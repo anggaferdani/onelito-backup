@@ -85,6 +85,10 @@
 
                         if ($wishlist->wishlistable_type === 'KoiStock') {
                             $wishlistPhoto = url('img/koi12.jpg');
+
+                            if ($wishlistable->foto_ikan !== null) {
+                                $wishlistPhoto = url('storage') . '/' . $wishlistable->foto_ikan;
+                            }
                         }
                     @endphp
 
@@ -221,7 +225,7 @@
                                     <!-- </div> -->
                                     <div class="row" style="height:58px;">
                                         <div class="col-9">
-                                            <p class="my-2" style=""><b>Rp. {{ $wishlistable->harga_ikan }}</b></p>
+                                            <p class="my-2" style=""><b>Rp. {{ number_format($wishlistable->harga_ikan, 0, '.', '.')}}</b></p>
                                         </div>
                                         <div class="col-3 text-end">
                                             <p>
