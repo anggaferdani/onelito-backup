@@ -108,10 +108,6 @@
         }
 
         $previous = url()->previous();
-
-        if(!str_contains($previous, '/onelito_store') && !str_contains($previous, '/koi_stok')) {
-            $previous = '/';
-        }
     @endphp
     <div class="res">
         <div class="container-fluid py-3">
