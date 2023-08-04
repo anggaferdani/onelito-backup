@@ -89,10 +89,6 @@
         $details = $order->details;
 
         $previous = url()->previous();
-
-        if(!str_contains($previous, '/onelito_store') && !str_contains($previous, '/koi_stok')) {
-            $previous = '/';
-        }
     @endphp
     <div class="res">
         <div class="container-fluid py-3">
@@ -227,7 +223,7 @@
 
     <div class="web">
         <div class="container p-0">
-            <a href="/onelito_store" class="text-dark" style="text-decoration: blink"><i
+            <a href="{{ $previous }}" class="text-dark" style="text-decoration: blink"><i
                     class="fa-solid fa-arrow-left text dark"></i> back</a>
             <br><br>
             <div class="row">
