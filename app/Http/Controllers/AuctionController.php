@@ -27,7 +27,7 @@ class AuctionController extends Controller
                     'auctionProducts' => function ($q) {
                         $q->withCount('bidDetails')->with(['photo', 'maxBid', 'event']);
                     },
-                    'auctionProducts.wishlist' => fn($w) => $w->where('member_id', $auth->id)
+                    'auctionProducts.wishlist' => fn($w) => $w->where('id_peserta', $auth->id_peserta)
                 ]);
             }, function ($q) {
                 $q->with([
