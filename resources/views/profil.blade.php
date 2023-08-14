@@ -183,7 +183,7 @@
                             </div>
                             <div class="mb-2" style="align-items:center">
                                 <a class="btn btn-danger w-75 justify-content-between" role="button"
-                                    id="v-pills-password-tab" href="/profil?section=update-profile"
+                                    id="v-pills-profile-tab" href="/profil?section=update-profile"
                                     style="font-size: x-large">Update Profile</a>
                             </div>
                             <!-- <button type="button" class="btn btn-light btn-sm">
@@ -1006,6 +1006,21 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        function isMobile() {
+            const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+            return regex.test(navigator.userAgent);
+        }
+
+        if (isMobile()) {
+            $('#v-pills-profile-tab').attr('href', '/update_profile');
+            $('#v-pills-password-tab').attr('href', '/ganti_password');
+        }
+
+        if (!isMobile()) {
+            $('#v-pills-profile-tab').attr('href', '/profil?section=update-profile');
+            $('#v-pills-password-tab').attr('href', '/profil?section=change-password');
+        }
 
         $("body").on("click", ".remove-cart", function(o) {
             var id = $(this).attr('data-id');
