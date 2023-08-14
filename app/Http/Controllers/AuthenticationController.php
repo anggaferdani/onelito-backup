@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\EmailResetPassword;
 use App\Mail\EmailVerification;
+use App\Mail\UserVerified;
 use App\Models\Member;
 use App\Models\Province;
 use Carbon\Carbon;
@@ -202,6 +203,8 @@ class AuthenticationController extends Controller
 
                 $user->email_verified_at = Carbon::now();
                 $user->save();
+
+                Mail::to('onelito.koi@gmail.com')->send(new UserVerified($user));
 
                 session()->flash('message','Your Email Successfully Verified',);
 
