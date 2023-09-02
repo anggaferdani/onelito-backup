@@ -124,7 +124,6 @@
             $('#table').DataTable({
                 dom: 'Bfrtip',
                 responsive: true,
-                serverSide : true,
                 buttons: [
                     'pageLength', 'csv', 'pdf', 'print',
                     {
