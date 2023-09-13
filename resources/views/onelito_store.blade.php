@@ -90,6 +90,35 @@
                 margin-left: 13px;
             }
         }
+
+        #searchInput {
+            background-position: 10px 12px;
+            background-repeat: no-repeat;
+            width: 300px;
+            font-size: 16px;
+            padding: 12px 20px 12px 20px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        .search-container {
+            margin-top: 15px;
+        }
+        
+        .search-container button {
+            float: left;            
+            padding: 11px 11px 11px 11px;
+            margin-bottom: 12px;
+            margin-right: 5px;
+            background: #ddd;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .topnav .search-container button:hover {
+        background: #ccc;
+        }
     </style>
     <div class="container" style="min-height:400px">
 
@@ -97,6 +126,7 @@
 
              @php 
                 $auth = Auth::guard('member')->user();
+                
 
                 if ($auth !== null) {
                     $auth = true;
@@ -115,6 +145,8 @@
                 if ($kategori == 3) {
                     $kategoriTitle = 'Fish Medicine';
                 }
+
+                $search = request()->search;
             @endphp
 
         <!-- <a id="filter-tab" class="float">
@@ -122,6 +154,7 @@
         </a> -->
         <button type="button" id="filter-tab" class="btn btn-outline-secondary rounded-pill mr-2"><i
         class='bx bx-menu-alt-left'></i> Filter</button>
+        
         <div class="row gx-3">
             {{-- On screens that are 992px or less, set the display on --}}
             <div class="col-3 nav-samping">
@@ -178,6 +211,15 @@
                     <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-Semua" role="tabpanel"
                             aria-labelledby="v-pills-Semua-tab">
+                            <div class="search-container">
+                                <form id="search" action="{{ url()->full() }}" method="GET">
+                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                    <input type="input" id="searchInput" name="search" placeholder="Cari Produk" title="Cari Produk" value="{{ $search }}">
+                                    @if($kategori !== null)
+                                        <input type="hidden" name="kategori" value="{{ $kategori }}">
+                                    @endif
+                                </form>
+                            </div>
                             <div class="container mt-3">
                                 <h5><b>{{ $kategoriTitle }}</b></h5>
                             </div>
@@ -247,20 +289,38 @@
                                 @endforelse
                             </div>
                             @php
+                                $oriPrev = $products->previousPageUrl();
+                                $oriNext = $products->nextPageUrl();
+
                                 $prev = $products->previousPageUrl();
                                 $next = $products->nextPageUrl();
                                 $page = '';
+
                                 
                                 if ($kategori !== null) {
-                                    $prev = $products->previousPageUrl().'&kategori='.$kategori;
-                                    $next = $products->nextPageUrl().'&kategori='.$kategori;
-                                    $page  = "&kategori=$kategori";
+                                    $prev .= '&kategori='.$kategori;
+                                    $next .= '&kategori='.$kategori;
+                                    $page  .= "&kategori=$kategori";
+                                }
+
+                                if ($search !== null) {
+                                    $prev .= '&search='.$search;
+                                    $next .= '&search='.$search;
+                                    $page  .= "&search=$search";
+                                }
+
+                                if ($oriPrev == null) {
+                                    $prev = "#";
+                                }
+
+                                if ($oriNext == null) {
+                                    $next = "#";
                                 }
                             @endphp
                             <div class="btn-toolbar my-3 justify-content-end" role="toolbar"
                                 aria-label="Toolbar with button groups">
                                 <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <a href="{{ $prev }}"><button type="button"
+                                    <a href="{{ $prev }}" disabled><button type="button"
                                             class="btn btn-danger ">Prev</button></a>
                                 </div>
                                 @foreach ($products->onEachSide(0)->links()->elements as $elements)

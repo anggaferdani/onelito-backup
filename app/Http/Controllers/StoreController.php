@@ -15,9 +15,11 @@ class StoreController extends Controller
         $auth = Auth::guard('member')->user();
 
         $kategori = $this->request->input('kategori', null);
+        $search = $this->request->input('search', null);
 
         $products = Product::
             where('status_aktif', 1)
+            ->selectRaw('*, CONCAT(merek_produk, " ", nama_produk) AS search_text')
             ->when($kategori !== null, function ($q) use ($kategori){
                 $q->where('id_kategori_produk', $kategori);
             })
@@ -29,6 +31,9 @@ class StoreController extends Controller
                 );
             }, function ($q) {
                 return $q->with(['category', 'photo']);
+            })
+            ->when($search !== null, function ($query) use ($search){
+                $query->whereRaw('CONCAT(merek_produk, " ", nama_produk) LIKE ?', ["%$search%"]);
             })
             ->orderBy('created_at', 'desc')
             ->paginate($this->perPage());
