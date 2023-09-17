@@ -89,6 +89,20 @@
             .order-now {
                 margin-left: 13px;
             }
+
+            .btn-group {
+                margin-right: 0; /* Remove margin between buttons on smaller screens */
+                margin-bottom: 5px; /* Add spacing below buttons on smaller screens */
+            }
+
+            /* Adjust button size and padding for smaller screens */
+            .btn {
+                padding: 0.2rem 0.5rem; /* Adjust padding to make buttons smaller */
+            }
+
+            .me-2 {
+                margin-right: 0.3rem !important;
+            }
         }
 
         #searchInput {
@@ -289,55 +303,62 @@
                                 @endforelse
                             </div>
                             @php
-                                $oriPrev = $products->previousPageUrl();
-                                $oriNext = $products->nextPageUrl();
+    $oriPrev = $products->previousPageUrl();
+    $oriNext = $products->nextPageUrl();
 
-                                $prev = $products->previousPageUrl();
-                                $next = $products->nextPageUrl();
-                                $page = '';
+    $prev = $products->previousPageUrl();
+    $next = $products->nextPageUrl();
+    $page = '';
 
-                                
-                                if ($kategori !== null) {
-                                    $prev .= '&kategori='.$kategori;
-                                    $next .= '&kategori='.$kategori;
-                                    $page  .= "&kategori=$kategori";
-                                }
+    if ($kategori !== null) {
+        $prev .= '&kategori='.$kategori;
+        $next .= '&kategori='.$kategori;
+        $page  .= "&kategori=$kategori";
+    }
 
-                                if ($search !== null) {
-                                    $prev .= '&search='.$search;
-                                    $next .= '&search='.$search;
-                                    $page  .= "&search=$search";
-                                }
+    if ($search !== null) {
+        $prev .= '&search='.$search;
+        $next .= '&search='.$search;
+        $page  .= "&search=$search";
+    }
 
-                                if ($oriPrev == null) {
-                                    $prev = "#";
-                                }
+    if ($oriPrev == null) {
+        $prev = "#";
+    }
 
-                                if ($oriNext == null) {
-                                    $next = "#";
-                                }
-                            @endphp
-                            <div class="btn-toolbar my-3 justify-content-end" role="toolbar"
-                                aria-label="Toolbar with button groups">
-                                <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <a href="{{ $prev }}" disabled><button type="button"
-                                            class="btn btn-danger ">Prev</button></a>
-                                </div>
-                                @foreach ($products->onEachSide(0)->links()->elements as $elements)
-                                    @if (is_array($elements))
-                                        @foreach ($elements as $key => $element)
-                                            <div class="btn-group me-2" role="group" aria-label="First group">
-                                                <a href="?page={{ $key.$page }}"><button type="button"
-                                                        class="btn btn-danger {{ (request()->page ?? 1) == $key ? 'active disabled' : '' }}"">{{ $key }}</button></a>
-                                            </div>
-                                        @endforeach
-                                    @endif
-                                @endforeach
-                                <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <a href="{{ $next }}"><button type="button"
-                                            class="btn btn-danger">Next</button></a>
-                                </div>
-                            </div>
+    if ($oriNext == null) {
+        $next = "#";
+    }
+@endphp
+
+<div class="btn-toolbar my-3 justify-content-end" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group me-2" role="group" aria-label="First group">
+        @if ($products->onFirstPage())
+            <button type="button" class="btn btn-danger disabled">Prev</button>
+        @else
+            <a href="{{ $prev }}"><button type="button" class="btn btn-danger">Prev</button></a>
+        @endif
+    </div>
+    
+    @foreach ($products->onEachSide(0)->links()->elements as $elements)
+        @if (is_array($elements))
+            @foreach ($elements as $key => $element)
+                <div class="btn-group me-2" role="group" aria-label="First group">
+                    <a href="?page={{ $key.$page }}"><button type="button"
+                            class="btn btn-danger {{ (request()->page ?? 1) == $key ? 'active disabled' : '' }}"">{{ $key }}</button></a>
+                </div>
+            @endforeach
+        @endif
+    @endforeach
+    
+    <div class="btn-group me-2" role="group" aria-label="First group">
+        @if ($products->hasMorePages())
+            <a href="{{ $next }}"><button type="button" class="btn btn-danger">Next</button></a>
+        @else
+            <button type="button" class="btn btn-danger disabled">Next</button>
+        @endif
+    </div>
+</div>
                         </div>
                     
                     </div>
