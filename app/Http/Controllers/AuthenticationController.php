@@ -120,7 +120,7 @@ class AuthenticationController extends Controller
             ],500);
         }
 
-        $data['status_aktif'] = 0;
+        $data['status_aktif'] = 1;
 
         $firstName = $name[0];
         $lastName = $name[1];
