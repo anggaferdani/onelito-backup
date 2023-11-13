@@ -19,7 +19,7 @@ class AuthenticationController extends Controller
         if (Auth::guard('member')->check()) {
             $user = Auth::guard('member')->user();
 
-            if ($user->status_aktif === 1) {
+            if ($user->email_verified_at !== null) {
                 return redirect()->intended('/');
             }
 
@@ -30,7 +30,7 @@ class AuthenticationController extends Controller
             $this->request->session()->regenerateToken();
 
             return redirect('login')->withErrors([
-                'email' => 'Akun anda tidak aktif',
+                'email' => 'Segera verifikasi email anda.',
             ]);
         }
 
@@ -42,7 +42,7 @@ class AuthenticationController extends Controller
         if (Auth::guard('member')->attempt($credentials)) {
             $user = Auth::guard('member')->user();
 
-            if ($user->status_aktif === 1) {
+            if ($user->email_verified_at !== null) {
 
                 $this->request->session()->regenerate();
 
@@ -56,7 +56,7 @@ class AuthenticationController extends Controller
             $this->request->session()->regenerateToken();
 
             return redirect('login')->withErrors([
-                'email' => 'Akun anda tidak aktif',
+                'email' => 'Segera verifikasi email anda',
             ])->onlyInput('email');
         }
 
