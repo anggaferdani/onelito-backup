@@ -201,6 +201,12 @@ class AuthenticationController extends Controller
                     return response()->json(['message' => 'User Not Found']);
                 }
 
+                if ($user->email_verified_at !== null) {
+                    return redirect('login')->with([
+                        'message' => 'Your Email Already Verified',
+                    ]);
+                }
+
                 $user->email_verified_at = Carbon::now();
                 $user->save();
 
