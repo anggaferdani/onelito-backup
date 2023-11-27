@@ -81,6 +81,11 @@
                     <img src="img/banner_special_price.jpg" class="d-block w-100" alt="Frame">
                 </div>
             </div>
+            <div class="carousel-item">
+                <div class="container-fluit" style="background-color:red;">
+                    <img src="img/banner_year_end.jpeg" class="d-block w-100" alt="Frame">
+                </div>
+            </div>
             @forelse($auctions as $key => $auction)
                 @php
                     $bannerImg = 'img/event.png';
