@@ -78,6 +78,11 @@
         <div class="carousel-inner img-mh-300">
             <div class="carousel-item active">
                 <div class="container-fluit" style="background-color:red;">
+                    <img src="img/banner KC resize.jpeg" class="d-block w-100" alt="Frame">
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container-fluit" style="background-color:red;">
                     <img src="img/banner_special_price.jpg" class="d-block w-100" alt="Frame">
                 </div>
             </div>
