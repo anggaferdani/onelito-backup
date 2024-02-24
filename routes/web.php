@@ -169,8 +169,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
 
     Route::resource('admins', Admin\AdminController::class);
 
-    Route::resource('members', Admin\MemberController::class);
+    Route::resource('banners', Admin\BannerController::class);
 
+    Route::resource('members', Admin\MemberController::class);
 
     Route::resource('fishes', Admin\KoiStockController::class);
 

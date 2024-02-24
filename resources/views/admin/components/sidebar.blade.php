@@ -17,6 +17,10 @@
                 <a class="nav-link"
                     href="{{ url('admin/admins') }}"><i class="fas fa-user-group"></i> <span>Admin</span></a>
             </li>
+            <li class="nav-item {{ $type_menu === 'manage-banner' ? 'active' : '' }}">
+                <a class="nav-link"
+                    href="{{ url('admin/banners') }}"><i class="fas fa-user-group"></i> <span>Banner</span></a>
+            </li>
             <li class="nav-item {{ $type_menu === 'manage-auction-product' ? 'active' : '' }}">
                 <a class="nav-link"
                     href="{{ url('admin/auction-products') }}"><i class="fas fa-boxes-stacked"></i> <span>Barang Lelang</span></a>

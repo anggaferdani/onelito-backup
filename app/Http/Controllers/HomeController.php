@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\ChampionFish;
 use App\Models\Event;
 use App\Models\OrderDetail;
@@ -80,6 +81,7 @@ class HomeController extends Controller
 
         $now = Carbon::now();
 
+        $banners = Banner::all();
 
         return view('home',[
             "title" => "home",
@@ -89,6 +91,7 @@ class HomeController extends Controller
             'championFishes' => $championFishes,
             'auctionProducts' => $currentProducts,
             'auctions' => $nextAuction,
+            'banners' => $banners,
         ]);
     }
 }
