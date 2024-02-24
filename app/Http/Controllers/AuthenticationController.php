@@ -120,7 +120,7 @@ class AuthenticationController extends Controller
             ],500);
         }
 
-        $data['status_aktif'] = 1;
+        $data['status_aktif'] = 0;
 
         $firstName = $name[0];
         $lastName = $name[1];
@@ -208,6 +208,7 @@ class AuthenticationController extends Controller
                 }
 
                 $user->email_verified_at = Carbon::now();
+                $user->status_aktif = 1;
                 $user->save();
 
                 Mail::to('onelito.koi@gmail.com')->send(new UserVerified($user));
