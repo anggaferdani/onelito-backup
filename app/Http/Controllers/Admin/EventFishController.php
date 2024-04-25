@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Currency;
 use App\Models\EventFish;
 use App\Models\FishPhoto;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Validator;
 
 class EventFishController extends Controller
 {
@@ -18,42 +19,46 @@ class EventFishController extends Controller
         if ($this->request->ajax()) {
             $fishes = EventFish::query()
                 ->with('photo')
+                ->with('currency')
                 ->where('status_aktif', 1)
                 ->orderBy('created_at', 'desc');
 
             return DataTables::of($fishes)
-            ->addIndexColumn()
-            ->editColumn('photo', function ($data) {
-                $path = $data->photo->path_foto ?? false;
+                ->addIndexColumn()
+                ->editColumn('photo', function ($data) {
+                    $path = $data->photo->path_foto ?? false;
 
-                if (!$path) {
-                    return '';
-                }
+                    if (!$path) {
+                        return '';
+                    }
 
-                return '
-                    <img src="'.asset("storage/$path").'" style="
+                    return '
+                    <img src="' . asset("storage/$path") . '" style="
                     width: 80px;
                     height: 80px;
                     object-fit: cover;">
                 ';
-            })
-            ->editColumn('ob', function ($data) {
-                $number = number_format( $data->ob , 0 , '.' , '.' );
-
-                return $number;
-            })
-            ->editColumn('kb', function ($data) {
-                $number = number_format( $data->kb , 0 , '.' , '.' );
-
-                return $number;
-            })
-            ->addColumn('action','admin.pages.auction-product.dt-action')
-            ->rawColumns(['action', 'photo', 'note'])
-            ->make(true);
+                })
+                ->editColumn('ob', function ($data) {
+                    $number = number_format($data->ob, 0, '.', '.');
+                    $harga = $data->currency->symbol . ' ' . $number;
+                    return $harga;
+                })
+                ->editColumn('kb', function ($data) {
+                    $number = number_format($data->kb, 0, '.', '.');
+                    $harga = $data->currency->symbol . ' ' . $number;
+                    return $harga;
+                })
+                ->addColumn('action', 'admin.pages.auction-product.dt-action')
+                ->rawColumns(['action', 'photo', 'note'])
+                ->make(true);
         }
 
+        $currencies = Currency::where('status', 1)->get();
+
         return view('admin.pages.auction-product.index')->with([
-            'type_menu' => 'manage-auction-product'
+            'type_menu' => 'manage-auction-product',
+            'currencies' => $currencies,
         ]);
     }
 
@@ -68,13 +73,14 @@ class EventFishController extends Controller
         $data['status_aktif'] = 1;
 
         $image = null;
-        if($this->request->hasFile('path_foto')){
+        if ($this->request->hasFile('path_foto')) {
             $image = $this->request->file('path_foto')->store(
-                'foto_ikan','public'
+                'foto_ikan',
+                'public'
             );
         }
 
-        $createFish = DB::transaction(function () use ($data, $image){
+        $createFish = DB::transaction(function () use ($data, $image) {
             unset($data['path_foto']);
             $fish = EventFish::create($data);
 
@@ -89,31 +95,33 @@ class EventFishController extends Controller
             }
         });
 
-        if($createFish){
+        if ($createFish) {
             return redirect()->back()->with([
                 'success' => true,
                 'message' => 'Sukses Menambahkan Barang Lelang',
 
-            ],200);
-        }else{
+            ], 200);
+        } else {
             return redirect()->back()->with([
                 'success' => false,
                 'message' => 'Gagal Menambahkan Barang Lelang'
-            ],500);
+            ], 500);
         }
     }
 
     public function show($id)
     {
-        $fish = EventFish::with('photo')->findOrFail($id);
+        $fish = EventFish::with(['photo', 'currency'])->findOrFail($id);
+        $fish->ob = number_format( $fish->ob , 0 , '.' , '.' );
+        $fish->kb = number_format( $fish->kb , 0 , '.' , '.' );
 
-        if($fish){
+        if ($fish) {
             return response()->json($fish);
-        }else{
+        } else {
             return response()->json([
                 'success' => false,
                 'message' => 'Data Not Found'
-            ],404);
+            ], 404);
         }
     }
 
@@ -123,8 +131,7 @@ class EventFishController extends Controller
         $data = $this->request->all();
         $data['ob'] = str_replace('.', '', $data['ob']);
         $data['kb'] = str_replace('.', '', $data['kb']);
-        $validator = Validator::make($this->request->all(), [
-        ]);
+        $validator = Validator::make($this->request->all(), []);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
@@ -133,14 +140,15 @@ class EventFishController extends Controller
         $data['update_by'] = Auth::guard('admin')->id();
 
         $image = null;
-        if($this->request->hasFile('path_foto')){
+        if ($this->request->hasFile('path_foto')) {
             $image = $this->request->file('path_foto')->store(
-                'foto_ikan','public'
+                'foto_ikan',
+                'public'
             );
         }
 
         try {
-            DB::transaction(function () use ($data, $image, $fish){
+            DB::transaction(function () use ($data, $image, $fish) {
                 unset($data['path_foto']);
                 $fish->update($data);
 
@@ -168,14 +176,13 @@ class EventFishController extends Controller
                     'content' => 'Mengubah data barang lelang',
                     'type' => 'success'
                 ],
-            ],200);
-
-        } catch(\Exception $e) {
+            ], 200);
+        } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
                 'message' => $e->getMessage(),
                 'error' => $e->getMessage(),
-            ],500);
+            ], 500);
         }
     }
 
@@ -188,6 +195,6 @@ class EventFishController extends Controller
 
         return response()->json([
             'success' => true,
-        ],200);
+        ], 200);
     }
 }

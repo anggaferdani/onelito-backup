@@ -182,8 +182,7 @@
                                         maiores commodi aliquid fugiat, laboriosam ipsa similique blanditiis.</p>
                                     <hr> -->
 
-                    <p style="font-size:30px">Harga : <span class="alert-link text-danger">Rp
-                            {{ number_format($fish->harga_ikan, 0, '.', '.') }}</span></p>
+                    <p style="font-size:30px">Harga : <span class="alert-link text-danger">{{ $fish->currency->symbol }} {{ number_format($fish->harga_ikan, 0, '.', '.') }}</span></p>
                     <hr>
 
                     <br><br>

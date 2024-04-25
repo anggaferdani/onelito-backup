@@ -1,22 +1,21 @@
 @extends('layout.main')
 
 @section('container')
-<style>
-    @media screen and (max-width: 600px) {
+    <style>
+        @media screen and (max-width: 600px) {
             .nav-samping {
                 display: none;
             }
 
         }
 
-    .swal2-cancel {
-        margin-right: 10px;
-    }
+        .swal2-cancel {
+            margin-right: 10px;
+        }
+    </style>
 
-</style>
-
-<br><br><br><br>
-    @php 
+    <br><br><br><br>
+    @php
         $previous = url()->previous();
     @endphp
 
@@ -36,19 +35,9 @@
         <a href="{{ $previous }}"><i class="fa-solid fa-arrow-left-long text-body" style="font-size: x-large"></i></a>
 
         <style>
-            /* On screens that are 992px or less, set the background color to blue */
-            @media screen and (min-width: 601px) {
-                /* .res {
-                    display: none
-                } */
-            }
+            @media screen and (min-width: 601px) {}
 
-            /* On screens that are 600px or less, set the background color to olive */
             @media screen and (max-width: 600px) {
-
-                /* .web {
-                    display: none;
-                } */
                 hr {
                     margin: 0;
                 }
@@ -144,18 +133,20 @@
                     <hr>
 
                     <p style="font-size:30px">Harga saat ini:
-                    <span class="alert-link text-danger">Rp. </span>
-                    <span id="currentPrice"
-                            class="alert-link text-danger number-separator">{{ number_format($currentPrice, 0, '.', '.') }}</span></p>
+                        <span class="alert-link text-danger">{{ $auctionProduct->currency->symbol }} </span>
+                        <span id="currentPrice"
+                            class="alert-link text-danger number-separator">{{ number_format($currentPrice, 0, '.', '.') }}</span>
+                    </p>
                     <hr>
 
-                    <p style="font-size:25px">Kelipatan BID: <span class="alert-link text-danger">Rp.
-                        {{ number_format($auctionProduct->kb, 0, '.', '.') }}</span></p>
+                    <p style="font-size:25px">Kelipatan BID: <span
+                            class="alert-link text-danger">{{ $auctionProduct->currency->symbol }}
+                            {{ number_format($auctionProduct->kb, 0, '.', '.') }}</span></p>
                     <hr>
                     <div class="row d-flex">
                         <p class="m-0" style="font-size: larger">Remaining Time &nbsp;
-                        <span id="countdown-extra" class="m-0 text-danger d-none"></span>
-                    </p>
+                            <span id="countdown-extra" class="m-0 text-danger d-none"></span>
+                        </p>
                     </div>
                     <p class="alert-link text-danger countdown-label" style="font-size: 30px">00 : 00 : 00</p>
 
@@ -183,7 +174,7 @@
                     @endauth
                 </div>
 
-                @if($addedExtraTime >= $now)
+                @if ($addedExtraTime >= $now)
                     <div class="row m-1">
                         <div class="col-md-4">
                         </div>
@@ -199,8 +190,7 @@
                                     </div>
                                     <div class="col-5 col-md-3" style="padding-left:0px; max-height: 38px">
                                         <button id="buttonNormalBidSubmit" type="submit" hidden class="d-none"></button>
-                                        <button id="buttonNormalBid" type="button"
-                                            onclick="clickyakin()"
+                                        <button id="buttonNormalBid" type="button" onclick="clickyakin()"
                                             class="btn btn-danger w-100 justify-content-between">BID AUCTION</button>
                                         <button hidden onclick="cancelAutoBid()" id="buttonCancelAutoBid" type="button"
                                             class="btn btn-danger mb-3 w-100 justify-content-between">CANCEL AUTO BID</button>
@@ -260,6 +250,7 @@
         let autoBid = @json($autoBid);
         let idIkan = @json($idIkan);
         let auctionProduct = @json($auctionProduct);
+        let currency = auctionProduct.currency.symbol;
         let statusGetMaxBid = false;
         let statusAutoBid = false;
         let meMaxBid = false;
@@ -283,7 +274,7 @@
 
             swalWithBootstrapButtons.fire({
                 title: `Apakah anda benar ingin
-                Bidding Rp. ${nominal} ?`,
+                Bidding ${currency} ${nominal} ?`,
                 text: ``,
                 icon: 'warning',
                 showCancelButton: true,
@@ -311,9 +302,9 @@
 
 
         function thousandSeparator(x) {
-            var	reverse = x.toString().split('').reverse().join(''),
-            ribuan 	= reverse.match(/\d{1,3}/g);
-            ribuan	= ribuan.join('.').split('').reverse().join('');
+            var reverse = x.toString().split('').reverse().join(''),
+                ribuan = reverse.match(/\d{1,3}/g);
+            ribuan = ribuan.join('.').split('').reverse().join('');
 
             return ribuan
         }
@@ -373,41 +364,20 @@
         $('#autoBidForm').submit(function(e) {
             document.getElementById("nominal_bid").disabled = true;
             document.getElementById("auto_bid").disabled = true;
-            // $('#buttonCancelAutoBid').removeAttr('hidden');
-            // $('#buttonNormalBid').attr('hidden', 'hidden');
-            // $('#buttonAutoBid').html(`
-        //     <div class="spinner-border" style="width: 1rem; height: 1rem" role="status">
-        //         <span class="visually-hidden">Loading...</span>
-        //     </div>
-        // `)
-
             e.preventDefault();
             let formData = new FormData(this);
             let url = $(this).attr('action')
             let kb = parseInt(auctionProduct.kb);
-
             let inputNominalBid = parseInt($('#nominal_bid').unmask());
             let nextNominalBid = (kb + inputNominalBid);
-
             statusAutoBid = true;
-
             autoBid = parseInt($('#auto_bid').unmask());
-
             formData.append('nominal_bid', nextNominalBid)
-            // formData.append('nominal_bid_detail', inputNominalBid)
             formData.append('auto_bid', autoBid)
-
-            // var interval = setInterval(function(){
-            //     if(timesRun === 60){
-            //         clearInterval(interval);
-            //     }
-            //     bidding(formData, url);
-            // }, 2000);
-            // bidding(formData, url);
         })
 
         async function bidding(formData, url) {
-            formData.append('_token','{{ csrf_token() }}')
+            formData.append('_token', '{{ csrf_token() }}')
             $.ajax({
                 type: 'POST',
                 data: formData,
@@ -489,7 +459,7 @@
 
                     if (nextNominalBid > autoBid) {
                         cancelAutoBid()
-                         return false;
+                        return false;
                     }
 
                     // console.log({statusAutoBid, autoBid, nominalBid})
@@ -517,11 +487,8 @@
                 },
 
                 success: function(res) {
-                    // $('#nominal_bid').val(formData.get('nominal_bid'))
-                    // nominalBid = formData.get('nominal_bid');
-                    // autoBid = parseInt($('#auto_bid').val());
-
                     meMaxBid = res.meMaxBid;
+                    var historyBidHtml = 'Belum ada data bidding';
 
                     if (res.maxBid !== null) {
                         currentMaxBid = parseInt(res.maxBid)
@@ -531,24 +498,14 @@
                         nominalBid = parseInt(res.logBid.nominal_bid)
                     }
 
-                    var historyBidHtml = 'Belum ada data bidding';
-
                     if (res.logBids !== null) {
-                        historyBidHtml = `<table class="table table-dark table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col" class="text-danger">Nama</th>
-                                                        <th scope="col" class="text-danger">Nominal Bidding</th>
-                                                        <th scope="col" class="text-danger">Waktu</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>`
+                        historyBidHtml =
+                            `<table class="table table-dark table-hover"><thead><tr><th scope="col" class="text-danger">Nama</th><th scope="col" class="text-danger">Nominal Bidding</th><th scope="col" class="text-danger">Waktu</th></tr></thead><tbody>`
 
                         $.each(res.logBids, function(index, value) {
-
                             var name = value.log_bid.member.nama
                             name = name.replace(/(.{2})(.+)(.{1})/g, function(match, start, middle,
-                            end) {
+                                end) {
                                 return start + "*".repeat(middle.length) + end;
                             });
 
@@ -557,13 +514,12 @@
                             historyBidHtml += `
                             <tr>
                                 <td>${name}</td>
-                                <td>Rp. ${nominal}</td>
+                                <td>${currency} ${nominal}</td>
                                 <td>${value.bid_time}</td>
                             </tr>
                            `
                         });
-                        historyBidHtml += `</tbody>
-                                            </table>`
+                        historyBidHtml += `</tbody></table>`
                     }
 
                     $('#exampleModal .modal-body').html(historyBidHtml);
@@ -585,44 +541,21 @@
         }
 
         function startTimer() {
-            // let modalRunningOutHasShown = false;
-            // var currTime = moment(currentTime)
-            // var end = moment(currentEndTime);
-            // var endTime = end.valueOf();
             var endTime = new Date(currentEndTime.replace(' ', 'T'));
-
-
-            // Update the count down every 1 second
             var x = setInterval(function() {
                 getCurrentNow();
-
-                // Get today's date and time and extend it
-                // var now = currTime.add(1, 'seconds').valueOf();
-                // let current = new Date()
-                  // Get today's date and time
                 var now = new Date(currentTime.replace(' ', 'T'));
-                // Find the distance between now and the count down date
-                // var distance = countDownDate - now;
-
-
-                // Find the distance between now and the count down date
                 var duration = endTime - now;
-
-                // Time calculations for days, hours, minutes and seconds
                 var days = Math.floor(duration / (1000 * 60 * 60 * 24));
                 var hours = Math.floor((duration % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 hours = hours + (days * 24);
                 var minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((duration % (1000 * 60)) / 1000);
-
-                // Display the result in the element with id="timer"
                 const hourString = `${hours < 10 ? '0' : ''}${hours}`;
                 const minuteString = `${minutes < 10 ? '0' : ''}${minutes}`;
                 const secondString = `${seconds < 10 ? '0' : ''}${seconds}`;
                 const timerString = `${hourString} : ${minuteString} : ${secondString}`;
                 $('.countdown-label').html(timerString);
-
-                // If the count down is finished, finish the exam
                 if (duration < 0) {
                     $('.countdown-label').html(`00 : 00 : 00`);
 
@@ -633,38 +566,21 @@
         }
 
         function startExtraTimer() {
-            // let modalRunningOutHasShown = false;
             var currTime = moment()
-
-            // Update the count down every 1 second
             var x = setInterval(function() {
                 getCurrentNow();
-                // var end = moment(addedExtraTime);
                 var endTime = new Date(addedExtraTime.replace(' ', 'T'));
-
-                // Get today's date and time and extend it
                 var now = new Date(currentTime.replace(' ', 'T'));
-
-                // Find the distance between now and the count down date
                 var duration = endTime - now;
-
-                // Time calculations for days, hours, minutes and seconds
                 var hours = Math.floor((duration % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 var minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((duration % (1000 * 60)) / 1000);
 
-
-                // Display the result in the element with id="timer"
                 const hourString = `${hours < 10 ? '0' : ''}${hours}`;
                 const minuteString = `${minutes < 10 ? '0' : ''}${minutes}`;
                 const secondString = `${seconds < 10 ? '0' : ''}${seconds}`;
                 const timerString = `${hourString} : ${minuteString} : ${secondString}`;
                 $('.countdown-label').html(timerString);
-
-                // If the count down is finished, finish the exam
-                // var id = $(val).attr('id');
-                // $(`#countdown-title-${id}`).html(`Extra Time`);
-
                 $('#countdown-extra').removeClass('d-none');
                 if (duration < 0) {
                     $('.countdown-label').html(`00 : 00 : 00`);
@@ -675,12 +591,10 @@
                     document.getElementById("buttonNormalBid").disabled = true;
                     clearInterval(x);
                 }
-
             }, 1000);
         }
 
-        function getCurrentNow()
-        {
+        function getCurrentNow() {
             $.ajax({
                 type: 'GET',
                 contentType: false,
@@ -691,7 +605,6 @@
                 },
                 success: function(res) {
                     currentTime = res;
-                    // console.log(currentTime);
                 },
                 error(err) {
 
@@ -701,7 +614,5 @@
 
         startTimer();
         autoDetailBid();
-
-
     </script>
 @endpush

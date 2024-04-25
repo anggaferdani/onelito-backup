@@ -86,6 +86,7 @@ class KoiStockController extends Controller
     public function show($id)
     {
         $fish = KoiStock::findOrFail($id);
+        $fish->harga = number_format( $fish->harga , 0 , '.' , '.' );
 
         if($fish){
             return response()->json($fish);

@@ -28,7 +28,7 @@
             </div>
             <div class="form-group">
                 <label for="sex">Jenis Kelamin</label>
-                <select id="sex" name="sex" class="form-control">
+                <select id="sex" name="sex" class="form-control select2">
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Unknown">Unknown</option>
@@ -41,6 +41,15 @@
             <div class="form-group">
                 <label for="size">Size</label>
                 <input  type="text" id="size" class="form-control" name="size" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="currency_id">Mata Uang</label>
+                <select name="currency_id" class="form-control select2">
+                    @forelse($currencies as $currency)
+                        <option value="{{ $currency->id }}">{{ $currency->symbol }}</option>
+                    @empty
+                    @endforelse
+                </select>
             </div>
             <div class="form-group">
                 <label for="ob">Open Bid</label>

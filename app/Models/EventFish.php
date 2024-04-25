@@ -24,6 +24,11 @@ class EventFish extends Model
         return $this->belongsTo(Event::class, 'id_event');
     }
 
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class, 'currency_id');
+    }
+
     public function bids()
     {
         return $this->hasMany(LogBid::class, 'id_ikan_lelang')->where('status_aktif', 1)

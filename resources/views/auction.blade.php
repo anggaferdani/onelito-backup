@@ -241,8 +241,7 @@
                                 <div class="row">
                                     <div class="col-6 p-0 ps-lg-1">
                                         <p class="m-0" style="font-size:80%">Harga saat ini</p>
-                                        <p class="m-0" style="color: red;font-size:75%">Rp.
-                                            {{ number_format($currentMaxBid, 0, '.', '.') }}</p>
+                                        <p class="m-0" style="color: red;font-size:75%">{{ $auctionProduct->currency->symbol }} {{ number_format($currentMaxBid, 0, '.', '.') }}</p>
                                     </div>
                                     <div class="col-6 p-0 pe-lg-1">
                                         <p class="m-0" id="countdown-title-{{ $auctionProduct->id_ikan }}"

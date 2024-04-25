@@ -57,6 +57,10 @@
                 <a class="nav-link"
                     href="{{ url('admin/champion-fishes') }}"><i class="fas fa-fish"></i> <span>Champion Koi</span></a>
             </li>
+            <li class="nav-item {{ $type_menu === 'manage-currency' ? 'active' : '' }}">
+                <a class="nav-link"
+                    href="{{ url('admin/currencies') }}"><i class="fas fa-fish"></i> <span>Mata Uang</span></a>
+            </li>
             <li class="menu-header">Lelang Bot</li>
             <li class="nav-item {{ $type_menu === 'bot-member' ? 'active' : '' }}">
                 <a class="nav-link"

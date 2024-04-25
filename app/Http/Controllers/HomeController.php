@@ -37,9 +37,6 @@ class HomeController extends Controller
         ->flatten(1)
         ->take(5);
 
-        // dd($currentProducts);
-
-
         if (count($currentProducts) > 0) {
             foreach ($currentProducts as $product) {
                 $product->tgl_akhir_extra_time = Carbon::createFromDate($product->event->tgl_akhir)

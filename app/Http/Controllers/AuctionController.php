@@ -21,21 +21,20 @@ class AuctionController extends Controller
         $now = Carbon::now();
         $nowAkhir = Carbon::now()->subDays(2)->endOfDay();
 
-        $currentAuctions = Event::
-            when($auth !== null, function ($q) use ($auth){
-                $q->with([
-                    'auctionProducts' => function ($q) {
-                        $q->withCount('bidDetails')->with(['photo', 'maxBid', 'event']);
-                    },
-                    'auctionProducts.wishlist' => fn($w) => $w->where('id_peserta', $auth->id_peserta)
-                ]);
-            }, function ($q) {
-                $q->with([
-                    'auctionProducts' => function ($q) {
-                        $q->withCount('bidDetails')->with(['photo', 'maxBid', 'event']);
-                    },
-                ]);
-            })
+        $currentAuctions = Event::when($auth !== null, function ($q) use ($auth) {
+            $q->with([
+                'auctionProducts' => function ($q) {
+                    $q->withCount('bidDetails')->with(['photo', 'maxBid', 'event', 'currency']);
+                },
+                'auctionProducts.wishlist' => fn ($w) => $w->where('id_peserta', $auth->id_peserta)
+            ]);
+        }, function ($q) {
+            $q->with([
+                'auctionProducts' => function ($q) {
+                    $q->withCount('bidDetails')->with(['photo', 'maxBid', 'event']);
+                },
+            ]);
+        })
             ->where('tgl_mulai', '<=', $now)
             ->where('tgl_akhir', '>=', $nowAkhir)
             ->where('status_aktif', 1)
@@ -43,11 +42,12 @@ class AuctionController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
+        // dd($currentAuctions[0]->auctionProducts[0]->currency->symbol);
+
         $currentProducts = $currentAuctions
-        ->pluck('auctionProducts')
-        ->flatten(1)
-        ->sortBy('no_ikan')
-        ;
+            ->pluck('auctionProducts')
+            ->flatten(1)
+            ->sortBy('no_ikan');
 
         $currentAuction = null;
         $currentTotalBid = 0;
@@ -62,28 +62,28 @@ class AuctionController extends Controller
                 $product->tgl_akhir_extra_time = Carbon::createFromDate($product->event->tgl_akhir)
                     ->addMinutes($product->extra_time ?? 0)->toDateTimeString();
 
-                    if ($product->maxBid !== null && $product->maxBid->updated_at >= $product->event->tgl_akhir) {
-                        $addedExtraTime2 = Carbon::createFromDate($product->maxBid->updated_at)
+                if ($product->maxBid !== null && $product->maxBid->updated_at >= $product->event->tgl_akhir) {
+                    $addedExtraTime2 = Carbon::createFromDate($product->maxBid->updated_at)
                         ->addMinutes($product->extra_time ?? 0)->toDateTimeString();
 
-                        if ($product->tgl_akhir_extra_time < $addedExtraTime2) {
-                            $product->tgl_akhir_extra_time = $addedExtraTime2;
-                        }
+                    if ($product->tgl_akhir_extra_time < $addedExtraTime2) {
+                        $product->tgl_akhir_extra_time = $addedExtraTime2;
                     }
+                }
             }
 
             $auctionProducts = $currentProducts->where('tgl_akhir_extra_time', '>', $now);
 
 
             $currentAuction = $currentAuctions
-            ->first();
+                ->first();
         }
 
         Carbon::setLocale('id');
 
         $now = Carbon::now();
 
-        return view('auction',[
+        return view('auction', [
             'auth' => $auth,
             'currentAuction' => $currentAuction,
             'auctionProducts' => $currentProducts,
@@ -100,11 +100,9 @@ class AuctionController extends Controller
         $reqMaxBid = $this->request->input('request.max_bid', 0);
 
         if ($this->request->ajax()) {
-
         }
 
         if ($reqMaxBid === 1) {
-
         }
 
         $auth = Auth::guard('member')->user();
@@ -127,18 +125,18 @@ class AuctionController extends Controller
             $autoBid = $logBid->auto_bid;
         }
 
-        $maxBidData = LogBidDetail::whereHas('logBid', function($q) use ($idIkan){
+        $maxBidData = LogBidDetail::whereHas('logBid', function ($q) use ($idIkan) {
             $q->where('id_ikan_lelang', $idIkan);
         })
-        ->with('logBid')
-        ->orderBy('nominal_bid', 'desc')->first();
+            ->with('logBid')
+            ->orderBy('nominal_bid', 'desc')->first();
 
         Carbon::setLocale('id');
 
         $addedExtraTime = Carbon::createFromDate($auctionProduct->event->tgl_akhir)
             ->addMinutes($auctionProduct->extra_time ?? 0)
             ->toDateTimeString();
-            // ->format('d M Y H:i:s');
+        // ->format('d M Y H:i:s');
 
         $now = Carbon::now()->toDateTimeString();
 
@@ -153,7 +151,7 @@ class AuctionController extends Controller
 
         $now = Carbon::now()->toDateTimeString();
 
-        return view('bid',[
+        return view('bid', [
             'auth' => $auth,
             'logBid' => $logBid,
             'autoBid' => (int) $autoBid,
@@ -271,12 +269,12 @@ class AuctionController extends Controller
             if ($this->request->ajax()) {
 
                 $maxBidData = LogBidDetail::distinct('nominal_bid')
-                ->whereHas('logBid', function($q) use ($idIkan){
-                    $q->where('id_ikan_lelang', $idIkan);
-                })
-                ->orderBy('nominal_bid', 'desc')
-                ->orderBy('updated_at', 'desc')
-                ->first();
+                    ->whereHas('logBid', function ($q) use ($idIkan) {
+                        $q->where('id_ikan_lelang', $idIkan);
+                    })
+                    ->orderBy('nominal_bid', 'desc')
+                    ->orderBy('updated_at', 'desc')
+                    ->first();
 
                 $addedExtraTime = Carbon::createFromDate($auctionProduct->event->tgl_akhir)
                     ->addMinutes($auctionProduct->extra_time ?? 0)
@@ -287,9 +285,9 @@ class AuctionController extends Controller
                         ->addMinutes($auctionProduct->extra_time ?? 0)
                         ->toDateTimeString();
 
-                        if ($addedExtraTime < $addedExtraTime2) {
-                            $addedExtraTime = $addedExtraTime2;
-                        }
+                    if ($addedExtraTime < $addedExtraTime2) {
+                        $addedExtraTime = $addedExtraTime2;
+                    }
                 }
 
                 return response()->json([
@@ -312,13 +310,13 @@ class AuctionController extends Controller
         }
 
         $logBids = LogBidDetail::with('logBid.member')
-        ->distinct('nominal_bid')
-        ->whereHas('logBid', function($q) use ($idIkan){
-            $q->where('id_ikan_lelang', $idIkan);
-        })
-        ->orderBy('nominal_bid', 'desc')
-        ->orderBy('updated_at', 'desc')
-        ->limit(10)->get();
+            ->distinct('nominal_bid')
+            ->whereHas('logBid', function ($q) use ($idIkan) {
+                $q->where('id_ikan_lelang', $idIkan);
+            })
+            ->orderBy('nominal_bid', 'desc')
+            ->orderBy('updated_at', 'desc')
+            ->limit(10)->get();
 
         foreach ($logBids as $logBid) {
             $logBid->bid_time = Carbon::parse($logBid->created_at)->format('d M H:i:s');
@@ -337,8 +335,10 @@ class AuctionController extends Controller
             $maxBid = $nominalBid > $maxBid ? $nominalBid : $maxBid;
             $autoBid = $logBid->auto_bid;
 
-            if ($maxBidData->id_bidding === $logBid->id_bidding
-            && $maxBidData->id_bidding === $logBid->id_bidding) {
+            if (
+                $maxBidData->id_bidding === $logBid->id_bidding
+                && $maxBidData->id_bidding === $logBid->id_bidding
+            ) {
                 $meMaxBid = true;
             }
         }
@@ -362,7 +362,7 @@ class AuctionController extends Controller
             ]);
         }
 
-        return view('detail',[
+        return view('detail', [
             'auth' => $auth,
             'logBid' => $logBid,
             'autoBid' => $autoBid,

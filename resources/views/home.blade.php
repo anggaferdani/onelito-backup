@@ -45,11 +45,11 @@
             justify-content: center;
         }
 
-        
-        .grid > div img {
-        width: 100%;
-        grid-area: 1/1/2/2;
-        aspect-ratio: 1/1;
+
+        .grid>div img {
+            width: 100%;
+            grid-area: 1/1/2/2;
+            aspect-ratio: 1/1;
         }
 
         @media screen and (max-width:982px) {
@@ -76,21 +76,6 @@
     <br><br><br><br>
     <div id="carouselExampleControls" class="pt-2 carousel slide" data-bs-interval="3000" data-bs-ride="carousel">
         <div class="carousel-inner img-mh-300">
-            <!-- <div class="carousel-item active">
-                <div class="container-fluit" style="background-color:red;">
-                    <img src="img/banner KC resize.jpeg" class="d-block w-100" alt="Frame">
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="container-fluit" style="background-color:red;">
-                    <img src="img/banner_special_price.jpg" class="d-block w-100" alt="Frame">
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="container-fluit" style="background-color:red;">
-                    <img src="img/banner_year_end.jpeg" class="d-block w-100" alt="Frame">
-                </div>
-            </div> -->
             @forelse($banners as $key => $val)
                 @php
                     $banner = 'img/banner1.png';
@@ -107,7 +92,7 @@
                         </div>
                     </div>
                 @endif
-            @empty              
+            @empty
             @endforelse
 
             @forelse($auctions as $key => $auction)
@@ -126,7 +111,7 @@
                         </div>
                     </div>
                 @endif
-            @empty              
+            @empty
             @endforelse
             <div class="carousel-item active">
                 <div class="container-fluit" style="background-color:red;">
@@ -145,10 +130,6 @@
     </div>
 
     <div class="container mt-3 mt-lg mt-lg-5">
-        {{-- <h5><b>Auction</b></h5> --}}
-
-        {{-- <img src="{{ url('img/nolelang.png') }}" class="d-block w-100" alt="ceklis"> --}}
-        <!-- <img src="{{ url('img/lelang.png') }}" class="d-block w-100 mt-5" alt="ceklis"> -->
     </div>
 
     <div class="container nav-atas">
@@ -177,16 +158,12 @@
                                         45,
                                     ) !!}</h5>
                                 </div>
-                                {{-- <p style="font-size: 10px" class="card-text ma">Starting Price</p>
-                                <p style="color :red;font-size: 12px" class="m-0">Rp.
-                                    {{ number_format($auctionProduct->ob, 0, '.', '.') }}</p> --}}
                                 <p class="m-0">Number of bids</p>
                                 <p class="" style="color: red">{{ $auctionProduct->bid_details_count }}</p>
                                 <div class="row">
                                     <div class="col-6 p-0 ps-lg-1">
                                         <p class="m-0" style="font-size:80%">Harga saat ini</p>
-                                        <p class="m-0" style="color: red;font-size:75%">Rp
-                                            {{ number_format($currentMaxBid, 0, '.', '.') }}</p>
+                                        <p class="m-0" style="color: red;font-size:75%">{{ $auctionProduct->currency->symbol }} {{ number_format($currentMaxBid, 0, '.', '.') }}</p>
                                     </div>
                                     <div class="col-6 p-0 pe-lg-1">
                                         <p class="m-0 countdown-title-{{ $auctionProduct->id_ikan }}"
@@ -241,15 +218,12 @@
                                     ) !!}
                                     </h5>
                                 </div>
-                                {{-- <p class="card-text ma">Starting Price</p>
-                            <p style="color :red">Rp. {{ number_format($auctionProduct->ob, 0, '.', '.') }}</p> --}}
                                 <p class="m-0">Number of bids</p>
                                 <p class="" style="color: red">{{ $auctionProduct->bid_details_count }}</p>
                                 <div class="row">
                                     <div class="col-6 p-0 ps-lg-1">
                                         <p class="m-0" style="font-size:80%">Harga saat ini</p>
-                                        <p class="m-0" style="color: red;font-size:75%">Rp
-                                            {{ number_format($currentMaxBid, 0, '.', '.') }}</p>
+                                        <p class="m-0" style="color: red;font-size:75%">{{ $auctionProduct->currency->symbol }} {{ number_format($currentMaxBid, 0, '.', '.') }}</p>
                                     </div>
                                     <div class="col-6 p-0 pe-lg-1">
                                         <p class="m-0 countdown-title-{{ $auctionProduct->id_ikan }}"
@@ -272,109 +246,7 @@
     </div>
 
     <div class="container mt-5">
-        {{-- <h5><b>Hot Product</b></h5> --}}
     </div>
-
-
-
-    {{-- <div class="container nav-atas">
-        <div class="d-flex overflow-scroll">
-            @forelse($hotProductStores as $hotProduct)
-                @php
-                    $productPhoto2 = 'img/bio_media.png';
-
-                    if ($hotProduct->photo !== null) {
-                        $productPhoto2 = url('storage') . '/' . $hotProduct->photo->path_foto;
-                    }
-
-                    $wishlistClass = 'far fa-heart';
-
-                    if (array_key_exists('wishlist', $hotProduct->toArray()) && $hotProduct->wishlist !== null) {
-                        $wishlistClass = 'fas fa-heart';
-                    }
-                @endphp
-                <div class="p-1">
-                    <div class="p-3 border bg-light" style="width: 200px;">
-                        <a href="/login">
-                            <img src="{{ $productPhoto2 }}" alt="bio media" class="card-img-top"
-                                style=" height: 166;width: 166;">
-                        </a>
-                        <div class="cb-jud">
-                            <p>{!! Illuminate\Support\Str::limit("$hotProduct->merek_produk $hotProduct->nama_produk", 45) !!}</p>
-                        </div>
-                        <p><b>Rp. {{ number_format($hotProduct->harga, 0, '.', '.') }}</b></p>
-                        <div class="row">
-                            <div class="col-6 p-0">
-                                <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order
-                                    Now</button>
-                            </div>
-                            <div class="col-3 m-auto">
-                                <button class="rounded"
-                                    style="background-color: red;border-color:red; outline: none; border: none;"><i
-                                        class="fa-solid fa-cart-shopping" style="color: white"></i></button>
-                            </div>
-                            <div class="col-3 m-auto">
-                                <button class="border-0" style="background-color: transparent"><i
-                                        class="{{ $wishlistClass }} wishlist" data-id="{{ $hotProduct->id_produk }}"
-                                        style="font-size: x-large"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @empty
-            @endforelse
-        </div>
-    </div>
-
-    <div class="class nav-samping">
-        <div class="container">
-            <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-                @forelse($hotProductStores as $hotProduct)
-                    @php
-                        $productPhoto = 'img/bio_media.png';
-
-                        if ($hotProduct->photo !== null) {
-                            $productPhoto = url('storage') . '/' . $hotProduct->photo->path_foto;
-                        }
-
-                        $wishlistClass = 'far fa-heart';
-
-                        if (array_key_exists('wishlist', $hotProduct->toArray()) && $hotProduct->wishlist !== null) {
-                            $wishlistClass = 'fas fa-heart';
-                        }
-                    @endphp
-                    <div class="col">
-                        <div class="p-3 border bg-light">
-                            <a href="{{ url('/onelito_store') . '/' . $hotProduct->id_produk }}"><img
-                                    src="{{ $productPhoto }}" alt="bio media" class="card-img-top" height="170"></a>
-                            <div class="cb-judu">
-                                <p>{!! Illuminate\Support\Str::limit("$hotProduct->merek_produk $hotProduct->nama_produk", 35) !!}</p>
-                            </div>
-                            <p><b>Rp. {{ number_format($hotProduct->harga, 0, '.', '.') }}</b></p>
-                            <div class="row">
-                                <div class="col-md-6 d-grid p-0">
-                                    <button class="border-0 btn-success rounded-2" style="background-color:#188518;">Order
-                                        Now</button>
-                                </div>
-                                <div class="col-md-3 m-auto">
-                                    <button class="rounded"
-                                        style="background-color: red;border-color:red; outline: none; border: none;"><i
-                                            class="fa-solid fa-cart-shopping" style="color: white"></i></button>
-                                </div>
-                                <div class="col-md-3 m-auto">
-                                    <button class="border-0" style="background-color: transparent"><i
-                                            data-id="{{ $hotProduct->id_produk }}" class="{{ $wishlistClass }} wishlist"
-                                            style="font-size: x-large"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @empty
-                @endforelse
-            </div>
-        </div>
-    </div> --}}
-
 
     <div class="container mt-5 text-center">
         <h3>ONELITO <span style="color:red;">KOI</span></h3>
@@ -385,41 +257,6 @@
         <p class="text-center">Since 2021</p>
     </div>
 
-
-
-
-
-
-    {{-- responsive--}}
-    {{-- <div class="container nav-atas">
-        <div class="justify-content-lg-around justify-content-center row">
-            <center>
-                <div class="col-lg-2 col-12 mt-4">
-                    <div class="">
-                        <a href="mailto:onelito.koi@gmail.com"><img src="{{ url('img/email.png') }}" alt="email"></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-12 mt-4">
-                    <div class="">
-                        <a href="https://www.tokopedia.com/onelitokoi" target="_blank"><img src="{{ url('img/tokped.png') }}"
-                                alt="tokped"></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-12 mt-4">
-                    <div class="">
-                        <a href="https://www.google.com/maps/place/Onelito+Koi/@-6.3258102,106.6893418,17z/data=!3m1!4b1!4m5!3m4!1s0x2e69fb6e6c391ec5:0x724a9e4e6c80aaed!8m2!3d-6.3258155!4d106.6915305"
-                            target="_blank"><img src="{{ url('img/alamat.png') }}" alt="alamat"></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-12 mt-4">
-                    <div class="">
-                        <a href="https://api.whatsapp.com/send?phone=62811972857&text=Halo%20saya%20ingin%20bertanya%20mengenai%20*Onelito%20Koi*"
-                            target="_blank"><img src="{{ url('img/wa.png') }}" alt="wa"></a>
-                    </div>
-                </div>
-            </center>
-        </div>
-    </div> --}}
     {{-- web --}}
     <div class="container">
         <div class="row" style="display: flex; justify-content: space-between">
@@ -427,11 +264,12 @@
                 <a href="mailto:onelito.koi@gmail.com"><img src="{{ url('img/email.png') }}" alt="email"></a>
             </div>
             <div class="col-lg-2 col-12 mt-4 col-md-6" style="display: flex; justify-content: center">
-                <a href="https://www.tokopedia.com/onelitokoi" target="_blank"><img
-                    src="{{ url('img/tokped.png') }}" alt="tokped"></a>
+                <a href="https://www.tokopedia.com/onelitokoi" target="_blank"><img src="{{ url('img/tokped.png') }}"
+                        alt="tokped"></a>
             </div>
             <div class="col-lg-2 col-12 mt-4 col-md-6" style="display: flex; justify-content: center">
-                <a href="https://www.google.com/maps/place/Onelito+Koi/@-6.3258102,106.6893418,17z/data=!3m1!4b1!4m5!3m4!1s0x2e69fb6e6c391ec5:0x724a9e4e6c80aaed!8m2!3d-6.3258155!4d106.6915305" target="_blank"><img src="{{ url('img/alamat.png') }}" alt="alamat"></a>
+                <a href="https://www.google.com/maps/place/Onelito+Koi/@-6.3258102,106.6893418,17z/data=!3m1!4b1!4m5!3m4!1s0x2e69fb6e6c391ec5:0x724a9e4e6c80aaed!8m2!3d-6.3258155!4d106.6915305"
+                    target="_blank"><img src="{{ url('img/alamat.png') }}" alt="alamat"></a>
             </div>
             <div class="col-lg-2 col-12 mt-4 col-md-6" style="display: flex; justify-content: center">
                 <div class="">
@@ -441,73 +279,33 @@
             </div>
         </div>
     </div>
-
-
-
-
-    {{-- <div class="container">
-        <div class="justify-content-around row">
-            <div class="col-lg-2 col-9 mt-4">
-                <div class="">
-                    <a href="mailto:onelito.koi@gmail.com"><img src="{{ url('img/email.png') }}" alt="email"></a>
-                </div>
-            </div>
-            <div class="col-lg-2 col-9 mt-4">
-                <div class="">
-                    <a href="https://www.tokopedia.com/onelitokoi" target="_blank"><img
-                            src="{{ url('img/tokped.png') }}" alt="tokped"></a>
-                </div>
-            </div>
-            <div class="col-lg-2 col-9 mt-4">
-                <div class="">
-                    <a href="https://www.google.com/maps/place/Onelito+Koi/@-6.3258102,106.6893418,17z/data=!3m1!4b1!4m5!3m4!1s0x2e69fb6e6c391ec5:0x724a9e4e6c80aaed!8m2!3d-6.3258155!4d106.6915305" target="_blank"><img src="{{ url('img/alamat.png') }}" alt="alamat"></a>
-                </div>
-            </div>
-            <div class="col-lg-2 col-9 mt-4">
-                <div class="">
-                    <a href="https://api.whatsapp.com/send?phone=62811972857&text=Halo%20saya%20ingin%20bertanya%20mengenai%20*Onelito%20Koi*"
-                        target="_blank"><img src="{{ url('img/wa.png') }}" alt="wa"></a>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
-
 
     <div class="container-fluit m-5">
         <img src="img/gc.png" alt="gc" class="w-100">
     </div>
 
     <div class="container grid">
-        <!-- <div class="row row-cols-lg-5 g-2 g-lg-3"> -->
-            @forelse($championFishes as $championFish)
-                @php
-                    $photoChampion = 'img/koi12.jpg';
-
-                    if ($championFish->foto_ikan !== null) {
-                        $photoChampion = url('storage') . '/' . $championFish->foto_ikan;
-                    }
-                @endphp
-                <div class="d-grid">
-                    <!-- <div class="card champion"> -->
-                        <img src="{{ $photoChampion }}" class="" alt="...">
-                    <!-- </div> -->
-                </div>
-            @empty
-            @endforelse
-        <!-- </div> -->
-        
+        @forelse($championFishes as $championFish)
+            @php
+                $photoChampion = 'img/koi12.jpg';
+                if ($championFish->foto_ikan !== null) {
+                    $photoChampion = url('storage') . '/' . $championFish->foto_ikan;
+                }
+            @endphp
+            <div class="d-grid">
+                <img src="{{ $photoChampion }}" class="" alt="...">
+            </div>
+        @empty
+        @endforelse
     </div>
     <div class="container my-5">
         <a href="/detail_koichampion" style="color: red">Lihat lebih Banyak >></a>
     </div>
-
-    
 @endsection
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-</script>
+    </script>
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
@@ -529,8 +327,7 @@
             })
         }
 
-        function getCurrentNow()
-        {
+        function getCurrentNow() {
             $.ajax({
                 type: 'GET',
                 contentType: false,

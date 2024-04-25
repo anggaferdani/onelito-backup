@@ -108,6 +108,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::with(['photo', 'category'])->findOrFail($id);
+        $product->harga = number_format( $product->harga , 0 , '.' , '.' );
 
         if($product){
             return response()->json($product);

@@ -185,6 +185,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
 
     Route::resource('champion-fishes', Admin\ChampionFishController::class);
 
+    Route::resource('currencies', Admin\CurrencyController::class);
+
     Route::resource('orders', Admin\OrderController::class);
 
     Route::get('/auction-winners/excels', [Admin\AuctionWinnerController::class, 'excels'])->name('admin.auction-winner.excels');

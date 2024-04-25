@@ -44,6 +44,15 @@
                 <input  type="text" id="edit_size" class="form-control" name="edit_size" placeholder="">
             </div>
             <div class="form-group">
+                <label for="edit_currency_id">Mata Uang</label>
+                <select id="edit_currency_id" name="edit_currency_id" class="form-control select2">
+                    @forelse($currencies as $currency)
+                        <option value="{{ $currency->id }}">{{ $currency->symbol }}</option>
+                    @empty
+                    @endforelse
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="edit_ob">Open Bid</label>
                 <input  type="text" id="edit_ob" name="edit_ob" class="form-control" placeholder="">
             </div>
