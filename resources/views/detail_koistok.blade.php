@@ -89,17 +89,8 @@
 
                     <hr class="m-0">
 
-                    <!-- <hr class="m-0">
-
-                                    <p class="m-0" style="font-size: 11px">Note :</p>
-                                    <p style="font-size: 10px">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum,
-                                        voluptas! Porro suscipit obcaecati eius quia qui dolorem harum ipsam, illo laudantium officiis
-                                        maiores commodi aliquid fugiat, laboriosam ipsa similique blanditiis.</p>
-
-                                    <hr class="m-0"> -->
-
                     <p class="" style="font-size:11px">Harga : <span class="alert-link text-danger"
-                            style="font-size:12px">Rp {{ number_format($fish->harga_ikan, 0, '.', '.') }}</span></p>
+                            style="font-size:12px">Rp. {{ number_format($fish->harga_ikan, 0, '.', '.') }}</span></p>
 
 
                     <hr class="m-0">
@@ -174,15 +165,7 @@
 
                     <hr class="m-0">
 
-                    <!-- <hr>
-
-                                    <p class="m-0" style="font-size: larger">Note :</p>
-                                    <p style="font-size: larger">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum,
-                                        voluptas! Porro suscipit obcaecati eius quia qui dolorem harum ipsam, illo laudantium officiis
-                                        maiores commodi aliquid fugiat, laboriosam ipsa similique blanditiis.</p>
-                                    <hr> -->
-
-                    <p style="font-size:30px">Harga : <span class="alert-link text-danger">{{ $fish->currency->symbol }} {{ number_format($fish->harga_ikan, 0, '.', '.') }}</span></p>
+                    <p style="font-size:30px">Harga : <span class="alert-link text-danger">Rp. {{ number_format($fish->harga_ikan, 0, '.', '.') }}</span></p>
                     <hr>
 
                     <br><br>
