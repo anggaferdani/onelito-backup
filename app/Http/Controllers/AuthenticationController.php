@@ -113,7 +113,7 @@ class AuthenticationController extends Controller
             'kelurahan',
         ]);
 
-        if (Member::where('email', $data['email'])->exists()) {
+        if (Member::where([['email', $data['email']], ['status_aktif', 1], ['status_hapus', 0]])->exists()) {
             return redirect()->back()->with([
                 'success' => false,
                 'message' => 'Email sudah digunakan'
