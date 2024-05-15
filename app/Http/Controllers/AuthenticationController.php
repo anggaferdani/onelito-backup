@@ -97,10 +97,9 @@ class AuthenticationController extends Controller
         $this->request->validate([
             'nama' => ['required'],
             'email' => [
-                'required', 'email',
-                Rule::unique('m_peserta')->where(function ($query) {
-                    $query->where('status_hapus', 0);
-                })
+                'required',
+                'email',
+                'unique:m_peserta,email'
             ],
             'password' => ['required'],
             'alamat' => ['required'],
@@ -124,6 +123,14 @@ class AuthenticationController extends Controller
             'kecamatan',
             'kelurahan',
         ]);
+
+        if (Member::where([['email', $data['email']], ['status_hapus', 0]])->exists()) {
+            return redirect()->back()->with([
+                'success' => false,
+                'message' => 'Email sudah digunakan'
+            ], 500);
+        }
+
 
         $data['status_aktif'] = 0;
 
