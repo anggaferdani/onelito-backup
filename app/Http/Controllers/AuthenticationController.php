@@ -99,8 +99,11 @@ class AuthenticationController extends Controller
             'email' => [
                 'required',
                 'email',
-                'unique:m_peserta,email'
+                Rule::unique('m_peserta')->where(function ($query) {
+                    return $query->where('status_hapus', 0);
+                })
             ],
+            // 'email' => ['required', 'email', 'unique:m_peserta,email'],
             'password' => ['required'],
             'alamat' => ['required'],
             'no_hp' => ['required'],
@@ -123,14 +126,6 @@ class AuthenticationController extends Controller
             'kecamatan',
             'kelurahan',
         ]);
-
-        if (Member::where([['email', $data['email']], ['status_hapus', 0]])->exists()) {
-            return redirect()->back()->with([
-                'success' => false,
-                'message' => 'Email sudah digunakan'
-            ], 500);
-        }
-
 
         $data['status_aktif'] = 0;
 

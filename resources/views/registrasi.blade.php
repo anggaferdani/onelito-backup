@@ -371,8 +371,10 @@
                 },
                 error(err) {
                     $.each(err.responseJSON, function(prefix, val) {
-                        console.log(val === 'The email has already been taken.');
                         if (val === 'The email has already been taken.') {
+                            setTimeout(function() {
+                                location.reload();
+                            }, 2000);
                             var element = document.getElementById('email')
                             element.onchange = element.setCustomValidity(
                                 'The email has already been taken.');
