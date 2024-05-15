@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\EmailResetPassword;
-use App\Mail\EmailVerification;
-use App\Mail\UserVerified;
+use Carbon\Carbon;
 use App\Models\Member;
 use App\Models\Province;
-use Carbon\Carbon;
+use App\Mail\UserVerified;
+use App\Mail\EmailVerification;
+use Illuminate\Validation\Rule;
+use App\Mail\EmailResetPassword;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Crypt;
 
 class AuthenticationController extends Controller
 {
@@ -42,7 +43,7 @@ class AuthenticationController extends Controller
         if (Auth::guard('member')->attempt($credentials)) {
             $user = Auth::guard('member')->user();
 
-            if ($user->email_verified_at !== null) {
+            if ($user->email_verified_at !== null && $user->status_aktif == 1) {
 
                 $this->request->session()->regenerate();
 
@@ -54,6 +55,12 @@ class AuthenticationController extends Controller
             $this->request->session()->invalidate();
 
             $this->request->session()->regenerateToken();
+
+            if ($user->status_aktif == 0 && $user->status_hapus == 1) {
+                return back()->withErrors([
+                    'email' => 'The provided credentials do not match our records.',
+                ])->onlyInput('email');
+            }
 
             return redirect('login')->withErrors([
                 'email' => 'Segera verifikasi email anda',
@@ -89,7 +96,12 @@ class AuthenticationController extends Controller
     {
         $this->request->validate([
             'nama' => ['required'],
-            'email' => ['required', 'email', 'unique:m_peserta,email'],
+            'email' => [
+                'required', 'email',
+                Rule::unique('m_peserta')->where(function ($query) {
+                    $query->where('status_hapus', 0);
+                })
+            ],
             'password' => ['required'],
             'alamat' => ['required'],
             'no_hp' => ['required'],
@@ -113,13 +125,6 @@ class AuthenticationController extends Controller
             'kelurahan',
         ]);
 
-        if (Member::where([['email', $data['email']], ['status_aktif', 1], ['status_hapus', 0]])->exists()) {
-            return redirect()->back()->with([
-                'success' => false,
-                'message' => 'Email sudah digunakan'
-            ],500);
-        }
-
         $data['status_aktif'] = 0;
 
         $firstName = $name[0];
@@ -133,17 +138,17 @@ class AuthenticationController extends Controller
 
         Mail::to($data['email'])->send(new EmailVerification($data['email']));
 
-        if($createMember){
+        if ($createMember) {
             return redirect()->back()->with([
                 'success' => true,
                 'message' => 'Sukses Menambahkan Peserta',
 
-            ],200);
-        }else{
+            ], 200);
+        } else {
             return redirect()->back()->with([
                 'success' => false,
                 'message' => 'Gagal Menambahkan Peserta'
-            ],500);
+            ], 500);
         }
     }
 
@@ -182,7 +187,7 @@ class AuthenticationController extends Controller
             return redirect()->intended('/');
         }
 
-        return view('login',[
+        return view('login', [
             "title" => "login"
         ]);
     }
@@ -193,11 +198,11 @@ class AuthenticationController extends Controller
 
         try {
             $data = Crypt::decrypt($token);
-            if($data) {
+            if ($data) {
                 $user = Member::where('email', $data['email'])
                     ->where('id_peserta', $data['id'])->first();
 
-                if(!$user) {
+                if (!$user) {
                     return response()->json(['message' => 'User Not Found']);
                 }
 
@@ -213,13 +218,12 @@ class AuthenticationController extends Controller
 
                 Mail::to('onelito.koi@gmail.com')->send(new UserVerified($user));
 
-                session()->flash('message','Your Email Successfully Verified',);
+                session()->flash('message', 'Your Email Successfully Verified',);
 
                 return redirect('login')->with([
                     'message' => 'Your Email Successfully Verified',
                 ]);
             }
-
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -271,13 +275,13 @@ class AuthenticationController extends Controller
 
         try {
             $data = Crypt::decrypt($token);
-            if($data) {
+            if ($data) {
                 $user = Member::where('email', $data['email'])
                     ->where('id_peserta', $data['id'])->first();
 
-                if(!$user) {
+                if (!$user) {
                     return redirect('login')
-                    ->with(['message' => 'User Not Found']);
+                        ->with(['message' => 'User Not Found']);
                 }
 
                 // $user->email_verified_at = Carbon::now();
@@ -289,7 +293,6 @@ class AuthenticationController extends Controller
                     // 'provinces' => $provinces
                 ]);
             }
-
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -301,13 +304,13 @@ class AuthenticationController extends Controller
 
         try {
             $data = Crypt::decrypt($token);
-            if($data) {
+            if ($data) {
                 $user = Member::where('email', $data['email'])
                     ->where('id_peserta', $data['id'])->first();
 
-                if(!$user) {
+                if (!$user) {
                     return redirect()->back()
-                    ->with(['message' => 'User Not Found']);
+                        ->with(['message' => 'User Not Found']);
                 }
 
                 $user->password = $this->request->password;
@@ -315,7 +318,6 @@ class AuthenticationController extends Controller
 
                 return redirect('login')->with("password", "Password berhasil diubah, silahkan login menggunakan password baru");
             }
-
         } catch (\Throwable $th) {
             throw $th;
         }

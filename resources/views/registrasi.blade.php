@@ -370,13 +370,18 @@
                     $('#exampleModal').modal('show')
                 },
                 error(err) {
-                    $.each(err.responseJSON,function(prefix,val) {
+                    $.each(err.responseJSON, function(prefix, val) {
+                        console.log(val === 'The email has already been taken.');
                         if (val === 'The email has already been taken.') {
-                           var element = document.getElementById('email')
-                            element.onchange = element.setCustomValidity('The email has already been taken.');
-                            element.onblur = element.setCustomValidity('The email has already been taken.');
-                            element.oninvalid = element.setCustomValidity('The email has already been taken.');
-                            element.onsubmit = element.setCustomValidity('The email has already been taken.');
+                            var element = document.getElementById('email')
+                            element.onchange = element.setCustomValidity(
+                                'The email has already been taken.');
+                            element.onblur = element.setCustomValidity(
+                                'The email has already been taken.');
+                            element.oninvalid = element.setCustomValidity(
+                                'The email has already been taken.');
+                            element.onsubmit = element.setCustomValidity(
+                                'The email has already been taken.');
                         }
                     })
                 }
@@ -384,16 +389,16 @@
 
         })
 
-        function validatePassword(){
-            if(password.value != confirm_password.value) {
+        function validatePassword() {
+            if (password.value != confirm_password.value) {
                 confirm_password.setCustomValidity("Passwords Don't Match");
             } else {
                 confirm_password.setCustomValidity('');
             }
         }
 
-        var password = document.getElementById("password")
-        , confirm_password = document.getElementById("confirmpassword");
+        var password = document.getElementById("password"),
+            confirm_password = document.getElementById("confirmpassword");
 
         password.onchange = validatePassword;
         confirm_password.onkeyup = validatePassword;
