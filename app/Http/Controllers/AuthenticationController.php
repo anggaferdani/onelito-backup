@@ -208,8 +208,6 @@ class AuthenticationController extends Controller
                     return response()->json(['message' => 'User Not Found']);
                 }
 
-                dd($user->email_verified_at !== null);
-
                 if ($user->email_verified_at !== null) {
                     return redirect('login')->with([
                         'message' => 'Your Email Already Verified',
