@@ -32,7 +32,7 @@ class EmailVerification extends Mailable
      */
     public function build()
     {
-        $user = Member::where('email', $this->email)->first();
+        $user = Member::where([['email', $this->email], ['status_hapus', 0]])->first();
 
         $payload = array(
             'id'        => $user->id_peserta,
@@ -45,10 +45,10 @@ class EmailVerification extends Mailable
         $url = config('app.url') . "/ls/click?click=$crypt";
 
         return $this
-        ->subject('Register Notification')
-        ->with([
-            'url' => $url
-        ])
-        ->markdown('emails.verify');
+            ->subject('Register Notification')
+            ->with([
+                'url' => $url
+            ])
+            ->markdown('emails.verify');
     }
 }
