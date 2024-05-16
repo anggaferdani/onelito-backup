@@ -158,7 +158,6 @@
                             @if (Session::has('message'))
                                 <div class="alert alert-success" role="alert">
                                     <h4 class="alert-heading">{{ Session::get('message') }}</h4>
-                                    <p class="mb-0">{{ Session::get('message') }}</p>
                                 </div>
                             @endif
 
