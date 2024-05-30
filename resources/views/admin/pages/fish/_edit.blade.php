@@ -45,7 +45,7 @@
             </div>
             <div class="form-group">
                 <label for="edit_harga_ikan">Harga</label>
-                <input  type="text" id="edit_harga_ikan" class="form-control" name="edit_harga_ikan" placeholder="">
+                <input  type="text" id="edit_harga_ikan" class="form-control" name="edit_harga_ikan" placeholder="" required>
             </div>
             <div class="form-group">
                 <label for="edit_note">Deskripsi</label>

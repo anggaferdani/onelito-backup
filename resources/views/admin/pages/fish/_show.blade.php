@@ -38,7 +38,7 @@
             </div>
             <div class="form-group">
                 <label for="show_harga_ikan">Harga</label>
-                <input readonly type="number" id="show_harga_ikan" class="form-control" name="show_harga_ikan" placeholder="">
+                <input readonly type="number" id="show_harga_ikan" class="form-control" name="show_harga_ikan" placeholder="" required>
             </div>
             <div class="form-group">
                 <label for="show_note">Deskripsi</label>
