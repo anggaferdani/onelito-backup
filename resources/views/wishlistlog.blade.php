@@ -3,18 +3,15 @@
 @section('container')
     <style>
         .card-img-top.product {
-            min-height: 367px;
             max-width: 245px;
             object-fit: contain;
             border: 1px solid #dee2e6!important
         }
 
         .card-img-top {
-            min-height: 367px;
         }
 
         .card-img-top {
-            max-height: 367px;
         }
 
         @media screen and (min-width: 601px) {
@@ -36,7 +33,6 @@
             }
 
             .card-img-top {
-                min-height: 254px;
             }
         }
 
@@ -44,7 +40,6 @@
          
 
             .card-img-top.product {
-                min-height: 364px;
                 object-fit: contain;
                 border: 1px solid #dee2e6!important
             }
